@@ -1,0 +1,44 @@
+﻿<Window x:Class="ModbusConnection.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModbusConnection"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="500">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Margin="0, 50, 0, 0" >
+            <StackPanel HorizontalAlignment="Center">
+                <Label>Ip adresa</Label>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="120" Height="25" x:Name="IpAddress" Text="127.0.0.1" VerticalContentAlignment="Center"/>
+                    <Button Content="Povezi se" Margin="30, 0, 0, 0" Width="80" x:Name="ConnectButton" Click="ConnectButton_Click"></Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
+                <Label Content="Konekcija: "/>
+                <Label x:Name="ConnectionStatus" Content="Neaktivna" Foreground="Red"/>
+            </StackPanel>
+
+            <StackPanel Margin="0, 30, 0, 0" x:Name="RegisterPanel" IsEnabled="False" HorizontalAlignment="Center">
+                <Label HorizontalAlignment="Center">Adresa registra</Label>
+                <TextBox Width="200" Height="25" x:Name="RegisterAddress" VerticalContentAlignment="Center"/>
+                <Button Content="Procitaj" Margin="0, 10, 0, 0" Width="80" x:Name="ReadRegister" Click="ReadRegister_Click"></Button>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="0,0,40,0">
+                        <Label HorizontalAlignment="Center" Margin="0, 30, 0, 0">Vrednost registra</Label>
+                        <TextBlock Text="0" Width="100" Height="30" FontSize="25" x:Name="CurrentRegisterValue" TextAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label HorizontalAlignment="Center" Margin="0, 30, 0, 0">Nova vrednost</Label>
+                        <TextBox Width="100" Height="25" x:Name="RegisterValue" VerticalContentAlignment="Center"/>
+                        <Button Content="Upisi" Margin="0, 10, 0, 0" Width="80" x:Name="WriteRegister" Click="WriteRegister_Click"></Button>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
