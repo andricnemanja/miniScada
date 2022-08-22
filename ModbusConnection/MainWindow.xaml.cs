@@ -37,6 +37,27 @@ namespace ModbusConnection
         {
             if (ConnectionStatus.Content.Equals("Neaktivna"))
                 return;
+
+            if (!ConnectionMonitor.IsAvailable(master, IpAddress.Text))
+            {
+                ConnectionStatus.Content = "Uspostavljanje konekcije...";
+                ConnectionStatus.Foreground = Brushes.Gray;
+                RegisterPanel.IsEnabled = false;
+                return;
+            }
+            else if (ConnectionStatus.Content.Equals("Uspostavljanje konekcije..."))
+            {
+                TcpClient client = new TcpClient(IpAddress.Text, 502);
+                var factory = new ModbusFactory();
+                master = factory.CreateMaster(client);
+
+                ConnectionStatus.Content = "Aktivna";
+                ConnectionStatus.Foreground = Brushes.Green;
+                RegisterPanel.IsEnabled = true;
+
+            }
+
+
             byte slaveAddress = 1;
             ushort startAddress =  string.IsNullOrEmpty(RegisterAddress.Text) ? (ushort)0 : ushort.Parse(RegisterAddress.Text);
             ushort[] value = master.ReadHoldingRegisters(slaveAddress, startAddress, 1);
