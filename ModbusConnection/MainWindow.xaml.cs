@@ -23,7 +23,7 @@ namespace ModbusConnection
     /// </summary>
     public partial class MainWindow : Window
     {
-        IModbusMaster master;
+        IModbusClient modbusClient;
         public MainWindow()
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace ModbusConnection
             if (ConnectionStatus.Content.Equals("Neaktivna"))
                 return;
 
-            if (!ConnectionMonitor.IsAvailable(master, IpAddress.Text))
+            if (!modbusClient.IsAvailable())
             {
                 ConnectionStatus.Content = "Uspostavljanje konekcije...";
                 ConnectionStatus.Foreground = Brushes.Gray;
@@ -47,9 +47,7 @@ namespace ModbusConnection
             }
             else if (ConnectionStatus.Content.Equals("Uspostavljanje konekcije..."))
             {
-                TcpClient client = new TcpClient(IpAddress.Text, 502);
-                var factory = new ModbusFactory();
-                master = factory.CreateMaster(client);
+                modbusClient.Reconnect();
 
                 ConnectionStatus.Content = "Aktivna";
                 ConnectionStatus.Foreground = Brushes.Green;
@@ -57,18 +55,14 @@ namespace ModbusConnection
 
             }
 
-
-            byte slaveAddress = 1;
             ushort startAddress =  string.IsNullOrEmpty(RegisterAddress.Text) ? (ushort)0 : ushort.Parse(RegisterAddress.Text);
-            ushort[] value = master.ReadHoldingRegisters(slaveAddress, startAddress, 1);
-            CurrentRegisterValue.Text = value[0].ToString();
+            int value = modbusClient.ReadSingleRegister(startAddress);
+            CurrentRegisterValue.Text = value.ToString();
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
-            TcpClient client = new TcpClient(IpAddress.Text, 502);
-            var factory = new ModbusFactory();
-            master = factory.CreateMaster(client);
+            modbusClient = new NModbusClient(IpAddress.Text, 502);
 
             ConnectionStatus.Content = "Aktivna";
             ConnectionStatus.Foreground = Brushes.Green;
@@ -77,20 +71,14 @@ namespace ModbusConnection
 
         private void ReadRegister_Click(object sender, RoutedEventArgs e)
         {
-
-            byte slaveAddress = 1;
-            ushort startAddress = ushort.Parse(RegisterAddress.Text);
-            ushort[] value = master.ReadHoldingRegisters(slaveAddress, startAddress, 1);
-            CurrentRegisterValue.Text = value[0].ToString();
-
+            int value = modbusClient.ReadSingleRegister(int.Parse(RegisterAddress.Text));
+            CurrentRegisterValue.Text = value.ToString();
         }
 
         private void WriteRegister_Click(object sender, RoutedEventArgs e)
         {
-            byte slaveAddress = 1;
-            ushort startAddress = ushort.Parse(RegisterAddress.Text);
-            ushort registerValue = ushort.Parse(RegisterValue.Text);
-            master.WriteSingleRegister(slaveAddress, startAddress, registerValue);
+            modbusClient.WriteSingleRegister(int.Parse(RegisterAddress.Text), int.Parse(RegisterValue.Text));
         }
+
     }
 }
