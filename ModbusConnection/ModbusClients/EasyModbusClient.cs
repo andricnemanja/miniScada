@@ -1,6 +1,8 @@
 ﻿using EasyModbus;
+using EasyModbus.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +22,15 @@ namespace ModbusConnection
 
         public int ReadSingleRegister(int startingAddress)
         {
-            return modbusClient.ReadHoldingRegisters(startingAddress, 1)[0];
+            try
+            {
+                return modbusClient.ReadHoldingRegisters(startingAddress, 1)[0];
+            }
+            catch(StartingAddressInvalidException)
+            {
+                Trace.WriteLine("Pogresna adresa");
+                return 0;
+            }
         }
 
         public void WriteSingleRegister(int startingAddress, int value)

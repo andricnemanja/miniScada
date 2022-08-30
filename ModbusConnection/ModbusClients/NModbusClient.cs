@@ -1,6 +1,7 @@
 ﻿using NModbus;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -27,13 +28,31 @@ namespace ModbusConnection
 
         public int ReadSingleRegister(int startingAddress)
         {
-            ushort[] value = master.ReadHoldingRegisters(1, (ushort)startingAddress, 1);
-            return value[0];
+            try
+            {
+                ushort[] value = master.ReadHoldingRegisters(1, (ushort)startingAddress, 1);
+                return value[0];
+
+            }
+            catch (SlaveException e)
+            {
+                Trace.WriteLine("SlaveException: " + ModbusErrors.errorCodeExplanation[e.SlaveExceptionCode]);
+                return 0;
+            }
         }
 
         public void WriteSingleRegister(int startingAddress, int value)
         {
-            master.WriteSingleRegister(1, (ushort)startingAddress, (ushort)value);
+            try
+            {
+                master.WriteSingleRegister(1, (ushort)startingAddress, (ushort)value);
+            }
+            catch(SlaveException e)
+            {
+                Trace.WriteLine("SlaveException: " + ModbusErrors.errorCodeExplanation[e.SlaveExceptionCode]);
+                
+            }
+
         }
 
         public bool IsAvailable()

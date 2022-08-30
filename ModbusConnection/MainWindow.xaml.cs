@@ -45,6 +45,8 @@ namespace ModbusConnection
                 RegisterPanel.IsEnabled = false;
                 return;
             }
+
+
             else if (ConnectionStatus.Content.Equals("Uspostavljanje konekcije..."))
             {
                 modbusClient.Reconnect();
@@ -62,7 +64,7 @@ namespace ModbusConnection
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
-            modbusClient = new NModbusClient(IpAddress.Text, 502);
+            modbusClient = new EasyModbusClient(IpAddress.Text, 502);
 
             ConnectionStatus.Content = "Aktivna";
             ConnectionStatus.Foreground = Brushes.Green;
