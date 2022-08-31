@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using ModbusConnection.Circuit_Breaker;
 using NModbus;
 
 namespace ModbusConnection
@@ -24,9 +25,13 @@ namespace ModbusConnection
     public partial class MainWindow : Window
     {
         IModbusClient modbusClient;
+        CircuitBreaker circuitBreaker;
+
+
         public MainWindow()
         {
             InitializeComponent();
+
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
@@ -38,33 +43,43 @@ namespace ModbusConnection
             if (ConnectionStatus.Content.Equals("Neaktivna"))
                 return;
 
-            if (!modbusClient.IsAvailable())
-            {
-                ConnectionStatus.Content = "Uspostavljanje konekcije...";
-                ConnectionStatus.Foreground = Brushes.Gray;
-                RegisterPanel.IsEnabled = false;
-                return;
-            }
+            ushort startAddress =  string.IsNullOrEmpty(RegisterAddress.Text) ? (ushort)1 : ushort.Parse(RegisterAddress.Text);
+            int value = 0;
 
-
-            else if (ConnectionStatus.Content.Equals("Uspostavljanje konekcije..."))
+            try
             {
-                modbusClient.Reconnect();
+                circuitBreaker.ExecuteAction(() =>
+                {
+                    value = modbusClient.ReadSingleRegister(startAddress);
+                });
 
                 ConnectionStatus.Content = "Aktivna";
                 ConnectionStatus.Foreground = Brushes.Green;
                 RegisterPanel.IsEnabled = true;
-
+            }
+            catch (CircuitBreakerOpenException)
+            {
+                ConnectionStatus.Content = "Uspostavljanje konekcije za " + circuitBreaker.RecconectingTime.ToString();
+                ConnectionStatus.Foreground = Brushes.Gray;
+                RegisterPanel.IsEnabled = false;
+                return;
+            }
+            catch(Exception)
+            {
+                ConnectionStatus.Content = "Uredjaj nije dostupan";
+                ConnectionStatus.Foreground = Brushes.Red;
+                RegisterPanel.IsEnabled = false;
+                return;
             }
 
-            ushort startAddress =  string.IsNullOrEmpty(RegisterAddress.Text) ? (ushort)0 : ushort.Parse(RegisterAddress.Text);
-            int value = modbusClient.ReadSingleRegister(startAddress);
             CurrentRegisterValue.Text = value.ToString();
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             modbusClient = new EasyModbusClient(IpAddress.Text, 502);
+            circuitBreaker = new CircuitBreaker(modbusClient);
+
 
             ConnectionStatus.Content = "Aktivna";
             ConnectionStatus.Foreground = Brushes.Green;

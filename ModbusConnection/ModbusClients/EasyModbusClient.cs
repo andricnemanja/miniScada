@@ -22,15 +22,7 @@ namespace ModbusConnection
 
         public int ReadSingleRegister(int startingAddress)
         {
-            try
-            {
-                return modbusClient.ReadHoldingRegisters(startingAddress, 1)[0];
-            }
-            catch(StartingAddressInvalidException)
-            {
-                Trace.WriteLine("Pogresna adresa");
-                return 0;
-            }
+            return modbusClient.ReadHoldingRegisters(startingAddress, 1)[0];
         }
 
         public void WriteSingleRegister(int startingAddress, int value)
