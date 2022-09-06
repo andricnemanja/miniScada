@@ -7,38 +7,93 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="500">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Margin="0, 50, 0, 0" >
-            <StackPanel HorizontalAlignment="Center">
-                <Label>Ip adresa</Label>
-                <StackPanel Orientation="Horizontal">
-                    <TextBox Width="120" Height="25" x:Name="IpAddress" Text="127.0.0.1" VerticalContentAlignment="Center"/>
-                    <Button Content="Povezi se" Margin="30, 0, 0, 0" Width="80" x:Name="ConnectButton" Click="ConnectButton_Click"></Button>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
-                <Label Content="Konekcija: "/>
-                <Label x:Name="ConnectionStatus" Content="Neaktivna" Foreground="Red"/>
-            </StackPanel>
-
-            <StackPanel Margin="0, 30, 0, 0" x:Name="RegisterPanel" IsEnabled="False" HorizontalAlignment="Center">
-                <Label HorizontalAlignment="Center">Adresa registra</Label>
-                <TextBox Width="200" Height="25" x:Name="RegisterAddress" VerticalContentAlignment="Center"/>
-                <Button Content="Procitaj" Margin="0, 10, 0, 0" Width="80" x:Name="ReadRegister" Click="ReadRegister_Click"></Button>
-
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Margin="0,0,40,0">
-                        <Label HorizontalAlignment="Center" Margin="0, 30, 0, 0">Vrednost registra</Label>
-                        <TextBlock Text="0" Width="100" Height="30" FontSize="25" x:Name="CurrentRegisterValue" TextAlignment="Center" />
+        <StackPanel HorizontalAlignment="Center" Margin="0,10,0,0" Width="480" >
+            <WrapPanel>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 10, 105, 10">
+                    <Label FontWeight="Bold" Content="IP Address" />
+                    <StackPanel Orientation="Vertical">
+                        <TextBox Width="120" Height="25" x:Name="IpAddress" Text="127.0.0.1" VerticalContentAlignment="Center"/>
+                        <Button Content="Connect" Margin="0, 10, 0, 0" Width="80" x:Name="ConnectButton" Click="ConnectButton_Click"></Button>
+                        <Button Content="Disconnect" Margin="0, 10, 0, 0" Width="80" x:Name="DisconnectButton" Click="DisconnectButton_Click"></Button>
                     </StackPanel>
-
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
+                        <Label Content="Connection: "/>
+                        <Label x:Name="ConnectionStatus" Content="Offline" Foreground="Red"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <Label Width="233" Content="Holding Registers:" FontWeight="Bold"/>
                     <StackPanel>
-                        <Label HorizontalAlignment="Center" Margin="0, 30, 0, 0">Nova vrednost</Label>
-                        <TextBox Width="100" Height="25" x:Name="RegisterValue" VerticalContentAlignment="Center"/>
-                        <Button Content="Upisi" Margin="0, 10, 0, 0" Width="80" x:Name="WriteRegister" Click="WriteRegister_Click"></Button>
+                        <Label Content="Address 40000:"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBox HorizontalAlignment="Left" Margin="5,0,20,0" Width="50" Height="20" x:Name="tb_Holding_Register_0" />
+                            <Button x:Name="bt_Holding_Register_0" Margin="0, 0, 45, 0" Width="45" Click="bt_Holding_Register_0_Click">Write</Button>
+                            <Label x:Name="lb_Holding_Register_0" Content="0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Address 40001:"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBox HorizontalAlignment="Left" Margin="5, 0, 20, 0" Width="50" Height="20" x:Name="tb_Holding_Register_1" TextChanged="tb_Holding_Register_1_TextChanged" />
+                            <Button x:Name="bt_Holding_Register_1" Margin="0, 0, 45,0" Width="45" Click="bt_Holding_Register_1_Click">Write</Button>
+                            <Label x:Name="lb_Holding_Register_1" Content="0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Address 40002:"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBox HorizontalAlignment="Left" Margin="5, 0, 20, 0" Width="50" Height="20" x:Name="tb_Holding_Register_2" TextChanged="tb_Holding_Register_2_TextChanged" />
+                            <Button x:Name="bt_Holding_Register_2" Margin="0, 0, 45, 0" Width="45" Click="bt_Holding_Register_2_Click">Write</Button>
+                            <Label x:Name="lb_Holding_Register_2" Content="0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Address 40003:"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBox HorizontalAlignment="Left" Margin="5, 0, 20, 0" Width="50" Height="20" x:Name="tb_Holding_Register_3" TextChanged="tb_Holding_Register_3_TextChanged" />
+                            <Button x:Name="bt_Holding_Register_3" Margin="0, 0, 45, 0" Width="45" Click="bt_Holding_Register_3_Click">Write</Button>
+                            <Label x:Name="lb_Holding_Register_3" Content="0"/>
+                        </StackPanel>
+                    </StackPanel>
+
+
+                </StackPanel>
+            </WrapPanel>
+            <WrapPanel Margin="0, 20, 0, 0">
+                <StackPanel x:Name="RegisterPanel" Margin="25, 0, 45, 0">
+                    <Label HorizontalAlignment="Left" FontWeight="Bold" Margin="-5,0,0,0">Coils:</Label>
+                    <CheckBox x:Name="cb_Coil_0" Margin="0, 5, 0, 7" Checked="cb_Coil_0_Checked" Unchecked="cb_Coil_0_Unchecked">Coil 0</CheckBox>
+                    <CheckBox x:Name="cb_Coil_1" Margin="0, 0, 0, 7" Checked="cb_Coil_1_Checked" Unchecked="cb_Coil_1_Unchecked">Coil 1</CheckBox>
+                    <CheckBox x:Name="cb_Coil_2" Margin="0, 0, 0, 7" Checked="cb_Coil_2_Checked" Unchecked="cb_Coil_2_Unchecked">Coil 2</CheckBox>
+                    <CheckBox x:Name="cb_Coil_3" Checked="cb_Coil_3_Checked" Unchecked="cb_Coil_3_Unchecked">Coil 3</CheckBox>
+                </StackPanel>
+                <StackPanel Margin="-10,0,0,0">
+                    <Label HorizontalAlignment="Left" FontWeight="Bold" Margin="-5,0,0,0">Digital Inputs:</Label>
+                    <CheckBox x:Name="cb_Discrete_Input_0" Margin="0, 5, 0, 7">Coil 0</CheckBox>
+                    <CheckBox x:Name="cb_Discrete_Input_1" Margin="0, 0, 0, 7">Coil 1</CheckBox>
+                    <CheckBox x:Name="cb_Discrete_Input_2" Margin="0, 0, 0, 7">Coil 2</CheckBox>
+                    <CheckBox x:Name="cb_Discrete_Input_3">Coil 3</CheckBox>
+                </StackPanel>
+                <StackPanel Margin="45,0,0,0">
+                    <Label FontWeight="Bold">Analog Inputs:</Label>
+                    <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 0">
+                        <Label Margin="0, 0, 85, 0">Address 30000:</Label>
+                        <Label x:Name="lb_Analog_Input_0">0</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
+                        <Label Margin="0, 0, 85, 0">Address 30001:</Label>
+                        <Label x:Name="lb_Analog_Input_1">0</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
+                        <Label Margin="0, 0, 85, 0">Address 30002:</Label>
+                        <Label x:Name="lb_Analog_Input_2">0</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
+                        <Label Margin="0, 0, 85, 0">Address 30003:</Label>
+                        <Label x:Name="lb_Analog_Input_3">0</Label>
                     </StackPanel>
                 </StackPanel>
-
-            </StackPanel>
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </Window>

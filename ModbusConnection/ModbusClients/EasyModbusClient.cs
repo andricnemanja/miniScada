@@ -47,5 +47,40 @@ namespace ModbusConnection
         {
             modbusClient.Connect();
         }
+
+        public ushort[] ReadHoldingRegisters(int startingAddress, int numberOfRegisters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool[] ReadCoils(int startingAddress, int numberOfCoils)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool[] ReadDiscreteInputs(int startingAddress, int numberOfCoils)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Disconnect()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ushort[] ReadAnalogInputs(int startingAddress, int numberOfRegisters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteSingleCoil(int coilAddress, bool value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteMultipleCoil(int coilAddress, bool[] data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

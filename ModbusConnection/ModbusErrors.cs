@@ -15,9 +15,5 @@ namespace ModbusConnection
             {4, "Greska na uredjaju" },
             {6, "Uredjaj trenutno zauzet" }
         };
-
-
-
-
     }
 }

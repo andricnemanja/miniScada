@@ -54,6 +54,38 @@ namespace ModbusConnection
             }
 
         }
+        //Read
+        public ushort[] ReadHoldingRegisters(int startingAddress, int numberOfRegisters)
+        {
+            return master.ReadHoldingRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
+        }
+
+        public ushort[] ReadAnalogInputs(int startingAddress, int numberOfRegisters)
+        {
+            return master.ReadInputRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
+        }
+
+        public bool[] ReadCoils(int startingAddress, int numberOfCoils)
+        {
+            return master.ReadCoils(1, (ushort)startingAddress, (ushort)numberOfCoils);
+        }
+        public bool[] ReadDiscreteInputs(int startingAddress, int numberOfCoils)
+        {
+            return master.ReadInputs(1, (ushort)startingAddress, (ushort)numberOfCoils);
+        }
+        //Write
+        public void WriteSingleCoil(int coilAddress, bool value)
+        {
+            master.WriteSingleCoil(1, (ushort)coilAddress, value);
+        }
+        public void WriteMultipleCoil(int coilAddress, bool[] data)
+        {
+            master.WriteMultipleCoils(1, (ushort)coilAddress, data);
+        }
+        public void Disconnect()
+        {
+            master.Dispose();
+        }
 
         public bool IsAvailable()
         {
@@ -74,5 +106,6 @@ namespace ModbusConnection
             var factory = new ModbusFactory();
             master = factory.CreateMaster(client);
         }
+
     }
 }
