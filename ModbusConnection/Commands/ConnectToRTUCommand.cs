@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ModbusConnection.Commands
@@ -33,6 +34,8 @@ namespace ModbusConnection.Commands
             IModbusClient modbusClient = new NModbusClient(IpAddress, Port);
             rtu.Connection.Client = modbusClient;
             rtu.Connection.Status = true;
+            Application.Current.Windows[1].Close();
+
         }
     }
 }
