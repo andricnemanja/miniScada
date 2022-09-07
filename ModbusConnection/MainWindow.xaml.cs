@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using ModbusConnection.Circuit_Breaker;
+using ModbusConnection.ViewModel;
 using NModbus;
 
 namespace ModbusConnection
@@ -31,13 +32,15 @@ namespace ModbusConnection
         public MainWindow()
         {
             InitializeComponent();
+            MainViewModel mainViewModel = new MainViewModel();
+            this.DataContext = mainViewModel;
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            //timer.Tick += timer_Tick;
+            //timer.Start();
         }
-
+        /*
         void timer_Tick(object sender, EventArgs e)
         {
             if (ConnectionStatus.Content.Equals("Offline"))
@@ -208,6 +211,6 @@ namespace ModbusConnection
         private void cb_Coil_3_Unchecked(object sender, RoutedEventArgs e)
         {
             cb_Coil_3_Checked(sender, e);
-        }
+        }*/
     }
 }
