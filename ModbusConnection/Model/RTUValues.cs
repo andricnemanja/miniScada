@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModbusConnection.Model
 {
-    internal class RTUValues
+    public class RTUValues
     {
         public int Register1 { get; set; }
         public int Register2 { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace ModbusConnection.Model
 {
-    internal class RTUConnection
+    public class RTUConnection
     {
         public bool Status { get; set; }
         public IModbusClient Client { get; set; }
