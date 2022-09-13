@@ -1,14 +1,41 @@
-﻿namespace ModbusConnection.Model
+﻿using System.ComponentModel;
+
+namespace ModbusConnection.Model
 {
-    public class RTUConnection
+    public class RTUConnection : INotifyPropertyChanged
     {
-        public bool Status { get; set; }
+        private bool _status;
+
+        public bool Status
+        {
+            get { return _status; }
+            set 
+            {
+                if(value != _status)
+                {
+                    _status = value;
+                    RaisePropertyChanged("Status");
+                }
+            }
+        }
+
         public IModbusClient Client { get; set; }
 
         public RTUConnection(IModbusClient client, bool status = false)
         {
             Status = status;
             Client = client;
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+
+        private void RaisePropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
         }
     }
 }

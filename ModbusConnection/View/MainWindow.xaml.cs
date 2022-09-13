@@ -18,7 +18,7 @@ using ModbusConnection.Circuit_Breaker;
 using ModbusConnection.ViewModel;
 using NModbus;
 
-namespace ModbusConnection
+namespace ModbusConnection.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -35,8 +35,8 @@ namespace ModbusConnection
             MainViewModel mainViewModel = new MainViewModel();
             this.DataContext = mainViewModel;
 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            //DispatcherTimer timer = new DispatcherTimer();
+            //timer.Interval = TimeSpan.FromSeconds(1);
             //timer.Tick += timer_Tick;
             //timer.Start();
         }
