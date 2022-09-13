@@ -14,10 +14,12 @@ namespace ModbusConnection.ViewModel
     {
 
         public ICommand CreateConnectionWindowCommand { get; set; }
+        public ICommand SetRegistryValuesCommand { get; set; }
 
         public MainViewModel()
         {
             CreateConnectionWindowCommand = new CreateConnectionWindowCommand();
+            SetRegistryValuesCommand = new SetRegistryValuesCommand();
         }
 
         public ObservableCollection<RTU> RTUList { get; set; } = new ObservableCollection<RTU>

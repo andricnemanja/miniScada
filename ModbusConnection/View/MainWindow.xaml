@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModbusConnection.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Margin="0,10,0,0" >
+        <StackPanel HorizontalAlignment="Center" Margin="0,10,0,0">
 
 
-            <DataGrid ItemsSource="{Binding RTUList}" Margin="20,20,20,20" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid ItemsSource="{Binding RTUList}" Margin="20,20,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="740px" x:Name="DevicesDataGrid">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv uredjaja" Binding="{Binding Data.Name}" Width ="Auto"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Naziv uredjaja" Binding="{Binding Data.Name}" Width ="*"></DataGridTextColumn>
 
                     <DataGridTemplateColumn Header="Status" Width ="Auto" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
@@ -26,12 +26,19 @@
                     </DataGridTemplateColumn>
 
 
-                    <DataGridTextColumn Header="Ip adresa" Width ="Auto" Binding="{Binding Data.IpAddress}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Registar 1" Width ="Auto" Binding="{Binding Values.Register1}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Registar 2" Width ="Auto" Binding="{Binding Values.Register2}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Coil 1" Width ="Auto" Binding="{Binding Values.Coil1}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Coil 2" Width ="Auto" Binding="{Binding Values.Coil2}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Ip adresa" Width ="*" Binding="{Binding Data.IpAddress}" IsReadOnly="True"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Registar 1" Width ="*" Binding="{Binding Values.Register1}" IsReadOnly="True"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Registar 2" Width ="*" Binding="{Binding Values.Register2}" IsReadOnly="True"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Coil 1" Width ="*" Binding="{Binding Values.Coil1}" IsReadOnly="True"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Coil 2" Width ="*" Binding="{Binding Values.Coil2}" IsReadOnly="True"></DataGridTextColumn>
+
                 </DataGrid.Columns>
+
+                <DataGrid.InputBindings>
+                    <MouseBinding MouseAction="LeftDoubleClick"
+                      Command="{Binding Path=SetRegistryValuesCommand}"
+                      CommandParameter="{Binding ElementName=DevicesDataGrid, Path=SelectedItem}" />
+                </DataGrid.InputBindings>
 
             </DataGrid>
         </StackPanel>
