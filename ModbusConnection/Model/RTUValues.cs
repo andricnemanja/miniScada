@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ModbusConnection.Model.Signals;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,17 +10,31 @@ namespace ModbusConnection.Model
 {
     public class RTUValues
     {
-        public int Register1 { get; set; }
-        public int Register2 { get; set; }
-        public bool Coil1 { get; set; }
-        public bool Coil2 { get; set; }
+        public ObservableCollection<ISignal> DiscreteSignals { get; set; }
+        public IModbusClient ModbusClient { get; set; }
 
-        public RTUValues(int register1 = 0, int register2 = 0, bool coil1 = false, bool coil2 = false)
+        public RTUValues()
         {
-            Register1 = register1;
-            Register2 = register2;
-            Coil1 = coil1;
-            Coil2 = coil2;
+            DiscreteSignals = new ObservableCollection<ISignal>();
+        }
+
+        public RTUValues(ObservableCollection<ISignal> discreteSignals)
+        {
+            DiscreteSignals = discreteSignals;
+        }
+
+        public void SetModbusClientToSignals(IModbusClient client)
+        {
+            foreach(ISignal signal in DiscreteSignals)
+                signal.ModbusClient = client;
+        }
+
+        public void UpdateSignals()
+        {
+            foreach(var signal in DiscreteSignals)
+            {
+                signal.Read();
+            }
         }
     }
 }

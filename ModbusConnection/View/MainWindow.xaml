@@ -12,7 +12,7 @@
 
             <DataGrid ItemsSource="{Binding RTUList}" Margin="20,20,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="740px" x:Name="DevicesDataGrid">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv uredjaja" Binding="{Binding Data.Name}" Width ="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="RTU" Binding="{Binding Data.Name}" Width ="*"/>
 
                     <DataGridTemplateColumn Header="Status" Width ="Auto" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
@@ -25,13 +25,37 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
+                    <DataGridTextColumn Header="Ip adresa" Width ="*" Binding="{Binding Data.IpAddress}" IsReadOnly="True"/>
 
-                    <DataGridTextColumn Header="Ip adresa" Width ="*" Binding="{Binding Data.IpAddress}" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Registar 1" Width ="*" Binding="{Binding Values.Register1}" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Registar 2" Width ="*" Binding="{Binding Values.Register2}" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Coil 1" Width ="*" Binding="{Binding Values.Coil1}" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Coil 2" Width ="*" Binding="{Binding Values.Coil2}" IsReadOnly="True"></DataGridTextColumn>
-
+                    <DataGridTemplateColumn Header="Diskretni signali" Width ="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding Values.DiscreteSignals}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding Name}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                    
+                    <DataGridTemplateColumn Header="Analogni signali" Width ="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding Values.AnalogSignals}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
                 </DataGrid.Columns>
 
                 <DataGrid.InputBindings>

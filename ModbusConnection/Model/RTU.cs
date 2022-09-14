@@ -17,6 +17,7 @@ namespace ModbusConnection.Model
             Data = data;
             Values = values;
             Connection = connection;
+            values.ModbusClient = connection.Client;
         }
     }
 }
