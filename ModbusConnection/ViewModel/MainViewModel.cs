@@ -33,9 +33,9 @@ namespace ModbusConnection.ViewModel
             };
             ObservableCollection<ISignal> discreteSignals2 = new ObservableCollection<ISignal>()
             {
-                new DiscreteSignal(1, "Prekidac 1", false, null),
+                new DiscreteSignal(0, "Prekidac 1", false, null),
                 new DiscreteSignal(2, "Prekidac 2", false, null),
-                new DiscreteSignal(2, "Prekidac 2", false, null)
+                new DiscreteSignal(5, "Prekidac 3", false, null)
 
             };
             ObservableCollection<ISignal> discreteSignals3 = new ObservableCollection<ISignal>()
@@ -58,17 +58,10 @@ namespace ModbusConnection.ViewModel
 
         void timer_Tick(object sender, EventArgs e)
         {
-            foreach(RTU rtu in RTUList)
+            Parallel.ForEach(RTUList, rtu =>
             {
                 rtu.Values.UpdateSignals();
-            }
-
+            });
         }
-
-
-
-
-
-
     }
 }
