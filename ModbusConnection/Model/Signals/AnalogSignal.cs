@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ModbusConnection.Model.Signals
 {
-    internal class AnalogSignal : ISignal
+    internal class AnalogSignal : ISignal, INotifyPropertyChanged
     {
         private int _address;
 
@@ -26,30 +27,35 @@ namespace ModbusConnection.Model.Signals
 
         private int _value;
 
+
         public int Value
         {
             get { return _value; }
-            set { _value = value; }
+            set 
+            {
+                if (value != _value)
+                {
+                    _value = value;
+                    RaisePropertyChanged("Value");
+                }
+            }
         }
 
-        public IModbusClient ModbusClient { get; set; }
-
-        public AnalogSignal(int address, string? name, int value, IModbusClient modbusClient)
+        public AnalogSignal(int address, string? name, int value)
         {
             _address = address;
             _name = name;
             _value = value;
-            ModbusClient = modbusClient;
         }
 
-        public void Write()
-        {
-            throw new NotImplementedException();
-        }
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void Read()
+        private void RaisePropertyChanged(string property)
         {
-            throw new NotImplementedException();
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
         }
     }
 }

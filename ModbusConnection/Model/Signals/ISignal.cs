@@ -10,9 +10,5 @@ namespace ModbusConnection.Model.Signals
     {
         int Address { get; set; }
         string Name { get; set; }
-        IModbusClient ModbusClient { get; set; }
-
-        void Write();
-        void Read();
     }
 }

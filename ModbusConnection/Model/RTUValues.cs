@@ -11,30 +11,20 @@ namespace ModbusConnection.Model
     public class RTUValues
     {
         public ObservableCollection<ISignal> DiscreteSignals { get; set; }
+        public ObservableCollection<ISignal> AnalogSignals { get; set; }
+
         public IModbusClient ModbusClient { get; set; }
 
         public RTUValues()
         {
             DiscreteSignals = new ObservableCollection<ISignal>();
+            AnalogSignals = new ObservableCollection<ISignal>();
         }
 
-        public RTUValues(ObservableCollection<ISignal> discreteSignals)
+        public RTUValues(ObservableCollection<ISignal> discreteSignals, ObservableCollection<ISignal> analogSignals)
         {
             DiscreteSignals = discreteSignals;
-        }
-
-        public void SetModbusClientToSignals(IModbusClient client)
-        {
-            foreach(ISignal signal in DiscreteSignals)
-                signal.ModbusClient = client;
-        }
-
-        public void UpdateSignals()
-        {
-            foreach(var signal in DiscreteSignals)
-            {
-                signal.Read();
-            }
+            AnalogSignals = analogSignals;
         }
     }
 }

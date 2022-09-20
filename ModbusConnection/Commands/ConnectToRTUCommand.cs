@@ -33,7 +33,6 @@ namespace ModbusConnection.Commands
         {
             IModbusClient modbusClient = new NModbusClient(IpAddress, Port);
             rtu.Connection.Client = modbusClient;
-            rtu.Values.SetModbusClientToSignals(modbusClient);
             rtu.Connection.Status = true;
             rtu.Data.IpAddress = IpAddress;
             rtu.Data.Port = Port;

@@ -46,30 +46,17 @@ namespace ModbusConnection.Model.Signals
                 {
                     _value = value;
                     RaisePropertyChanged("Value");
-                    Write();
+                    //Write();
                 }
             }
         }
 
-        public IModbusClient ModbusClient { get; set; }
 
-        public DiscreteSignal(int address, string? name, bool value, IModbusClient modbusClient)
+        public DiscreteSignal(int address, string? name, bool value)
         {
             _address = address;
             _name = name;
             _value = value;
-            ModbusClient = modbusClient;
-        }
-
-        public void Write()
-        {
-            ModbusClient.WriteSingleCoil(_address, _value);
-        }
-
-        public void Read()
-        {
-            if(ModbusClient != null)
-                Value = ModbusClient.ReadCoils(Address, 1)[0];
         }
 
         private void RaisePropertyChanged(string property)

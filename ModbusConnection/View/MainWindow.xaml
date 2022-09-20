@@ -39,10 +39,10 @@
 
                     <DataGridTextColumn Header="Ip adresa" Width ="*" Binding="{Binding Data.IpAddress}" IsReadOnly="True"/>
 
-                    <DataGridTemplateColumn Header="Diskretni signali" Width ="*">
+                    <DataGridTemplateColumn Header="Diskretni signali" Width ="*" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding Values.DiscreteSignals}">
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding Values.DiscreteSignals}" IsEnabled="{Binding Connection.Status}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding Name}" />
@@ -52,15 +52,19 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    
-                    
-                    <DataGridTemplateColumn Header="Analogni signali" Width ="*">
+
+
+                    <DataGridTemplateColumn Header="Analogni signali" Width ="*" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding Values.AnalogSignals}">
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding Values.AnalogSignals}" IsEnabled="{Binding Connection.Status}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                                                <TextBlock VerticalAlignment="Center" Text=": " />
+                                                <TextBlock VerticalAlignment="Center" Text="{Binding Value}" />
+                                            </StackPanel>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
