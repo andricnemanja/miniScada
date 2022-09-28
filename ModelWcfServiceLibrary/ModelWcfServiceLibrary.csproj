@@ -45,12 +45,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IModelService.cs" />
+    <Compile Include="Model\RTU\RTU.cs" />
+    <Compile Include="Model\Signals\AnalogSignal.cs" />
+    <Compile Include="Model\Signals\DiscreteSignal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
