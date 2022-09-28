@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusConnection", "ModbusConnection\ModbusConnection.csproj", "{24F2CB2D-DE81-46C5-9A09-2E2EB75E59CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModbusConnection", "ModbusConnection\ModbusConnection.csproj", "{24F2CB2D-DE81-46C5-9A09-2E2EB75E59CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelWcfServiceLibrary", "ModelWcfServiceLibrary\ModelWcfServiceLibrary.csproj", "{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelServiceHost", "ModelService\ModelServiceHost.csproj", "{9DF2D01C-1CCD-4467-8EC9-0BA4AB1A2138}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{24F2CB2D-DE81-46C5-9A09-2E2EB75E59CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24F2CB2D-DE81-46C5-9A09-2E2EB75E59CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24F2CB2D-DE81-46C5-9A09-2E2EB75E59CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF2D01C-1CCD-4467-8EC9-0BA4AB1A2138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF2D01C-1CCD-4467-8EC9-0BA4AB1A2138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF2D01C-1CCD-4467-8EC9-0BA4AB1A2138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF2D01C-1CCD-4467-8EC9-0BA4AB1A2138}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
