@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.Signals;
+using ModelWcfServiceLibrary.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -7,12 +10,24 @@ using System.Text;
 
 namespace ModelWcfServiceLibrary
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class ModelService : IModelService
     {
-        public string GetData(int value)
+        public RTURepository RTURepository { get; set; }
+
+        public ModelService()
         {
+            InitializeService();
+        }
+
+        public string GetData(int value)
+        {            
             return string.Format("You entered: {0}", value);
+        }
+
+        public void InitializeService()
+        {
+            RTURepository = new RTURepository();
+            RTURepository.Deserialize();
         }
     }
 }
