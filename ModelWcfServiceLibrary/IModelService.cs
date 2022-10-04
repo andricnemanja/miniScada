@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,6 +14,10 @@ namespace ModelWcfServiceLibrary
     public interface IModelService
     {
         [OperationContract]
-        string GetData(int value);
+        List<RTU> GetStaticData();
+
+        [OperationContract]
+        RTU GetRTU(int id);
+
     }
 }

@@ -19,15 +19,20 @@ namespace ModelWcfServiceLibrary
             InitializeService();
         }
 
-        public string GetData(int value)
+        public List<RTU> GetStaticData()
         {            
-            return string.Format("You entered: {0}", value);
+            return RTURepository.RtuList;
         }
 
         public void InitializeService()
         {
             RTURepository = new RTURepository();
             RTURepository.Deserialize();
+        }
+
+        public RTU GetRTU(int id)
+        {
+            return  RTURepository.GetRTUByID(id);
         }
     }
 }

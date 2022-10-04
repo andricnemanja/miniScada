@@ -11,7 +11,7 @@ namespace ModelWcfServiceLibrary.Repository
 {
     public class RTURepository
     {
-        public List<RTU> RtuList { get; }
+        public List<RTU> RtuList { get; set; }
         const string fileName = @".\..\..\Resources\RTUs.json";
         private string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
 
