@@ -16,7 +16,7 @@
         "Name": "Analog signal 2"
       }
     ],
-    "DiscredSignals": [
+    "DiscreteSignals": [
       {
         "ID": 1,
         "Address": 1,
@@ -41,7 +41,7 @@
         "Name": "Analog signal 2"
       }
     ],
-    "DiscredSignals": [
+    "DiscreteSignals": [
       {
         "ID": 1,
         "Address": 2,
