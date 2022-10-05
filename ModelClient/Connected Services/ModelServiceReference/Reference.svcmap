@@ -25,6 +25,8 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="5f9b69bd-e814-4caf-9981-bfaae7aa622f" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="62a0c2c7-d7c9-4e90-a38b-0894c00f798c" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="be8613ef-4d00-40f1-b897-f936bce7bda3" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
+    <MetadataFile FileName="ModelWcfServiceLibrary.Model.RTU.xsd" MetadataType="Schema" ID="14a56613-107c-4fd4-8623-398969b47530" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
+    <MetadataFile FileName="ModelWcfServiceLibrary.Model.Signals.xsd" MetadataType="Schema" ID="6fee1c4c-2503-4bb1-bb1b-41dcc6376324" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -14,6 +14,6 @@ namespace ModelWcfServiceLibrary.Model.RTU
         public string Address { get; set; }
         public int Port { get; set; }
         public IEnumerable<AnalogSignal> AnalogSignals { get; set; }
-        public IEnumerable<DiscreteSignal> DiscredSignals{ get; set; }
+        public IEnumerable<DiscreteSignal> DiscretSignals{ get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace ModelClient
         {
             ModelServiceClient modelServiceClient = new ModelServiceClient();
 
-            Console.WriteLine(modelServiceClient.GetData(12));
+            Console.WriteLine(modelServiceClient.GetRTU(1).Name);
             Console.ReadKey();
 
             modelServiceClient.Close();

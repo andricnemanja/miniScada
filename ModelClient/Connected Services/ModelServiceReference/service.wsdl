@@ -4,24 +4,45 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IModelService_GetData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetData" />
+  <wsdl:message name="IModelService_GetStaticData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStaticData" />
   </wsdl:message>
-  <wsdl:message name="IModelService_GetData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  <wsdl:message name="IModelService_GetStaticData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStaticDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetRTU_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRTU" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetRTU_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRTUResponse" />
   </wsdl:message>
   <wsdl:portType name="IModelService">
-    <wsdl:operation name="GetData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetData" message="tns:IModelService_GetData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetDataResponse" message="tns:IModelService_GetData_OutputMessage" />
+    <wsdl:operation name="GetStaticData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetStaticData" message="tns:IModelService_GetStaticData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetStaticDataResponse" message="tns:IModelService_GetStaticData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRTU">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetRTU" message="tns:IModelService_GetRTU_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetRTUResponse" message="tns:IModelService_GetRTU_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IModelService" type="tns:IModelService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetData">
-      <soap:operation soapAction="http://tempuri.org/IModelService/GetData" style="document" />
+    <wsdl:operation name="GetStaticData">
+      <soap:operation soapAction="http://tempuri.org/IModelService/GetStaticData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRTU">
+      <soap:operation soapAction="http://tempuri.org/IModelService/GetRTU" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

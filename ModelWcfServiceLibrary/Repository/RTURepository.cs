@@ -41,7 +41,7 @@ namespace ModelWcfServiceLibrary.Repository
 
         public RTU GetRTUByID(int rtuID)
         {
-            return (RTU)RtuList.Where(t => t.ID == rtuID);
+            return (RTU)(RtuList.SingleOrDefault(t => t.ID == rtuID));
         }
     }
 }
