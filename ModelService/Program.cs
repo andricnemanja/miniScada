@@ -45,7 +45,7 @@ namespace ModelServiceHost
             //    selfHost.Abort();
             //}
 
-            Uri tcpUri = new Uri("net.tcp://localhost:8008/GettingStarted");
+            Uri tcpUri = new Uri("net.tcp://localhost:65001/GettingStarted");
 
             // Create the ServiceHost
             ServiceHost selfHost = new ServiceHost(typeof(ModelService), tcpUri);
@@ -56,7 +56,7 @@ namespace ModelServiceHost
 
             // Add an endpoint to the service.
             selfHost.Description.Endpoints.Clear();
-            selfHost.AddServiceEndpoint(typeof(ModelService), binding, "ModelService");
+            selfHost.AddServiceEndpoint(typeof(IModelService), binding, "ModelService");
 
             // Step 4: Enable metadata exchange.
             ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
