@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="35a8116f-ed64-4572-9c8f-1c35e00c4d42" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="d87daa0f-6cde-4696-b1d0-66de7921ec20" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:65001/GettingStarted/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="5f9b69bd-e814-4caf-9981-bfaae7aa622f" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="62a0c2c7-d7c9-4e90-a38b-0894c00f798c" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="be8613ef-4d00-40f1-b897-f936bce7bda3" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
-    <MetadataFile FileName="ModelWcfServiceLibrary.Model.RTU.xsd" MetadataType="Schema" ID="14a56613-107c-4fd4-8623-398969b47530" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
-    <MetadataFile FileName="ModelWcfServiceLibrary.Model.Signals.xsd" MetadataType="Schema" ID="6fee1c4c-2503-4bb1-bb1b-41dcc6376324" SourceId="1" SourceUrl="http://localhost:8733/ModelWcfServiceLibrary/ModelService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="df220404-cc1f-416b-807c-4867743468d0" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="1cd8426f-2e9b-430f-8e08-dcb82a95f567" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="2c8655ab-b201-4ec5-b6db-ef04fbe192bd" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="ModelWcfServiceLibrary.Model.RTU.xsd" MetadataType="Schema" ID="83ed2e88-fafc-4476-b890-eae7fe977a27" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="ModelWcfServiceLibrary.Model.Signals.xsd" MetadataType="Schema" ID="0d6b2bff-d775-4ccf-9f57-aabacfa5ff65" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
