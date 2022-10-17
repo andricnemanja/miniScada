@@ -11,7 +11,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" minOccurs="0" name="AnalogSignals" nillable="true" type="q1:ArrayOfAnalogSignal" />
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" minOccurs="0" name="DiscretSignals" nillable="true" type="q2:ArrayOfDiscreteSignal" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" minOccurs="0" name="DiscreteSignals" nillable="true" type="q2:ArrayOfDiscreteSignal" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Port" type="xs:int" />

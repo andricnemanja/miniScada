@@ -29,7 +29,7 @@ namespace ModelClient.ModelServiceReference {
         private ModelClient.ModelServiceReference.AnalogSignal[] AnalogSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ModelClient.ModelServiceReference.DiscreteSignal[] DiscretSignalsField;
+        private ModelClient.ModelServiceReference.DiscreteSignal[] DiscreteSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
@@ -77,14 +77,14 @@ namespace ModelClient.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ModelClient.ModelServiceReference.DiscreteSignal[] DiscretSignals {
+        public ModelClient.ModelServiceReference.DiscreteSignal[] DiscreteSignals {
             get {
-                return this.DiscretSignalsField;
+                return this.DiscreteSignalsField;
             }
             set {
-                if ((object.ReferenceEquals(this.DiscretSignalsField, value) != true)) {
-                    this.DiscretSignalsField = value;
-                    this.RaisePropertyChanged("DiscretSignals");
+                if ((object.ReferenceEquals(this.DiscreteSignalsField, value) != true)) {
+                    this.DiscreteSignalsField = value;
+                    this.RaisePropertyChanged("DiscreteSignals");
                 }
             }
         }

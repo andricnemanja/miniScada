@@ -54,6 +54,16 @@ namespace ModelServiceHost
                 Console.WriteLine("An exception occurred: {0}", ce.Message);
                 selfHost.Abort();
             }
+
+            ServiceHost selfHost = new ServiceHost(typeof(ModelService));
+            selfHost.Open();
+
+            string listenUri = selfHost.Description.Endpoints[0].ListenUri.AbsoluteUri;
+            Console.WriteLine("Listening on: {0}", listenUri);
+            Console.WriteLine("Press <Enter> to terminate the service");
+            Console.ReadLine();
+            
+
         }
     }
 }

@@ -9,7 +9,7 @@ using System.ServiceModel;
 using System.Text;
 
 namespace ModelWcfServiceLibrary
-{
+{       //fali service contract
     public class ModelService : IModelService
     {
         public IRtuRepository RTURepository { get; set; }
