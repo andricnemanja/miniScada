@@ -9,16 +9,17 @@ using System.Threading.Tasks;
 
 namespace ModelWcfServiceLibrary.Repository
 {
-    public class RTURepository
+    public class JsonRtuRepository : IRtuRepository
     {
         public List<RTU> RtuList { get; set; }
         const string fileName = @".\..\..\Resources\RTUs.json";
         private string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
 
 
-        public RTURepository()
+        public JsonRtuRepository()
         {
             RtuList = new List<RTU>();
+            Deserialize();
         }
 
 
@@ -41,7 +42,7 @@ namespace ModelWcfServiceLibrary.Repository
 
         public RTU GetRTUByID(int rtuID)
         {
-            return (RTU)(RtuList.SingleOrDefault(t => t.ID == rtuID));
+            return RtuList.SingleOrDefault(t => t.ID == rtuID);
         }
     }
 }

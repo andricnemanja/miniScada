@@ -12,13 +12,18 @@ namespace ModelWcfServiceLibrary
 {
     public class ModelService : IModelService
     {
-        public RTURepository RTURepository { get; set; }
+        public IRtuRepository RTURepository { get; set; }
+
+        public ModelService(IRtuRepository rtuRepository)
+        {
+            RTURepository = rtuRepository;
+        }
+
 
         public ModelService()
         {
-            InitializeService();
+                
         }
-
         public List<RTU> GetStaticData()
         {            
             return RTURepository.RtuList;
@@ -26,8 +31,7 @@ namespace ModelWcfServiceLibrary
 
         public void InitializeService()
         {
-            RTURepository = new RTURepository();
-            RTURepository.Deserialize();
+            RTURepository = new JsonRtuRepository();
         }
 
         public RTU GetRTU(int id)
