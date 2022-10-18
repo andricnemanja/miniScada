@@ -19,11 +19,6 @@ namespace ModelWcfServiceLibrary
             RTURepository = rtuRepository;
         }
 
-
-        public ModelService()
-        {
-                
-        }
         public List<RTU> GetStaticData()
         {            
             return RTURepository.RtuList;
