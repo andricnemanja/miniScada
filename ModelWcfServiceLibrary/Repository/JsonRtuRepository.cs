@@ -7,11 +7,17 @@ using System.Text.Json;
 
 namespace ModelWcfServiceLibrary.Repository
 {
+    /// <summary>
+    /// Communication with a JSON file where RTU static data are stored.
+    /// </summary>
     public class JsonRtuRepository : IRtuRepository
     {
+        /// <summary>
+        /// List of RTUs read from a file. If <c>Deserialize()</c> method isn't called after instantiating the class, the list is going to be empty.
+        /// </summary>
         public List<RTU> RtuList { get; set; }
         const string fileName = @".\..\..\Resources\RTUs.json";
-        private string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+        private readonly string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
 
 
         public JsonRtuRepository()
@@ -20,7 +26,9 @@ namespace ModelWcfServiceLibrary.Repository
             Deserialize();
         }
 
-
+        /// <summary>
+        /// Saves the current state of the RTUs to a JSON file
+        /// </summary>
         public void Serialize()
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
@@ -30,14 +38,20 @@ namespace ModelWcfServiceLibrary.Repository
             File.WriteAllText(filePath, jsonString);
         }
 
-
+        /// <summary>
+        /// Reads RTUs static data from a JSON file and stores it in the <c>RtuList</c>
+        /// </summary>
         public void Deserialize()
         {
             string jsonString = File.ReadAllText(filePath);
             RtuList = JsonSerializer.Deserialize<List<RTU>>(jsonString);
         }
 
-
+        /// <summary>
+        /// Gets the RTU with specified ID
+        /// </summary>
+        /// <param name="rtuID">Unique identification number for the RTU</param>
+        /// <returns>RTU with the given ID. If RTU with that ID doesn't exist, it will return <c>null</c></returns>
         public RTU GetRTUByID(int rtuID)
         {
             return RtuList.SingleOrDefault(t => t.ID == rtuID);
