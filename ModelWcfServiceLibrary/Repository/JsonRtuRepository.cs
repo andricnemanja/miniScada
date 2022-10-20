@@ -1,4 +1,5 @@
-﻿using ModelWcfServiceLibrary.Model.RTU;
+﻿using ModelWcfServiceLibrary.FileAccessing;
+using ModelWcfServiceLibrary.Model.RTU;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,12 +17,15 @@ namespace ModelWcfServiceLibrary.Repository
         /// List of RTUs read from a file. If <c>Deserialize()</c> method isn't called after instantiating the class, the list is going to be empty.
         /// </summary>
         public List<RTU> RtuList { get; set; }
+
+        public IFileAccess JsonFileAccess { get; set; }
         const string fileName = @".\..\..\Resources\RTUs.json";
         private readonly string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
 
 
-        public JsonRtuRepository()
+        public JsonRtuRepository(IFileAccess fileAccess)
         {
+            JsonFileAccess = fileAccess;
             RtuList = new List<RTU>();
             Deserialize();
         }
@@ -30,22 +34,31 @@ namespace ModelWcfServiceLibrary.Repository
         /// Saves the current state of the RTUs to a JSON file
         /// </summary>
         public void Serialize()
-        {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(RtuList, options);
-
-
-            File.WriteAllText(filePath, jsonString);
+        { 
+            string jsonString = CreateJsonString(RtuList);
+            JsonFileAccess.SaveToFile(filePath, jsonString);
         }
 
         /// <summary>
-        /// Reads RTUs static data from a JSON file and stores it in the <c>RtuList</c>
+        /// Converts list of RTUs to JSON string
+        /// </summary>
+        /// <param name="rtuList">List of RTUs to convert to JSON string</param>
+        /// <returns>JSON string</returns>
+        public string CreateJsonString(List<RTU> rtuList)
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            return JsonSerializer.Serialize(rtuList, options);
+        }
+
+        /// <summary>
+        ///  Stores RTUs data from JSON file in the <c>RtuList</c>
         /// </summary>
         public void Deserialize()
         {
-            string jsonString = File.ReadAllText(filePath);
+            string jsonString = JsonFileAccess.ReadFile(filePath);
             RtuList = JsonSerializer.Deserialize<List<RTU>>(jsonString);
         }
+
 
         /// <summary>
         /// Gets the RTU with specified ID
