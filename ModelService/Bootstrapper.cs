@@ -5,8 +5,14 @@ using ModelWcfServiceLibrary.Repository;
 
 namespace ModelServiceHost
 {
+    /// <summary>
+    /// Definining dependencies for Model Service classes
+    /// </summary>
     public class Bootstrapper
     {
+        /// <summary>
+        /// Create container that have all dependencies for Model Service classes
+        /// </summary>
         public static ContainerBuilder RegisterContainerBuilder()
         {
             ContainerBuilder builder = new ContainerBuilder();
