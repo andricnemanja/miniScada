@@ -18,14 +18,14 @@ namespace ModelWcfServiceLibrary.Repository
         /// </summary>
         public List<RTU> RtuList { get; set; }
 
-        public IFileAccess JsonFileAccess { get; set; }
+        private IFileAccess jsonFileAccess;
         const string fileName = @".\..\..\Resources\RTUs.json";
         private readonly string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
 
 
         public JsonRtuRepository(IFileAccess fileAccess)
         {
-            JsonFileAccess = fileAccess;
+            jsonFileAccess = fileAccess;
             RtuList = new List<RTU>();
             Deserialize();
         }
@@ -36,7 +36,7 @@ namespace ModelWcfServiceLibrary.Repository
         public void Serialize()
         { 
             string jsonString = CreateJsonString(RtuList);
-            JsonFileAccess.SaveToFile(filePath, jsonString);
+            jsonFileAccess.SaveToFile(filePath, jsonString);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace ModelWcfServiceLibrary.Repository
         /// </summary>
         public void Deserialize()
         {
-            string jsonString = JsonFileAccess.ReadFile(filePath);
+            string jsonString = jsonFileAccess.ReadFile(filePath);
             RtuList = JsonSerializer.Deserialize<List<RTU>>(jsonString);
         }
 
