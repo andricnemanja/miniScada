@@ -1,24 +1,24 @@
-﻿using Autofac.Extras.Moq;
-using ModelWcfServiceLibrary.FileAccessing;
+﻿using ModelWcfServiceLibrary.FileAccessing;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Repository;
+using ModelWcfServiceLibrary.Serializer;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace ModelWcfServiceLibrary.Tests
 {
     public class JsonRtuRepositoryTests
     {
-        [Fact]
+        private readonly RtuRepository repository;
+
+        public JsonRtuRepositoryTests()
+        {
+            repository = CreateTestJsonRtuRepository();
+		}
+
+		[Fact]
         public void GetRTUByID_IdThatExists()
         {
-            RtuRepository repository = CreateTestJsonRtuRepository();
-
             RTU rtuByID = repository.GetRTUByID(102);
 
             Assert.Equal("RTU2", rtuByID.Name);
@@ -28,8 +28,6 @@ namespace ModelWcfServiceLibrary.Tests
         [Fact]
         public void GetRTUByID_IdThatDoesNotExist()
         {
-            RtuRepository repository = CreateTestJsonRtuRepository();
-
             RTU rtuByID = repository.GetRTUByID(100);
 
             Assert.Null(rtuByID);
@@ -39,16 +37,11 @@ namespace ModelWcfServiceLibrary.Tests
         {
             var fileAccessMock = new Mock<IFileAccess>();
             fileAccessMock.Setup(x => x.ReadFile(It.IsAny<string>())).Returns(GetTestJsonString());
+            JsonRtuSerializer jsonRtuSerializer = new JsonRtuSerializer(fileAccessMock.Object, It.IsAny<string>());
+            RtuRepository rtuRepository = new RtuRepository(jsonRtuSerializer);
+            rtuRepository.Deserialize();
 
-            return new JsonRtuRepository(fileAccessMock.Object);
-        }
-
-        private List<RTU> GetTestRtuList()
-        {
-            return new List<RTU>
-            {
-                new RTU(){Name = "RTU1", ID = 101, Address = "127.0.0.1", Port = 502}
-            };
+            return rtuRepository;
         }
 
         private string GetTestJsonString()
