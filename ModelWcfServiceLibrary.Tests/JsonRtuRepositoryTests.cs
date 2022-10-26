@@ -17,7 +17,7 @@ namespace ModelWcfServiceLibrary.Tests
         [Fact]
         public void GetRTUByID_IdThatExists()
         {
-            JsonRtuRepository repository = CreateTestJsonRtuRepository();
+            RtuRepository repository = CreateTestJsonRtuRepository();
 
             RTU rtuByID = repository.GetRTUByID(102);
 
@@ -28,27 +28,19 @@ namespace ModelWcfServiceLibrary.Tests
         [Fact]
         public void GetRTUByID_IdThatDoesNotExist()
         {
-            JsonRtuRepository repository = CreateTestJsonRtuRepository();
+            RtuRepository repository = CreateTestJsonRtuRepository();
 
             RTU rtuByID = repository.GetRTUByID(100);
 
             Assert.Null(rtuByID);
         }
 
-        public void CreateJsonString_ValidList()
+        private RtuRepository CreateTestJsonRtuRepository()
         {
-            JsonRtuRepository repository = CreateTestJsonRtuRepository();
+            var fileAccessMock = new Mock<IFileAccess>();
+            fileAccessMock.Setup(x => x.ReadFile(It.IsAny<string>())).Returns(GetTestJsonString());
 
-            string jsonString = repository.CreateJsonString().r
-
-        }
-
-        private JsonRtuRepository CreateTestJsonRtuRepository()
-        {
-            var mock = new Mock<IFileAccess>();
-            mock.Setup(x => x.ReadFile(It.IsAny<string>())).Returns(GetTestJsonString());
-
-            return new JsonRtuRepository(mock.Object);
+            return new JsonRtuRepository(fileAccessMock.Object);
         }
 
         private List<RTU> GetTestRtuList()

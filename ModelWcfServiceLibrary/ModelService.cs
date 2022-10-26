@@ -1,27 +1,41 @@
-﻿using ModelWcfServiceLibrary.Model.RTU;
+﻿using System.Collections.Generic;
+using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Repository;
-using System.Collections.Generic;
-
 
 namespace ModelWcfServiceLibrary
 {
-    public class ModelService : IModelService
-    {
-        public IRtuRepository RTURepository { get; set; }
+	/// <summary>
+	/// Provides endpoints for Model Service
+	/// </summary>
+	public sealed class ModelService : IModelService
+	{
+		private readonly IRtuRepository rtuRepository;
 
-        public ModelService(IRtuRepository rtuRepository)
-        {
-            RTURepository = rtuRepository;
-        }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ModelService"/>
+		/// </summary>
+		/// <param name="rtuRepository">Instance of the <see cref="IRtuRepository"/> class</param>
+		public ModelService(IRtuRepository rtuRepository)
+		{
+			this.rtuRepository = rtuRepository;
+		}
 
-        public List<RTU> GetStaticData()
-        {
-            return RTURepository.RtuList;
-        }
-
-        public RTU GetRTU(int id)
-        {
-            return RTURepository.GetRTUByID(id);
-        }
-    }
+		/// <summary>
+		/// Get static data for all RTUs
+		/// </summary>
+		/// <returns>List of RTUs</returns>
+		public List<RTU> GetStaticData()
+		{
+			return rtuRepository.RtuList;
+		}
+		/// <summary>
+		/// Get static data for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>RTU with given ID</returns>
+		public RTU GetRTU(int id)
+		{
+			return rtuRepository.GetRTUByID(id);
+		}
+	}
 }

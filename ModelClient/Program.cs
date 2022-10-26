@@ -11,7 +11,7 @@ namespace ModelClient
     {
         static void Main(string[] args)
         {
-            ModelServiceClient modelServiceClient = new ModelServiceClient();           //proxy klasa
+            ModelServiceClient modelServiceClient = new ModelServiceClient();
 
             Console.WriteLine(modelServiceClient.GetRTU(1).Name);
             Console.ReadKey();

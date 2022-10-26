@@ -86,7 +86,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileAccessing\JsonFileAccess.cs" />
+    <Compile Include="FileAccessing\FileAccess.cs" />
     <Compile Include="IModelService.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
     <Compile Include="Model\Signals\AnalogSignal.cs" />
@@ -95,7 +95,9 @@
     <Compile Include="ModelService.cs" />
     <Compile Include="FileAccessing\IFileAccess.cs" />
     <Compile Include="Repository\IRtuRepository.cs" />
-    <Compile Include="Repository\JsonRtuRepository.cs" />
+    <Compile Include="Repository\RtuRepository.cs" />
+    <Compile Include="Serializer\IRtuSerializer.cs" />
+    <Compile Include="Serializer\JsonRtuSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
