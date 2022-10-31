@@ -1,5 +1,5 @@
-﻿using ModelWcfServiceLibrary.Model.RTU;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ModelWcfServiceLibrary.Model.RTU;
 
 namespace ModelWcfServiceLibrary.Repository
 {
@@ -11,7 +11,7 @@ namespace ModelWcfServiceLibrary.Repository
         /// <summary>
         /// List of RTUs read from a file. If <c>Deserialize()</c> method isn't called after instantiating the class, the list is going to be empty.
         /// </summary>
-        List<RTU> RtuList { get; set; }
+        List<RTU> RtuList { get; }
         /// <summary>
         /// Saves the current state of the RTUs to a file
         /// </summary>

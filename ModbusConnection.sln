@@ -14,6 +14,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelClient", "ModelClient\
 		{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9} = {4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9}
 	EndProjectSection
 EndProject
+<<<<<<< HEAD
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceClientProject", "ServiceClientProject\ServiceClientProject.csproj", "{C4AB6345-C4D8-489A-B8A0-0B77849796D9}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelWcfServiceLibrary.Tests", "ModelWcfServiceLibrary.Tests\ModelWcfServiceLibrary.Tests.csproj", "{49B1E6A8-E2E0-421A-902E-5C407F30C75F}"
+>>>>>>> 9e27fb551f1a77e880ea5e13e8455ad8bb04d5e8
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +42,17 @@ Global
 		{3E765ED1-340B-4169-B508-89B2B94A02D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E765ED1-340B-4169-B508-89B2B94A02D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E765ED1-340B-4169-B508-89B2B94A02D2}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+		{C4AB6345-C4D8-489A-B8A0-0B77849796D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4AB6345-C4D8-489A-B8A0-0B77849796D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4AB6345-C4D8-489A-B8A0-0B77849796D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4AB6345-C4D8-489A-B8A0-0B77849796D9}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{49B1E6A8-E2E0-421A-902E-5C407F30C75F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B1E6A8-E2E0-421A-902E-5C407F30C75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B1E6A8-E2E0-421A-902E-5C407F30C75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B1E6A8-E2E0-421A-902E-5C407F30C75F}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 9e27fb551f1a77e880ea5e13e8455ad8bb04d5e8
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

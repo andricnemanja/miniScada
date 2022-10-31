@@ -292,6 +292,59 @@ namespace ModelClient.ModelServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class ModelServiceException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ModelClient.ModelServiceReference.FaultCodes FaultCodeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModelClient.ModelServiceReference.FaultCodes FaultCode {
+            get {
+                return this.FaultCodeField;
+            }
+            set {
+                if ((this.FaultCodeField.Equals(value) != true)) {
+                    this.FaultCodeField = value;
+                    this.RaisePropertyChanged("FaultCode");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FaultCodes", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    public enum FaultCodes : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        IdDoesNotExist = 1,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
     public interface IModelService {
@@ -303,6 +356,7 @@ namespace ModelClient.ModelServiceReference {
         System.Threading.Tasks.Task<ModelClient.ModelServiceReference.RTU[]> GetStaticDataAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ModelClient.ModelServiceReference.ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
         ModelClient.ModelServiceReference.RTU GetRTU(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]

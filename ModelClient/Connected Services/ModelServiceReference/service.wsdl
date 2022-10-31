@@ -39,6 +39,7 @@
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IModelService_GetStaticData_InputMessage">
@@ -53,6 +54,9 @@
   <wsdl:message name="IModelService_GetRTU_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRTUResponse" />
   </wsdl:message>
+  <wsdl:message name="IModelService_GetRTU_ModelServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" name="detail" element="q1:ModelServiceException" />
+  </wsdl:message>
   <wsdl:portType name="IModelService">
     <wsdl:operation name="GetStaticData">
       <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetStaticData" message="tns:IModelService_GetStaticData_InputMessage" />
@@ -61,6 +65,7 @@
     <wsdl:operation name="GetRTU">
       <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetRTU" message="tns:IModelService_GetRTU_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetRTUResponse" message="tns:IModelService_GetRTU_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault" name="ModelServiceExceptionFault" message="tns:IModelService_GetRTU_ModelServiceExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IModelService" type="tns:IModelService">
@@ -84,6 +89,9 @@
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ModelServiceExceptionFault">
+        <soap12:fault use="literal" name="ModelServiceExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ModelService">

@@ -27,6 +27,7 @@
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="2c8655ab-b201-4ec5-b6db-ef04fbe192bd" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
     <MetadataFile FileName="ModelWcfServiceLibrary.Model.RTU.xsd" MetadataType="Schema" ID="83ed2e88-fafc-4476-b890-eae7fe977a27" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
     <MetadataFile FileName="ModelWcfServiceLibrary.Model.Signals.xsd" MetadataType="Schema" ID="0d6b2bff-d775-4ccf-9f57-aabacfa5ff65" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="ModelWcfServiceLibrary.xsd" MetadataType="Schema" ID="9ff494c0-302c-4742-83ad-39e18a4bfe7a" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
