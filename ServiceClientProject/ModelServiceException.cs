@@ -9,7 +9,7 @@ namespace ServiceClientProject
 {
     public enum FaultCodes
     {
-        IdDoesNotExist = 1
+        IdDoesNotExist = 0
     }
 
     public class ModelServiceException

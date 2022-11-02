@@ -10,7 +10,7 @@ namespace ModelWcfServiceLibrary
 {
     public enum FaultCodes
     {
-        IdDoesNotExist = 1
+        IdDoesNotExist = 0
     }
     [DataContract]
     public class ModelServiceException

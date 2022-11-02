@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ModelServiceException">
     <xs:sequence>
       <xs:element minOccurs="0" name="FaultCode" type="tns:FaultCodes" />
@@ -9,13 +8,7 @@
   <xs:element name="ModelServiceException" nillable="true" type="tns:ModelServiceException" />
   <xs:simpleType name="FaultCodes">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="IdDoesNotExist">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
+      <xs:enumeration value="IdDoesNotExist" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="FaultCodes" nillable="true" type="tns:FaultCodes" />

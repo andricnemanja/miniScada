@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ServiceModel;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Repository;
 
@@ -35,7 +36,14 @@ namespace ModelWcfServiceLibrary
 		/// <returns>RTU with given ID</returns>
 		public RTU GetRTU(int id)
 		{
-			return rtuRepository.GetRTUByID(id);
+			RTU rtu = rtuRepository.GetRTUByID(id);
+			if (rtu == null)
+			{
+				ModelServiceException ex = new ModelServiceException(FaultCodes.IdDoesNotExist);
+				throw new FaultException<ModelServiceException>(new ModelServiceException(FaultCodes.IdDoesNotExist));
+			}
+
+			return rtu;
 		}
 	}
 }

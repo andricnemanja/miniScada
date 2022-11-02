@@ -342,7 +342,7 @@ namespace ModelClient.ModelServiceReference {
     public enum FaultCodes : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        IdDoesNotExist = 1,
+        IdDoesNotExist = 0,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

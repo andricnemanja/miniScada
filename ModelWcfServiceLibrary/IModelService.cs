@@ -22,7 +22,8 @@ namespace ModelWcfServiceLibrary
 		/// <param name="id">Unique identifier for RTU</param>
 		/// <returns>RTU with given ID</returns>
 		[OperationContract]
-        RTU GetRTU(int id);
+		[FaultContract(typeof(ModelServiceException))]
+		RTU GetRTU(int id);
 
     }
 }
