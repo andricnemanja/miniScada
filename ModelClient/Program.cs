@@ -12,12 +12,7 @@ namespace ModelClient
     {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-            ModelServiceClient modelServiceClient = new ModelServiceClient();           //proxy klasa
-            modelServiceClient.Open();
-=======
             ModelServiceClient modelServiceClient = new ModelServiceClient();
->>>>>>> 9e27fb551f1a77e880ea5e13e8455ad8bb04d5e8
 
             try
             {
