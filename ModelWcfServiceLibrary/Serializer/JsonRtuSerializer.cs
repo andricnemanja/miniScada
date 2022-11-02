@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using ModelWcfServiceLibrary.FileAccessing;
-using ModelWcfServiceLibrary.Model.RTU;
+using SharedModel.Model.RTU;
 
 namespace ModelWcfServiceLibrary.Serializer
 {

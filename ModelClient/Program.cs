@@ -1,4 +1,5 @@
-﻿using ModelClient.ModelServiceReference;
+﻿using ModelClient.ServiceReference1;
+using SharedModel.Model.RTU;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace ModelClient
         static void Main(string[] args)
         {
             ModelServiceClient modelServiceClient = new ModelServiceClient();
+
+            List<RTU> rTUs = modelServiceClient.GetStaticData();
 
             Console.WriteLine(modelServiceClient.GetRTU(1).Name);
             Console.ReadKey();

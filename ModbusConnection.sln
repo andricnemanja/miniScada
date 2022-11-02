@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelClient", "ModelClient\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelWcfServiceLibrary.Tests", "ModelWcfServiceLibrary.Tests\ModelWcfServiceLibrary.Tests.csproj", "{49B1E6A8-E2E0-421A-902E-5C407F30C75F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWpfApp", "ClientWpfApp\ClientWpfApp.csproj", "{FA57176D-9DB3-41DF-B264-C8C0A5470654}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{49B1E6A8-E2E0-421A-902E-5C407F30C75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49B1E6A8-E2E0-421A-902E-5C407F30C75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49B1E6A8-E2E0-421A-902E-5C407F30C75F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA57176D-9DB3-41DF-B264-C8C0A5470654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA57176D-9DB3-41DF-B264-C8C0A5470654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA57176D-9DB3-41DF-B264-C8C0A5470654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA57176D-9DB3-41DF-B264-C8C0A5470654}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

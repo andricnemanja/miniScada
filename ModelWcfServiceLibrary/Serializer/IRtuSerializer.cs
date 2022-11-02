@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ModelWcfServiceLibrary.Model.RTU;
+using SharedModel.Model.RTU;
 
 namespace ModelWcfServiceLibrary.Serializer
 {

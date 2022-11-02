@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using ModelWcfServiceLibrary.Model.RTU;
+﻿using SharedModel.Model.RTU;
+using SharedModel.Model.Signals;
+using System.Collections.Generic;
 
 namespace ModelWcfServiceLibrary.Repository
 {
@@ -26,5 +27,8 @@ namespace ModelWcfServiceLibrary.Repository
         /// <param name="rtuID">Unique identification number for the RTU</param>
         /// <returns>RTU with the given ID. If RTU with that ID doesn't exist, it will return <c>null</c></returns>
         RTU GetRTUByID(int rtuID);
-    }
+
+        IEnumerable<DiscreteSignal> GetDiscreteSignalsForRtu(int id);
+        IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id);
+	}
 }

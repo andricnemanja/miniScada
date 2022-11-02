@@ -1,8 +1,8 @@
 ﻿using ModelWcfServiceLibrary.FileAccessing;
-using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Repository;
 using ModelWcfServiceLibrary.Serializer;
 using Moq;
+using SharedModel.Model.RTU;
 using Xunit;
 
 namespace ModelWcfServiceLibrary.Tests
