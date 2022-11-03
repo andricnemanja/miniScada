@@ -2,8 +2,17 @@
 {
     public class AnalogSignal
     {
-        public int ID { get; set; }
-        public int Address { get; set; }
-        public string Name { get; set; }
+		/// <summary>
+		/// Unique identification number for analog signal
+		/// </summary>
+		public int ID { get; set; }
+		/// <summary>
+		/// Analog signal address
+		/// </summary>
+		public int Address { get; set; }
+		/// <summary>
+		/// Name of the analog signal
+		/// </summary>
+		public string Name { get; set; }
     }
 }
