@@ -53,11 +53,20 @@ namespace ModelWcfServiceLibrary.Repository
         {
             return RtuList.SingleOrDefault(t => t.ID == rtuID);
         }
-
+		/// <summary>
+		/// Get list of discrete signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of discrete signals</returns>
 		public IEnumerable<DiscreteSignal> GetDiscreteSignalsForRtu(int id)
 		{
             return GetRTUByID(id).DiscreteSignals;
 		}
+		/// <summary>
+		/// Get list of analog signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of analog signals</returns>
 		public IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id)
 		{
 			return GetRTUByID(id).AnalogSignals;

@@ -24,9 +24,18 @@ namespace ModelWcfServiceLibrary
 		/// <returns>RTU with given ID</returns>
 		[OperationContract]
         RTU GetRTU(int id);
-
+		/// <summary>
+		/// Get list of discrete signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of discrete signals</returns>
 		[OperationContract]
 		List<DiscreteSignal> GetDiscreteSignalsForRtu(int id);
+		/// <summary>
+		/// Get list of analog signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of analog signals</returns>
 		[OperationContract]
 		IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id);
 
