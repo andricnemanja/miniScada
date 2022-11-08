@@ -30,7 +30,7 @@ namespace ModelWcfServiceLibrary
 		/// <param name="id">Unique identifier for RTU</param>
 		/// <returns>List of discrete signals</returns>
 		[OperationContract]
-		List<DiscreteSignal> GetDiscreteSignalsForRtu(int id);
+		IEnumerable<DiscreteSignal> GetDiscreteSignalsForRtu(int id);
 		/// <summary>
 		/// Get list of analog signals for RTU with given ID
 		/// </summary>
