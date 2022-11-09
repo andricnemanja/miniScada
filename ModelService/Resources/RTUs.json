@@ -1,9 +1,11 @@
 [
   {
-    "Name": "RTU1",
-    "ID": 1,
-    "Address": "127.0.0.1",
-    "Port": 502,
+    "RTUData":{
+      "Name": "RTU1",
+      "ID": 1,
+      "IpAddress": "127.0.0.1",
+      "Port": 502
+    },
     "AnalogSignals": [
       {
         "ID": 1,
@@ -30,10 +32,12 @@
     ]
   },
   {
-    "Name": "RTU2",
-    "ID": 2,
-    "Address": "127.0.0.1",
-    "Port": 503,
+    "RTUData":{
+      "Name": "RTU2",
+      "ID": 2,
+      "IpAddress": "127.0.0.1",
+      "Port": 503
+    },
     "AnalogSignals": [
       {
         "ID": 1,

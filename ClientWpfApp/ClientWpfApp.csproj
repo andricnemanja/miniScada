@@ -41,10 +41,6 @@
     <Reference Include="NModbus, Version=3.0.72.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NModbus.3.0.72\lib\net46\NModbus.dll</HintPath>
     </Reference>
-    <Reference Include="SharedModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLLs\SharedModel.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -86,6 +82,13 @@
     <Compile Include="ModbusClients\IModbusClient.cs" />
     <Compile Include="ModbusClients\NModbusClient.cs" />
     <Compile Include="ModbusErrors.cs" />
+    <Compile Include="Model\RTU\RTU.cs" />
+    <Compile Include="Model\RTU\RTUData.cs" />
+    <Compile Include="Model\Signals\AnalogSignal.cs" />
+    <Compile Include="Model\SignalValues\AnalogSignalValue.cs" />
+    <Compile Include="Model\Signals\DiscreteSignal.cs" />
+    <Compile Include="Model\SignalValues\DiscreteSignalValue.cs" />
+    <Compile Include="ServiceReader\ModelServiceReader.cs" />
     <Compile Include="Services\ValuesReadingService.cs" />
     <Compile Include="ViewModel\ConnectionViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -133,17 +136,32 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.AnalogSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.DiscreteSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.RTU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.RTUData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Signals.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\service.wsdl" />
     <None Include="Connected Services\ModelServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SharedModel.Model.RTU.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SharedModel.Model.Signals.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

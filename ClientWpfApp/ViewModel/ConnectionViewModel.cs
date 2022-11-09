@@ -1,5 +1,5 @@
 ﻿using ClientWpfApp.Commands;
-using SharedModel.Model.RTU;
+using ClientWpfApp.Model.RTU;
 
 namespace ClientWpfApp.ViewModel
 {

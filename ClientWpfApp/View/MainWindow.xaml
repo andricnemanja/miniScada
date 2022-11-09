@@ -21,7 +21,7 @@
 
             <DataGrid ItemsSource="{Binding RTUList}" Margin="20,20,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="740px" x:Name="DevicesDataGrid">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="RTU" Binding="{Binding Name}" Width ="*"/>
+                    <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
 
                     <DataGridTemplateColumn Header="Status" Width ="Auto" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
@@ -37,15 +37,15 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Ip adresa" Width ="*" Binding="{Binding Address}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Ip adresa" Width ="*" Binding="{Binding RTUData.IpAddress}" IsReadOnly="True"/>
 
                     <DataGridTemplateColumn Header="Diskretni signali" Width ="*" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding DiscreteSignals}" IsEnabled="{Binding Connection.Status}" BorderThickness="0px">
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding DiscreteSignalValues}" IsEnabled="{Binding Connection.Status}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding Name}" />
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding DiscreteSignal.Name}" />
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
@@ -57,11 +57,11 @@
                     <DataGridTemplateColumn Header="Analogni signali" Width ="*" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding AnalogSignals}" IsEnabled="{Binding Connection.Status}" BorderThickness="0px">
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding AnalogSignalValues}" IsEnabled="{Binding Connection.Status}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                                                <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
                                                 <TextBlock VerticalAlignment="Center" Text=": " />
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding Value}" />
                                             </StackPanel>

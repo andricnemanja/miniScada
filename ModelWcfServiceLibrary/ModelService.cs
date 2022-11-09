@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ModelWcfServiceLibrary.Repository;
-using SharedModel;
-using SharedModel.Model.RTU;
-using SharedModel.Model.Signals;
+using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.Signals;
 
 namespace ModelWcfServiceLibrary
 {
@@ -27,7 +26,7 @@ namespace ModelWcfServiceLibrary
 		/// Get static data for all RTUs
 		/// </summary>
 		/// <returns>List of RTUs</returns>
-		public List<RTU> GetStaticData()
+		public List<RTU> GetAllRTUs()
 		{
 			return rtuRepository.RtuList;
 		}
@@ -57,6 +56,14 @@ namespace ModelWcfServiceLibrary
 		public IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id)
 		{
 			return rtuRepository.GetAnalogSignalsForRtu(id);
+		}
+		/// <summary>
+		/// Get RTUs essential data
+		/// </summary>
+		/// <returns>List of essential data for all RTUs</returns>
+		public IEnumerable<RTUData> GetRTUsEssentialData()
+		{
+			return rtuRepository.GetRTUsEssentialData();
 		}
 	}
 }

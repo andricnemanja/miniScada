@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/SharedModel.Model.RTU" />
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/SharedModel.Model.Signals" />
-  <xs:element name="GetStaticData">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" />
+  <xs:element name="GetAllRTUs">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetStaticDataResponse">
+  <xs:element name="GetAllRTUsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SharedModel.Model.RTU" minOccurs="0" name="GetStaticDataResult" nillable="true" type="q1:ArrayOfRTU" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" minOccurs="0" name="GetAllRTUsResult" nillable="true" type="q1:ArrayOfRTU" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -24,7 +25,7 @@
   <xs:element name="GetRTUResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SharedModel.Model.RTU" minOccurs="0" name="GetRTUResult" nillable="true" type="q2:RTU" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" minOccurs="0" name="GetRTUResult" nillable="true" type="q2:RTU" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -38,7 +39,7 @@
   <xs:element name="GetDiscreteSignalsForRtuResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SharedModel.Model.Signals" minOccurs="0" name="GetDiscreteSignalsForRtuResult" nillable="true" type="q3:ArrayOfDiscreteSignal" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" minOccurs="0" name="GetDiscreteSignalsForRtuResult" nillable="true" type="q3:ArrayOfDiscreteSignal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -52,7 +53,19 @@
   <xs:element name="GetAnalogSignalsForRtuResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SharedModel.Model.Signals" minOccurs="0" name="GetAnalogSignalsForRtuResult" nillable="true" type="q4:ArrayOfAnalogSignal" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" minOccurs="0" name="GetAnalogSignalsForRtuResult" nillable="true" type="q4:ArrayOfAnalogSignal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRTUsEssentialData">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRTUsEssentialDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" minOccurs="0" name="GetRTUsEssentialDataResult" nillable="true" type="q5:ArrayOfRTUData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

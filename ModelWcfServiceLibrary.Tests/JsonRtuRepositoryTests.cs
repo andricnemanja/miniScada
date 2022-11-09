@@ -2,7 +2,7 @@
 using ModelWcfServiceLibrary.Repository;
 using ModelWcfServiceLibrary.Serializer;
 using Moq;
-using SharedModel.Model.RTU;
+using ModelWcfServiceLibrary.Model.RTU;
 using Xunit;
 
 namespace ModelWcfServiceLibrary.Tests

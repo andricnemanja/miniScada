@@ -7,8 +7,9 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using ClientWpfApp.Commands;
 using ClientWpfApp.Services;
-using SharedModel.Model.RTU;
-using SharedModel.Model.Signals;
+using ClientWpfApp.Model.RTU;
+using ClientWpfApp.Model.Signals;
+using ClientWpfApp.ServiceReader;
 
 namespace ClientWpfApp.ViewModel
 {
@@ -17,8 +18,8 @@ namespace ClientWpfApp.ViewModel
 		public ICommand CreateConnectionWindowCommand { get; set; }
 		public ICommand SetRegistryValuesCommand { get; set; }
 		public ObservableCollection<RTU> RTUList { get; set; } = new ObservableCollection<RTU>();
-
 		private ValuesReadingService valuesReadingService;
+		private ModelServiceReader modelServiceReader;
 
 		public MainViewModel()
 		{
@@ -26,8 +27,9 @@ namespace ClientWpfApp.ViewModel
 			SetRegistryValuesCommand = new SetRegistryValuesCommand();
 
 			valuesReadingService = new ValuesReadingService();
+			modelServiceReader = new ModelServiceReader(new ModelServiceReference.ModelServiceClient());
 
-			ConnectToModelService();
+			ReadRTUData();
 
 			DispatcherTimer timer = new DispatcherTimer();
 			timer.Interval = TimeSpan.FromSeconds(1);
@@ -35,13 +37,9 @@ namespace ClientWpfApp.ViewModel
 			timer.Start();
 		}
 
-		public void ConnectToModelService()
+		public void ReadRTUData()
 		{
-			ModelServiceReference.ModelServiceClient modelService = new ModelServiceReference.ModelServiceClient();
-
-			ObservableCollection<RTU> rtus = modelService.GetStaticData();
-			RTUList = modelService.GetStaticData();
-			
+			RTUList = modelServiceReader.ReadAllRTUs();
 		}
 
 		void timer_Tick(object sender, EventArgs e)

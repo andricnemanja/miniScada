@@ -1,4 +1,4 @@
-﻿using SharedModel.Model.RTU;
+﻿using ClientWpfApp.Model.RTU;
 using ClientWpfApp.ViewModel;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
-using SharedModel.Model.RTU;
-using SharedModel.Model.Signals;
+using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.Signals;
 
 namespace ModelWcfServiceLibrary
 {
@@ -16,7 +16,7 @@ namespace ModelWcfServiceLibrary
 		/// </summary>
 		/// <returns>List of RTUs</returns>
 		[OperationContract]
-        List<RTU> GetStaticData();
+        List<RTU> GetAllRTUs();
 		/// <summary>
 		/// Get static data for RTU with given ID
 		/// </summary>
@@ -38,6 +38,12 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of analog signals</returns>
 		[OperationContract]
 		IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id);
+		/// <summary>
+		/// Get RTUs essential data
+		/// </summary>
+		/// <returns>List of essential data for all RTUs</returns>
+		[OperationContract]
+		IEnumerable<RTUData> GetRTUsEssentialData();
 
 
 	}

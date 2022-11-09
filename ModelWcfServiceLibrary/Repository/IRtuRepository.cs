@@ -1,6 +1,7 @@
-﻿using SharedModel.Model.RTU;
-using SharedModel.Model.Signals;
+﻿using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.Signals;
 using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace ModelWcfServiceLibrary.Repository
 {
@@ -39,5 +40,10 @@ namespace ModelWcfServiceLibrary.Repository
 		/// <param name="id">Unique identifier for RTU</param>
 		/// <returns>List of analog signals</returns>
 		IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id);
+		/// <summary>
+		/// Get RTUs essential data
+		/// </summary>
+		/// <returns>List of essential data for all RTUs</returns>
+		IEnumerable<RTUData> GetRTUsEssentialData();
 	}
 }

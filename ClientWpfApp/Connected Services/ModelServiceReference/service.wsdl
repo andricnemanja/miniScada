@@ -37,15 +37,16 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/SharedModel.Model.RTU" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/SharedModel.Model.Signals" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IModelService_GetStaticData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetStaticData" />
+  <wsdl:message name="IModelService_GetAllRTUs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRTUs" />
   </wsdl:message>
-  <wsdl:message name="IModelService_GetStaticData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetStaticDataResponse" />
+  <wsdl:message name="IModelService_GetAllRTUs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRTUsResponse" />
   </wsdl:message>
   <wsdl:message name="IModelService_GetRTU_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRTU" />
@@ -65,10 +66,16 @@
   <wsdl:message name="IModelService_GetAnalogSignalsForRtu_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAnalogSignalsForRtuResponse" />
   </wsdl:message>
+  <wsdl:message name="IModelService_GetRTUsEssentialData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRTUsEssentialData" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetRTUsEssentialData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRTUsEssentialDataResponse" />
+  </wsdl:message>
   <wsdl:portType name="IModelService">
-    <wsdl:operation name="GetStaticData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetStaticData" message="tns:IModelService_GetStaticData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetStaticDataResponse" message="tns:IModelService_GetStaticData_OutputMessage" />
+    <wsdl:operation name="GetAllRTUs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetAllRTUs" message="tns:IModelService_GetAllRTUs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetAllRTUsResponse" message="tns:IModelService_GetAllRTUs_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetRTU">
       <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetRTU" message="tns:IModelService_GetRTU_InputMessage" />
@@ -82,13 +89,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu" message="tns:IModelService_GetAnalogSignalsForRtu_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse" message="tns:IModelService_GetAnalogSignalsForRtu_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetRTUsEssentialData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetRTUsEssentialData" message="tns:IModelService_GetRTUsEssentialData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse" message="tns:IModelService_GetRTUsEssentialData_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IModelService" type="tns:IModelService">
     <wsp:PolicyReference URI="#NetTcpBinding_IModelService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="GetStaticData">
-      <soap12:operation soapAction="http://tempuri.org/IModelService/GetStaticData" style="document" />
+    <wsdl:operation name="GetAllRTUs">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetAllRTUs" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -116,6 +127,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAnalogSignalsForRtu">
       <soap12:operation soapAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRTUsEssentialData">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetRTUsEssentialData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

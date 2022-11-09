@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SharedModel.Model.Signals" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SharedModel.Model.Signals" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:complexType name="ArrayOfAnalogSignal">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="AnalogSignal" nillable="true" type="tns:AnalogSignal" />

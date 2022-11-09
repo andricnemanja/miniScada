@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using ModelWcfServiceLibrary.Serializer;
-using SharedModel.Model.RTU;
-using SharedModel.Model.Signals;
+using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.Signals;
 
 namespace ModelWcfServiceLibrary.Repository
 {
@@ -51,7 +51,7 @@ namespace ModelWcfServiceLibrary.Repository
         /// <returns>RTU with the given ID. If RTU with that ID doesn't exist, it will return <c>null</c></returns>
         public RTU GetRTUByID(int rtuID)
         {
-            return RtuList.SingleOrDefault(t => t.ID == rtuID);
+            return RtuList.SingleOrDefault(t => t.RTUData.ID == rtuID);
         }
 		/// <summary>
 		/// Get list of discrete signals for RTU with given ID
@@ -70,6 +70,14 @@ namespace ModelWcfServiceLibrary.Repository
 		public IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id)
 		{
 			return GetRTUByID(id).AnalogSignals;
+		}
+		/// <summary>
+		/// Get RTUs essential data
+		/// </summary>
+		/// <returns>List of essential data for all RTUs</returns>
+		public IEnumerable<RTUData> GetRTUsEssentialData()
+		{
+			return RtuList.Select(r => r.RTUData);
 		}
 	}
 }

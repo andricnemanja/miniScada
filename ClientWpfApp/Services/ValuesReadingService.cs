@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using SharedModel.Model.RTU;
-using SharedModel.Model.Signals;
+using ClientWpfApp.Model.RTU;
+using ClientWpfApp.Model.Signals;
 
 namespace ClientWpfApp.Services
 {
