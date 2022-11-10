@@ -70,7 +70,6 @@
     <Compile Include="Circuit Breaker\ICircuitBreakerStateStore.cs" />
     <Compile Include="Commands\ConnectToRTUCommand.cs" />
     <Compile Include="Commands\CreateConnectionWindowCommand.cs" />
-    <Compile Include="Commands\DiscreteSignalCheckboxCommand.cs" />
     <Compile Include="Commands\SetRegistryValuesCommand.cs" />
     <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -92,7 +91,6 @@
     <Compile Include="Model\SignalValues\DiscreteSignalValue.cs" />
     <Compile Include="ServiceReader\ModelServiceReader.cs" />
     <Compile Include="ServiceReader\ValuesReader.cs" />
-    <Compile Include="ServiceReader\ValuesWriter.cs" />
     <Compile Include="ViewModel\ConnectionViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\ConnectionWindow.xaml.cs">
