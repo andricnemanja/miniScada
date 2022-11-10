@@ -1,4 +1,5 @@
-﻿using ClientWpfApp.Model.RTU;
+﻿using ClientWpfApp.ModbusClients;
+using ClientWpfApp.Model.RTU;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,14 +32,13 @@ namespace ClientWpfApp.Commands
 
         public void Execute(object parameter)
         {
-            /*
+            
             IModbusClient modbusClient = new NModbusClient(IpAddress, Port);
             rtu.Connection.Client = modbusClient;
             rtu.Connection.Status = true;
-            rtu.Data.IpAddress = IpAddress;
-            rtu.Data.Port = Port;
+            rtu.RTUData.IpAddress = IpAddress;
+            rtu.RTUData.Port = Port;
             Application.Current.Windows[1].Close();
-            */
         }
     }
 }

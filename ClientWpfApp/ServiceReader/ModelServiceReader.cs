@@ -1,4 +1,5 @@
-﻿using ClientWpfApp.Model.RTU;
+﻿using ClientWpfApp.Model;
+using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.Signals;
 using ClientWpfApp.Model.SignalValues;
 using System;
@@ -34,6 +35,7 @@ namespace ClientWpfApp.ServiceReader
 						Name = rtu.Name,
 						Port = rtu.Port
 					},
+					Connection = new RTUConnection(null),
 					AnalogSignalValues = GetAnalogSignalValuesForRTU(rtu.ID),
 					DiscreteSignalValues = GetDiscreteSignalValuesForRTU(rtu.ID)
 				};

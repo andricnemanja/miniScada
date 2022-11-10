@@ -2,36 +2,33 @@
 using System.Threading.Tasks;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.Signals;
+using ClientWpfApp.Model.SignalValues;
 
 namespace ClientWpfApp.Services
 {
-    internal class ValuesReadingService
+    internal class ValuesReader
     {
         public void ReadValues(Collection<RTU> rtuList)
         {
-            /*
             Parallel.ForEach(rtuList, rtu =>
             {
                 if(rtu.Connection.Status)
                     ReadSingleRTU(rtu);
             });
-            */
         }
 
 
         public void ReadSingleRTU(RTU rtu)
         {
-            /*
-            foreach (DiscreteSignal signal in rtu.Values.DiscreteSignals)
+            foreach (DiscreteSignalValue signalValue in rtu.DiscreteSignalValues)
             {
-                signal.Value = rtu.Connection.Client.ReadCoils(signal.Address, 1)[0];
+				signalValue.Value = rtu.Connection.Client.ReadCoils(signalValue.DiscreteSignal.Address, 1)[0];
             }
 
-            foreach (AnalogSignal signal in rtu.Values.AnalogSignals)
+            foreach (AnalogSignalValue signalValue in rtu.AnalogSignalValues)
             {
-                signal.Value = rtu.Connection.Client.ReadSingleRegister(signal.Address);
+				signalValue.Value = rtu.Connection.Client.ReadSingleRegister(signalValue.AnalogSignal.Address);
             }
-            */
         }
 
     }

@@ -18,7 +18,7 @@ namespace ClientWpfApp.ViewModel
 		public ICommand CreateConnectionWindowCommand { get; set; }
 		public ICommand SetRegistryValuesCommand { get; set; }
 		public ObservableCollection<RTU> RTUList { get; set; } = new ObservableCollection<RTU>();
-		private ValuesReadingService valuesReadingService;
+		private ValuesReader valuesReader;
 		private ModelServiceReader modelServiceReader;
 
 		public MainViewModel()
@@ -26,7 +26,7 @@ namespace ClientWpfApp.ViewModel
 			CreateConnectionWindowCommand = new CreateConnectionWindowCommand();
 			SetRegistryValuesCommand = new SetRegistryValuesCommand();
 
-			valuesReadingService = new ValuesReadingService();
+			valuesReader = new ValuesReader();
 			modelServiceReader = new ModelServiceReader(new ModelServiceReference.ModelServiceClient());
 
 			ReadRTUData();
@@ -44,7 +44,7 @@ namespace ClientWpfApp.ViewModel
 
 		void timer_Tick(object sender, EventArgs e)
 		{
-			//valuesReadingService.ReadValues(RTUList);
+			valuesReader.ReadValues(RTUList);
 		}
 	}
 }
