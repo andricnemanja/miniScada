@@ -27,7 +27,7 @@ namespace ModelServiceHost
             selfHost.Open();
 
             string listenUri = selfHost.Description.Endpoints[0].ListenUri.AbsoluteUri;
-            Console.WriteLine("Listening on: {0}", listenUri);
+            Console.WriteLine("Model service listening on: {0}", listenUri);
             Console.WriteLine("Press <Enter> to terminate the service");
             Console.ReadLine();
         }
