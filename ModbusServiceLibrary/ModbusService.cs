@@ -1,13 +1,9 @@
-﻿using ModbusServiceLibrary.ContractTypes;
-using ModbusServiceLibrary.Data;
+﻿using ModbusServiceLibrary.Data;
 using ModbusServiceLibrary.ServiceReader;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
-using System.Threading;
+
 
 namespace ModbusServiceLibrary
 {
@@ -22,15 +18,17 @@ namespace ModbusServiceLibrary
 			Callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			rtuStaticData= new RtuStaticData(modelServiceReader);
 			rtuStaticData.InitializeData();
-
 		}
+
 
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
-			
 			int signalValue = 10;
+			
 			Callback.UpdateAnalogSignalValue(rtuId, signalAddress, signalValue);
 		}
+
+
 
 		public List<Model.RTU.RTUData> GetAllRtuData()
 		{
@@ -38,6 +36,21 @@ namespace ModbusServiceLibrary
 			foreach (var rtu in rtuStaticData.RtuList)
 				rtuData.Add(rtu.RTUData);
 			return rtuData;
+		}
+
+		public void ReadDiscreteSignal(int rtuId, int signalAddress)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void WriteAnalogSignal(int rtuId, int signalAddress, int newValue)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

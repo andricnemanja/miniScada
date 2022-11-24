@@ -116,6 +116,24 @@ namespace ModelClient.ModbusServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal", ReplyAction="http://tempuri.org/IModbusDuplex/ReadAnalogSignalResponse")]
         System.Threading.Tasks.Task ReadAnalogSignalAsync(int rtuId, int signalAddress);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal", ReplyAction="http://tempuri.org/IModbusDuplex/ReadDiscreteSignalResponse")]
+        void ReadDiscreteSignal(int rtuId, int signalAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal", ReplyAction="http://tempuri.org/IModbusDuplex/ReadDiscreteSignalResponse")]
+        System.Threading.Tasks.Task ReadDiscreteSignalAsync(int rtuId, int signalAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal", ReplyAction="http://tempuri.org/IModbusDuplex/WriteAnalogSignalResponse")]
+        void WriteAnalogSignal(int rtuId, int signalAddress, int newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal", ReplyAction="http://tempuri.org/IModbusDuplex/WriteAnalogSignalResponse")]
+        System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, int newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal", ReplyAction="http://tempuri.org/IModbusDuplex/WriteDiscreteSignalResponse")]
+        void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal", ReplyAction="http://tempuri.org/IModbusDuplex/WriteDiscreteSignalResponse")]
+        System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, bool newValue);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/GetAllRtuData", ReplyAction="http://tempuri.org/IModbusDuplex/GetAllRtuDataResponse")]
         ModelClient.ModbusServiceReference.RTUData[] GetAllRtuData();
         
@@ -164,6 +182,30 @@ namespace ModelClient.ModbusServiceReference {
         
         public System.Threading.Tasks.Task ReadAnalogSignalAsync(int rtuId, int signalAddress) {
             return base.Channel.ReadAnalogSignalAsync(rtuId, signalAddress);
+        }
+        
+        public void ReadDiscreteSignal(int rtuId, int signalAddress) {
+            base.Channel.ReadDiscreteSignal(rtuId, signalAddress);
+        }
+        
+        public System.Threading.Tasks.Task ReadDiscreteSignalAsync(int rtuId, int signalAddress) {
+            return base.Channel.ReadDiscreteSignalAsync(rtuId, signalAddress);
+        }
+        
+        public void WriteAnalogSignal(int rtuId, int signalAddress, int newValue) {
+            base.Channel.WriteAnalogSignal(rtuId, signalAddress, newValue);
+        }
+        
+        public System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, int newValue) {
+            return base.Channel.WriteAnalogSignalAsync(rtuId, signalAddress, newValue);
+        }
+        
+        public void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue) {
+            base.Channel.WriteDiscreteSignal(rtuId, signalAddress, newValue);
+        }
+        
+        public System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, bool newValue) {
+            return base.Channel.WriteDiscreteSignalAsync(rtuId, signalAddress, newValue);
         }
         
         public ModelClient.ModbusServiceReference.RTUData[] GetAllRtuData() {

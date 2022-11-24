@@ -10,7 +10,7 @@ namespace ModelClient
 	{
 		public void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue)
 		{
-			Console.WriteLine("Read analog signal");
+			Console.WriteLine("Analog signal changed");
 		}
 	}
 }

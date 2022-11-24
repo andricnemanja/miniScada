@@ -16,8 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelWcfServiceLibrary.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWpfApp", "ClientWpfApp\ClientWpfApp.csproj", "{FA57176D-9DB3-41DF-B264-C8C0A5470654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedModel", "SharedModel\SharedModel.csproj", "{31416975-A3A7-42D3-8B5F-D2A66EEBD0EE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusServiceHost", "ModbusServiceHost\ModbusServiceHost.csproj", "{52420596-8BC8-4E69-9D98-F2960F0A5C02}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusServiceLibrary", "ModbusServiceLibrary\ModbusServiceLibrary.csproj", "{E7FDB680-6D8C-41BB-B54E-F250BF051C5E}"
@@ -48,10 +46,6 @@ Global
 		{FA57176D-9DB3-41DF-B264-C8C0A5470654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA57176D-9DB3-41DF-B264-C8C0A5470654}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA57176D-9DB3-41DF-B264-C8C0A5470654}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31416975-A3A7-42D3-8B5F-D2A66EEBD0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31416975-A3A7-42D3-8B5F-D2A66EEBD0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31416975-A3A7-42D3-8B5F-D2A66EEBD0EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31416975-A3A7-42D3-8B5F-D2A66EEBD0EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{52420596-8BC8-4E69-9D98-F2960F0A5C02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{52420596-8BC8-4E69-9D98-F2960F0A5C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52420596-8BC8-4E69-9D98-F2960F0A5C02}.Release|Any CPU.ActiveCfg = Release|Any CPU

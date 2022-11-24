@@ -59,6 +59,7 @@
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
@@ -70,10 +71,10 @@
     <Compile Include="Data\RtuStaticData.cs" />
     <Compile Include="IModbusDuplex.cs" />
     <Compile Include="IModbusDuplexCallback.cs" />
-    <Compile Include="IModelServiceReader.cs" />
+    <Compile Include="ServiceReader\IModelServiceReader.cs" />
     <Compile Include="ModbusClient\IModbusClient.cs" />
     <Compile Include="ModbusClient\NModbusClient.cs" />
-    <Compile Include="ModelServiceReader.cs" />
+    <Compile Include="ServiceReader\ModelServiceReader.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
     <Compile Include="Model\RTU\RTUConnection.cs" />
     <Compile Include="Model\RTU\RTUData.cs" />
