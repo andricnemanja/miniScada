@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace ModbusServiceLibrary.Data
 {
-	public interface IRtuStaticData
+	public interface IRtuData
 	{
-		List<RTU> RtuList { get; set; }
-
 		void InitializeData();
 	}
 }

@@ -1,4 +1,5 @@
-﻿using ModbusServiceLibrary.Model;
+﻿using ModbusServiceLibrary.ModbusClient;
+using ModbusServiceLibrary.Model;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.Model.Signals;
 using ModbusServiceLibrary.Model.SignalValues;
@@ -26,6 +27,7 @@ namespace ModbusServiceLibrary.ServiceReader
 
 			foreach (var rtu in modelService.GetRTUsEssentialData())
 			{
+				IModbusClient modbusClient = new NModbusClient(rtu.IpAddress, rtu.Port);
 				RTU newRTU = new RTU()
 				{
 					RTUData = new RTUData()
