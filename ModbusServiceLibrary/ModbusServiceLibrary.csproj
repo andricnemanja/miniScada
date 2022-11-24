@@ -52,22 +52,87 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Data\IRtuStaticData.cs" />
+    <Compile Include="Data\RtuStaticData.cs" />
     <Compile Include="IModbusDuplex.cs" />
     <Compile Include="IModbusDuplexCallback.cs" />
+    <Compile Include="IModelServiceReader.cs" />
     <Compile Include="ModbusClient\IModbusClient.cs" />
     <Compile Include="ModbusClient\NModbusClient.cs" />
+    <Compile Include="ModelServiceReader.cs" />
+    <Compile Include="Model\RTU\RTU.cs" />
+    <Compile Include="Model\RTU\RTUConnection.cs" />
+    <Compile Include="Model\RTU\RTUData.cs" />
+    <Compile Include="Model\Signals\AnalogSignal.cs" />
+    <Compile Include="Model\Signals\DiscreteSignal.cs" />
+    <Compile Include="Model\SignalValues\AnalogSignalValue.cs" />
+    <Compile Include="Model\SignalValues\DiscreteSignalValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModbusService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.AnalogSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.DiscreteSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.RTU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.RTUData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Signals.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\service.wsdl" />
+    <None Include="Connected Services\ModelServiceReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ModelServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ModelServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ModelServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ModelServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

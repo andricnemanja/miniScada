@@ -12,5 +12,8 @@ namespace ModbusServiceLibrary
 	{
 		[OperationContract]
 		void ReadAnalogSignal(int rtuId, int signalAddress);
+
+		[OperationContract]
+		List<Model.RTU.RTUData> GetAllRtuData();
 	}
 }

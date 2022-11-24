@@ -1,8 +1,8 @@
-﻿using ModelClient.ServiceReference1;
-using SharedModel.Model.RTU;
+﻿using SharedModel.Model.RTU;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,14 +12,19 @@ namespace ModelClient
     {
         static void Main(string[] args)
         {
-            ModelServiceClient modelServiceClient = new ModelServiceClient();
+			InstanceContext instanceContext = new InstanceContext(new CallbackHandler());
+			ModbusServiceReference.ModbusDuplexClient modbusClient = new ModbusServiceReference.ModbusDuplexClient(instanceContext);
 
-            List<RTU> rTUs = modelServiceClient.GetStaticData();
+            modbusClient.ReadAnalogSignal(1, 1);
 
-            Console.WriteLine(modelServiceClient.GetRTU(1).Name);
-            Console.ReadKey();
+            var rtuData = modbusClient.GetAllRtuData();
 
-            modelServiceClient.Close();
+            foreach (var rtu in rtuData)
+            {
+                Console.WriteLine(rtu.Name);
+            }
+
+			modbusClient.Close();
         }
     }
 }

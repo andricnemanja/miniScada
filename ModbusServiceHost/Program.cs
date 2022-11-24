@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Core;
+using Autofac.Integration.Wcf;
 using ModbusServiceLibrary;
 
 namespace ModbusServiceHost
@@ -13,7 +15,19 @@ namespace ModbusServiceHost
 	{
 		static void Main(string[] args)
 		{
+
+			IContainer container = Bootstrapper.RegisterContainerBuilder().Build();
+
 			ServiceHost selfHost = new ServiceHost(typeof(ModbusService));
+			selfHost.AddDependencyInjectionBehavior<IModbusDuplex>(container);
+
+			IComponentRegistration registration;
+			if (!container.ComponentRegistry.TryGetRegistration(new TypedService(typeof(IModbusDuplex)), out registration))
+			{
+				Console.WriteLine("The service contract has not been registered in the container.");
+				Console.ReadLine();
+				Environment.Exit(-1);
+			}
 
 			selfHost.Open();
 
