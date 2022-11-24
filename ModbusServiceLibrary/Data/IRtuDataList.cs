@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ModbusServiceLibrary.Data
 {
-	public interface IRtuData
+	public interface IRtuDataList
 	{
 		void InitializeData();
 	}

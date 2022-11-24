@@ -37,7 +37,7 @@ namespace ModbusServiceLibrary.ServiceReader
 						Name = rtu.Name,
 						Port = rtu.Port
 					},
-					Connection = new RTUConnection(null),
+					Connection = new RTUConnection(modbusClient),
 					AnalogSignalValues = GetAnalogSignalValuesForRTU(rtu.ID),
 					DiscreteSignalValues = GetDiscreteSignalValuesForRTU(rtu.ID)
 				};

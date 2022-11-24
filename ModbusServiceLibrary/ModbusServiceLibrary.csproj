@@ -67,8 +67,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Data\IRtuStaticData.cs" />
-    <Compile Include="Data\RtuStaticData.cs" />
+    <Compile Include="Data\IRtuDataList.cs" />
+    <Compile Include="Data\RtuDataList.cs" />
     <Compile Include="IModbusDuplex.cs" />
     <Compile Include="IModbusDuplexCallback.cs" />
     <Compile Include="ServiceReader\IModelServiceReader.cs" />

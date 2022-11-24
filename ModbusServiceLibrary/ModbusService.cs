@@ -11,12 +11,12 @@ namespace ModbusServiceLibrary
 	public class ModbusService : IModbusDuplex
 	{
 		public IModbusDuplexCallback Callback { get; set; }
-		private RtuStaticData rtuStaticData;
+		private RtuDataList rtuStaticData;
 
 		public ModbusService(IModelServiceReader modelServiceReader)
 		{
 			Callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			rtuStaticData= new RtuStaticData(modelServiceReader);
+			rtuStaticData= new RtuDataList(modelServiceReader);
 			rtuStaticData.InitializeData();
 		}
 
@@ -26,16 +26,6 @@ namespace ModbusServiceLibrary
 			int signalValue = 10;
 			
 			Callback.UpdateAnalogSignalValue(rtuId, signalAddress, signalValue);
-		}
-
-
-
-		public List<Model.RTU.RTUData> GetAllRtuData()
-		{
-			List<Model.RTU.RTUData> rtuData = new List<Model.RTU.RTUData>();
-			foreach (var rtu in rtuStaticData.RtuList)
-				rtuData.Add(rtu.RTUData);
-			return rtuData;
 		}
 
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)

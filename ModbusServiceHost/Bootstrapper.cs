@@ -19,7 +19,7 @@ namespace ModbusServiceHost
 
 			builder.RegisterType<ModbusServiceLibrary.ModelServiceReference.ModelServiceClient>().As<ModbusServiceLibrary.ModelServiceReference.IModelService>();
 			builder.RegisterType<ModelServiceReader>().As<IModelServiceReader>();
-			builder.RegisterType<RtuStaticData>().As<IRtuStaticData>()
+			builder.RegisterType<RtuDataList>().As<IRtuDataList>()
 				.OnActivated(c => c.Instance.InitializeData());
 			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
 

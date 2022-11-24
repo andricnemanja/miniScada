@@ -20,7 +20,6 @@ namespace ModbusServiceLibrary.ModbusClient
             this.port = port;
         }
 
-
         public int ReadSingleRegister(int startingAddress)
         {
             try

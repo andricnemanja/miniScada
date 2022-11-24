@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ModbusServiceLibrary.Data
 {
-	public class RtuData : IRtuData
+	public class RtuDataList : IRtuDataList
 	{
 		public List<RTU> RtuList { get; private set; }
 		private readonly IModelServiceReader modelServiceReader;
 
-		public RtuData(IModelServiceReader modelServiceReader)
+		public RtuDataList(IModelServiceReader modelServiceReader)
 		{
 			this.modelServiceReader = modelServiceReader;
 		}
