@@ -1,5 +1,4 @@
-﻿using SharedModel.Model.RTU;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -23,6 +22,7 @@ namespace ModelClient
             {
                 Console.WriteLine(rtu.Name);
             }
+            Console.ReadKey();
 
 			modbusClient.Close();
         }
