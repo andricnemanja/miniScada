@@ -30,7 +30,7 @@ namespace ModbusServiceLibrary
 
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
-			throw new NotImplementedException();
+			Callback.UpdateDiscreteSignalValue(rtuId, signalAddress, true);
 		}
 
 		public void WriteAnalogSignal(int rtuId, int signalAddress, int newValue)

@@ -8,35 +8,35 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ModelClient.ModbusServiceReference {
+namespace ClientWpfApp.ModbusServiceReference {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModbusServiceReference.IModbusDuplex", CallbackContract=typeof(ModelClient.ModbusServiceReference.IModbusDuplexCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModbusServiceReference.IModbusDuplex", CallbackContract=typeof(ClientWpfApp.ModbusServiceReference.IModbusDuplexCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IModbusDuplex {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal", ReplyAction="http://tempuri.org/IModbusDuplex/ReadAnalogSignalResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal")]
         void ReadAnalogSignal(int rtuId, int signalAddress);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal", ReplyAction="http://tempuri.org/IModbusDuplex/ReadAnalogSignalResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal")]
         System.Threading.Tasks.Task ReadAnalogSignalAsync(int rtuId, int signalAddress);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal", ReplyAction="http://tempuri.org/IModbusDuplex/ReadDiscreteSignalResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal")]
         void ReadDiscreteSignal(int rtuId, int signalAddress);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal", ReplyAction="http://tempuri.org/IModbusDuplex/ReadDiscreteSignalResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal")]
         System.Threading.Tasks.Task ReadDiscreteSignalAsync(int rtuId, int signalAddress);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal", ReplyAction="http://tempuri.org/IModbusDuplex/WriteAnalogSignalResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal")]
         void WriteAnalogSignal(int rtuId, int signalAddress, int newValue);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal", ReplyAction="http://tempuri.org/IModbusDuplex/WriteAnalogSignalResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal")]
         System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, int newValue);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal", ReplyAction="http://tempuri.org/IModbusDuplex/WriteDiscreteSignalResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal")]
         void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal", ReplyAction="http://tempuri.org/IModbusDuplex/WriteDiscreteSignalResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal")]
         System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, bool newValue);
     }
     
@@ -51,12 +51,12 @@ namespace ModelClient.ModbusServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IModbusDuplexChannel : ModelClient.ModbusServiceReference.IModbusDuplex, System.ServiceModel.IClientChannel {
+    public interface IModbusDuplexChannel : ClientWpfApp.ModbusServiceReference.IModbusDuplex, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ModbusDuplexClient : System.ServiceModel.DuplexClientBase<ModelClient.ModbusServiceReference.IModbusDuplex>, ModelClient.ModbusServiceReference.IModbusDuplex {
+    public partial class ModbusDuplexClient : System.ServiceModel.DuplexClientBase<ClientWpfApp.ModbusServiceReference.IModbusDuplex>, ClientWpfApp.ModbusServiceReference.IModbusDuplex {
         
         public ModbusDuplexClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {

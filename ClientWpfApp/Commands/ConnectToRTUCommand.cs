@@ -34,8 +34,7 @@ namespace ClientWpfApp.Commands
         {
             
             IModbusClient modbusClient = new NModbusClient(IpAddress, Port);
-            rtu.Connection.Client = modbusClient;
-            rtu.Connection.Status = true;
+            rtu.IsConnected = true;
             rtu.RTUData.IpAddress = IpAddress;
             rtu.RTUData.Port = Port;
             Application.Current.Windows[1].Close();

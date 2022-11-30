@@ -8,22 +8,12 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReadAnalogSignalResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="ReadDiscreteSignal">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="rtuId" type="xs:int" />
         <xs:element minOccurs="0" name="signalAddress" type="xs:int" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ReadDiscreteSignalResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="WriteAnalogSignal">
@@ -35,11 +25,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="WriteAnalogSignalResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="WriteDiscreteSignal">
     <xs:complexType>
       <xs:sequence>
@@ -47,11 +32,6 @@
         <xs:element minOccurs="0" name="signalAddress" type="xs:int" />
         <xs:element minOccurs="0" name="newValue" type="xs:boolean" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="WriteDiscreteSignalResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateAnalogSignalValue">

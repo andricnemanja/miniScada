@@ -10,6 +10,8 @@ using ClientWpfApp.Services;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.Signals;
 using ClientWpfApp.ServiceReader;
+using System.ServiceModel;
+using ClientWpfApp.ModbusCallback;
 
 namespace ClientWpfApp.ViewModel
 {
@@ -17,24 +19,26 @@ namespace ClientWpfApp.ViewModel
 	{
 		public ICommand CreateConnectionWindowCommand { get; set; }
 		public ICommand SetRegistryValuesCommand { get; set; }
+		public ICommand ReadRtuValuesCommand { get; set; }
 		public ObservableCollection<RTU> RTUList { get; set; } = new ObservableCollection<RTU>();
-		private ValuesReader valuesReader;
+
+		private RtuValuesReader valuesReader;
 		private ModelServiceReader modelServiceReader;
+		private ModbusServiceReference.ModbusDuplexClient modbusServiceClient;
 
 		public MainViewModel()
 		{
 			CreateConnectionWindowCommand = new CreateConnectionWindowCommand();
 			SetRegistryValuesCommand = new SetRegistryValuesCommand();
 
-			valuesReader = new ValuesReader();
 			modelServiceReader = new ModelServiceReader(new ModelServiceReference.ModelServiceClient());
 
 			ReadRTUData();
+			ConnectToModbusService();
 
-			DispatcherTimer timer = new DispatcherTimer();
-			timer.Interval = TimeSpan.FromSeconds(1);
-			timer.Tick += timer_Tick;
-			timer.Start();
+			valuesReader = new RtuValuesReader(modbusServiceClient, RTUList);
+			ReadRtuValuesCommand = new ReadRtuValuesCommand(valuesReader);
+
 		}
 
 		public void ReadRTUData()
@@ -42,9 +46,11 @@ namespace ClientWpfApp.ViewModel
 			RTUList = modelServiceReader.ReadAllRTUs();
 		}
 
-		void timer_Tick(object sender, EventArgs e)
+		public void ConnectToModbusService()
 		{
-			valuesReader.ReadValues(RTUList);
+			InstanceContext instanceContext = new InstanceContext(new ModbusServiceCallback(RTUList));
+			modbusServiceClient = new ModbusServiceReference.ModbusDuplexClient(instanceContext);
 		}
+
 	}
 }

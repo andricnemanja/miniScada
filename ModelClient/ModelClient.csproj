@@ -80,12 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\ModbusServiceReference\ModbusServiceLibrary.Model.RTU.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ModbusServiceReference\ModelClient.ModbusServiceReference.RTUData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\ModbusServiceReference\service.wsdl" />
     <None Include="Connected Services\ModbusServiceReference\service.xsd">
       <SubType>Designer</SubType>

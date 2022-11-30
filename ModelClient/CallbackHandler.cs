@@ -12,5 +12,10 @@ namespace ModelClient
 		{
 			Console.WriteLine("Analog signal changed");
 		}
+
+		public void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

@@ -16,12 +16,7 @@ namespace ModelClient
 
             modbusClient.ReadAnalogSignal(1, 1);
 
-            var rtuData = modbusClient.GetAllRtuData();
 
-            foreach (var rtu in rtuData)
-            {
-                Console.WriteLine(rtu.Name);
-            }
             Console.ReadKey();
 
 			modbusClient.Close();

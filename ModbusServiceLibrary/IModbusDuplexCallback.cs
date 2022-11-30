@@ -11,5 +11,7 @@ namespace ModbusServiceLibrary
 	{
 		[OperationContract(IsOneWay = true)]
 		void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue);
+		[OperationContract(IsOneWay = true)]
+		void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue);
 	}
 }

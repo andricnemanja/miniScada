@@ -70,7 +70,13 @@
     <Compile Include="Circuit Breaker\ICircuitBreakerStateStore.cs" />
     <Compile Include="Commands\ConnectToRTUCommand.cs" />
     <Compile Include="Commands\CreateConnectionWindowCommand.cs" />
+    <Compile Include="Commands\ReadRtuValuesCommand.cs" />
     <Compile Include="Commands\SetRegistryValuesCommand.cs" />
+    <Compile Include="Connected Services\ModbusServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,19 +84,19 @@
     </Compile>
     <Compile Include="Converters\ConnectionButtonColorConverter.cs" />
     <Compile Include="Converters\ConnectionStatusConverter.cs" />
+    <Compile Include="ModbusCallback\ModbusServiceCallback.cs" />
     <Compile Include="ModbusClients\EasyModbusClient.cs" />
     <Compile Include="ModbusClients\IModbusClient.cs" />
     <Compile Include="ModbusClients\NModbusClient.cs" />
     <Compile Include="ModbusErrors.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
-    <Compile Include="Model\RTU\RTUConnection.cs" />
     <Compile Include="Model\RTU\RTUData.cs" />
     <Compile Include="Model\Signals\AnalogSignal.cs" />
     <Compile Include="Model\SignalValues\AnalogSignalValue.cs" />
     <Compile Include="Model\Signals\DiscreteSignal.cs" />
     <Compile Include="Model\SignalValues\DiscreteSignalValue.cs" />
     <Compile Include="ServiceReader\ModelServiceReader.cs" />
-    <Compile Include="ServiceReader\ValuesReader.cs" />
+    <Compile Include="ServiceReader\RtuValuesReader.cs" />
     <Compile Include="ViewModel\ConnectionViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\ConnectionWindow.xaml.cs">
@@ -137,6 +143,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\ModbusServiceReference\service.wsdl" />
+    <None Include="Connected Services\ModbusServiceReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModbusServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.AnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -181,6 +194,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ModbusServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\ModelServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +205,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ModelServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ModbusServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ModbusServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ModbusServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
