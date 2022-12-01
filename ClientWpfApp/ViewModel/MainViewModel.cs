@@ -22,6 +22,7 @@ namespace ClientWpfApp.ViewModel
 		public ICommand SetRegistryValuesCommand { get; set; }
 		public ICommand ReadRtuValuesCommand { get; set; }
 		public DiscreteSignalCheckboxCommand DiscreteSignalCheckboxCommand { get; set; }
+		public SavaAnalogSignalCommand SavaAnalogSignalCommand { get; set; }
 		public ObservableCollection<RTU> RTUList { get; set; } = new ObservableCollection<RTU>();
 
 		private RTU _selectedRtu;
@@ -33,6 +34,7 @@ namespace ClientWpfApp.ViewModel
 			{ 
 				_selectedRtu = value; 
 				DiscreteSignalCheckboxCommand.SelectedRtu = value;
+				SavaAnalogSignalCommand.SelectedRtu = value;
 			}
 		}
 
@@ -60,6 +62,7 @@ namespace ClientWpfApp.ViewModel
 			rtuValueWriter = new RtuValueWriter(modbusServiceClient);
 
 			DiscreteSignalCheckboxCommand = new DiscreteSignalCheckboxCommand(rtuValueWriter);
+			SavaAnalogSignalCommand = new SavaAnalogSignalCommand(rtuValueWriter);
 		}
 
 		public void ReadRTUData()

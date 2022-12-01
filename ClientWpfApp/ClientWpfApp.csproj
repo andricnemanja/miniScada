@@ -70,6 +70,7 @@
     <Compile Include="Circuit Breaker\ICircuitBreakerStateStore.cs" />
     <Compile Include="Commands\ConnectToRTUCommand.cs" />
     <Compile Include="Commands\CreateConnectionWindowCommand.cs" />
+    <Compile Include="Commands\SavaAnalogSignalCommand.cs" />
     <Compile Include="Commands\DiscreteSignalCheckboxCommand.cs" />
     <Compile Include="Commands\ReadRtuValuesCommand.cs" />
     <Compile Include="Commands\SetRegistryValuesCommand.cs" />

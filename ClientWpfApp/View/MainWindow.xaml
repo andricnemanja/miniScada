@@ -6,7 +6,7 @@
         xmlns:converters="clr-namespace:ClientWpfApp.Converters"
         xmlns:local="clr-namespace:ClientWpfApp.View"
         mc:Ignorable="d"
-        Title="Mini Scada" Height="450" Width="800">
+        Title="Mini Scada" Height="450" Width="1000">
 
     <Window.Resources>
         <converters:ConnectionButtonColorConverter x:Key="ConnectionButtonColorConverter" />
@@ -22,7 +22,7 @@
                     Command="{Binding Path=ReadRtuValuesCommand}">
                 <TextBlock Margin="0, -6, 0, 0">⟲</TextBlock>
             </Button>
-            <DataGrid ItemsSource="{Binding RTUList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="740px" x:Name="DevicesDataGrid">
+            <DataGrid ItemsSource="{Binding RTUList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="940px" x:Name="DevicesDataGrid">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
 
@@ -69,7 +69,10 @@
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
                                                 <TextBlock VerticalAlignment="Center" Text=": " />
-                                                <TextBlock VerticalAlignment="Center" Text="{Binding Value}" />
+                                                <TextBox VerticalAlignment="Center" Text="{Binding Value}" />
+                                                <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="Sačuvaj"
+                                                        Command="{Binding Path=DataContext.SavaAnalogSignalCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
+                                                        CommandParameter="{Binding}" /> 
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>

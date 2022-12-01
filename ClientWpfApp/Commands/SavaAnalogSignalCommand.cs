@@ -11,14 +11,14 @@ using System.Windows.Input;
 
 namespace ClientWpfApp.Commands
 {
-	public class DiscreteSignalCheckboxCommand : ICommand
+	public class SavaAnalogSignalCommand : ICommand
 	{
 		private RtuValueWriter rtuValueWriter;
 
 		public event EventHandler CanExecuteChanged;
 		public RTU SelectedRtu { get; set; }
 
-		public DiscreteSignalCheckboxCommand(RtuValueWriter rtuValueWriter)
+		public SavaAnalogSignalCommand(RtuValueWriter rtuValueWriter)
 		{
 			this.rtuValueWriter = rtuValueWriter;
 		}
@@ -30,13 +30,13 @@ namespace ClientWpfApp.Commands
 
 		public void Execute(object parameter)
 		{
-			DiscreteSignalValue discreteSignalValue = (DiscreteSignalValue)parameter;
+			AnalogSignalValue analogSignalValue = (AnalogSignalValue)parameter;
 
-			if (MessageBox.Show("Da li želite da promenite vrednost signala " + discreteSignalValue.DiscreteSignal.Name
-				 + " na vrednost " + (discreteSignalValue.Value).ToString() , "Question", MessageBoxButton.YesNo, 
+			if (MessageBox.Show("Da li želite da promenite vrednost signala " + analogSignalValue.AnalogSignal.Name
+				 + " na vrednost " + (analogSignalValue.Value).ToString() , "Question", MessageBoxButton.YesNo, 
 				 MessageBoxImage.Warning) == MessageBoxResult.Yes)
 			{
-				rtuValueWriter.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.Address, discreteSignalValue.Value);
+				rtuValueWriter.WriteAnalogSignalValue(SelectedRtu.RTUData.ID, analogSignalValue.AnalogSignal.Address, analogSignalValue.Value);
 			}
 			else
 			{
