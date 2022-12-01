@@ -1,5 +1,6 @@
 ﻿using ModbusServiceLibrary.Data;
 using ModbusServiceLibrary.ModbusCommunication;
+using ModbusServiceLibrary.ModbusReader;
 using ModbusServiceLibrary.ServiceReader;
 using System;
 using System.Collections.Generic;
@@ -26,14 +27,14 @@ namespace ModbusServiceLibrary
 
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
-			int signalValue = 10;
-			
+			int signalValue = 0;
 			Callback.UpdateAnalogSignalValue(rtuId, signalAddress, signalValue);
 		}
 
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
-			Callback.UpdateDiscreteSignalValue(rtuId, signalAddress, true);
+			bool signalValue = false;
+			Callback.UpdateDiscreteSignalValue(rtuId, signalAddress, signalValue);
 		}
 
 		public void WriteAnalogSignal(int rtuId, int signalAddress, int newValue)
