@@ -1,5 +1,4 @@
-﻿using ModelClient.ModelServiceReference;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -12,7 +11,11 @@ namespace ModelClient
     {
         static void Main(string[] args)
         {
-            ModelServiceClient modelServiceClient = new ModelServiceClient();
+			InstanceContext instanceContext = new InstanceContext(new CallbackHandler());
+			ModbusServiceReference.ModbusDuplexClient modbusClient = new ModbusServiceReference.ModbusDuplexClient(instanceContext);
+
+            modbusClient.ReadAnalogSignal(1, 1);
+
 
             try
             {
@@ -25,7 +28,7 @@ namespace ModelClient
             }
             Console.ReadKey();
 
-            modelServiceClient.Close();
+			modbusClient.Close();
         }
     }
 }

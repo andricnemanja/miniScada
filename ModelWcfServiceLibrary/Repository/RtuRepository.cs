@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Serializer;
+using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.Signals;
 
 namespace ModelWcfServiceLibrary.Repository
 {
@@ -50,7 +51,33 @@ namespace ModelWcfServiceLibrary.Repository
         /// <returns>RTU with the given ID. If RTU with that ID doesn't exist, it will return <c>null</c></returns>
         public RTU GetRTUByID(int rtuID)
         {
-            return RtuList.SingleOrDefault(t => t.ID == rtuID);
+            return RtuList.SingleOrDefault(t => t.RTUData.ID == rtuID);
         }
-    }
+		/// <summary>
+		/// Get list of discrete signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of discrete signals</returns>
+		public IEnumerable<DiscreteSignal> GetDiscreteSignalsForRtu(int id)
+		{
+            return GetRTUByID(id).DiscreteSignals;
+		}
+		/// <summary>
+		/// Get list of analog signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of analog signals</returns>
+		public IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id)
+		{
+			return GetRTUByID(id).AnalogSignals;
+		}
+		/// <summary>
+		/// Get RTUs essential data
+		/// </summary>
+		/// <returns>List of essential data for all RTUs</returns>
+		public IEnumerable<RTUData> GetRTUsEssentialData()
+		{
+			return RtuList.Select(r => r.RTUData);
+		}
+	}
 }

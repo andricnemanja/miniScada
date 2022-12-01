@@ -1,0 +1,95 @@
+﻿<Window x:Class="ClientWpfApp.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:ClientWpfApp.Converters"
+        xmlns:local="clr-namespace:ClientWpfApp.View"
+        mc:Ignorable="d"
+        Title="Mini Scada" Height="450" Width="1000">
+
+    <Window.Resources>
+        <converters:ConnectionButtonColorConverter x:Key="ConnectionButtonColorConverter" />
+        <converters:ConnectionStatusConverter x:Key="ConnectionStatusConverter" />
+    </Window.Resources>
+
+
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Margin="0,10,0,0">
+
+            <Button Margin="20,10,0,0" Width="30px" Height="30px" HorizontalAlignment="Left" FontSize="25px" FontWeight="Black"
+                    Command="{Binding Path=ReadRtuValuesCommand}">
+                <TextBlock Margin="0, -6, 0, 0">⟲</TextBlock>
+            </Button>
+            <DataGrid ItemsSource="{Binding RTUList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="940px" x:Name="DevicesDataGrid">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
+
+                    <DataGridTemplateColumn Header="Status" Width ="Auto" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="70px" Content="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
+                                        Command="{Binding Path=DataContext.CreateConnectionWindowCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
+                                        CommandParameter="{Binding}" 
+                                        Background="{Binding IsConnected, Converter={StaticResource ConnectionButtonColorConverter}}"
+                                        Foreground="White"
+                                        FontWeight="SemiBold">
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Ip adresa" Width ="*" Binding="{Binding RTUData.IpAddress}" IsReadOnly="True"/>
+
+                    <DataGridTemplateColumn Header="Diskretni signali" Width ="*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding DiscreteSignalValues}" IsEnabled="{Binding IsConnected}" 
+                                          SelectedItem="{Binding Path=DataContext.SelectedDiscreteSignal, RelativeSource = {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" BorderThickness="0px">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding DiscreteSignal.Name}" 
+                                                      Command="{Binding Path=DataContext.DiscreteSignalCheckboxCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
+                                                      CommandParameter="{Binding}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+                    <DataGridTemplateColumn Header="Analogni signali" Width ="*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding AnalogSignalValues}" IsEnabled="{Binding IsConnected}" BorderThickness="0px">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
+                                                <TextBlock VerticalAlignment="Center" Text=": " />
+                                                <TextBox VerticalAlignment="Center" Text="{Binding Value}" />
+                                                <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="Sačuvaj"
+                                                        Command="{Binding Path=DataContext.SavaAnalogSignalCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
+                                                        CommandParameter="{Binding}" /> 
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                </DataGrid.Columns>
+
+                <DataGrid.InputBindings>
+                    <MouseBinding MouseAction="LeftDoubleClick"
+                      Command="{Binding Path=SetRegistryValuesCommand}"
+                      CommandParameter="{Binding ElementName=DevicesDataGrid, Path=SelectedItem}" />
+                </DataGrid.InputBindings>
+
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,15 +1,22 @@
 ﻿using ModelWcfServiceLibrary.Model.Signals;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace ModelWcfServiceLibrary.Model.RTU
 {
     public class RTU
     {
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Address { get; set; }
-        public int Port { get; set; }
-        public IEnumerable<AnalogSignal> AnalogSignals { get; set; }
-        public IEnumerable<DiscreteSignal> DiscreteSignals { get; set; }
+		/// <summary>
+		/// Essential RTU data
+		/// </summary>
+		public RTUData RTUData { get; set; }
+		/// <summary>
+		/// List of all Analog signal for RTU
+		/// </summary>
+		public IEnumerable<AnalogSignal> AnalogSignals { get; set; }
+		/// <summary>
+		/// List of all Discrete signal for RTU
+		/// </summary>
+		public IEnumerable<DiscreteSignal> DiscreteSignals { get; set; }
     }
 }

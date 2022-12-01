@@ -1,8 +1,8 @@
 ﻿using ModelWcfServiceLibrary.FileAccessing;
-using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Repository;
 using ModelWcfServiceLibrary.Serializer;
 using Moq;
+using ModelWcfServiceLibrary.Model.RTU;
 using Xunit;
 
 namespace ModelWcfServiceLibrary.Tests
@@ -21,7 +21,7 @@ namespace ModelWcfServiceLibrary.Tests
         {
             RTU rtuByID = repository.GetRTUByID(102);
 
-            Assert.Equal("RTU2", rtuByID.Name);
+            Assert.Equal("RTU2", rtuByID.RTUData.Name);
         }
 
 

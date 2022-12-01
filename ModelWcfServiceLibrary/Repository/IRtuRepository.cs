@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
-using ModelWcfServiceLibrary.Model.RTU;
+﻿using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.Signals;
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace ModelWcfServiceLibrary.Repository
 {
@@ -26,5 +28,22 @@ namespace ModelWcfServiceLibrary.Repository
         /// <param name="rtuID">Unique identification number for the RTU</param>
         /// <returns>RTU with the given ID. If RTU with that ID doesn't exist, it will return <c>null</c></returns>
         RTU GetRTUByID(int rtuID);
-    }
+		/// <summary>
+		/// Get list of discrete signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of discrete signals</returns>
+		IEnumerable<DiscreteSignal> GetDiscreteSignalsForRtu(int id);
+		/// <summary>
+		/// Get list of analog signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of analog signals</returns>
+		IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id);
+		/// <summary>
+		/// Get RTUs essential data
+		/// </summary>
+		/// <returns>List of essential data for all RTUs</returns>
+		IEnumerable<RTUData> GetRTUsEssentialData();
+	}
 }

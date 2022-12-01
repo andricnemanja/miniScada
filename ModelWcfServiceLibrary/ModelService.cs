@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 using ModelWcfServiceLibrary.Model.RTU;
+using System.Linq;
 using ModelWcfServiceLibrary.Repository;
+using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.Signals;
 
 namespace ModelWcfServiceLibrary
 {
@@ -25,7 +28,7 @@ namespace ModelWcfServiceLibrary
 		/// Get static data for all RTUs
 		/// </summary>
 		/// <returns>List of RTUs</returns>
-		public List<RTU> GetStaticData()
+		public List<RTU> GetAllRTUs()
 		{
 			return rtuRepository.RtuList;
 		}
@@ -44,6 +47,32 @@ namespace ModelWcfServiceLibrary
 			}
 
 			return rtu;
+		}
+		/// <summary>
+		/// Get list of discrete signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of discrete signals</returns>
+		public IEnumerable<DiscreteSignal> GetDiscreteSignalsForRtu(int id)
+		{
+			return rtuRepository.GetDiscreteSignalsForRtu(id).ToList();
+		}
+		/// <summary>
+		/// Get list of analog signals for RTU with given ID
+		/// </summary>
+		/// <param name="id">Unique identifier for RTU</param>
+		/// <returns>List of analog signals</returns>
+		public IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id)
+		{
+			return rtuRepository.GetAnalogSignalsForRtu(id);
+		}
+		/// <summary>
+		/// Get RTUs essential data
+		/// </summary>
+		/// <returns>List of essential data for all RTUs</returns>
+		public IEnumerable<RTUData> GetRTUsEssentialData()
+		{
+			return rtuRepository.GetRTUsEssentialData();
 		}
 	}
 }

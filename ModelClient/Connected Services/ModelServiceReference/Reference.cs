@@ -23,22 +23,13 @@ namespace ModelClient.ModelServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private ModelClient.ModelServiceReference.AnalogSignal[] AnalogSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private ModelClient.ModelServiceReference.DiscreteSignal[] DiscreteSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PortField;
+        private ModelClient.ModelServiceReference.RTUData RTUDataField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -47,19 +38,6 @@ namespace ModelClient.ModelServiceReference {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
             }
         }
         
@@ -90,6 +68,60 @@ namespace ModelClient.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModelClient.ModelServiceReference.RTUData RTUData {
+            get {
+                return this.RTUDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RTUDataField, value) != true)) {
+                    this.RTUDataField = value;
+                    this.RaisePropertyChanged("RTUData");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RTUData", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class RTUData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IpAddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PortField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int ID {
             get {
                 return this.IDField;
@@ -98,6 +130,19 @@ namespace ModelClient.ModelServiceReference {
                 if ((this.IDField.Equals(value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IpAddress {
+            get {
+                return this.IpAddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IpAddressField, value) != true)) {
+                    this.IpAddressField = value;
+                    this.RaisePropertyChanged("IpAddress");
                 }
             }
         }
@@ -349,11 +394,11 @@ namespace ModelClient.ModelServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
     public interface IModelService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetStaticData", ReplyAction="http://tempuri.org/IModelService/GetStaticDataResponse")]
-        ModelClient.ModelServiceReference.RTU[] GetStaticData();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
+        ModelClient.ModelServiceReference.RTU[] GetAllRTUs();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetStaticData", ReplyAction="http://tempuri.org/IModelService/GetStaticDataResponse")]
-        System.Threading.Tasks.Task<ModelClient.ModelServiceReference.RTU[]> GetStaticDataAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
+        System.Threading.Tasks.Task<ModelClient.ModelServiceReference.RTU[]> GetAllRTUsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(ModelClient.ModelServiceReference.ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
@@ -361,6 +406,24 @@ namespace ModelClient.ModelServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
         System.Threading.Tasks.Task<ModelClient.ModelServiceReference.RTU> GetRTUAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
+        ModelClient.ModelServiceReference.DiscreteSignal[] GetDiscreteSignalsForRtu(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
+        System.Threading.Tasks.Task<ModelClient.ModelServiceReference.DiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
+        ModelClient.ModelServiceReference.AnalogSignal[] GetAnalogSignalsForRtu(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
+        System.Threading.Tasks.Task<ModelClient.ModelServiceReference.AnalogSignal[]> GetAnalogSignalsForRtuAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
+        ModelClient.ModelServiceReference.RTUData[] GetRTUsEssentialData();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
+        System.Threading.Tasks.Task<ModelClient.ModelServiceReference.RTUData[]> GetRTUsEssentialDataAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -390,12 +453,12 @@ namespace ModelClient.ModelServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public ModelClient.ModelServiceReference.RTU[] GetStaticData() {
-            return base.Channel.GetStaticData();
+        public ModelClient.ModelServiceReference.RTU[] GetAllRTUs() {
+            return base.Channel.GetAllRTUs();
         }
         
-        public System.Threading.Tasks.Task<ModelClient.ModelServiceReference.RTU[]> GetStaticDataAsync() {
-            return base.Channel.GetStaticDataAsync();
+        public System.Threading.Tasks.Task<ModelClient.ModelServiceReference.RTU[]> GetAllRTUsAsync() {
+            return base.Channel.GetAllRTUsAsync();
         }
         
         public ModelClient.ModelServiceReference.RTU GetRTU(int id) {
@@ -404,6 +467,30 @@ namespace ModelClient.ModelServiceReference {
         
         public System.Threading.Tasks.Task<ModelClient.ModelServiceReference.RTU> GetRTUAsync(int id) {
             return base.Channel.GetRTUAsync(id);
+        }
+        
+        public ModelClient.ModelServiceReference.DiscreteSignal[] GetDiscreteSignalsForRtu(int id) {
+            return base.Channel.GetDiscreteSignalsForRtu(id);
+        }
+        
+        public System.Threading.Tasks.Task<ModelClient.ModelServiceReference.DiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id) {
+            return base.Channel.GetDiscreteSignalsForRtuAsync(id);
+        }
+        
+        public ModelClient.ModelServiceReference.AnalogSignal[] GetAnalogSignalsForRtu(int id) {
+            return base.Channel.GetAnalogSignalsForRtu(id);
+        }
+        
+        public System.Threading.Tasks.Task<ModelClient.ModelServiceReference.AnalogSignal[]> GetAnalogSignalsForRtuAsync(int id) {
+            return base.Channel.GetAnalogSignalsForRtuAsync(id);
+        }
+        
+        public ModelClient.ModelServiceReference.RTUData[] GetRTUsEssentialData() {
+            return base.Channel.GetRTUsEssentialData();
+        }
+        
+        public System.Threading.Tasks.Task<ModelClient.ModelServiceReference.RTUData[]> GetRTUsEssentialDataAsync() {
+            return base.Channel.GetRTUsEssentialDataAsync();
         }
     }
 }

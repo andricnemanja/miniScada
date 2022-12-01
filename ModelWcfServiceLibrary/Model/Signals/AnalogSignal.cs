@@ -1,9 +1,24 @@
-﻿namespace ModelWcfServiceLibrary.Model.Signals
+﻿using System.Runtime.Serialization;
+
+namespace ModelWcfServiceLibrary.Model.Signals
 {
-    public class AnalogSignal
+	[DataContract]
+	public class AnalogSignal
     {
-        public int ID { get; set; }
-        public int Address { get; set; }
-        public string Name { get; set; }
+		/// <summary>
+		/// Unique identification number for analog signal
+		/// </summary>
+		[DataMember]
+		public int ID { get; set; }
+		/// <summary>
+		/// Analog signal address
+		/// </summary>
+		[DataMember]
+		public int Address { get; set; }
+		/// <summary>
+		/// Name of the analog signal
+		/// </summary>
+		[DataMember]
+		public string Name { get; set; }
     }
 }
