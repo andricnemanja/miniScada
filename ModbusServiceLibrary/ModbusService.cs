@@ -1,4 +1,5 @@
 ﻿using ModbusServiceLibrary.Data;
+using ModbusServiceLibrary.ModbusCommunication;
 using ModbusServiceLibrary.ServiceReader;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,14 @@ namespace ModbusServiceLibrary
 	{
 		public IModbusDuplexCallback Callback { get; set; }
 		private RtuDataList rtuStaticData;
+		private IModbusWriter modbusWriter;
 
-		public ModbusService(IModelServiceReader modelServiceReader)
+		public ModbusService(IModelServiceReader modelServiceReader, IModbusWriter modbusWriter)
 		{
 			Callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			rtuStaticData= new RtuDataList(modelServiceReader);
 			rtuStaticData.InitializeData();
+			this.modbusWriter = modbusWriter;
 		}
 
 
@@ -35,12 +38,12 @@ namespace ModbusServiceLibrary
 
 		public void WriteAnalogSignal(int rtuId, int signalAddress, int newValue)
 		{
-			throw new NotImplementedException();
+			modbusWriter.WriteAnalogSignalValue(rtuId, signalAddress, newValue);
 		}
 
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue)
 		{
-			throw new NotImplementedException();
+			modbusWriter.WriteDiscreteSignalValue(rtuId, signalAddress, newValue);
 		}
 	}
 }

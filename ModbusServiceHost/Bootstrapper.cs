@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ModbusServiceLibrary;
 using ModbusServiceLibrary.Data;
+using ModbusServiceLibrary.ModbusCommunication;
 using ModbusServiceLibrary.ServiceReader;
 
 namespace ModbusServiceHost
@@ -22,6 +23,9 @@ namespace ModbusServiceHost
 			builder.RegisterType<RtuDataList>().As<IRtuDataList>()
 				.OnActivated(c => c.Instance.InitializeData());
 			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
+			builder.RegisterType<ModbusWriter>().As<IModbusWriter>();
+
+
 
 
 

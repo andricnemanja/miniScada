@@ -22,7 +22,7 @@
                     Command="{Binding Path=ReadRtuValuesCommand}">
                 <TextBlock Margin="0, -6, 0, 0">⟲</TextBlock>
             </Button>
-            <DataGrid ItemsSource="{Binding RTUList}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="740px" x:Name="DevicesDataGrid">
+            <DataGrid ItemsSource="{Binding RTUList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="740px" x:Name="DevicesDataGrid">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
 
@@ -45,10 +45,13 @@
                     <DataGridTemplateColumn Header="Diskretni signali" Width ="*" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding DiscreteSignalValues}" IsEnabled="{Binding IsConnected}" BorderThickness="0px">
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding DiscreteSignalValues}" IsEnabled="{Binding IsConnected}" 
+                                          SelectedItem="{Binding Path=DataContext.SelectedDiscreteSignal, RelativeSource = {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding DiscreteSignal.Name}" />
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding DiscreteSignal.Name}" 
+                                                      Command="{Binding Path=DataContext.DiscreteSignalCheckboxCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
+                                                      CommandParameter="{Binding}" />
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>

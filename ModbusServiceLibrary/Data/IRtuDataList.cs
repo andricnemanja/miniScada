@@ -5,6 +5,7 @@ namespace ModbusServiceLibrary.Data
 {
 	public interface IRtuDataList
 	{
+		List<RTU> RtuList { get; }
 		void InitializeData();
 	}
 }

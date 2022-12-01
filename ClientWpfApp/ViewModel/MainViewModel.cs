@@ -12,6 +12,7 @@ using ClientWpfApp.Model.Signals;
 using ClientWpfApp.ServiceReader;
 using System.ServiceModel;
 using ClientWpfApp.ModbusCallback;
+using ClientWpfApp.Model.SignalValues;
 
 namespace ClientWpfApp.ViewModel
 {
@@ -20,10 +21,28 @@ namespace ClientWpfApp.ViewModel
 		public ICommand CreateConnectionWindowCommand { get; set; }
 		public ICommand SetRegistryValuesCommand { get; set; }
 		public ICommand ReadRtuValuesCommand { get; set; }
+		public DiscreteSignalCheckboxCommand DiscreteSignalCheckboxCommand { get; set; }
 		public ObservableCollection<RTU> RTUList { get; set; } = new ObservableCollection<RTU>();
+
+		private RTU _selectedRtu;
+
+		public RTU SelectedRtu
+		{
+			get { return _selectedRtu; }
+			set 
+			{ 
+				_selectedRtu = value; 
+				DiscreteSignalCheckboxCommand.SelectedRtu = value;
+			}
+		}
+
+		public DiscreteSignalValue SelectedDiscreteSignal { get; set; }
+
 
 		private RtuValuesReader valuesReader;
 		private ModelServiceReader modelServiceReader;
+		private RtuValueWriter rtuValueWriter;
+
 		private ModbusServiceReference.ModbusDuplexClient modbusServiceClient;
 
 		public MainViewModel()
@@ -38,7 +57,9 @@ namespace ClientWpfApp.ViewModel
 
 			valuesReader = new RtuValuesReader(modbusServiceClient, RTUList);
 			ReadRtuValuesCommand = new ReadRtuValuesCommand(valuesReader);
+			rtuValueWriter = new RtuValueWriter(modbusServiceClient);
 
+			DiscreteSignalCheckboxCommand = new DiscreteSignalCheckboxCommand(rtuValueWriter);
 		}
 
 		public void ReadRTUData()
