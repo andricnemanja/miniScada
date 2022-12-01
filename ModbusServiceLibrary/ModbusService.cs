@@ -16,16 +16,17 @@ namespace ModbusServiceLibrary
 		private RtuDataList rtuStaticData;
 		private IModbusWriter modbusWriter;
 		private IModbusReader modbusReader;
+		private IModbusConnection modbusConnection;
 
-		public ModbusService(IModelServiceReader modelServiceReader, IModbusWriter modbusWriter, IModbusReader modbusReader)
+		public ModbusService(IModelServiceReader modelServiceReader, IModbusWriter modbusWriter, IModbusReader modbusReader, IModbusConnection modbusConnection)
 		{
 			Callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			rtuStaticData = new RtuDataList(modelServiceReader);
 			rtuStaticData.InitializeData();
 			this.modbusWriter = modbusWriter;
 			this.modbusReader = modbusReader;
+			this.modbusConnection = modbusConnection;
 		}
-
 
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
@@ -47,6 +48,11 @@ namespace ModbusServiceLibrary
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue)
 		{
 			modbusWriter.WriteDiscreteSignalValue(rtuId, signalAddress, newValue);
+		}
+
+		public bool TryConnectToRtu(int rtuId)
+		{
+			return modbusConnection.TryConnectToRtu(rtuId);
 		}
 	}
 }

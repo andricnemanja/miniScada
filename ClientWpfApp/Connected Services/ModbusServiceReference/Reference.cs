@@ -38,6 +38,12 @@ namespace ClientWpfApp.ModbusServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal")]
         System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, bool newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/TryConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/TryConnectToRtuResponse")]
+        bool TryConnectToRtu(int rtuId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/TryConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/TryConnectToRtuResponse")]
+        System.Threading.Tasks.Task<bool> TryConnectToRtuAsync(int rtuId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -108,6 +114,14 @@ namespace ClientWpfApp.ModbusServiceReference {
         
         public System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, bool newValue) {
             return base.Channel.WriteDiscreteSignalAsync(rtuId, signalAddress, newValue);
+        }
+        
+        public bool TryConnectToRtu(int rtuId) {
+            return base.Channel.TryConnectToRtu(rtuId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> TryConnectToRtuAsync(int rtuId) {
+            return base.Channel.TryConnectToRtuAsync(rtuId);
         }
     }
 }

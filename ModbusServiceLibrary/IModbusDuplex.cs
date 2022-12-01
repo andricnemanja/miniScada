@@ -18,5 +18,7 @@ namespace ModbusServiceLibrary
 		void WriteAnalogSignal(int rtuId, int signalAddress, int newValue);
 		[OperationContract(IsOneWay = true)]
 		void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue);
+		[OperationContract(IsOneWay = false)]
+		bool TryConnectToRtu(int rtuId);
 	}
 }

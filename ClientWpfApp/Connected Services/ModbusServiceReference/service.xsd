@@ -34,6 +34,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="TryConnectToRtu">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="rtuId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TryConnectToRtuResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TryConnectToRtuResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="UpdateAnalogSignalValue">
     <xs:complexType>
       <xs:sequence>

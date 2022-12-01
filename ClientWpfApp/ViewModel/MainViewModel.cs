@@ -18,7 +18,7 @@ namespace ClientWpfApp.ViewModel
 {
 	internal class MainViewModel
 	{
-		public ICommand CreateConnectionWindowCommand { get; set; }
+		public ICommand ConnectToRtuCommand { get; set; }
 		public ICommand SetRegistryValuesCommand { get; set; }
 		public ICommand ReadRtuValuesCommand { get; set; }
 		public DiscreteSignalCheckboxCommand DiscreteSignalCheckboxCommand { get; set; }
@@ -44,22 +44,25 @@ namespace ClientWpfApp.ViewModel
 		private RtuValuesReader valuesReader;
 		private ModelServiceReader modelServiceReader;
 		private RtuValueWriter rtuValueWriter;
+		private RtuConnection rtuConnection;
 
 		private ModbusServiceReference.ModbusDuplexClient modbusServiceClient;
 
 		public MainViewModel()
 		{
-			CreateConnectionWindowCommand = new CreateConnectionWindowCommand();
-			SetRegistryValuesCommand = new SetRegistryValuesCommand();
-
 			modelServiceReader = new ModelServiceReader(new ModelServiceReference.ModelServiceClient());
 
 			ReadRTUData();
 			ConnectToModbusService();
 
 			valuesReader = new RtuValuesReader(modbusServiceClient, RTUList);
-			ReadRtuValuesCommand = new ReadRtuValuesCommand(valuesReader);
 			rtuValueWriter = new RtuValueWriter(modbusServiceClient);
+			rtuConnection = new RtuConnection(modbusServiceClient);
+
+			ReadRtuValuesCommand = new ReadRtuValuesCommand(valuesReader);
+			SetRegistryValuesCommand = new SetRegistryValuesCommand();
+
+			ConnectToRtuCommand = new ConnectToRtuCommand(rtuConnection);
 
 			DiscreteSignalCheckboxCommand = new DiscreteSignalCheckboxCommand(rtuValueWriter);
 			SavaAnalogSignalCommand = new SavaAnalogSignalCommand(rtuValueWriter);

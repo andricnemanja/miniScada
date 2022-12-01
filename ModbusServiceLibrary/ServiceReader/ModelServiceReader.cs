@@ -27,7 +27,6 @@ namespace ModbusServiceLibrary.ServiceReader
 
 			foreach (var rtu in modelService.GetRTUsEssentialData())
 			{
-				IModbusClient modbusClient = new NModbusClient(rtu.IpAddress, rtu.Port);
 				RTU newRTU = new RTU()
 				{
 					RTUData = new RTUData()
@@ -37,7 +36,7 @@ namespace ModbusServiceLibrary.ServiceReader
 						Name = rtu.Name,
 						Port = rtu.Port
 					},
-					Connection = new RTUConnection(modbusClient),
+					Connection = new RTUConnection(null, false),
 					AnalogSignalValues = GetAnalogSignalValuesForRTU(rtu.ID),
 					DiscreteSignalValues = GetDiscreteSignalValuesForRTU(rtu.ID)
 				};

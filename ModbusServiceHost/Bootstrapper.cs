@@ -22,10 +22,11 @@ namespace ModbusServiceHost
 			builder.RegisterType<ModbusServiceLibrary.ModelServiceReference.ModelServiceClient>().As<ModbusServiceLibrary.ModelServiceReference.IModelService>();
 			builder.RegisterType<ModelServiceReader>().As<IModelServiceReader>();
 			builder.RegisterType<RtuDataList>().As<IRtuDataList>()
-				.OnActivated(c => c.Instance.InitializeData());
+				.OnActivated(c => c.Instance.InitializeData()).SingleInstance();
 			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
 			builder.RegisterType<ModbusWriter>().As<IModbusWriter>();
 			builder.RegisterType<ModbusReader>().As<IModbusReader>();
+			builder.RegisterType<ModbusConnection>().As<IModbusConnection>();
 
 
 

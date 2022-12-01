@@ -71,7 +71,9 @@
     <Compile Include="Data\RtuDataList.cs" />
     <Compile Include="IModbusDuplex.cs" />
     <Compile Include="IModbusDuplexCallback.cs" />
+    <Compile Include="ModbusCommunication\IModbusConnection.cs" />
     <Compile Include="ModbusCommunication\IModbusWriter.cs" />
+    <Compile Include="ModbusCommunication\ModbusConnection.cs" />
     <Compile Include="ModbusCommunication\ModbusWriter.cs" />
     <Compile Include="ModbusReader\IModbusReader.cs" />
     <Compile Include="ModbusReader\ModbusReader.cs" />

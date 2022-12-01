@@ -35,7 +35,7 @@ namespace ClientWpfApp.ServiceReader
 						Name = rtu.Name,
 						Port = rtu.Port
 					},
-					IsConnected = true,
+					IsConnected = false,
 					AnalogSignalValues = GetAnalogSignalValuesForRTU(rtu.ID),
 					DiscreteSignalValues = GetDiscreteSignalValuesForRTU(rtu.ID)
 				};

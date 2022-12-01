@@ -1,15 +1,38 @@
 ﻿using ClientWpfApp.Model.SignalValues;
 using ClientWpfApp.Model;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace ClientWpfApp.Model.RTU
 {
-    public class RTU
+    public class RTU : INotifyPropertyChanged
     {
 		public RTUData RTUData { get; set; }
-		public bool IsConnected { get; set; }
 		public ObservableCollection<AnalogSignalValue> AnalogSignalValues { get; set; }
 		public ObservableCollection<DiscreteSignalValue> DiscreteSignalValues { get; set; }
+		private bool _isConnected;
 
+		public bool IsConnected
+		{
+			get { return _isConnected; }
+			set 
+			{
+				if (value != _isConnected)
+				{
+					_isConnected = value;
+					RaisePropertyChanged(nameof(IsConnected));
+				}
+			}
+		}
+
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		private void RaisePropertyChanged(string property)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(property));
+			}
+		}
 	}
 }

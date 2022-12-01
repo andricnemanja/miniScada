@@ -30,7 +30,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Width="70px" Content="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
-                                        Command="{Binding Path=DataContext.CreateConnectionWindowCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
+                                        Command="{Binding Path=DataContext.ConnectToRtuCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
                                         CommandParameter="{Binding}" 
                                         Background="{Binding IsConnected, Converter={StaticResource ConnectionButtonColorConverter}}"
                                         Foreground="White"
