@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ModbusServiceLibrary.ModbusReader
 {
-	public class ModbusReader
+	public class ModbusReader : IModbusReader
 	{
 		IRtuDataList rtuDataList;
 
@@ -26,9 +26,9 @@ namespace ModbusServiceLibrary.ModbusReader
 		public int ReadRegister(int id, int signalAddress)
 		{
 			int signalValue = 0;
-			foreach (RTU rtu in rtuDataList)
+			foreach (RTU rtu in rtuDataList.RtuList)
 			{
-				if(rtu.RTUData.ID == id)
+				if (rtu.RTUData.ID == id)
 				{
 					signalValue = rtu.Connection.Client.ReadSingleRegister(signalAddress);
 				}
@@ -45,7 +45,7 @@ namespace ModbusServiceLibrary.ModbusReader
 		public int ReadAnalogInput(int id, int signalAddress)
 		{
 			int signalValue = 0;
-			foreach (RTU rtu in rtuDataList)
+			foreach (RTU rtu in rtuDataList.RtuList)
 			{
 				if (rtu.RTUData.ID == id)
 				{
@@ -64,7 +64,7 @@ namespace ModbusServiceLibrary.ModbusReader
 		public bool ReadDiscreteInput(int id, int signalAddress)
 		{
 			bool signalValue = false;
-			foreach (RTU rtu in rtuList)
+			foreach (RTU rtu in rtuDataList.RtuList)
 			{
 				if (rtu.RTUData.ID == id)
 				{
@@ -83,7 +83,7 @@ namespace ModbusServiceLibrary.ModbusReader
 		public bool ReadCoil(int id, int signalAddress)
 		{
 			bool signalValue = false;
-			foreach (RTU rtu in rtuDataList)
+			foreach (RTU rtu in rtuDataList.RtuList)
 			{
 				if (rtu.RTUData.ID == id)
 				{

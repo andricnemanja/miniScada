@@ -15,25 +15,27 @@ namespace ModbusServiceLibrary
 		public IModbusDuplexCallback Callback { get; set; }
 		private RtuDataList rtuStaticData;
 		private IModbusWriter modbusWriter;
+		private IModbusReader modbusReader;
 
-		public ModbusService(IModelServiceReader modelServiceReader, IModbusWriter modbusWriter)
+		public ModbusService(IModelServiceReader modelServiceReader, IModbusWriter modbusWriter, IModbusReader modbusReader)
 		{
 			Callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			rtuStaticData= new RtuDataList(modelServiceReader);
+			rtuStaticData = new RtuDataList(modelServiceReader);
 			rtuStaticData.InitializeData();
 			this.modbusWriter = modbusWriter;
+			this.modbusReader = modbusReader;
 		}
 
 
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
-			int signalValue = 0;
+			int signalValue = modbusReader.ReadRegister(rtuId, signalAddress);
 			Callback.UpdateAnalogSignalValue(rtuId, signalAddress, signalValue);
 		}
 
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
-			bool signalValue = false;
+			bool signalValue = modbusReader.ReadCoil(rtuId, signalAddress);
 			Callback.UpdateDiscreteSignalValue(rtuId, signalAddress, signalValue);
 		}
 

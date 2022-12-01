@@ -2,6 +2,7 @@
 using ModbusServiceLibrary;
 using ModbusServiceLibrary.Data;
 using ModbusServiceLibrary.ModbusCommunication;
+using ModbusServiceLibrary.ModbusReader;
 using ModbusServiceLibrary.ServiceReader;
 
 namespace ModbusServiceHost
@@ -24,6 +25,7 @@ namespace ModbusServiceHost
 				.OnActivated(c => c.Instance.InitializeData());
 			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
 			builder.RegisterType<ModbusWriter>().As<IModbusWriter>();
+			builder.RegisterType<ModbusReader>().As<IModbusReader>();
 
 
 
