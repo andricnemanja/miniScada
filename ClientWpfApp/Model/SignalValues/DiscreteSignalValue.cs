@@ -1,5 +1,5 @@
-﻿using ClientWpfApp.Model.Signals;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using ClientWpfApp.Model.Signals;
 
 namespace ClientWpfApp.Model.SignalValues
 {
@@ -11,9 +11,9 @@ namespace ClientWpfApp.Model.SignalValues
 		public bool Value
 		{
 			get { return _value; }
-			set 
+			set
 			{
-				if(value != _value)
+				if (value != _value)
 				{
 					_value = value;
 					RaisePropertyChanged(nameof(Value));

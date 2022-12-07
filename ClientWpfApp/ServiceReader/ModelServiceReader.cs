@@ -1,13 +1,7 @@
-﻿using ClientWpfApp.Model;
+﻿using System.Collections.ObjectModel;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.Signals;
 using ClientWpfApp.Model.SignalValues;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClientWpfApp.ServiceReader
 {
@@ -24,7 +18,7 @@ namespace ClientWpfApp.ServiceReader
 		{
 			ObservableCollection<RTU> rtus = new ObservableCollection<RTU>();
 
-			foreach(var rtu in modelService.GetRTUsEssentialData())
+			foreach (var rtu in modelService.GetRTUsEssentialData())
 			{
 				RTU newRTU = new RTU()
 				{
@@ -49,7 +43,7 @@ namespace ClientWpfApp.ServiceReader
 		{
 			ObservableCollection<AnalogSignalValue> analogSignalValues = new ObservableCollection<AnalogSignalValue>();
 
-			foreach(var analogSignal in modelService.GetAnalogSignalsForRtu(rtuID))
+			foreach (var analogSignal in modelService.GetAnalogSignalsForRtu(rtuID))
 			{
 				analogSignalValues.Add(new AnalogSignalValue()
 				{
@@ -63,7 +57,7 @@ namespace ClientWpfApp.ServiceReader
 				});
 			}
 
-			return analogSignalValues;	
+			return analogSignalValues;
 		}
 
 		private ObservableCollection<DiscreteSignalValue> GetDiscreteSignalValuesForRTU(int rtuID)

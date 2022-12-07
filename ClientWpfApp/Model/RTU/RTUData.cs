@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace ClientWpfApp.Model.RTU
+﻿namespace ClientWpfApp.Model.RTU
 {
 	public class RTUData
 	{

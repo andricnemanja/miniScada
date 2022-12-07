@@ -1,14 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using ClientWpfApp.ModbusServiceReference;
-using ClientWpfApp.Model.RTU;
-using ClientWpfApp.Model.SignalValues;
+﻿using ClientWpfApp.ModbusServiceReference;
 
 namespace ClientWpfApp.Services
 {
-    public class RtuValueWriter
+	public class RtuValueWriter
 	{
-        private readonly ModbusServiceReference.ModbusDuplexClient modbusDuplexClient;
+		private readonly ModbusServiceReference.ModbusDuplexClient modbusDuplexClient;
 
 		public RtuValueWriter(ModbusDuplexClient modbusDuplexClient)
 		{
@@ -25,5 +21,5 @@ namespace ClientWpfApp.Services
 			modbusDuplexClient.WriteDiscreteSignal(rtuId, signalAddress, value);
 		}
 
-    }
+	}
 }

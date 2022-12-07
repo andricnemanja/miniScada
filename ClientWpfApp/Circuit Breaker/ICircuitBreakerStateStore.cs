@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClientWpfApp.Circuit_Breaker
 {
-    internal interface ICircuitBreakerStateStore
-    {
-        CircuitBreakerStateEnum State { get; set; }
+	internal interface ICircuitBreakerStateStore
+	{
+		CircuitBreakerStateEnum State { get; set; }
 
-        Exception LastException { get; set; }
+		Exception LastException { get; set; }
 
-        DateTime LastStateChangedDateUtc { get; set; }
+		DateTime LastStateChangedDateUtc { get; set; }
 
-        void Trip(Exception ex);
+		void Trip(Exception ex);
 
-        void Reset();
+		void Reset();
 
-        void HalfOpen();
+		void HalfOpen();
 
-        bool IsClosed { get; set; }
-    }
+		bool IsClosed { get; set; }
+	}
 }

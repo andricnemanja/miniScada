@@ -1,9 +1,7 @@
-﻿using System.Runtime.Serialization;
-
-namespace ClientWpfApp.Model.Signals
+﻿namespace ClientWpfApp.Model.Signals
 {
-    public class AnalogSignal
-    {
+	public class AnalogSignal
+	{
 		/// <summary>
 		/// Unique identification number for analog signal
 		/// </summary>
@@ -16,5 +14,5 @@ namespace ClientWpfApp.Model.Signals
 		/// Name of the analog signal
 		/// </summary>
 		public string Name { get; set; }
-    }
+	}
 }

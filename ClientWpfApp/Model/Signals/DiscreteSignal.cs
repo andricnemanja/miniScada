@@ -1,9 +1,7 @@
-﻿using System.Runtime.Serialization;
-
-namespace ClientWpfApp.Model.Signals
+﻿namespace ClientWpfApp.Model.Signals
 {
-    public class DiscreteSignal
-    {
+	public class DiscreteSignal
+	{
 		/// <summary>
 		/// Unique identification number for digital signal
 		/// </summary>
@@ -16,5 +14,5 @@ namespace ClientWpfApp.Model.Signals
 		/// Name of the discrete signal
 		/// </summary>
 		public string Name { get; set; }
-    }
+	}
 }

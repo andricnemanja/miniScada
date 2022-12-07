@@ -1,5 +1,5 @@
-﻿using ClientWpfApp.Model.Signals;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using ClientWpfApp.Model.Signals;
 
 namespace ClientWpfApp.Model.SignalValues
 {

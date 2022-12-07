@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-using System.Windows.Threading;
-using ClientWpfApp.Commands;
-using ClientWpfApp.Services;
-using ClientWpfApp.Model.RTU;
-using ClientWpfApp.Model.Signals;
-using ClientWpfApp.ServiceReader;
+﻿using System.Collections.ObjectModel;
 using System.ServiceModel;
+using System.Windows.Input;
+using ClientWpfApp.Commands;
 using ClientWpfApp.ModbusCallback;
+using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.SignalValues;
+using ClientWpfApp.ServiceReader;
+using ClientWpfApp.Services;
 
 namespace ClientWpfApp.ViewModel
 {
@@ -30,9 +24,9 @@ namespace ClientWpfApp.ViewModel
 		public RTU SelectedRtu
 		{
 			get { return _selectedRtu; }
-			set 
-			{ 
-				_selectedRtu = value; 
+			set
+			{
+				_selectedRtu = value;
 				DiscreteSignalCheckboxCommand.SelectedRtu = value;
 				SavaAnalogSignalCommand.SelectedRtu = value;
 			}

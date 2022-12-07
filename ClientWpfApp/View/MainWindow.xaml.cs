@@ -1,42 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using ClientWpfApp.Circuit_Breaker;
+﻿using System.Windows;
 using ClientWpfApp.ViewModel;
-using NModbus;
 
 namespace ClientWpfApp.View
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-            MainViewModel mainViewModel = new MainViewModel();
-            this.DataContext = mainViewModel;
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
+		public MainWindow()
+		{
+			InitializeComponent();
+			MainViewModel mainViewModel = new MainViewModel();
+			this.DataContext = mainViewModel;
 
-            //DispatcherTimer timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromSeconds(1);
-            //timer.Tick += timer_Tick;
-            //timer.Start();
-        }
-        /*
+			//DispatcherTimer timer = new DispatcherTimer();
+			//timer.Interval = TimeSpan.FromSeconds(1);
+			//timer.Tick += timer_Tick;
+			//timer.Start();
+		}
+		/*
         void timer_Tick(object sender, EventArgs e)
         {
             if (ConnectionStatus.Content.Equals("Offline"))
@@ -78,5 +61,5 @@ namespace ClientWpfApp.View
             }
 
             */
-    }
+	}
 }

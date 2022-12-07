@@ -1,13 +1,9 @@
-﻿using ClientWpfApp.Model.RTU;
-using ClientWpfApp.Model.SignalValues;
-using ClientWpfApp.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using ClientWpfApp.Model.RTU;
+using ClientWpfApp.Model.SignalValues;
+using ClientWpfApp.Services;
 
 namespace ClientWpfApp.Commands
 {
@@ -33,7 +29,7 @@ namespace ClientWpfApp.Commands
 			DiscreteSignalValue discreteSignalValue = (DiscreteSignalValue)parameter;
 
 			if (MessageBox.Show("Da li želite da promenite vrednost signala " + discreteSignalValue.DiscreteSignal.Name
-				 + " na vrednost " + (discreteSignalValue.Value).ToString() , "Question", MessageBoxButton.YesNo, 
+				 + " na vrednost " + (discreteSignalValue.Value).ToString(), "Question", MessageBoxButton.YesNo,
 				 MessageBoxImage.Warning) == MessageBoxResult.Yes)
 			{
 				rtuValueWriter.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.Address, discreteSignalValue.Value);
