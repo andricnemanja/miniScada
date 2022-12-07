@@ -44,20 +44,25 @@ namespace ClientWpfApp.ViewModel
 
 		public MainViewModel()
 		{
-			ConnectToServices();
+			ConnectToModelService();
 			ReadRTUStaticData();
+			ConnectToServices();
 			InitializeCommands();
+		}
+
+		private void ConnectToModelService()
+		{
+			modelServiceConverter = new ModelServiceConverter(new ModelServiceReference.ModelServiceClient());
+		}
+		private void ReadRTUStaticData()
+		{
+			RTUList = modelServiceConverter.ReadAllRTUs();
 		}
 
 		private void ConnectToServices()
 		{
 			modbusServiceClient = new ModbusServiceClient(modbusDuplexClient, RTUList);
 			modbusDuplexClient = modbusServiceClient.ConnectToModbusService();
-			modelServiceConverter = new ModelServiceConverter(new ModelServiceReference.ModelServiceClient());
-		}
-		private void ReadRTUStaticData()
-		{
-			RTUList = modelServiceConverter.ReadAllRTUs();
 		}
 
 		private void InitializeCommands()
