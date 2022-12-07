@@ -1,19 +1,18 @@
 ﻿using Autofac;
 using ModbusServiceLibrary;
-using ModbusServiceLibrary.Data;
+using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.ModbusCommunication;
-using ModbusServiceLibrary.ModbusReader;
 using ModbusServiceLibrary.ServiceReader;
 
 namespace ModbusServiceHost
 {
 	/// <summary>
-	/// Definining dependencies for Model Service classes
+	/// Definining dependencies for Modbus Service classes
 	/// </summary>
 	public sealed class Bootstrapper
 	{
 		/// <summary>
-		/// Create container that have all dependencies for Model Service classes
+		/// Create container that have all dependencies for Modbus Service classes
 		/// </summary>
 		public static ContainerBuilder RegisterContainerBuilder()
 		{
@@ -21,15 +20,10 @@ namespace ModbusServiceHost
 
 			builder.RegisterType<ModbusServiceLibrary.ModelServiceReference.ModelServiceClient>().As<ModbusServiceLibrary.ModelServiceReference.IModelService>();
 			builder.RegisterType<ModelServiceReader>().As<IModelServiceReader>();
-			builder.RegisterType<RtuDataList>().As<IRtuDataList>()
-				.OnActivated(c => c.Instance.InitializeData());
 			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
-			builder.RegisterType<ModbusWriter>().As<IModbusWriter>();
-			builder.RegisterType<ModbusReader>().As<IModbusReader>();
-
-
-
-
+			builder.RegisterType<ModbusConnection>().As<IModbusConnection>()
+				.OnActivated(c => c.Instance.InitializeData()).SingleInstance();
+			builder.RegisterType<ModbusCommandInvoker>().As<IModbusCommandInvoker>();
 
 			return builder;
 		}

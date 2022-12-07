@@ -67,14 +67,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Data\IRtuDataList.cs" />
-    <Compile Include="Data\RtuDataList.cs" />
     <Compile Include="IModbusDuplex.cs" />
     <Compile Include="IModbusDuplexCallback.cs" />
-    <Compile Include="ModbusCommunication\IModbusWriter.cs" />
-    <Compile Include="ModbusCommunication\ModbusWriter.cs" />
-    <Compile Include="ModbusReader\IModbusReader.cs" />
-    <Compile Include="ModbusReader\ModbusReader.cs" />
+    <Compile Include="ModbusCommands\ChangeAnalogSignalValueCommand.cs" />
+    <Compile Include="ModbusCommands\ChangeDiscreteSignalValueCommand.cs" />
+    <Compile Include="ModbusCommands\IModbusCommandInvoker.cs" />
+    <Compile Include="ModbusCommands\ModbusCommand.cs" />
+    <Compile Include="ModbusCommands\ModbusCommandInvoker.cs" />
+    <Compile Include="ModbusCommands\ReadDiscreteSignalValueCommand.cs" />
+    <Compile Include="ModbusCommands\ReadAnalogSignalValueCommand.cs" />
+    <Compile Include="ModbusCommunication\IModbusConnection.cs" />
+    <Compile Include="ModbusCommunication\ModbusConnection.cs" />
     <Compile Include="ServiceReader\IModelServiceReader.cs" />
     <Compile Include="ModbusClient\IModbusClient.cs" />
     <Compile Include="ModbusClient\NModbusClient.cs" />

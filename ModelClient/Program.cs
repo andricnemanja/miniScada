@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelClient.ModelServiceReference;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -17,15 +18,6 @@ namespace ModelClient
             modbusClient.ReadAnalogSignal(1, 1);
 
 
-            try
-            {
-                Console.WriteLine(modelServiceClient.GetRTU(5).Name);
-            }
-            catch(FaultException<ModelServiceException> ex)
-            {
-                int output = (int)ex.Detail.FaultCode;
-				Console.WriteLine(output.ToString().PadLeft(4, '0'));
-            }
             Console.ReadKey();
 
 			modbusClient.Close();
