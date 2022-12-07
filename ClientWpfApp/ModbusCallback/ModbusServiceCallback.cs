@@ -7,7 +7,7 @@ namespace ClientWpfApp.ModbusCallback
 {
 	public class ModbusServiceCallback : ModbusServiceReference.IModbusDuplexCallback
 	{
-		private ObservableCollection<RTU> rtuList = new ObservableCollection<RTU>();
+		private readonly ObservableCollection<RTU> rtuList;
 
 		public ModbusServiceCallback(ObservableCollection<RTU> rtuList)
 		{

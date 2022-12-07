@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Input;
 using ClientWpfApp.Model.RTU;
-using ClientWpfApp.ServiceReader;
+using ClientWpfApp.ServiceClients;
 
 namespace ClientWpfApp.Commands
 {
 	public class ConnectToRtuCommand : ICommand
 	{
-		private RtuConnection rtuConnection;
+		private readonly RtuConnection rtuConnection;
 
 		public event EventHandler CanExecuteChanged;
 

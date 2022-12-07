@@ -1,10 +1,10 @@
 ﻿using ClientWpfApp.ModbusServiceReference;
 
-namespace ClientWpfApp.ServiceReader
+namespace ClientWpfApp.ServiceClients
 {
 	public class RtuConnection
 	{
-		private readonly ModbusServiceReference.ModbusDuplexClient modbusDuplexClient;
+		private readonly ModbusDuplexClient modbusDuplexClient;
 
 		public RtuConnection(ModbusDuplexClient modbusDuplexClient)
 		{

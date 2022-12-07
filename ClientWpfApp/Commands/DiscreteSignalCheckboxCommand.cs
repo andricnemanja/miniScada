@@ -3,21 +3,21 @@ using System.Windows;
 using System.Windows.Input;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.SignalValues;
-using ClientWpfApp.Services;
+using ClientWpfApp.ServiceClients;
 
 namespace ClientWpfApp.Commands
 {
 	public class DiscreteSignalCheckboxCommand : ICommand
 	{
-		private RtuValueWriter rtuValueWriter;
+		private readonly ModbusServiceClient modbusServiceClient;
+
+		public DiscreteSignalCheckboxCommand(ModbusServiceClient modbusServiceClient)
+		{
+			this.modbusServiceClient = modbusServiceClient;
+		}
 
 		public event EventHandler CanExecuteChanged;
 		public RTU SelectedRtu { get; set; }
-
-		public DiscreteSignalCheckboxCommand(RtuValueWriter rtuValueWriter)
-		{
-			this.rtuValueWriter = rtuValueWriter;
-		}
 
 		public bool CanExecute(object parameter)
 		{
@@ -32,7 +32,7 @@ namespace ClientWpfApp.Commands
 				 + " na vrednost " + (discreteSignalValue.Value).ToString(), "Question", MessageBoxButton.YesNo,
 				 MessageBoxImage.Warning) == MessageBoxResult.Yes)
 			{
-				rtuValueWriter.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.Address, discreteSignalValue.Value);
+				modbusServiceClient.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.Address, discreteSignalValue.Value);
 			}
 			else
 			{

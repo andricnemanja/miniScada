@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Windows.Input;
-using ClientWpfApp.Services;
+using ClientWpfApp.ServiceClients;
 
 namespace ClientWpfApp.Commands
 {
 	public class ReadRtuValuesCommand : ICommand
 	{
-		public event EventHandler CanExecuteChanged;
+		private readonly ModbusServiceClient modbusServiceClient;
 
-		private readonly RtuValuesReader rtuValuesReader;
-
-		public ReadRtuValuesCommand(RtuValuesReader rtuValuesReader)
+		public ReadRtuValuesCommand(ModbusServiceClient modbusServiceClient)
 		{
-			this.rtuValuesReader = rtuValuesReader;
+			this.modbusServiceClient = modbusServiceClient;
 		}
+
+		public event EventHandler CanExecuteChanged;
 
 		public bool CanExecute(object parameter)
 		{
@@ -22,7 +22,7 @@ namespace ClientWpfApp.Commands
 
 		public void Execute(object parameter)
 		{
-			rtuValuesReader.ReadValues();
+			modbusServiceClient.ReadValues();
 		}
 	}
 }

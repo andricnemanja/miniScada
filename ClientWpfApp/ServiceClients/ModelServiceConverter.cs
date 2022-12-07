@@ -3,13 +3,13 @@ using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.Signals;
 using ClientWpfApp.Model.SignalValues;
 
-namespace ClientWpfApp.ServiceReader
+namespace ClientWpfApp.ServiceClients
 {
-	public class ModelServiceReader
+	public class ModelServiceConverter
 	{
 		private readonly ModelServiceReference.ModelServiceClient modelService;
 
-		public ModelServiceReader(ModelServiceReference.ModelServiceClient modelService)
+		public ModelServiceConverter(ModelServiceReference.ModelServiceClient modelService)
 		{
 			this.modelService = modelService;
 		}

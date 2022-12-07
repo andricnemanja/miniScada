@@ -96,10 +96,9 @@
     <Compile Include="Model\SignalValues\AnalogSignalValue.cs" />
     <Compile Include="Model\Signals\DiscreteSignal.cs" />
     <Compile Include="Model\SignalValues\DiscreteSignalValue.cs" />
-    <Compile Include="ServiceReader\ModelServiceReader.cs" />
-    <Compile Include="ServiceReader\RtuConnection.cs" />
-    <Compile Include="ServiceReader\RtuValueWriter.cs" />
-    <Compile Include="ServiceReader\RtuValuesReader.cs" />
+    <Compile Include="ServiceClients\ModbusServiceClient.cs" />
+    <Compile Include="ServiceClients\ModelServiceConverter.cs" />
+    <Compile Include="ServiceClients\RtuConnection.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
