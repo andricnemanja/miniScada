@@ -1,9 +1,7 @@
-﻿using System.Runtime.Serialization;
-
-namespace ModbusServiceLibrary.Model.Signals
+﻿namespace ModbusServiceLibrary.Model.Signals
 {
-    public class AnalogSignal
-    {
+	public class AnalogSignal
+	{
 		/// <summary>
 		/// Unique identification number for analog signal
 		/// </summary>
@@ -16,5 +14,5 @@ namespace ModbusServiceLibrary.Model.Signals
 		/// Name of the analog signal
 		/// </summary>
 		public string Name { get; set; }
-    }
+	}
 }

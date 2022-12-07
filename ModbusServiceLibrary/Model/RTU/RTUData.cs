@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace ModbusServiceLibrary.Model.RTU
+﻿namespace ModbusServiceLibrary.Model.RTU
 {
 	public class RTUData
 	{

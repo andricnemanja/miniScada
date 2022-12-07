@@ -1,9 +1,6 @@
-﻿using ModbusServiceLibrary.ModbusCommands;
+﻿using System.ServiceModel;
+using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.ModbusCommunication;
-using ModbusServiceLibrary.ServiceReader;
-using System;
-using System.Collections.Generic;
-using System.ServiceModel;
 
 
 namespace ModbusServiceLibrary

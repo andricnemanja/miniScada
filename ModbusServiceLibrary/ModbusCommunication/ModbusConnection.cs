@@ -1,17 +1,14 @@
+using System.Collections.Generic;
+using System.Linq;
 using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.ServiceReader;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModbusServiceLibrary.ModbusCommunication
 {
 	public class ModbusConnection : IModbusConnection
 	{
-		private IModelServiceReader modelServiceReader;
+		private readonly IModelServiceReader modelServiceReader;
 
 		public ModbusConnection(IModelServiceReader modelServiceReader)
 		{
@@ -19,7 +16,6 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		}
 
 		public List<RTU> RtuList { get; private set; }
-
 
 		public void InitializeData()
 		{
@@ -91,7 +87,6 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			RTU rtu = FindRtu(id);
 			return rtu.Connection.Client.ReadCoils(signalAddress, 1)[0];
 		}
-
 
 		public int WriteAnalogSignalValue(int rtuId, int signalAddress, int value)
 		{

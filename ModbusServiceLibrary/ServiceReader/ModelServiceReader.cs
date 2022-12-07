@@ -1,14 +1,8 @@
-﻿using ModbusServiceLibrary.ModbusClient;
+﻿using System.Collections.Generic;
 using ModbusServiceLibrary.Model;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.Model.Signals;
 using ModbusServiceLibrary.Model.SignalValues;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModbusServiceLibrary.ServiceReader
 {

@@ -1,5 +1,4 @@
 ﻿using ModbusServiceLibrary.Model.Signals;
-using System.ComponentModel;
 
 namespace ModbusServiceLibrary.Model.SignalValues
 {

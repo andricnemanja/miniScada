@@ -1,5 +1,5 @@
-﻿using ModbusServiceLibrary.Model.RTU;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ModbusServiceLibrary.Model.RTU;
 
 namespace ModbusServiceLibrary.ServiceReader
 {

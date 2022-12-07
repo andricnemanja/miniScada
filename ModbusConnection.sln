@@ -22,6 +22,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusServiceHost", "Modbus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusServiceLibrary", "ModbusServiceLibrary\ModbusServiceLibrary.csproj", "{E7FDB680-6D8C-41BB-B54E-F250BF051C5E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modbus Service", "Modbus Service", "{BDDBB1AE-4E05-43EF-90D7-EAEA15DDD81F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model Service", "Model Service", "{5317A84A-DD60-4080-8FA0-50D9EF671146}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client Application", "Client Application", "{7ABF4FA7-1C3D-4F15-93C0-0860B402030E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +69,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9} = {5317A84A-DD60-4080-8FA0-50D9EF671146}
+		{9DF2D01C-1CCD-4467-8EC9-0BA4AB1A2138} = {5317A84A-DD60-4080-8FA0-50D9EF671146}
+		{49B1E6A8-E2E0-421A-902E-5C407F30C75F} = {5317A84A-DD60-4080-8FA0-50D9EF671146}
+		{FA57176D-9DB3-41DF-B264-C8C0A5470654} = {7ABF4FA7-1C3D-4F15-93C0-0860B402030E}
+		{52420596-8BC8-4E69-9D98-F2960F0A5C02} = {BDDBB1AE-4E05-43EF-90D7-EAEA15DDD81F}
+		{E7FDB680-6D8C-41BB-B54E-F250BF051C5E} = {BDDBB1AE-4E05-43EF-90D7-EAEA15DDD81F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04FAD949-D920-4455-847F-59A5B4BAFF56}

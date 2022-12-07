@@ -1,11 +1,6 @@
-﻿using ModbusServiceLibrary.ModbusClient;
+﻿using System.Linq;
 using ModbusServiceLibrary.ModbusCommunication;
 using ModbusServiceLibrary.Model.RTU;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModbusServiceLibrary.ModbusCommands
 {

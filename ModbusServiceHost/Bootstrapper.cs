@@ -28,4 +28,4 @@ namespace ModbusServiceHost
 			return builder;
 		}
 	}
-}   
+}
