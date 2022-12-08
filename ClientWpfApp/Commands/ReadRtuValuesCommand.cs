@@ -4,7 +4,7 @@ using ClientWpfApp.ServiceClients;
 
 namespace ClientWpfApp.Commands
 {
-	public class ReadRtuValuesCommand : ICommand
+	public sealed class ReadRtuValuesCommand : ICommand
 	{
 		private readonly ModbusServiceClient modbusServiceClient;
 

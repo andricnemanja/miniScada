@@ -4,7 +4,7 @@ using ModbusServiceLibrary.Model.RTU;
 
 namespace ModbusServiceLibrary.ModbusCommands
 {
-	public class ChangeAnalogSignalValueCommand : ModbusCommand
+	public sealed class ChangeAnalogSignalValueCommand : ModbusCommand
 	{
 		public int PreviousValue { get; set; }
 		public int NewValue { get; set; }

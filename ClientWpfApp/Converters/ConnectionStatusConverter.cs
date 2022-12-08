@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace ClientWpfApp.Converters
 {
-	internal class ConnectionStatusConverter : IValueConverter
+	public sealed class ConnectionStatusConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{

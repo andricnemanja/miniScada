@@ -4,7 +4,7 @@ using NModbus;
 
 namespace ClientWpfApp.ModbusClients
 {
-	public class NModbusClient : IModbusClient
+	public sealed class NModbusClient : IModbusClient
 	{
 		private IModbusMaster master;
 		private string ipAddress;

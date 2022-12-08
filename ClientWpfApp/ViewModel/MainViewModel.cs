@@ -7,7 +7,7 @@ using ClientWpfApp.ServiceClients;
 
 namespace ClientWpfApp.ViewModel
 {
-	internal class MainViewModel
+	public sealed class MainViewModel
 	{
 		#region Fields
 		private ModbusServiceClient modbusServiceClient;

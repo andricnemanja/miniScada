@@ -3,7 +3,7 @@ using EasyModbus;
 
 namespace ClientWpfApp.ModbusClients
 {
-	public class EasyModbusClient : IModbusClient
+	public sealed class EasyModbusClient : IModbusClient
 	{
 
 		private ModbusClient modbusClient;

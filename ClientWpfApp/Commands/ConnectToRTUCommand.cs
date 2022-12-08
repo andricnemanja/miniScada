@@ -5,7 +5,7 @@ using ClientWpfApp.ServiceClients;
 
 namespace ClientWpfApp.Commands
 {
-	public class ConnectToRtuCommand : ICommand
+	public sealed class ConnectToRtuCommand : ICommand
 	{
 		private readonly RtuConnection rtuConnection;
 

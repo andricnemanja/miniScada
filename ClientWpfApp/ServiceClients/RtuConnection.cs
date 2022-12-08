@@ -2,7 +2,7 @@
 
 namespace ClientWpfApp.ServiceClients
 {
-	public class RtuConnection
+	public sealed class RtuConnection
 	{
 		private readonly ModbusDuplexClient modbusDuplexClient;
 

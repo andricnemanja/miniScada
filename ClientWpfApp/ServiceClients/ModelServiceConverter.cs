@@ -5,7 +5,7 @@ using ClientWpfApp.Model.SignalValues;
 
 namespace ClientWpfApp.ServiceClients
 {
-	public class ModelServiceConverter
+	public sealed class ModelServiceConverter
 	{
 		private readonly ModelServiceReference.ModelServiceClient modelService;
 

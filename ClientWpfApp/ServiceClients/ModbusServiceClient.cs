@@ -8,7 +8,7 @@ using ClientWpfApp.Model.SignalValues;
 
 namespace ClientWpfApp.ServiceClients
 {
-	public class ModbusServiceClient
+	public sealed class ModbusServiceClient
 	{
 		private readonly ObservableCollection<RTU> rtuList;
 		private ModbusDuplexClient modbusDuplexClient;

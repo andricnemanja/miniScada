@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace ClientWpfApp.Converters
 {
-	internal class ConnectionButtonColorConverter : IValueConverter
+	public sealed class ConnectionButtonColorConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{

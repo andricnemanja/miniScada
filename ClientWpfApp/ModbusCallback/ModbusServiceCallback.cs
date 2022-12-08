@@ -5,7 +5,7 @@ using ClientWpfApp.Model.SignalValues;
 
 namespace ClientWpfApp.ModbusCallback
 {
-	public class ModbusServiceCallback : ModbusServiceReference.IModbusDuplexCallback
+	public sealed class ModbusServiceCallback : ModbusServiceReference.IModbusDuplexCallback
 	{
 		private readonly ObservableCollection<RTU> rtuList;
 

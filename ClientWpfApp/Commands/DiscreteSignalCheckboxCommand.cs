@@ -7,7 +7,7 @@ using ClientWpfApp.ServiceClients;
 
 namespace ClientWpfApp.Commands
 {
-	public class DiscreteSignalCheckboxCommand : ICommand
+	public sealed class DiscreteSignalCheckboxCommand : ICommand
 	{
 		private readonly ModbusServiceClient modbusServiceClient;
 

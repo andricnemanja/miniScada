@@ -6,7 +6,7 @@ using ModbusServiceLibrary.Model.SignalValues;
 
 namespace ModbusServiceLibrary.ServiceReader
 {
-	public class ModelServiceReader : IModelServiceReader
+	public sealed class ModelServiceReader : IModelServiceReader
 	{
 		private readonly ModelServiceReference.IModelService modelService;
 

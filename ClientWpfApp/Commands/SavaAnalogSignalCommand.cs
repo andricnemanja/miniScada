@@ -7,7 +7,7 @@ using ClientWpfApp.ServiceClients;
 
 namespace ClientWpfApp.Commands
 {
-	public class SavaAnalogSignalCommand : ICommand
+	public sealed class SavaAnalogSignalCommand : ICommand
 	{
 		private readonly ModbusServiceClient modbusServiceClient;
 

@@ -4,7 +4,7 @@ using ClientWpfApp.View;
 
 namespace ClientWpfApp.Commands
 {
-	internal class SetRegistryValuesCommand : ICommand
+	public sealed class SetRegistryValuesCommand : ICommand
 	{
 		public event EventHandler CanExecuteChanged;
 

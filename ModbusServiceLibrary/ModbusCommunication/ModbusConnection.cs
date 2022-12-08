@@ -6,7 +6,7 @@ using ModbusServiceLibrary.ServiceReader;
 
 namespace ModbusServiceLibrary.ModbusCommunication
 {
-	public class ModbusConnection : IModbusConnection
+	public sealed class ModbusConnection : IModbusConnection
 	{
 		private readonly IModelServiceReader modelServiceReader;
 

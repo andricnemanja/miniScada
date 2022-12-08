@@ -3,7 +3,7 @@ using ModbusServiceLibrary.ModbusCommunication;
 
 namespace ModbusServiceLibrary.ModbusCommands
 {
-	public class ModbusCommandInvoker : IModbusCommandInvoker
+	public sealed class ModbusCommandInvoker : IModbusCommandInvoker
 	{
 		private readonly IModbusConnection modbusConnection;
 
