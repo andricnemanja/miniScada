@@ -73,7 +73,9 @@
     <Compile Include="CommandTests\ReadAnalogSignalValueCommandTests.cs" />
     <Compile Include="CommandTests\ChangeAnalogSignalValueCommandTests.cs" />
     <Compile Include="CommandTests\ChangeDiscreteSignalValueCommandTests.cs" />
-    <Compile Include="CommandTests\RtuTestData.cs" />
+    <Compile Include="ModbusConnecitonTests\ModbusConnectionTests.cs" />
+    <Compile Include="ModbusServiceTests\ModbusServiceTests.cs" />
+    <Compile Include="RtuTestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
