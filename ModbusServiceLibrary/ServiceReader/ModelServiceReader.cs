@@ -50,8 +50,8 @@ namespace ModbusServiceLibrary.ServiceReader
 				{
 					AnalogSignal = new AnalogSignal
 					{
-						Address = analogSignal.Address,
 						ID = analogSignal.ID,
+						Address = analogSignal.Address,
 						Name = analogSignal.Name
 					},
 					Value = 0

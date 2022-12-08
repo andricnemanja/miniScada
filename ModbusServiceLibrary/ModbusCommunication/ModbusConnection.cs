@@ -24,7 +24,7 @@ namespace ModbusServiceLibrary.ModbusCommunication
 
 		public bool TryConnectToRtu(int rtudId)
 		{
-			RTU rtu = RtuList.Where(r => r.RTUData.ID == rtudId).FirstOrDefault();
+			RTU rtu = FindRtu(rtudId);
 			try
 			{
 				if (rtu.Connection.Client == null)

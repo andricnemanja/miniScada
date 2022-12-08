@@ -22,7 +22,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		public override void Execute()
 		{
 			PreviousValue = ReadPreviousValue();
-			NewValue = modbusConnection.WriteDiscreteSignalValue(Rtu.RTUData.ID, SignalAddress, NewValue);
+			modbusConnection.WriteDiscreteSignalValue(Rtu.RTUData.ID, SignalAddress, NewValue);
 		}
 
 		private bool ReadPreviousValue()

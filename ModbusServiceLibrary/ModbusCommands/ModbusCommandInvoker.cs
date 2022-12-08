@@ -5,33 +5,34 @@ namespace ModbusServiceLibrary.ModbusCommands
 {
 	public class ModbusCommandInvoker : IModbusCommandInvoker
 	{
-		public Stack<ModbusCommand> commands = new Stack<ModbusCommand>();
-		public IModbusConnection modbusConnection;
+		private readonly IModbusConnection modbusConnection;
 
 		public ModbusCommandInvoker(IModbusConnection modbusConnection)
 		{
 			this.modbusConnection = modbusConnection;
 		}
 
+		public Stack<ModbusCommand> Commands { get; set; } = new Stack<ModbusCommand>();
+
 		public void WriteAnalogSignalValue(int rtuId, int signalAddress, int newValue)
 		{
 			ModbusCommand changeAnalogSignalCommand = new ChangeAnalogSignalValueCommand(modbusConnection, newValue, rtuId, signalAddress);
 			changeAnalogSignalCommand.Execute();
-			commands.Push(changeAnalogSignalCommand);
+			Commands.Push(changeAnalogSignalCommand);
 		}
 
 		public void WriteDiscreteSignalValue(int rtuId, int signalAddress, bool newValue)
 		{
 			ModbusCommand changeAnalogSignalCommand = new ChangeDiscreteSignalValueCommand(modbusConnection, newValue, rtuId, signalAddress);
 			changeAnalogSignalCommand.Execute();
-			commands.Push(changeAnalogSignalCommand);
+			Commands.Push(changeAnalogSignalCommand);
 		}
 
 		public int ReadAnalogSignalValue(int rtuId, int signalAddress)
 		{
 			ReadAnalogSignalValueCommand readAnalogSignalCommand = new ReadAnalogSignalValueCommand(modbusConnection, rtuId, signalAddress);
 			readAnalogSignalCommand.Execute();
-			commands.Push(readAnalogSignalCommand);
+			Commands.Push(readAnalogSignalCommand);
 
 			return readAnalogSignalCommand.NewValue;
 		}
@@ -40,7 +41,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		{
 			ReadDiscreteSignalValueCommand readDiscreteSignalCommand = new ReadDiscreteSignalValueCommand(modbusConnection, rtuId, signalAddress);
 			readDiscreteSignalCommand.Execute();
-			commands.Push(readDiscreteSignalCommand);
+			Commands.Push(readDiscreteSignalCommand);
 
 			return readDiscreteSignalCommand.NewValue;
 		}

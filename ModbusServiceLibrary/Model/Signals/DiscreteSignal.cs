@@ -14,5 +14,18 @@
 		/// Name of the discrete signal
 		/// </summary>
 		public string Name { get; set; }
+
+		public DiscreteSignal(int iD, int address, string name)
+		{
+			ID = iD;
+			Address = address;
+			Name = name;
+		}
+
+		public DiscreteSignal()
+		{
+
+		}
+
 	}
 }

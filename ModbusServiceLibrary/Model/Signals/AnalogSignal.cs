@@ -14,5 +14,17 @@
 		/// Name of the analog signal
 		/// </summary>
 		public string Name { get; set; }
+
+		public AnalogSignal(int iD, int address, string name)
+		{
+			ID = iD;
+			Address = address;
+			Name = name;
+		}
+
+		public AnalogSignal()
+		{
+
+		}
 	}
 }

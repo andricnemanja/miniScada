@@ -1,4 +1,5 @@
-﻿using ModbusServiceLibrary.ModbusCommunication;
+﻿using System.Linq;
+using ModbusServiceLibrary.ModbusCommunication;
 using ModbusServiceLibrary.Model.RTU;
 
 namespace ModbusServiceLibrary.ModbusCommands
@@ -19,7 +20,13 @@ namespace ModbusServiceLibrary.ModbusCommands
 
 		public override void Execute()
 		{
+			PreviousValue = ReadPreviousValue();
 			NewValue = modbusConnection.ReadRegister(Rtu.RTUData.ID, SignalAddress);
+		}
+
+		private int ReadPreviousValue()
+		{
+			return Rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == SignalAddress).FirstOrDefault().Value;
 		}
 	}
 }
