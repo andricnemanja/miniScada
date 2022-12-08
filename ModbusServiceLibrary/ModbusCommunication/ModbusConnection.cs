@@ -17,11 +17,19 @@ namespace ModbusServiceLibrary.ModbusCommunication
 
 		public List<RTU> RtuList { get; private set; }
 
+		/// <summary>
+		/// Initialize static data by reading all of RTUs
+		/// </summary>
 		public void InitializeData()
 		{
 			RtuList = modelServiceReader.ReadAllRTUs();
 		}
 
+		/// <summary>
+		/// Make a connection with specific RTU
+		/// </summary>
+		/// <param name="rtudId">Number specific to the RTU</param>
+		/// <returns></returns>
 		public bool TryConnectToRtu(int rtudId)
 		{
 			RTU rtu = FindRtu(rtudId);
@@ -88,6 +96,13 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			return rtu.Connection.Client.ReadCoils(signalAddress, 1)[0];
 		}
 
+		/// <summary>
+		/// Write value of the single analog signal 
+		/// </summary>
+		/// <param name="rtuId">Number specific to the RTU</param>
+		/// <param name="signalAddress">Address of the register</param>
+		/// <param name="value">Updated value</param>
+		/// <returns>Updated value</returns>
 		public int WriteAnalogSignalValue(int rtuId, int signalAddress, int value)
 		{
 			RTU rtu = FindRtu(rtuId);
@@ -95,6 +110,13 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			return value;
 		}
 
+		/// <summary>
+		/// Write value of the single discrete signal
+		/// </summary>
+		/// <param name="rtuId">Number specific to the RTU</param>
+		/// <param name="signalAddress">Address of the register</param>
+		/// <param name="value">Updated value</param>
+		/// <returns>Updated value</returns>
 		public bool WriteDiscreteSignalValue(int rtuId, int signalAddress, bool value)
 		{
 			RTU rtu = FindRtu(rtuId);
@@ -102,6 +124,11 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			return value;
 		}
 
+		/// <summary>
+		/// Find the RTU by its ID
+		/// </summary>
+		/// <param name="rtuId">Number specific to the RTU</param>
+		/// <returns>RTU</returns>
 		public RTU FindRtu(int rtuId)
 		{
 			return RtuList.Where(r => r.RTUData.ID == rtuId).FirstOrDefault();

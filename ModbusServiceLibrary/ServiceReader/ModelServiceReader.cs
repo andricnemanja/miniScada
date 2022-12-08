@@ -15,6 +15,10 @@ namespace ModbusServiceLibrary.ServiceReader
 			this.modelService = modelService;
 		}
 
+		/// <summary>
+		/// Reads all RTUs
+		/// </summary>
+		/// <returns>List of RTUs</returns>
 		public List<RTU> ReadAllRTUs()
 		{
 			List<RTU> rtus = new List<RTU>();
@@ -40,6 +44,11 @@ namespace ModbusServiceLibrary.ServiceReader
 			return rtus;
 		}
 
+		/// <summary>
+		/// Gets values of all analog signals from specific RTU
+		/// </summary>
+		/// <param name="rtuID">Unique ID for each RTU</param>
+		/// <returns>Analog values from the RTU</returns>
 		private List<AnalogSignalValue> GetAnalogSignalValuesForRTU(int rtuID)
 		{
 			List<AnalogSignalValue> analogSignalValues = new List<AnalogSignalValue>();
@@ -61,6 +70,11 @@ namespace ModbusServiceLibrary.ServiceReader
 			return analogSignalValues;
 		}
 
+		/// <summary>
+		/// Gets values of all discrete signals from specific RTU
+		/// </summary>
+		/// <param name="rtuID">Unique ID for each RTU</param>
+		/// <returns>Discrete values from the RTU</returns>
 		private List<DiscreteSignalValue> GetDiscreteSignalValuesForRTU(int rtuID)
 		{
 			List<DiscreteSignalValue> discreteSignalValues = new List<DiscreteSignalValue>();
