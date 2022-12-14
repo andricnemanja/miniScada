@@ -3,48 +3,45 @@ using NModbus;
 
 namespace ModbusServiceLibrary.ModbusClient
 {
-	public class NModbusClient : IModbusClient
+	public sealed class NModbusClient : IModbusClient
 	{
-		private IModbusMaster master;
-		private string ipAddress;
-		private int port;
+		private readonly IModbusMaster master;
 
 		public NModbusClient(string ipAddress, int port)
 		{
 			TcpClient client = new TcpClient(ipAddress, port);
 			var factory = new ModbusFactory();
 			master = factory.CreateMaster(client);
-
-			this.ipAddress = ipAddress;
-			this.port = port;
 		}
 
-		public int ReadSingleRegister(int startingAddress)
+		public bool TryReadSingleHoldingRegister(int startingAddress, out int value)
 		{
 			try
 			{
-				ushort[] value = master.ReadHoldingRegisters(1, (ushort)startingAddress, 1);
-				return value[0];
-
+				ushort[] valueArr = master.ReadHoldingRegisters(1, (ushort)startingAddress, 1);
+				value = valueArr[0];
+				return true;
 			}
-			catch (SlaveException e)
+			catch
 			{
-				return 0;
+				value = 0;
+				return false;
 			}
 		}
 
-		public void WriteSingleRegister(int startingAddress, int value)
+		public bool TryWriteSingleHoldingRegister(int startingAddress, int value)
 		{
 			try
 			{
 				master.WriteSingleRegister(1, (ushort)startingAddress, (ushort)value);
+				return true;
 			}
-			catch (SlaveException e)
+			catch
 			{
+				return false;
 			}
 
 		}
-		//Read
 		public ushort[] ReadHoldingRegisters(int startingAddress, int numberOfRegisters)
 		{
 			return master.ReadHoldingRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
@@ -55,6 +52,32 @@ namespace ModbusServiceLibrary.ModbusClient
 			return master.ReadInputRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
 		}
 
+		public bool TryReadSingleCoil(int startingAddress, out bool value)
+		{
+			try
+			{
+				value = master.ReadCoils(1, (ushort)startingAddress, 1)[0];
+				return true;
+			}
+			catch
+			{
+				value = false;
+				return false;
+			}
+		}
+		public bool TryWriteSingleCoil(int coilAddress, bool value)
+		{
+			try
+			{
+				master.WriteSingleCoil(1, (ushort)coilAddress, value);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
 		public bool[] ReadCoils(int startingAddress, int numberOfCoils)
 		{
 			return master.ReadCoils(1, (ushort)startingAddress, (ushort)numberOfCoils);
@@ -62,11 +85,6 @@ namespace ModbusServiceLibrary.ModbusClient
 		public bool[] ReadDiscreteInputs(int startingAddress, int numberOfCoils)
 		{
 			return master.ReadInputs(1, (ushort)startingAddress, (ushort)numberOfCoils);
-		}
-		//Write
-		public void WriteSingleCoil(int coilAddress, bool value)
-		{
-			master.WriteSingleCoil(1, (ushort)coilAddress, value);
 		}
 		public void WriteMultipleCoil(int coilAddress, bool[] data)
 		{
@@ -76,26 +94,5 @@ namespace ModbusServiceLibrary.ModbusClient
 		{
 			master.Dispose();
 		}
-
-		public bool IsAvailable()
-		{
-			try
-			{
-				TcpClient client = new TcpClient(ipAddress, port);
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-		}
-
-		public void Reconnect()
-		{
-			TcpClient client = new TcpClient(ipAddress, 502);
-			var factory = new ModbusFactory();
-			master = factory.CreateMaster(client);
-		}
-
 	}
 }

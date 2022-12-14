@@ -1,11 +1,12 @@
-﻿using System.Linq;
-using ModbusServiceLibrary.ModbusCommunication;
-using ModbusServiceLibrary.Model.RTU;
+﻿using ModbusServiceLibrary.ModbusCommunication;
 
 namespace ModbusServiceLibrary.ModbusCommands
 {
 	public sealed class ChangeDiscreteSignalValueCommand : ModbusCommand
 	{
+		private bool newValue;
+		private readonly int rtuId;
+		private readonly int signalAddress;
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ChangeDiscreteSignalValueCommand"/>
 		/// </summary>
@@ -15,26 +16,14 @@ namespace ModbusServiceLibrary.ModbusCommands
 		public ChangeDiscreteSignalValueCommand(IModbusConnection modbusConnection, bool newValue, int rtuId, int signalAddress)
 			: base(modbusConnection)
 		{
-			NewValue = newValue;
-			Rtu = modbusConnection.FindRtu(rtuId);
-			SignalAddress = signalAddress;
+			this.newValue = newValue;
+			this.rtuId = rtuId;
+			this.signalAddress = signalAddress;
 		}
-		public bool PreviousValue { get; set; }
-		public bool NewValue { get; set; }
-		public RTU Rtu { get; set; }
-		public int SignalAddress { get; set; }
 
 		public override void Execute()
 		{
-			PreviousValue = ReadPreviousValue();
-			modbusConnection.WriteDiscreteSignalValue(Rtu.RTUData.ID, SignalAddress, NewValue);
-		}
-		/// <summary>
-		/// Find previous signal value
-		/// </summary>
-		private bool ReadPreviousValue()
-		{
-			return Rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == SignalAddress).FirstOrDefault().Value;
+			modbusConnection.TryWriteDiscreteSignalValue(rtuId, signalAddress, newValue);
 		}
 	}
 }

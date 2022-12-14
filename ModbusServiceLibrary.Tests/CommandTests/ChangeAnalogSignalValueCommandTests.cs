@@ -25,8 +25,6 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 
 			changeAnalogSignalValueCommand.Execute();
 
-			Assert.Equal(newValue, changeAnalogSignalValueCommand.NewValue);
-			Assert.Equal(expectedOldValue, changeAnalogSignalValueCommand.PreviousValue);
 		}
 
 
