@@ -15,12 +15,12 @@ namespace ModbusServiceLibrary.Model.RTU
 		/// <summary>
 		/// List of analog signal values
 		/// </summary>
-		public List<AnalogSignalValue> AnalogSignalValues { get; set; }
+		public List<AnalogSignalValue> AnalogSignalValues { get; set; } = new List<AnalogSignalValue>();
 
 		/// <summary>
 		/// List of discrete signal values
 		/// </summary>
-		public List<DiscreteSignalValue> DiscreteSignalValues { get; set; }
+		public List<DiscreteSignalValue> DiscreteSignalValues { get; set; } = new List<DiscreteSignalValue>();
 
 
 		public RTU(ModelServiceReference.RTU rtuStaticData)
@@ -34,6 +34,8 @@ namespace ModbusServiceLibrary.Model.RTU
 			{
 				DiscreteSignalValues.Add(new DiscreteSignalValue(discreteSignalStaticData));
 			}
+
+			Connection = new RTUConnection(null, false);
 
 		}
 
