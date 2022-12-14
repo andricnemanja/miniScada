@@ -23,7 +23,9 @@ namespace ModbusServiceLibrary.ModbusCommands
 			PreviousValue = ReadPreviousValue();
 			NewValue = modbusConnection.ReadCoil(Rtu.RTUData.ID, SignalAddress);
 		}
-
+		/// <summary>
+		/// Find previous signal value
+		/// </summary>
 		private bool ReadPreviousValue()
 		{
 			return Rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == SignalAddress).FirstOrDefault().Value;

@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using ModbusServiceLibrary.Model;
 using ModbusServiceLibrary.Model.RTU;
-using ModbusServiceLibrary.Model.Signals;
-using ModbusServiceLibrary.Model.SignalValues;
 
 namespace ModbusServiceLibrary.ServiceReader
 {
@@ -23,77 +20,13 @@ namespace ModbusServiceLibrary.ServiceReader
 		{
 			List<RTU> rtus = new List<RTU>();
 
-			foreach (var rtu in modelService.GetRTUsEssentialData())
+			foreach (var rtu in modelService.GetAllRTUs())
 			{
-				RTU newRTU = new RTU()
-				{
-					RTUData = new RTUData()
-					{
-						ID = rtu.ID,
-						IpAddress = rtu.IpAddress,
-						Name = rtu.Name,
-						Port = rtu.Port
-					},
-					Connection = new RTUConnection(null, false),
-					AnalogSignalValues = GetAnalogSignalValuesForRTU(rtu.ID),
-					DiscreteSignalValues = GetDiscreteSignalValuesForRTU(rtu.ID)
-				};
+				RTU newRTU = new RTU(rtu);
 				rtus.Add(newRTU);
 			}
 
 			return rtus;
-		}
-
-		/// <summary>
-		/// Gets values of all analog signals from specific RTU
-		/// </summary>
-		/// <param name="rtuID">Unique ID for each RTU</param>
-		/// <returns>Analog values from the RTU</returns>
-		private List<AnalogSignalValue> GetAnalogSignalValuesForRTU(int rtuID)
-		{
-			List<AnalogSignalValue> analogSignalValues = new List<AnalogSignalValue>();
-
-			foreach (var analogSignal in modelService.GetAnalogSignalsForRtu(rtuID))
-			{
-				analogSignalValues.Add(new AnalogSignalValue()
-				{
-					AnalogSignal = new AnalogSignal
-					{
-						ID = analogSignal.ID,
-						Address = analogSignal.Address,
-						Name = analogSignal.Name
-					},
-					Value = 0
-				});
-			}
-
-			return analogSignalValues;
-		}
-
-		/// <summary>
-		/// Gets values of all discrete signals from specific RTU
-		/// </summary>
-		/// <param name="rtuID">Unique ID for each RTU</param>
-		/// <returns>Discrete values from the RTU</returns>
-		private List<DiscreteSignalValue> GetDiscreteSignalValuesForRTU(int rtuID)
-		{
-			List<DiscreteSignalValue> discreteSignalValues = new List<DiscreteSignalValue>();
-
-			foreach (var discreteSignal in modelService.GetDiscreteSignalsForRtu(rtuID))
-			{
-				discreteSignalValues.Add(new DiscreteSignalValue()
-				{
-					DiscreteSignal = new DiscreteSignal
-					{
-						Address = discreteSignal.Address,
-						ID = discreteSignal.ID,
-						Name = discreteSignal.Name
-					},
-					Value = false
-				});
-			}
-
-			return discreteSignalValues;
 		}
 	}
 }

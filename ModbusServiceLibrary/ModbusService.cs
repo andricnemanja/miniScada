@@ -5,7 +5,7 @@ using ModbusServiceLibrary.ModbusCommunication;
 
 namespace ModbusServiceLibrary
 {
-	[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
+	[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple)]
 	public sealed class ModbusService : IModbusDuplex
 	{
 		private readonly IModbusDuplexCallback callback;

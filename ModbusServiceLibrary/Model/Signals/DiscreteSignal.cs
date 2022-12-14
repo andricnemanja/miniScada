@@ -22,10 +22,11 @@
 			Name = name;
 		}
 
-		public DiscreteSignal()
+		public DiscreteSignal(ModelServiceReference.DiscreteSignal discreteSignalStaticData)
 		{
-
+			ID = discreteSignalStaticData.ID;
+			Address = discreteSignalStaticData.Address;
+			Name = discreteSignalStaticData.Name;
 		}
-
 	}
 }
