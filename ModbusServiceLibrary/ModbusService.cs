@@ -5,16 +5,15 @@ using ModbusServiceLibrary.ModbusCommunication;
 
 namespace ModbusServiceLibrary
 {
-	[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
+	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
 	public sealed class ModbusService : IModbusDuplex
 	{
-		private readonly IModbusDuplexCallback callback;
+		private IModbusDuplexCallback callback;
 		private readonly IModbusConnection modbusConnection;
 		private readonly IModbusCommandInvoker modbusCommandInvoker;
 
 		public ModbusService(IModbusConnection modbusConnection, IModbusCommandInvoker modbusCommandInvoker)
 		{
-			callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			this.modbusConnection = modbusConnection;
 			this.modbusCommandInvoker = modbusCommandInvoker;
 		}
@@ -26,6 +25,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal</param>
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
+			callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			int newValue = modbusCommandInvoker.ReadAnalogSignalValue(rtuId, signalAddress);
 			callback.UpdateAnalogSignalValue(rtuId, signalAddress, newValue);
 		}
@@ -37,6 +37,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal</param>
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
+			callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			bool newValue = modbusCommandInvoker.ReadDiscreteSignalValue(rtuId, signalAddress);
 			callback.UpdateDiscreteSignalValue(rtuId, signalAddress, newValue);
 		}

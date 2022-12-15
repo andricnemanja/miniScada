@@ -14,7 +14,8 @@ namespace ModbusServiceHost
 
 			IContainer container = Bootstrapper.RegisterContainerBuilder().Build();
 
-			ServiceHost selfHost = new ServiceHost(typeof(ModbusService));
+			var modbusService = container.Resolve<IModbusDuplex>();
+			ServiceHost selfHost = new ServiceHost(modbusService);
 			selfHost.AddDependencyInjectionBehavior<IModbusDuplex>(container);
 
 			IComponentRegistration registration;
