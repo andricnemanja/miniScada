@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.Model.RTU;
+using ModbusServiceLibrary.Model.SignalValues;
 using ModbusServiceLibrary.ServiceReader;
 
 namespace ModbusServiceLibrary.ModbusCommunication
@@ -65,7 +66,7 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			if (!rtu.Connection.Client.TryReadSingleHoldingRegister(signalAddress, out value))
 				return false;
 
-			rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault().Value = value;
+			FindAnalogSignal(rtu, signalAddress).Value = value;
 			return true;
 		}
 
@@ -85,7 +86,7 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			if (!rtu.Connection.Client.TryReadSingleCoil(signalAddress, out value))
 				return false;
 
-			rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault().Value = value;
+			FindDiscreteSignal(rtu, signalAddress).Value = value;
 			return true;
 		}
 
@@ -105,7 +106,7 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			if (!rtu.Connection.Client.TryWriteSingleHoldingRegister(signalAddress, value))
 				return false;
 
-			rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault().Value = value;
+			FindAnalogSignal(rtu, signalAddress).Value = value;
 			return true;
 		}
 
@@ -124,7 +125,7 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			if (!rtu.Connection.Client.TryWriteSingleCoil(signalAddress, value))
 				return false;
 
-			rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault().Value = value;
+			FindDiscreteSignal(rtu, signalAddress).Value = value;
 			return true;
 		}
 
@@ -137,6 +138,15 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		{
 			rtu = RtuList.Where(r => r.RTUData.ID == rtuId).FirstOrDefault();
 			return rtu != null;
+		}
+
+		private AnalogSignalValue FindAnalogSignal(RTU rtu, int signalAddress)
+		{
+			return rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault();
+		}
+		private DiscreteSignalValue FindDiscreteSignal(RTU rtu, int signalAddress)
+		{
+			return rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault();
 		}
 	}
 }
