@@ -1,32 +1,24 @@
-﻿using System.Linq;
-using ModbusServiceLibrary.ModbusCommunication;
-using ModbusServiceLibrary.Model.RTU;
+﻿using ModbusServiceLibrary.ModbusCommunication;
 
 namespace ModbusServiceLibrary.ModbusCommands
 {
 	public sealed class ReadDiscreteSignalValueCommand : ModbusCommand
 	{
-		public bool PreviousValue { get; set; }
-		public bool NewValue { get; set; }
-		public RTU Rtu { get; set; }
-		public int SignalAddress { get; set; }
+		private readonly int rtuId;
+		private readonly int signalAddress;
 
 		public ReadDiscreteSignalValueCommand(IModbusConnection modbusConnection, int rtuId, int signalAddress)
 			: base(modbusConnection)
 		{
-			Rtu = modbusConnection.FindRtu(rtuId);
-			SignalAddress = signalAddress;
+			this.rtuId = rtuId;
+			this.signalAddress = signalAddress;
 		}
+		public bool NewValue { get; set; }
 
 		public override void Execute()
 		{
-			PreviousValue = ReadPreviousValue();
-			NewValue = modbusConnection.ReadCoil(Rtu.RTUData.ID, SignalAddress);
-		}
-
-		private bool ReadPreviousValue()
-		{
-			return Rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == SignalAddress).FirstOrDefault().Value;
+			modbusConnection.TryReadDiscreteInput(rtuId, signalAddress, out bool value);
+			NewValue = value;
 		}
 	}
 }

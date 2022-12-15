@@ -18,5 +18,14 @@
 		/// Port at which RTU can be accessed
 		/// </summary>
 		public int Port { get; set; }
+
+
+		public RTUData(ModelServiceReference.RTUData rtuData)
+		{
+			Name = rtuData.Name;
+			ID = rtuData.ID;
+			IpAddress = rtuData.IpAddress;
+			Port = rtuData.Port;
+		}
 	}
 }

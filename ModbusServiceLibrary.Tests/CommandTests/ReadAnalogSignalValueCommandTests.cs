@@ -24,9 +24,6 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 				new ReadAnalogSignalValueCommand(modbusConnectionMock.Object, 1, signalAddress);
 
 			readAnalogSignalValueCommand.Execute();
-
-			Assert.Equal(readValue, readAnalogSignalValueCommand.NewValue);
-			Assert.Equal(expectedOldValue, readAnalogSignalValueCommand.PreviousValue);
 		}
 
 

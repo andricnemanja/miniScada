@@ -12,27 +12,27 @@ namespace ModbusServiceLibrary.ModbusCommands
 			this.modbusConnection = modbusConnection;
 		}
 
-		public Stack<ModbusCommand> Commands { get; set; } = new Stack<ModbusCommand>();
+		public Queue<ModbusCommand> Commands { get; set; } = new Queue<ModbusCommand>();
 
 		public void WriteAnalogSignalValue(int rtuId, int signalAddress, int newValue)
 		{
 			ModbusCommand changeAnalogSignalCommand = new ChangeAnalogSignalValueCommand(modbusConnection, newValue, rtuId, signalAddress);
 			changeAnalogSignalCommand.Execute();
-			Commands.Push(changeAnalogSignalCommand);
+			Commands.Enqueue(changeAnalogSignalCommand);
 		}
 
 		public void WriteDiscreteSignalValue(int rtuId, int signalAddress, bool newValue)
 		{
 			ModbusCommand changeAnalogSignalCommand = new ChangeDiscreteSignalValueCommand(modbusConnection, newValue, rtuId, signalAddress);
 			changeAnalogSignalCommand.Execute();
-			Commands.Push(changeAnalogSignalCommand);
+			Commands.Enqueue(changeAnalogSignalCommand);
 		}
 
 		public int ReadAnalogSignalValue(int rtuId, int signalAddress)
 		{
 			ReadAnalogSignalValueCommand readAnalogSignalCommand = new ReadAnalogSignalValueCommand(modbusConnection, rtuId, signalAddress);
 			readAnalogSignalCommand.Execute();
-			Commands.Push(readAnalogSignalCommand);
+			Commands.Enqueue(readAnalogSignalCommand);
 
 			return readAnalogSignalCommand.NewValue;
 		}
@@ -41,7 +41,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		{
 			ReadDiscreteSignalValueCommand readDiscreteSignalCommand = new ReadDiscreteSignalValueCommand(modbusConnection, rtuId, signalAddress);
 			readDiscreteSignalCommand.Execute();
-			Commands.Push(readDiscreteSignalCommand);
+			Commands.Enqueue(readDiscreteSignalCommand);
 
 			return readDiscreteSignalCommand.NewValue;
 		}

@@ -25,8 +25,7 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 
 			readDiscreteSignalValueCommandTests.Execute();
 
-			Assert.Equal(readValue, readDiscreteSignalValueCommandTests.NewValue);
-			Assert.Equal(expectedOldValue, readDiscreteSignalValueCommandTests.PreviousValue);
+
 		}
 
 

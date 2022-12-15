@@ -22,9 +22,11 @@
 			Name = name;
 		}
 
-		public AnalogSignal()
+		public AnalogSignal(ModelServiceReference.AnalogSignal analogSignalStaticData)
 		{
-
+			ID = analogSignalStaticData.ID;
+			Address = analogSignalStaticData.Address;
+			Name = analogSignalStaticData.Name;
 		}
 	}
 }
