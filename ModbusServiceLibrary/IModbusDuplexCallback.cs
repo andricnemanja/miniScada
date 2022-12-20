@@ -2,6 +2,7 @@
 
 namespace ModbusServiceLibrary
 {
+	[ServiceContract]
 	public interface IModbusDuplexCallback
 	{
 		/// <summary>

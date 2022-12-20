@@ -1,10 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel;
+using System.Threading.Tasks;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.SignalValues;
 
 namespace ClientWpfApp.ModbusCallback
 {
+	[CallbackBehavior(UseSynchronizationContext = false)]
 	public sealed class ModbusServiceCallback : ModbusServiceReference.IModbusDuplexCallback
 	{
 		private readonly ObservableCollection<RTU> rtuList;
@@ -13,18 +16,24 @@ namespace ClientWpfApp.ModbusCallback
 		{
 			this.rtuList = rtuList;
 		}
-		public void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue)
+		public async void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue)
 		{
-			RTU rtu = FindRtu(rtuId);
-			AnalogSignalValue analogSignalValue = rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault();
-			analogSignalValue.Value = signalValue;
+			await Task.Run(() =>
+			{
+				RTU rtu = FindRtu(rtuId);
+				AnalogSignalValue analogSignalValue = rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault();
+				analogSignalValue.Value = signalValue;
+			});
 		}
 
-		public void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue)
+		public async void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue)
 		{
-			RTU rtu = FindRtu(rtuId);
-			DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault();
-			discreteSignalValue.Value = signalValue;
+			await Task.Run(() =>
+			{
+				RTU rtu = FindRtu(rtuId);
+				DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault();
+				discreteSignalValue.Value = signalValue;
+			});
 		}
 
 		private RTU FindRtu(int rtuId)
