@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
 using ModelWcfServiceLibrary.Model.RTU;
-using System.Linq;
-using ModelWcfServiceLibrary.Repository;
-using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.Signals;
+using ModelWcfServiceLibrary.Repository;
 
 namespace ModelWcfServiceLibrary
 {
