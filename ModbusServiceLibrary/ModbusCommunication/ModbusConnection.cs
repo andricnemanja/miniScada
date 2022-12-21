@@ -7,15 +7,25 @@ using ModbusServiceLibrary.ServiceReader;
 
 namespace ModbusServiceLibrary.ModbusCommunication
 {
+	/// <summary>
+	/// Class responsible for making connection with RTU. Contains various functionalities with connected RTU.
+	/// </summary>
 	public sealed class ModbusConnection : IModbusConnection
 	{
 		private readonly IModelServiceReader modelServiceReader;
 
+		/// <summary>
+		/// An instance of <see cref="ModbusConnection"/> class.
+		/// </summary>
+		/// <param name="modelServiceReader">An instance of class <see cref="IModelServiceReader"/></param>
 		public ModbusConnection(IModelServiceReader modelServiceReader)
 		{
 			this.modelServiceReader = modelServiceReader;
 		}
 
+		/// <summary>
+		/// List of RTUs.
+		/// </summary>
 		public List<RTU> RtuList { get; private set; }
 
 		/// <summary>
@@ -70,7 +80,6 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			return true;
 		}
 
-
 		/// <summary>
 		/// Read single discrete input from the simulator
 		/// </summary>
@@ -89,7 +98,6 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			FindDiscreteSignal(rtu, signalAddress).Value = value;
 			return true;
 		}
-
 
 		/// <summary>
 		/// Write value of the single analog signal 
@@ -140,10 +148,23 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			return rtu != null;
 		}
 
+		/// <summary>
+		/// Finds the value of the analog signal by it's address. 
+		/// </summary>
+		/// <param name="rtu">RTU which contains that analog signal.</param>
+		/// <param name="signalAddress">Address of the analog signal.</param>
+		/// <returns>Value of the analog signal, an instance of the <see cref="AnalogSignalValue"/> class.</returns>
 		private AnalogSignalValue FindAnalogSignal(RTU rtu, int signalAddress)
 		{
 			return rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault();
 		}
+
+		/// <summary>
+		/// Finds value of the discrete signal by it's address.
+		/// </summary>
+		/// <param name="rtu">RTU which contains that analog signal.</param>
+		/// <param name="signalAddress">Address of the analog signal.</param>
+		/// <returns>Value of the analog signal, an instance of the <see cref="DiscreteSignalValue"/> class.</returns>
 		private DiscreteSignalValue FindDiscreteSignal(RTU rtu, int signalAddress)
 		{
 			return rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault();

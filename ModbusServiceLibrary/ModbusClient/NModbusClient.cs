@@ -3,6 +3,10 @@ using NModbus;
 
 namespace ModbusServiceLibrary.ModbusClient
 {
+	/// <summary>
+	/// Class <c>NModbusClient</c> models a Modbus client.
+	/// Contains methods for commmunicating and operating with RTU.
+	/// </summary>
 	public sealed class NModbusClient : IModbusClient
 	{
 		private readonly IModbusMaster master;

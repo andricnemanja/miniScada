@@ -1,5 +1,8 @@
 ﻿namespace ModbusServiceLibrary.Model.RTU
 {
+	/// <summary>
+	/// Class <c>RTUData</c> models data of the RTU.
+	/// </summary>
 	public class RTUData
 	{
 		/// <summary>
@@ -19,7 +22,10 @@
 		/// </summary>
 		public int Port { get; set; }
 
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="RTUData"/> class.
+		/// </summary>
+		/// <param name="rtuData">Static data of the RTU. Data from the <see cref="ModelServiceReference"/> namespace.</param>
 		public RTUData(ModelServiceReference.RTUData rtuData)
 		{
 			Name = rtuData.Name;

@@ -2,23 +2,26 @@
 
 namespace ModbusServiceLibrary.ModbusCommands
 {
+	/// <summary>
+	/// Base class of other command classes.
+	/// </summary>
 	public abstract class ModbusCommand
 	{
 		/// <summary>
-		/// Class that interacts with the modbus device
+		/// Class that interacts with the modbus device.
 		/// </summary>
 		protected IModbusConnection modbusConnection;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="RtuRepository"/>
+		/// Initializes a new instance of the <see cref="RtuRepository"/>.
 		/// </summary>
-		/// <param name="modbusConnection">Instance of the <see cref="IModbusConnection"/> class</param>
+		/// <param name="modbusConnection">Instance of the <see cref="IModbusConnection"/> class.</param>
 		protected ModbusCommand(IModbusConnection modbusConnection)
 		{
 			this.modbusConnection = modbusConnection;
 		}
 		/// <summary>
-		/// Initialize static data by reading all of RTUs
+		/// Initialize static data by reading all of RTUs.
 		/// </summary>
 		public abstract void Execute();
 	}
