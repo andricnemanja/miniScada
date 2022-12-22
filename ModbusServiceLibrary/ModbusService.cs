@@ -25,8 +25,11 @@ namespace ModbusServiceLibrary
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			int newValue = modbusCommandInvoker.ReadAnalogSignalValue(rtuId, signalAddress);
-			callback.UpdateAnalogSignalValue(rtuId, signalAddress, newValue);
+			if(modbusCommandInvoker.TryReadAnalogSignalValue(rtuId, signalAddress, out int value))
+				callback.UpdateAnalogSignalValue(rtuId, signalAddress, value);
+			else
+				callback.ChangeConnectionStatusToFalse(rtuId);
+			
 		}
 
 		/// <summary>
@@ -37,8 +40,10 @@ namespace ModbusServiceLibrary
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			bool newValue = modbusCommandInvoker.ReadDiscreteSignalValue(rtuId, signalAddress);
-			callback.UpdateDiscreteSignalValue(rtuId, signalAddress, newValue);
+			if(modbusCommandInvoker.TryReadDiscreteSignalValue(rtuId, signalAddress, out bool value))
+				callback.UpdateDiscreteSignalValue(rtuId, signalAddress, value);
+			else
+				callback.ChangeConnectionStatusToFalse(rtuId);
 		}
 
 		/// <summary>
@@ -49,7 +54,11 @@ namespace ModbusServiceLibrary
 		/// <param name="newValue">New value of the analog signal</param>
 		public void WriteAnalogSignal(int rtuId, int signalAddress, int newValue)
 		{
-			modbusCommandInvoker.WriteAnalogSignalValue(rtuId, signalAddress, newValue);
+			if(!modbusCommandInvoker.TryWriteAnalogSignalValue(rtuId, signalAddress, newValue))
+			{
+				IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
+				callback.ChangeConnectionStatusToFalse(rtuId);
+			}
 		}
 
 		/// <summary>
@@ -60,7 +69,11 @@ namespace ModbusServiceLibrary
 		/// <param name="newValue">New value of the discrete signal</param>
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue)
 		{
-			modbusCommandInvoker.WriteDiscreteSignalValue(rtuId, signalAddress, newValue);
+			if(!modbusCommandInvoker.TryWriteDiscreteSignalValue(rtuId, signalAddress, newValue))
+			{
+				IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
+				callback.ChangeConnectionStatusToFalse(rtuId);
+			}
 		}
 
 		/// <summary>

@@ -20,6 +20,6 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <summary>
 		/// Initialize static data by reading all of RTUs
 		/// </summary>
-		public abstract void Execute();
+		public abstract bool Execute();
 	}
 }

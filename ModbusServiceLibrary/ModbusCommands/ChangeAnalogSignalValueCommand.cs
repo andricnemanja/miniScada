@@ -22,9 +22,9 @@ namespace ModbusServiceLibrary.ModbusCommands
 			this.signalAddress = signalAddress;
 		}
 
-		public override void Execute()
+		public override bool Execute()
 		{
-			modbusConnection.TryWriteAnalogSignalValue(rtuId, signalAddress, newValue);
+			return modbusConnection.TryWriteAnalogSignalValue(rtuId, signalAddress, newValue);
 		}
 	}
 }

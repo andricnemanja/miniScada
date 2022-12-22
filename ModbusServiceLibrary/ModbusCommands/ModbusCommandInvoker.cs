@@ -16,50 +16,58 @@ namespace ModbusServiceLibrary.ModbusCommands
 
 		public Queue<ModbusCommand> Commands { get; set; } = new Queue<ModbusCommand>();
 
-		public void WriteAnalogSignalValue(int rtuId, int signalAddress, int newValue)
+		public bool TryWriteAnalogSignalValue(int rtuId, int signalAddress, int newValue)
 		{
 			ModbusCommand changeAnalogSignalCommand = new ChangeAnalogSignalValueCommand(modbusConnection, newValue, rtuId, signalAddress);
 			lock (lockObject)
 			{
-				changeAnalogSignalCommand.Execute();
+				if (!changeAnalogSignalCommand.Execute())
+					return false;
 				Commands.Enqueue(changeAnalogSignalCommand);
 			}
+			return true;
 		}
 
-		public void WriteDiscreteSignalValue(int rtuId, int signalAddress, bool newValue)
+		public bool TryWriteDiscreteSignalValue(int rtuId, int signalAddress, bool newValue)
 		{
 			ModbusCommand changeAnalogSignalCommand = new ChangeDiscreteSignalValueCommand(modbusConnection, newValue, rtuId, signalAddress);
 			lock (lockObject)
 			{
-				changeAnalogSignalCommand.Execute();
+				if (!changeAnalogSignalCommand.Execute())
+					return false;
 				Commands.Enqueue(changeAnalogSignalCommand);
 			}
+			return true;
 		}
 
-		public int ReadAnalogSignalValue(int rtuId, int signalAddress)
+		public bool TryReadAnalogSignalValue(int rtuId, int signalAddress, out int value)
 		{
 			ReadAnalogSignalValueCommand readAnalogSignalCommand = new ReadAnalogSignalValueCommand(modbusConnection, rtuId, signalAddress);
-
+			value = 0;
 			lock (lockObject)
 			{
-				readAnalogSignalCommand.Execute();
+				if (!readAnalogSignalCommand.Execute())
+					return false;
 				Commands.Enqueue(readAnalogSignalCommand);
 			}
+			value = readAnalogSignalCommand.NewValue;
 
-			return readAnalogSignalCommand.NewValue;
+			return true;
 		}
 
-		public bool ReadDiscreteSignalValue(int rtuId, int signalAddress)
+		public bool TryReadDiscreteSignalValue(int rtuId, int signalAddress, out bool value)
 		{
 			ReadDiscreteSignalValueCommand readDiscreteSignalCommand = new ReadDiscreteSignalValueCommand(modbusConnection, rtuId, signalAddress);
-
+			value = false;
 			lock (lockObject)
 			{
-				readDiscreteSignalCommand.Execute();
+				if (!readDiscreteSignalCommand.Execute())
+					return false;
 				Commands.Enqueue(readDiscreteSignalCommand);
 			}
 
-			return readDiscreteSignalCommand.NewValue;
+			value = readDiscreteSignalCommand.NewValue;
+			return true;
 		}
 	}
 }

@@ -38,11 +38,9 @@ namespace ModbusServiceLibrary.ModbusCommunication
 
 			try
 			{
-				if (rtu.Connection.Client == null)
-				{
-					rtu.Connection.Client = new NModbusClient(rtu.RTUData.IpAddress, rtu.RTUData.Port);
-					rtu.Connection.Status = true;
-				}
+				rtu.Connection.Client = new NModbusClient(rtu.RTUData.IpAddress, rtu.RTUData.Port);
+				rtu.Connection.Status = true;
+				
 				return true;
 			}
 			catch

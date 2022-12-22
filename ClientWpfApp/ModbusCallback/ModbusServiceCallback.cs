@@ -16,6 +16,13 @@ namespace ClientWpfApp.ModbusCallback
 		{
 			this.rtuList = rtuList;
 		}
+
+		public void ChangeConnectionStatusToFalse(int rtuId)
+		{
+			RTU rtu = FindRtu(rtuId);
+			rtu.IsConnected = false;
+		}
+
 		public async void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue)
 		{
 			await Task.Run(() =>

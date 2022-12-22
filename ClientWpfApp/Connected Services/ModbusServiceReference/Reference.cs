@@ -54,6 +54,9 @@ namespace ClientWpfApp.ModbusServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/UpdateDiscreteSignalValue")]
         void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ChangeConnectionStatusToFalse")]
+        void ChangeConnectionStatusToFalse(int rtuId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

@@ -20,10 +20,13 @@ namespace ModbusServiceLibrary.ModbusCommands
 		}
 		public int NewValue { get; private set; }
 
-		public override void Execute()
+		public override bool Execute()
 		{
-			modbusConnection.TryReadAnalogInput(rtuId, signalAddress, out int value);
+			if(!modbusConnection.TryReadAnalogInput(rtuId, signalAddress, out int value))
+				return false;
+
 			NewValue = value;
+			return true;
 		}
 	}
 }

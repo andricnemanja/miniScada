@@ -21,9 +21,9 @@ namespace ModbusServiceLibrary.ModbusCommands
 			this.signalAddress = signalAddress;
 		}
 
-		public override void Execute()
+		public override bool Execute()
 		{
-			modbusConnection.TryWriteDiscreteSignalValue(rtuId, signalAddress, newValue);
+			return modbusConnection.TryWriteDiscreteSignalValue(rtuId, signalAddress, newValue);
 		}
 	}
 }

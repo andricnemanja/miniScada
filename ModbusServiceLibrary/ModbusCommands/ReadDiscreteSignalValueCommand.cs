@@ -15,10 +15,14 @@ namespace ModbusServiceLibrary.ModbusCommands
 		}
 		public bool NewValue { get; set; }
 
-		public override void Execute()
+		public override bool Execute()
 		{
-			modbusConnection.TryReadDiscreteInput(rtuId, signalAddress, out bool value);
+
+			if(!modbusConnection.TryReadDiscreteInput(rtuId, signalAddress, out bool value))
+				return false;
+
 			NewValue = value;
+			return true;
 		}
 	}
 }

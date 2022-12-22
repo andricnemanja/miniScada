@@ -22,5 +22,8 @@ namespace ModbusServiceLibrary
 		/// <param name="signalValue">Updated value</param>
 		[OperationContract(IsOneWay = true)]
 		void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue);
+
+		[OperationContract(IsOneWay = true)]
+		void ChangeConnectionStatusToFalse(int rtuId);
 	}
 }
