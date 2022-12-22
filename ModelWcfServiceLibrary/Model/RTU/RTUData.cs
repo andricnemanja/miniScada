@@ -1,5 +1,8 @@
 ﻿namespace ModelWcfServiceLibrary
 {
+	/// <summary>
+	/// Class <c>RTUData</c> models data that the RTU contains.
+	/// </summary>
 	public class RTUData
 	{
 		/// <summary>

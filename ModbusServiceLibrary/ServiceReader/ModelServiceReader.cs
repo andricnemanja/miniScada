@@ -7,6 +7,11 @@ namespace ModbusServiceLibrary.ServiceReader
 	{
 		private readonly ModelServiceReference.IModelService modelService;
 
+
+		/// <summary>
+		/// Initializes the new instance of the <see cref="ModelServiceReader"/> class.
+		/// </summary>
+		/// <param name="modelService">An instance of the <see cref="IModelService"/>.</param>
 		public ModelServiceReader(ModelServiceReference.IModelService modelService)
 		{
 			this.modelService = modelService;

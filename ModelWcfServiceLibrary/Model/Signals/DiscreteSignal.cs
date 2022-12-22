@@ -2,6 +2,9 @@
 
 namespace ModelWcfServiceLibrary.Model.Signals
 {
+	/// <summary>
+	/// Class models discrete signal of the RTU.
+	/// </summary>
 	[DataContract]
 	public class DiscreteSignal
 	{

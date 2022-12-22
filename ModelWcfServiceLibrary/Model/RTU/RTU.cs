@@ -4,7 +4,10 @@ using System.Runtime.Serialization;
 
 namespace ModelWcfServiceLibrary.Model.RTU
 {
-    public class RTU
+	/// <summary>
+	/// Class <c>RTU</c> models RTU.
+	/// </summary>
+	public class RTU
     {
 		/// <summary>
 		/// Essential RTU data
