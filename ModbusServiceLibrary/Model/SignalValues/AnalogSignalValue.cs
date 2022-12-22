@@ -2,6 +2,9 @@
 
 namespace ModbusServiceLibrary.Model.SignalValues
 {
+	/// <summary>
+	/// Class <see cref="AnalogSignalValue"/> models value of the analog signal.
+	/// </summary>
 	public class AnalogSignalValue
 	{
 		/// <summary>
@@ -14,7 +17,10 @@ namespace ModbusServiceLibrary.Model.SignalValues
 		/// </summary>
 		public int Value { get; set; }
 
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AnalogSignalValue"/> class.
+		/// </summary>
+		/// <param name="analogSignalStaticData">Analog signal static data.</param>
 		public AnalogSignalValue(ModelServiceReference.AnalogSignal analogSignalStaticData)
 		{
 			AnalogSignal = new AnalogSignal(analogSignalStaticData);

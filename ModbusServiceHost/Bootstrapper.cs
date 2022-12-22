@@ -7,12 +7,12 @@ using ModbusServiceLibrary.ServiceReader;
 namespace ModbusServiceHost
 {
 	/// <summary>
-	/// Definining dependencies for Modbus Service classes
+	/// Definining dependencies for Modbus Service classes.
 	/// </summary>
 	public sealed class Bootstrapper
 	{
 		/// <summary>
-		/// Create container that have all dependencies for Modbus Service classes
+		/// Create container that have all dependencies for Modbus Service classes.
 		/// </summary>
 		public static ContainerBuilder RegisterContainerBuilder()
 		{
