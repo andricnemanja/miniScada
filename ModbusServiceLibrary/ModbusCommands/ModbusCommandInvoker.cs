@@ -55,9 +55,9 @@ namespace ModbusServiceLibrary.ModbusCommands
 			ModbusCommand changeDiscreteSignalCommand = new ChangeDiscreteSignalValueCommand(modbusConnection, newValue, rtuId, signalAddress);
 			lock (lockObject)
 			{
-				if (!changeAnalogSignalCommand.Execute())
+				if (!changeDiscreteSignalCommand.Execute())
 					return false;
-				Commands.Enqueue(changeAnalogSignalCommand);
+				Commands.Enqueue(changeDiscreteSignalCommand);
 			}
 			return true;
 		}
