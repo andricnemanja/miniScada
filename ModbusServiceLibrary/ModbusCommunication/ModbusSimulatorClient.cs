@@ -10,15 +10,15 @@ namespace ModbusServiceLibrary.ModbusCommunication
 	/// <summary>
 	/// Class responsible for making connection with RTU. Contains various functionalities with connected RTU.
 	/// </summary>
-	public sealed class ModbusConnection : IModbusConnection
+	public sealed class ModbusSimulatorClient : IModbusSimulatorClient
 	{
 		private readonly IModelServiceReader modelServiceReader;
 
 		/// <summary>
-		/// An instance of <see cref="ModbusConnection"/> class.
+		/// An instance of <see cref="ModbusSimulatorClient"/> class.
 		/// </summary>
 		/// <param name="modelServiceReader">An instance of class <see cref="IModelServiceReader"/></param>
-		public ModbusConnection(IModelServiceReader modelServiceReader)
+		public ModbusSimulatorClient(IModelServiceReader modelServiceReader)
 		{
 			this.modelServiceReader = modelServiceReader;
 		}

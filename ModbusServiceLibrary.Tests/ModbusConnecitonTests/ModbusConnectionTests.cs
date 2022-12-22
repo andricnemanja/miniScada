@@ -17,7 +17,7 @@ namespace ModbusServiceLibrary.Tests.ModbusConnecitonTests
 		{
 			var modelServiceReaderMock = new Mock<IModelServiceReader>();
 			modelServiceReaderMock.Setup(x => x.ReadAllRTUs()).Returns(RtuTestData.GetRtuTestList());
-			ModbusConnection modbusConnection = new ModbusConnection(modelServiceReaderMock.Object);
+			ModbusSimulatorClient modbusConnection = new ModbusSimulatorClient(modelServiceReaderMock.Object);
 			modbusConnection.InitializeData();
 			RTU expectedRtu = RtuTestData.GetRtuTestList().Where(r => r.RTUData.ID == rtuId).FirstOrDefault();
 

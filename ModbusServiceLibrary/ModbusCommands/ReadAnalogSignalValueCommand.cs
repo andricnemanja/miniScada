@@ -19,11 +19,11 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ReadAnalogSignalValueCommand"/>.
 		/// </summary>
-		/// <param name="modbusConnection">Instance of the <see cref="IModbusConnection"/> class.</param>
+		/// <param name="modbusSimulatorClient">Instance of the <see cref="IModbusSimulatorClient"/> class.</param>
 		/// <param name="NewValue">Value that needs to be written.</param>
 		/// <param name="signalAddress">Address of the signal that needs to be read.</param>
-		public ReadAnalogSignalValueCommand(IModbusConnection modbusConnection, int rtuId, int signalAddress)
-			: base(modbusConnection)
+		public ReadAnalogSignalValueCommand(IModbusSimulatorClient modbusSimulatorClient, int rtuId, int signalAddress)
+			: base(modbusSimulatorClient)
 		{
 			this.rtuId = rtuId;
 			this.signalAddress = signalAddress;
@@ -39,7 +39,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// </summary>
 		public override bool Execute()
 		{
-			if(!modbusConnection.TryReadAnalogInput(rtuId, signalAddress, out int value))
+			if(!modbusSimulatorClient.TryReadAnalogInput(rtuId, signalAddress, out int value))
 				return false;
 
 			NewValue = value;

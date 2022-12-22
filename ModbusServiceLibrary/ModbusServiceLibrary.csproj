@@ -77,8 +77,8 @@
     <Compile Include="ModbusCommands\ModbusCommandInvoker.cs" />
     <Compile Include="ModbusCommands\ReadDiscreteSignalValueCommand.cs" />
     <Compile Include="ModbusCommands\ReadAnalogSignalValueCommand.cs" />
-    <Compile Include="ModbusCommunication\IModbusConnection.cs" />
-    <Compile Include="ModbusCommunication\ModbusConnection.cs" />
+    <Compile Include="ModbusCommunication\IModbusSimulatorClient.cs" />
+    <Compile Include="ModbusCommunication\ModbusSimulatorClient.cs" />
     <Compile Include="ServiceReader\IModelServiceReader.cs" />
     <Compile Include="ModbusClient\NModbusClient.cs" />
     <Compile Include="ServiceReader\ModelServiceReader.cs" />

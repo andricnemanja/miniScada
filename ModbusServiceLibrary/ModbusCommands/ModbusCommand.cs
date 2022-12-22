@@ -10,15 +10,15 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <summary>
 		/// Class that interacts with the modbus device.
 		/// </summary>
-		protected IModbusConnection modbusConnection;
+		protected IModbusSimulatorClient modbusSimulatorClient;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RtuRepository"/>.
 		/// </summary>
-		/// <param name="modbusConnection">Instance of the <see cref="IModbusConnection"/> class.</param>
-		protected ModbusCommand(IModbusConnection modbusConnection)
+		/// <param name="modbusSimulatorClient">Instance of the <see cref="IModbusSimulatorClient"/> class.</param>
+		protected ModbusCommand(IModbusSimulatorClient modbusConnection)
 		{
-			this.modbusConnection = modbusConnection;
+			this.modbusSimulatorClient = modbusConnection;
 		}
 		/// <summary>
 		/// Initialize static data by reading all of RTUs.

@@ -19,11 +19,11 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ReadDiscreteSignalValueCommand"/>.
 		/// </summary>
-		/// <param name="modbusConnection">Instance of the <see cref="IModbusConnection"/> class.</param>
+		/// <param name="modbusSimulatorClient">Instance of the <see cref="IModbusSimulatorClient"/> class.</param>
 		/// <param name="rtuId">Value that needs to be written.</param>
 		/// <param name="signalAddress">Address of the signal that needs to be read.</param>
-		public ReadDiscreteSignalValueCommand(IModbusConnection modbusConnection, int rtuId, int signalAddress)
-			: base(modbusConnection)
+		public ReadDiscreteSignalValueCommand(IModbusSimulatorClient modbusSimulatorClient, int rtuId, int signalAddress)
+			: base(modbusSimulatorClient)
 		{
 			this.rtuId = rtuId;
 			this.signalAddress = signalAddress;
@@ -40,7 +40,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		public override bool Execute()
 		{
 
-			if(!modbusConnection.TryReadDiscreteInput(rtuId, signalAddress, out bool value))
+			if(!modbusSimulatorClient.TryReadDiscreteInput(rtuId, signalAddress, out bool value))
 				return false;
 
 			NewValue = value;

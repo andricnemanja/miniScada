@@ -21,7 +21,7 @@ namespace ModbusServiceHost
 			builder.RegisterType<ModbusServiceLibrary.ModelServiceReference.ModelServiceClient>().As<ModbusServiceLibrary.ModelServiceReference.IModelService>();
 			builder.RegisterType<ModelServiceReader>().As<IModelServiceReader>();
 			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
-			builder.RegisterType<ModbusConnection>().As<IModbusConnection>()
+			builder.RegisterType<ModbusSimulatorClient>().As<IModbusSimulatorClient>()
 				.OnActivated(c => c.Instance.InitializeData()).SingleInstance();
 			builder.RegisterType<ModbusCommandInvoker>().As<IModbusCommandInvoker>();
 

@@ -8,12 +8,12 @@ namespace ModbusServiceLibrary
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
 	public sealed class ModbusService : IModbusDuplex
 	{
-		private readonly IModbusConnection modbusConnection;
+		private readonly IModbusSimulatorClient modbusSimulatorClient;
 		private readonly IModbusCommandInvoker modbusCommandInvoker;
 
-		public ModbusService(IModbusConnection modbusConnection, IModbusCommandInvoker modbusCommandInvoker)
+		public ModbusService(IModbusSimulatorClient modbusSimulatorClient, IModbusCommandInvoker modbusCommandInvoker)
 		{
-			this.modbusConnection = modbusConnection;
+			this.modbusSimulatorClient = modbusSimulatorClient;
 			this.modbusCommandInvoker = modbusCommandInvoker;
 		}
 
@@ -83,7 +83,7 @@ namespace ModbusServiceLibrary
 		/// <returns>True value if the connection is made</returns>
 		public bool TryConnectToRtu(int rtuId)
 		{
-			return modbusConnection.TryConnectToRtu(rtuId);
+			return modbusSimulatorClient.TryConnectToRtu(rtuId);
 		}
 	}
 }

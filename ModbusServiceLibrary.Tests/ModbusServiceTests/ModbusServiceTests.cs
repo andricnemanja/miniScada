@@ -13,7 +13,7 @@ namespace ModbusServiceLibrary.Tests.ModbusServiceTests
 		[InlineData(2, 1)]
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
-			var modbusConnectionMock = new Mock<IModbusConnection>();
+			var modbusConnectionMock = new Mock<IModbusSimulatorClient>();
 			var modbusCommandInvokerMock = new Mock<IModbusCommandInvoker>();
 			ModbusService modbusService = new ModbusService(modbusConnectionMock.Object, modbusCommandInvokerMock.Object);
 

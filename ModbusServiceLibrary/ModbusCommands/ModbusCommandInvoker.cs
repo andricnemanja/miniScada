@@ -11,16 +11,16 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <summary>
 		/// Class that interacts with the modbus device.
 		/// </summary>
-		private readonly IModbusConnection modbusConnection;
+		private readonly IModbusSimulatorClient modbusSimulatorClient;
 		readonly object lockObject = new object();
 
 		/// <summary>
 		/// An instance of the <see cref="ModbusCommandInvoker"/> class.
 		/// </summary>
-		/// <param name="modbusConnection">An instance of the <see cref="ModbusConnection"/> class.</param>
-		public ModbusCommandInvoker(IModbusConnection modbusConnection)
+		/// <param name="modbusConnection">An instance of the <see cref="ModbusSimulatorClient"/> class.</param>
+		public ModbusCommandInvoker(IModbusSimulatorClient modbusConnection)
 		{
-			this.modbusConnection = modbusConnection;
+			this.modbusSimulatorClient = modbusConnection;
 		}
 
 		/// <summary>
@@ -35,7 +35,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <param name="newValue">New value that we are writing.</param>
 		public bool TryWriteAnalogSignalValue(int rtuId, int signalAddress, int newValue)
 		{
-			ModbusCommand changeAnalogSignalCommand = new ChangeAnalogSignalValueCommand(modbusConnection, newValue, rtuId, signalAddress);
+			ModbusCommand changeAnalogSignalCommand = new ChangeAnalogSignalValueCommand(modbusSimulatorClient, newValue, rtuId, signalAddress);
 			lock (lockObject)
 			{
 				if (!changeAnalogSignalCommand.Execute())
@@ -52,7 +52,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <param name="newValue">New value that we are writing.</param>
 		public bool TryWriteDiscreteSignalValue(int rtuId, int signalAddress, bool newValue)
 		{
-			ModbusCommand changeDiscreteSignalCommand = new ChangeDiscreteSignalValueCommand(modbusConnection, newValue, rtuId, signalAddress);
+			ModbusCommand changeDiscreteSignalCommand = new ChangeDiscreteSignalValueCommand(modbusSimulatorClient, newValue, rtuId, signalAddress);
 			lock (lockObject)
 			{
 				if (!changeDiscreteSignalCommand.Execute())
@@ -69,7 +69,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <returns>New value read from the RTU.</returns>
 		public bool TryReadAnalogSignalValue(int rtuId, int signalAddress, out int value)
 		{
-			ReadAnalogSignalValueCommand readAnalogSignalCommand = new ReadAnalogSignalValueCommand(modbusConnection, rtuId, signalAddress);
+			ReadAnalogSignalValueCommand readAnalogSignalCommand = new ReadAnalogSignalValueCommand(modbusSimulatorClient, rtuId, signalAddress);
 			value = 0;
 			lock (lockObject)
 			{
@@ -89,7 +89,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <returns>New value read from the RTU.</returns>
 		public bool TryReadDiscreteSignalValue(int rtuId, int signalAddress, out bool value)
 		{
-			ReadDiscreteSignalValueCommand readDiscreteSignalCommand = new ReadDiscreteSignalValueCommand(modbusConnection, rtuId, signalAddress);
+			ReadDiscreteSignalValueCommand readDiscreteSignalCommand = new ReadDiscreteSignalValueCommand(modbusSimulatorClient, rtuId, signalAddress);
 			value = false;
 			lock (lockObject)
 			{

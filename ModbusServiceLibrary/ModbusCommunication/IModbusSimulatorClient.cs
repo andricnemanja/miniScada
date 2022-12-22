@@ -3,7 +3,7 @@ using ModbusServiceLibrary.Model.RTU;
 
 namespace ModbusServiceLibrary.ModbusCommunication
 {
-	public interface IModbusConnection
+	public interface IModbusSimulatorClient
 	{
 		List<RTU> RtuList { get; }
 

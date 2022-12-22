@@ -17,7 +17,7 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 		{
 			RTU rtu = RtuTestData.GetRtuTestList()[0];
 			bool expectedOldValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault().Value;
-			var modbusConnectionMock = new Mock<IModbusConnection>();
+			var modbusConnectionMock = new Mock<IModbusSimulatorClient>();
 			modbusConnectionMock.Setup(x => x.ReadCoil(1, signalAddress)).Returns(readValue);
 			modbusConnectionMock.Setup(x => x.FindRtu(1)).Returns(rtu);
 			ReadDiscreteSignalValueCommand readDiscreteSignalValueCommandTests =

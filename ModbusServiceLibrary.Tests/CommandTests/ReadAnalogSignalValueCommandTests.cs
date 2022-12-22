@@ -17,7 +17,7 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 		{
 			RTU rtu = RtuTestData.GetRtuTestList()[0];
 			int expectedOldValue = rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault().Value;
-			var modbusConnectionMock = new Mock<IModbusConnection>();
+			var modbusConnectionMock = new Mock<IModbusSimulatorClient>();
 			modbusConnectionMock.Setup(x => x.ReadRegister(1, signalAddress)).Returns(readValue);
 			modbusConnectionMock.Setup(x => x.FindRtu(1)).Returns(rtu);
 			ReadAnalogSignalValueCommand readAnalogSignalValueCommand =
