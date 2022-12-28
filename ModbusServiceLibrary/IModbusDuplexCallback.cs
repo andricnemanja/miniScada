@@ -23,6 +23,10 @@ namespace ModbusServiceLibrary
 		[OperationContract(IsOneWay = true)]
 		void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue);
 
+		/// <summary>
+		/// Changes conncetion status to false.
+		/// </summary>
+		/// <param name="rtuId">ID of the RTU.</param>
 		[OperationContract(IsOneWay = true)]
 		void ChangeConnectionStatusToFalse(int rtuId);
 	}

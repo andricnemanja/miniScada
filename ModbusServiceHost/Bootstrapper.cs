@@ -5,6 +5,7 @@ using ModbusServiceLibrary.ModbusCommunication;
 using ModbusServiceLibrary.Model.SignalMapping;
 using ModbusServiceLibrary.Repository;
 using ModbusServiceLibrary.ServiceReader;
+using ModbusServiceLibrary.SignalConverter;
 using ModelWcfServiceLibrary.Serializer;
 
 namespace ModbusServiceHost
@@ -32,6 +33,7 @@ namespace ModbusServiceHost
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\SignalMappings.json"));
 			builder.RegisterType<SignalMappingRepository>().As<ISignalMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
+			builder.RegisterType<ValueConverter>().As<IValueConverter>();
 
 			return builder;
 		}

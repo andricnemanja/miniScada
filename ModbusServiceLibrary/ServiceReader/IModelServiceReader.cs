@@ -6,6 +6,10 @@ namespace ModbusServiceLibrary.ServiceReader
 {
 	public interface IModelServiceReader
 	{
+		/// <summary>
+		/// Reads all RTUs
+		/// </summary>
+		/// <returns>List of RTUs</returns>
 		List<RTU> ReadAllRTUs();
 	}
 }

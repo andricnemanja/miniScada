@@ -1,7 +1,7 @@
 ﻿using System.ServiceModel;
 using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.ModbusCommunication;
-
+using ModbusServiceLibrary.SignalConverter;
 
 namespace ModbusServiceLibrary
 {
@@ -10,33 +10,39 @@ namespace ModbusServiceLibrary
 	{
 		private readonly IModbusSimulatorClient modbusSimulatorClient;
 		private readonly IModbusCommandInvoker modbusCommandInvoker;
+		private readonly IValueConverter valueConverter;
 
-		public ModbusService(IModbusSimulatorClient modbusSimulatorClient, IModbusCommandInvoker modbusCommandInvoker)
+		public ModbusService(IModbusSimulatorClient modbusSimulatorClient, IModbusCommandInvoker modbusCommandInvoker, IValueConverter valueConverter)
 		{
 			this.modbusSimulatorClient = modbusSimulatorClient;
 			this.modbusCommandInvoker = modbusCommandInvoker;
+			this.valueConverter = valueConverter;
 		}
 
 		/// <summary>
-		/// Read value of the analog signal from the RTU
+		/// Read value of the analog signal from the RTU.
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU</param>
-		/// <param name="signalAddress">Address of the signal</param>
+		/// <param name="rtuId">Number specific to the RTU.</param>
+		/// <param name="signalAddress">Address of the signal.</param>
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			if(modbusCommandInvoker.TryReadAnalogSignalValue(rtuId, signalAddress, out int value))
-				callback.UpdateAnalogSignalValue(rtuId, signalAddress, value);
+			{
+				int realValue = valueConverter.ConvertToRealValue(rtuId, signalAddress, value);
+				callback.UpdateAnalogSignalValue(rtuId, signalAddress, realValue);
+			}
+
 			else
 				callback.ChangeConnectionStatusToFalse(rtuId);
 			
 		}
 
 		/// <summary>
-		/// Read value of the discrete signal from the RTU
+		/// Read value of the discrete signal from the RTU.
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU</param>
-		/// <param name="signalAddress">Address of the signal</param>
+		/// <param name="rtuId">Number specific to the RTU.</param>
+		/// <param name="signalAddress">Address of the signal.</param>
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
@@ -47,14 +53,15 @@ namespace ModbusServiceLibrary
 		}
 
 		/// <summary>
-		/// Write new analog value
+		/// Write new analog value.
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU</param>
-		/// <param name="signalAddress">Address of the signal</param>
-		/// <param name="newValue">New value of the analog signal</param>
+		/// <param name="rtuId">Number specific to the RTU.</param>
+		/// <param name="signalAddress">Address of the signal.</param>
+		/// <param name="newValue">New value of the analog signal.</param>
 		public void WriteAnalogSignal(int rtuId, int signalAddress, int newValue)
 		{
-			if(!modbusCommandInvoker.TryWriteAnalogSignalValue(rtuId, signalAddress, newValue))
+			int convertedValue = valueConverter.ConvertToSensorValue(rtuId, signalAddress, newValue);
+			if(!modbusCommandInvoker.TryWriteAnalogSignalValue(rtuId, signalAddress, convertedValue))
 			{
 				IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 				callback.ChangeConnectionStatusToFalse(rtuId);
@@ -62,11 +69,11 @@ namespace ModbusServiceLibrary
 		}
 
 		/// <summary>
-		/// Write new discrete value
+		/// Write new discrete value.
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU</param>
-		/// <param name="signalAddress">Address of the signal</param>
-		/// <param name="newValue">New value of the discrete signal</param>
+		/// <param name="rtuId">Number specific to the RTU.</param>
+		/// <param name="signalAddress">Address of the signal.</param>
+		/// <param name="newValue">New value of the discrete signal.</param>
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue)
 		{
 			if(!modbusCommandInvoker.TryWriteDiscreteSignalValue(rtuId, signalAddress, newValue))
@@ -77,10 +84,10 @@ namespace ModbusServiceLibrary
 		}
 
 		/// <summary>
-		/// Make a connection with the RTU
+		/// Make a connection with the RTU.
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU</param>
-		/// <returns>True value if the connection is made</returns>
+		/// <param name="rtuId">Number specific to the RTU.</param>
+		/// <returns>True value if the connection is made.</returns>
 		public bool TryConnectToRtu(int rtuId)
 		{
 			return modbusSimulatorClient.TryConnectToRtu(rtuId);

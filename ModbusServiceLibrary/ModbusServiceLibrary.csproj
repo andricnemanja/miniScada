@@ -123,6 +123,8 @@
     <Compile Include="Model\SignalValues\DiscreteSignalValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModbusService.cs" />
+    <Compile Include="SignalConverter\IValueConverter.cs" />
+    <Compile Include="SignalConverter\ValueConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
