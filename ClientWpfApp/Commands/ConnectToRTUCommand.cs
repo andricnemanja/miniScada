@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.ServiceClients;
@@ -21,10 +22,13 @@ namespace ClientWpfApp.Commands
 			return true;
 		}
 
-		public void Execute(object parameter)
+		public async void Execute(object parameter)
 		{
-			RTU rtu = (RTU)parameter;
-			rtu.IsConnected = rtuConnection.TryConnectToRtu(rtu.RTUData.ID);
+			await Task.Run(() =>
+			{
+				RTU rtu = (RTU)parameter;
+				rtu.IsConnected = rtuConnection.TryConnectToRtu(rtu.RTUData.ID);
+			});
 		}
 	}
 }
