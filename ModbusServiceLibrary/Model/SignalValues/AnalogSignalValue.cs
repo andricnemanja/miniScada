@@ -26,5 +26,7 @@ namespace ModbusServiceLibrary.Model.SignalValues
 			AnalogSignal = new AnalogSignal(analogSignalStaticData);
 			Value = 0;
 		}
+
+		public AnalogSignalValue() {}
 	}
 }

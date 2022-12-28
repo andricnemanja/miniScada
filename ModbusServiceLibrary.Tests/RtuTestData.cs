@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ModbusServiceLibrary.Model;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.Model.Signals;
 using ModbusServiceLibrary.Model.SignalValues;
@@ -13,7 +14,7 @@ namespace ModbusServiceLibrary.Tests
 			{
 				new RTU()
 				{
-					Connection = null,
+					Connection = new RTUConnection(null),
 					RTUData = new RTUData
 					{
 						ID = 1,
@@ -48,19 +49,19 @@ namespace ModbusServiceLibrary.Tests
 						},
 						new DiscreteSignalValue()
 						{
-							DiscreteSignal = new DiscreteSignal(2, 2, "DiscreteSignal 1"),
+							DiscreteSignal = new DiscreteSignal(2, 1, "DiscreteSignal 1"),
 							Value = true
 						},
 						new DiscreteSignalValue()
 						{
-							DiscreteSignal = new DiscreteSignal(3, 5, "DiscreteSignal 1"),
+							DiscreteSignal = new DiscreteSignal(3, 2, "DiscreteSignal 1"),
 							Value = false
 						}
 					}
 				},
 				new RTU()
 				{
-					Connection = null,
+					Connection = new RTUConnection(null),
 					RTUData = new RTUData
 					{
 						ID = 2,
@@ -95,19 +96,19 @@ namespace ModbusServiceLibrary.Tests
 						},
 						new DiscreteSignalValue()
 						{
-							DiscreteSignal = new DiscreteSignal(2, 2, "DiscreteSignal 1"),
+							DiscreteSignal = new DiscreteSignal(2, 1, "DiscreteSignal 1"),
 							Value = true
 						},
 						new DiscreteSignalValue()
 						{
-							DiscreteSignal = new DiscreteSignal(3, 5, "DiscreteSignal 1"),
+							DiscreteSignal = new DiscreteSignal(3, 2, "DiscreteSignal 1"),
 							Value = false
 						}
 					}
 				},
 				new RTU()
 				{
-					Connection = null,
+					Connection = new RTUConnection(null),
 					RTUData = new RTUData
 					{
 						ID = 3,
@@ -142,12 +143,12 @@ namespace ModbusServiceLibrary.Tests
 						},
 						new DiscreteSignalValue()
 						{
-							DiscreteSignal = new DiscreteSignal(2, 2, "DiscreteSignal 1"),
+							DiscreteSignal = new DiscreteSignal(2, 1, "DiscreteSignal 1"),
 							Value = true
 						},
 						new DiscreteSignalValue()
 						{
-							DiscreteSignal = new DiscreteSignal(3, 5, "DiscreteSignal 1"),
+							DiscreteSignal = new DiscreteSignal(3, 2, "DiscreteSignal 1"),
 							Value = false
 						}
 					}

@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using ModbusServiceLibrary.ModbusCommands;
+﻿using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.ModbusCommunication;
-using ModbusServiceLibrary.Model.RTU;
 using Moq;
 using Xunit;
 
@@ -9,23 +7,40 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 {
 	public class ReadDiscreteSignalValueCommandTests
 	{
-		[Theory]
-		[InlineData(true, 0)]
-		[InlineData(false, 2)]
-		[InlineData(true, 5)]
-		public void ReadValue_SignalExist(bool readValue, int signalAddress)
+		[Fact]
+		public void ReadValue_SimulatorAvailable()
 		{
-			RTU rtu = RtuTestData.GetRtuTestList()[0];
-			bool expectedOldValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault().Value;
-			var modbusConnectionMock = new Mock<IModbusSimulatorClient>();
-			modbusConnectionMock.Setup(x => x.ReadCoil(1, signalAddress)).Returns(readValue);
-			modbusConnectionMock.Setup(x => x.FindRtu(1)).Returns(rtu);
-			ReadDiscreteSignalValueCommand readDiscreteSignalValueCommandTests =
-				new ReadDiscreteSignalValueCommand(modbusConnectionMock.Object, 1, signalAddress);
+			//Arrange
+			bool value = false;
+			var modbusSimulatorClientMock = new Mock<IModbusSimulatorClient>();
+			modbusSimulatorClientMock.Setup(x => x.TryReadDiscreteInput(1, 1, out value)).Returns(true);
+			ReadDiscreteSignalValueCommand readDiscreteSignalValueCommand =
+				new ReadDiscreteSignalValueCommand(modbusSimulatorClientMock.Object, 1, 1);
 
-			readDiscreteSignalValueCommandTests.Execute();
+			//Act
+			bool returnValue = readDiscreteSignalValueCommand.Execute();
 
+			//Assert
+			modbusSimulatorClientMock.Verify(n => n.TryReadDiscreteInput(1, 1, out value));
+			Assert.True(returnValue);
+		}
 
+		[Fact]
+		public void ReadValue_SimulatorNotAvailable()
+		{
+			//Arrange
+			bool value = false;
+			var modbusSimulatorClientMock = new Mock<IModbusSimulatorClient>();
+			modbusSimulatorClientMock.Setup(x => x.TryReadDiscreteInput(1, 1, out value)).Returns(false);
+			ReadDiscreteSignalValueCommand readDiscreteSignalValueCommand =
+				new ReadDiscreteSignalValueCommand(modbusSimulatorClientMock.Object, 1, 1);
+
+			//Act
+			bool returnValue = readDiscreteSignalValueCommand.Execute();
+
+			//Assert
+			modbusSimulatorClientMock.Verify(n => n.TryReadDiscreteInput(1, 1, out value));
+			Assert.False(returnValue);
 		}
 
 

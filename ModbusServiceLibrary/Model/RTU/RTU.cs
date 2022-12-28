@@ -45,8 +45,9 @@ namespace ModbusServiceLibrary.Model.RTU
 			}
 
 			Connection = new RTUConnection(null, false);
-
 		}
-
+		public RTU()
+		{
+		}
 	}
 }

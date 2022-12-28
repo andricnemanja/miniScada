@@ -33,5 +33,7 @@
 			IpAddress = rtuData.IpAddress;
 			Port = rtuData.Port;
 		}
+
+		public RTUData() {}
 	}
 }

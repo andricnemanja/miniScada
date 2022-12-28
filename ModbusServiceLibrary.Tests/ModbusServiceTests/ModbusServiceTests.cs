@@ -19,7 +19,6 @@ namespace ModbusServiceLibrary.Tests.ModbusServiceTests
 
 			modbusService.ReadAnalogSignal(rtuId, signalAddress);
 
-			modbusCommandInvokerMock.Verify(n => n.ReadAnalogSignalValue(rtuId, signalAddress));
 		}
 	}
 }

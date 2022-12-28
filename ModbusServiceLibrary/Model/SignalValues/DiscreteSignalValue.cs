@@ -26,5 +26,7 @@ namespace ModbusServiceLibrary.Model.SignalValues
 			DiscreteSignal = new DiscreteSignal(discreteSignalStaticData);
 			Value = false;
 		}
+
+		public DiscreteSignalValue() {}
 	}
 }

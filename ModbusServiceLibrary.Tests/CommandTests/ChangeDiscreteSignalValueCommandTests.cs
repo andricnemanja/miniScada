@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using ModbusServiceLibrary.ModbusCommands;
+﻿using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.ModbusCommunication;
-using ModbusServiceLibrary.Model.RTU;
 using Moq;
 using Xunit;
 
@@ -9,22 +7,38 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 {
 	public class ChangeDiscreteSignalValueCommandTests
 	{
-		[Theory]
-		[InlineData(true, 0)]
-		[InlineData(false, 2)]
-		[InlineData(true, 5)]
-		public void WriteValues_SignalExist(bool newValue, int signalAddress)
+		[Fact]
+		public void WriteValue_SimulatorAvailable()
 		{
-			RTU rtu = RtuTestData.GetRtuTestList()[0];
-			bool expectedOldValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault().Value;
-			var modbusConnectionMock = new Mock<IModbusSimulatorClient>();
-			modbusConnectionMock.Setup(x => x.WriteDiscreteSignalValue(1, 1, newValue)).Returns(newValue);
-			modbusConnectionMock.Setup(x => x.FindRtu(1)).Returns(rtu);
-			ChangeDiscreteSignalValueCommand changeAnalogSignalValueCommand =
-				new ChangeDiscreteSignalValueCommand(modbusConnectionMock.Object, newValue, 1, signalAddress);
+			//Arrange
+			var modbusSimulatorClientMock = new Mock<IModbusSimulatorClient>();
+			modbusSimulatorClientMock.Setup(x => x.TryWriteAnalogSignalValue(1, 1, 10)).Returns(true);
+			ChangeAnalogSignalValueCommand changeAnalogSignalValueCommand =
+				new ChangeAnalogSignalValueCommand(modbusSimulatorClientMock.Object, 10, 1, 1);
 
-			changeAnalogSignalValueCommand.Execute();
+			//Act
+			bool returnValue = changeAnalogSignalValueCommand.Execute();
 
+			//Assert
+			modbusSimulatorClientMock.Verify(n => n.TryWriteAnalogSignalValue(1, 1, 10));
+			Assert.True(returnValue);
+		}
+
+		[Fact]
+		public void WriteValue_SimulatorNotAvailable()
+		{
+			//Arrange
+			var modbusSimulatorClientMock = new Mock<IModbusSimulatorClient>();
+			modbusSimulatorClientMock.Setup(x => x.TryWriteAnalogSignalValue(1, 1, 10)).Returns(false);
+			ChangeAnalogSignalValueCommand changeAnalogSignalValueCommand =
+				new ChangeAnalogSignalValueCommand(modbusSimulatorClientMock.Object, 10, 1, 1);
+
+			//Act
+			bool returnValue = changeAnalogSignalValueCommand.Execute();
+
+			//Assert
+			modbusSimulatorClientMock.Verify(n => n.TryWriteAnalogSignalValue(1, 1, 10));
+			Assert.False(returnValue);
 		}
 
 

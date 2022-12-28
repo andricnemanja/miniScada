@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using ModbusServiceLibrary.ModbusCommands;
+﻿using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.ModbusCommunication;
-using ModbusServiceLibrary.Model.RTU;
 using Moq;
 using Xunit;
 
@@ -9,23 +7,40 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 {
 	public class ReadAnalogSignalValueCommandTests
 	{
-		[Theory]
-		[InlineData(0, 1)]
-		[InlineData(10, 5)]
-		[InlineData(150, 7)]
-		public void ReadValue_SignalExist(int readValue, int signalAddress)
+		[Fact]
+		public void ReadValue_SimulatorAvailable()
 		{
-			RTU rtu = RtuTestData.GetRtuTestList()[0];
-			int expectedOldValue = rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault().Value;
-			var modbusConnectionMock = new Mock<IModbusSimulatorClient>();
-			modbusConnectionMock.Setup(x => x.ReadRegister(1, signalAddress)).Returns(readValue);
-			modbusConnectionMock.Setup(x => x.FindRtu(1)).Returns(rtu);
+			//Arrange
+			int value = 0;
+			var modbusSimulatorClientMock = new Mock<IModbusSimulatorClient>();
+			modbusSimulatorClientMock.Setup(x => x.TryReadAnalogInput(1, 1, out value)).Returns(true);
 			ReadAnalogSignalValueCommand readAnalogSignalValueCommand =
-				new ReadAnalogSignalValueCommand(modbusConnectionMock.Object, 1, signalAddress);
+				new ReadAnalogSignalValueCommand(modbusSimulatorClientMock.Object, 1, 1);
 
-			readAnalogSignalValueCommand.Execute();
+			//Act
+			bool returnValue = readAnalogSignalValueCommand.Execute();
+
+			//Assert
+			modbusSimulatorClientMock.Verify(n => n.TryReadAnalogInput(1, 1, out value));
+			Assert.True(returnValue);
 		}
 
+		[Fact]
+		public void ReadValue_SimulatorNotAvailable()
+		{
+			//Arrange
+			int value = 0;
+			var modbusSimulatorClientMock = new Mock<IModbusSimulatorClient>();
+			modbusSimulatorClientMock.Setup(x => x.TryReadAnalogInput(1, 1, out value)).Returns(false);
+			ReadAnalogSignalValueCommand readAnalogSignalValueCommand =
+				new ReadAnalogSignalValueCommand(modbusSimulatorClientMock.Object, 1, 1);
 
+			//Act
+			bool returnValue = readAnalogSignalValueCommand.Execute();
+
+			//Assert
+			modbusSimulatorClientMock.Verify(n => n.TryReadAnalogInput(1, 1, out value));
+			Assert.False(returnValue);
+		}
 	}
 }
