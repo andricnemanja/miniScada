@@ -1,4 +1,4 @@
-﻿namespace ClientWpfApp.Model.SignalMapping
+﻿namespace ModbusServiceLibrary.Model.SignalMapping
 {
 	public class SignalMapping
 	{
