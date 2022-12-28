@@ -1,18 +1,12 @@
 ﻿using ModbusServiceLibrary.Model.SignalMapping;
 using ModbusServiceLibrary.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModbusServiceLibrary.SignalConverter
 {
 	/// <summary>
 	/// Class that contains methods that convert values from Real to Sensor values and the other way around.
 	/// </summary>
-	public class ValueConverter: IValueConverter
+	public class ValueConverter : IValueConverter
 	{
 		/// <summary>
 		/// Repository that contains all data required for converting.
@@ -41,7 +35,7 @@ namespace ModbusServiceLibrary.SignalConverter
 
 			float offsettedMaxValue = signalMap.MaxRealValue - signalMap.MinRealValue;
 			float resolution = offsettedMaxValue / (signalMap.MaxSensorValue - signalMap.MinSensorValue);
-			
+
 			return (int)(resolution * value + signalMap.MinRealValue);
 		}
 
@@ -59,8 +53,13 @@ namespace ModbusServiceLibrary.SignalConverter
 			float offsettedMaxValue = signalMap.MaxRealValue - signalMap.MinRealValue;
 			float offsettedValue = value - signalMap.MinRealValue;
 			float resolution = (signalMap.MaxSensorValue - signalMap.MinSensorValue) / offsettedMaxValue;
-			
+
 			return (int)(resolution * offsettedValue);
+		}
+
+		public string GetSignalUnit(int rtuId, int analogSignalAddress)
+		{
+			return SignalMappingRepository.GetSignalUnit(rtuId, analogSignalAddress);
 		}
 	}
 }

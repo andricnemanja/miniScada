@@ -21,6 +21,21 @@ namespace ClientWpfApp.Model.SignalValues
 			}
 		}
 
+		private string _unit = "";
+
+		public string Unit
+		{
+			get { return _unit; }
+			set 
+			{
+				if (value != _unit)
+				{
+					_unit = value;
+					RaisePropertyChanged(nameof(Unit));
+				}
+			}
+		}
+
 
 		public event PropertyChangedEventHandler PropertyChanged;
 

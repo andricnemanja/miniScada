@@ -30,7 +30,8 @@ namespace ModbusServiceLibrary
 			if(modbusCommandInvoker.TryReadAnalogSignalValue(rtuId, signalAddress, out int value))
 			{
 				int realValue = valueConverter.ConvertToRealValue(rtuId, signalAddress, value);
-				callback.UpdateAnalogSignalValue(rtuId, signalAddress, realValue);
+				string unit = valueConverter.GetSignalUnit(rtuId, signalAddress);
+				callback.UpdateAnalogSignalValue(rtuId, signalAddress, realValue,  unit);
 			}
 
 			else

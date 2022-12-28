@@ -70,9 +70,12 @@
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
                                                 <TextBlock VerticalAlignment="Center" Text=": " />
                                                 <TextBox VerticalAlignment="Center" Text="{Binding Value}" />
-                                                <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="Sačuvaj"
+                                                <TextBlock VerticalAlignment="Center" Text="{Binding Unit}" Margin="3,0,0,0"/>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                                    <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="Sačuvaj" HorizontalAlignment="Center"
                                                         Command="{Binding Path=DataContext.SavaAnalogSignalCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
-                                                        CommandParameter="{Binding}" /> 
+                                                        CommandParameter="{Binding}" />
+                                                </StackPanel>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>

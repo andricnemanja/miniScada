@@ -50,7 +50,7 @@ namespace ClientWpfApp.ModbusServiceReference {
     public interface IModbusDuplexCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/UpdateAnalogSignalValue")]
-        void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue);
+        void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue, string unit);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/UpdateDiscreteSignalValue")]
         void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue);

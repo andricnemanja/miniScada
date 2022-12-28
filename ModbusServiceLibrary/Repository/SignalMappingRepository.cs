@@ -29,7 +29,7 @@ namespace ModbusServiceLibrary.Repository
 		{
 			signalMappingSerializer.Serialize(SignalMappings);
 		}
-		
+
 		/// <summary>
 		/// Deserializes data.
 		/// </summary>
@@ -47,6 +47,11 @@ namespace ModbusServiceLibrary.Repository
 		public SignalMapping GetSignalMappingForSignal(int rtuId, int signalAddress)
 		{
 			return SignalMappings.FirstOrDefault(s => s.RtuId == rtuId && s.AnalogSignalAddress == signalAddress);
+		}
+
+		public string GetSignalUnit(int rtuId, int signalAddress)
+		{
+			return GetSignalMappingForSignal(rtuId, signalAddress).Unit;
 		}
 	}
 }
