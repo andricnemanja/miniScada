@@ -2,7 +2,10 @@
 using ModbusServiceLibrary;
 using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.ModbusCommunication;
+using ModbusServiceLibrary.Model.SignalMapping;
+using ModbusServiceLibrary.Repository;
 using ModbusServiceLibrary.ServiceReader;
+using ModelWcfServiceLibrary.Serializer;
 
 namespace ModbusServiceHost
 {
@@ -24,6 +27,11 @@ namespace ModbusServiceHost
 			builder.RegisterType<ModbusSimulatorClient>().As<IModbusSimulatorClient>()
 				.OnActivated(c => c.Instance.InitializeData()).SingleInstance();
 			builder.RegisterType<ModbusCommandInvoker>().As<IModbusCommandInvoker>();
+
+			builder.RegisterType<JsonListSerializer<SignalMapping>>().As<IListSerializer<SignalMapping>>()
+				.WithParameter(new TypedParameter(typeof(string), @"\Resources\SignalMappings.json"));
+			builder.RegisterType<SignalMappingRepository>().As<ISignalMappingRepository>()
+				.OnActivated(c => c.Instance.Deserialize());
 
 			return builder;
 		}
