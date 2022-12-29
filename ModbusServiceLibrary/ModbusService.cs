@@ -12,6 +12,13 @@ namespace ModbusServiceLibrary
 		private readonly IModbusCommandInvoker modbusCommandInvoker;
 		private readonly IValueConverter valueConverter;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ModbusService"/>
+		/// </summary>
+		/// <param name="modbusSimulatorClient">Instance of the <see cref="IModbusSimulatorClient"/> class</param>
+		/// <param name="modbusCommandInvoker">Instance of the <see cref="IModbusCommandInvoker"/> class</param>
+		/// <param name="valueConverter">Instance of the <see cref="IValueConverter"/> class</param>
+
 		public ModbusService(IModbusSimulatorClient modbusSimulatorClient, IModbusCommandInvoker modbusCommandInvoker, IValueConverter valueConverter)
 		{
 			this.modbusSimulatorClient = modbusSimulatorClient;

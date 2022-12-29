@@ -57,6 +57,12 @@ namespace ModbusServiceLibrary.SignalConverter
 			return (int)(resolution * offsettedValue);
 		}
 
+		/// <summary>
+		/// Get measurement unit for signal.
+		/// </summary>
+		/// <param name="rtuId">ID of the RTU.</param>
+		/// <param name="analogSignalId">ID of the analog signal.</param>
+		/// <returns>Signal measurement unit.</returns>
 		public string GetSignalUnit(int rtuId, int analogSignalAddress)
 		{
 			return SignalMappingRepository.GetSignalUnit(rtuId, analogSignalAddress);

@@ -12,6 +12,10 @@ namespace ModbusServiceLibrary.Repository
 	{
 		private IListSerializer<SignalMapping> signalMappingSerializer;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SignalMappingRepository"/>
+		/// </summary>
+		/// <param name="signalMappingSerializer">Instance of the <see cref="IListSerializer"/> class</param>
 		public SignalMappingRepository(IListSerializer<SignalMapping> signalMappingSerializer)
 		{
 			this.signalMappingSerializer = signalMappingSerializer;
@@ -23,7 +27,7 @@ namespace ModbusServiceLibrary.Repository
 		public List<SignalMapping> SignalMappings { get; set; }
 
 		/// <summary>
-		/// Serializes data from the JSON file.
+		/// Serializes data to the JSON file.
 		/// </summary>
 		public void Serialize()
 		{
@@ -31,7 +35,7 @@ namespace ModbusServiceLibrary.Repository
 		}
 
 		/// <summary>
-		/// Deserializes data.
+		/// Deserializes data from JSON file.
 		/// </summary>
 		public void Deserialize()
 		{
