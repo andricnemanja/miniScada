@@ -90,16 +90,22 @@
     <Compile Include="IModelService.cs" />
     <Compile Include="ModelServiceException.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
+    <Compile Include="Model\SignalMapping\AnalogSignalMapping.cs" />
+    <Compile Include="Model\SignalMapping\DiscreteSignalMapping.cs" />
     <Compile Include="Model\Signals\AnalogSignal.cs" />
     <Compile Include="Model\Signals\DiscreteSignal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelService.cs" />
     <Compile Include="FileAccessing\IFileAccess.cs" />
+    <Compile Include="Repository\DiscreteSignalMappingRepository.cs" />
+    <Compile Include="Repository\IAnalogSignalMappingRepository.cs" />
+    <Compile Include="Repository\IDiscreteSignalMappingRepository.cs" />
     <Compile Include="Repository\IRtuRepository.cs" />
+    <Compile Include="Repository\AnalogSignalMappingRepository.cs" />
     <Compile Include="Repository\RtuRepository.cs" />
     <Compile Include="Model\RTU\RTUData.cs" />
-    <Compile Include="Serializer\IRtuSerializer.cs" />
-    <Compile Include="Serializer\JsonRtuSerializer.cs" />
+    <Compile Include="Serializer\IListSerializer.cs" />
+    <Compile Include="Serializer\JsonListSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

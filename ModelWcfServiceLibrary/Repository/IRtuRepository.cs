@@ -19,7 +19,7 @@ namespace ModelWcfServiceLibrary.Repository
         /// </summary>
         void Serialize();
         /// <summary>
-        /// Reads RTUs static data from a file and stores it in the <c>RtuList</c>
+        /// Reads RTUs static data from a file and stores it in the <c>DiscreteSignalMappingList</c>
         /// </summary>
         void Deserialize();
         /// <summary>

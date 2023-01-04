@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using ModelWcfServiceLibrary;
 using ModelWcfServiceLibrary.FileAccessing;
+using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.SignalMapping;
 using ModelWcfServiceLibrary.Repository;
 using ModelWcfServiceLibrary.Serializer;
 
@@ -19,10 +21,21 @@ namespace ModelServiceHost
 			ContainerBuilder builder = new ContainerBuilder();
 
 			builder.RegisterType<FileAccess>().As<IFileAccess>();
-			builder.RegisterType<JsonRtuSerializer>().As<IRtuSerializer>()
+
+			builder.RegisterType<JsonListSerializer<RTU>>().As<IListSerializer<RTU>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\RTUs.json"));
+			builder.RegisterType<JsonListSerializer<AnalogSignalMapping>>().As<IListSerializer<AnalogSignalMapping>>()
+				.WithParameter(new TypedParameter(typeof(string), @"\Resources\AnalogSignalMappings.json"));
+			builder.RegisterType<JsonListSerializer<DiscreteSignalMapping>>().As<IListSerializer<DiscreteSignalMapping>>()
+				.WithParameter(new TypedParameter(typeof(string), @"\Resources\DiscreteSignalMappings.json"));
+
+			builder.RegisterType<AnalogSignalMappingRepository>().As<IAnalogSignalMappingRepository>()
+				.OnActivated(c => c.Instance.Deserialize());
+			builder.RegisterType<DiscreteSignalMappingRepository>().As<IDiscreteSignalMappingRepository>()
+				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<RtuRepository>().As<IRtuRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
+
 			builder.RegisterType<ModelService>().As<IModelService>();
 
 			return builder;

@@ -37,7 +37,7 @@ namespace ModelWcfServiceLibrary.Tests
 		{
 			var fileAccessMock = new Mock<IFileAccess>();
 			fileAccessMock.Setup(x => x.ReadFile(It.IsAny<string>())).Returns(GetTestJsonString());
-			JsonRtuSerializer jsonRtuSerializer = new JsonRtuSerializer(fileAccessMock.Object, It.IsAny<string>());
+			JsonListSerializer jsonRtuSerializer = new JsonListSerializer(fileAccessMock.Object, It.IsAny<string>());
 			RtuRepository rtuRepository = new RtuRepository(jsonRtuSerializer);
 			rtuRepository.Deserialize();
 

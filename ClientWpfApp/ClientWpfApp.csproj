@@ -147,7 +147,13 @@
     <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.AnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.AnalogSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.DiscreteSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.DiscreteSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.RTU.datasource">
@@ -157,6 +163,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.SignalMapping.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Signals.xsd">

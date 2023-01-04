@@ -337,6 +337,231 @@ namespace ClientWpfApp.ModelServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class ModelServiceException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ClientWpfApp.ModelServiceReference.FaultCodes FaultCodeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ClientWpfApp.ModelServiceReference.FaultCodes FaultCode {
+            get {
+                return this.FaultCodeField;
+            }
+            set {
+                if ((this.FaultCodeField.Equals(value) != true)) {
+                    this.FaultCodeField = value;
+                    this.RaisePropertyChanged("FaultCode");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FaultCodes", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    public enum FaultCodes : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        IdDoesNotExist = 0,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AnalogSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+        "g")]
+    [System.SerializableAttribute()]
+    public partial class AnalogSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int KField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int K {
+            get {
+                return this.KField;
+            }
+            set {
+                if ((this.KField.Equals(value) != true)) {
+                    this.KField = value;
+                    this.RaisePropertyChanged("K");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int N {
+            get {
+                return this.NField;
+            }
+            set {
+                if ((this.NField.Equals(value) != true)) {
+                    this.NField = value;
+                    this.RaisePropertyChanged("N");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+        "g")]
+    [System.SerializableAttribute()]
+    public partial class DiscreteSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool InvertedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Inverted {
+            get {
+                return this.InvertedField;
+            }
+            set {
+                if ((this.InvertedField.Equals(value) != true)) {
+                    this.InvertedField = value;
+                    this.RaisePropertyChanged("Inverted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
     public interface IModelService {
@@ -348,6 +573,7 @@ namespace ClientWpfApp.ModelServiceReference {
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.RTU>> GetAllRTUsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ClientWpfApp.ModelServiceReference.ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
         ClientWpfApp.ModelServiceReference.RTU GetRTU(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
@@ -370,6 +596,18 @@ namespace ClientWpfApp.ModelServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.RTUData>> GetRTUsEssentialDataAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
+        System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.AnalogSignalMapping> GetAnalogSignalMappings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.AnalogSignalMapping>> GetAnalogSignalMappingsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
+        System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.DiscreteSignalMapping> GetDiscreteSignalMappings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.DiscreteSignalMapping>> GetDiscreteSignalMappingsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -437,6 +675,22 @@ namespace ClientWpfApp.ModelServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.RTUData>> GetRTUsEssentialDataAsync() {
             return base.Channel.GetRTUsEssentialDataAsync();
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.AnalogSignalMapping> GetAnalogSignalMappings() {
+            return base.Channel.GetAnalogSignalMappings();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.AnalogSignalMapping>> GetAnalogSignalMappingsAsync() {
+            return base.Channel.GetAnalogSignalMappingsAsync();
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.DiscreteSignalMapping> GetDiscreteSignalMappings() {
+            return base.Channel.GetDiscreteSignalMappings();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.DiscreteSignalMapping>> GetDiscreteSignalMappingsAsync() {
+            return base.Channel.GetDiscreteSignalMappingsAsync();
         }
     }
 }

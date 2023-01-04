@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.SignalMapping;
 using ModelWcfServiceLibrary.Model.Signals;
 
 namespace ModelWcfServiceLibrary
@@ -45,7 +46,19 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of essential data for all RTUs</returns>
 		[OperationContract]
 		IEnumerable<RTUData> GetRTUsEssentialData();
+		/// <summary>
+		/// Get all analog signal mappings
+		/// </summary>
+		/// <returns>List of analog signal mappings</returns>
+		[OperationContract]
+		IEnumerable<AnalogSignalMapping> GetAnalogSignalMappings();
 
+		/// <summary>
+		/// Get all discrete signal mappings
+		/// </summary>
+		/// <returns>List of discrete signal mappings</returns>
+		[OperationContract]
+		IEnumerable<DiscreteSignalMapping> GetDiscreteSignalMappings();
 
 	}
 }

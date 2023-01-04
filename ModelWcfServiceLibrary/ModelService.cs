@@ -2,6 +2,7 @@
 using System.Linq;
 using System.ServiceModel;
 using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.SignalMapping;
 using ModelWcfServiceLibrary.Model.Signals;
 using ModelWcfServiceLibrary.Repository;
 
@@ -13,14 +14,20 @@ namespace ModelWcfServiceLibrary
 	public sealed class ModelService : IModelService
 	{
 		private readonly IRtuRepository rtuRepository;
+		private readonly IDiscreteSignalMappingRepository discreteSignalMappingRepository;
+		private readonly IAnalogSignalMappingRepository analogSignalMappingRepository;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModelService"/>
 		/// </summary>
 		/// <param name="rtuRepository">Instance of the <see cref="IRtuRepository"/> class</param>
-		public ModelService(IRtuRepository rtuRepository)
+		/// <param name="analogSignalMappingRepository"></param>
+		/// <param name="discreteSignalMappingRepository"></param>
+		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, IDiscreteSignalMappingRepository discreteSignalMappingRepository)
 		{
 			this.rtuRepository = rtuRepository;
+			this.analogSignalMappingRepository = analogSignalMappingRepository;
+			this.discreteSignalMappingRepository = discreteSignalMappingRepository;
 		}
 
 		/// <summary>
@@ -72,6 +79,24 @@ namespace ModelWcfServiceLibrary
 		public IEnumerable<RTUData> GetRTUsEssentialData()
 		{
 			return rtuRepository.GetRTUsEssentialData();
+		}
+
+		/// <summary>
+		/// Get all analog signal mappings
+		/// </summary>
+		/// <returns>List of analog signal mappings</returns>
+		public IEnumerable<AnalogSignalMapping> GetAnalogSignalMappings()
+		{
+			return analogSignalMappingRepository.AnalogSignalMappingList;
+		}
+
+		/// <summary>
+		/// Get all discrete signal mappings
+		/// </summary>
+		/// <returns>List of discrete signal mappings</returns>
+		public IEnumerable<DiscreteSignalMapping> GetDiscreteSignalMappings()
+		{
+			return discreteSignalMappingRepository.DiscreteSignalMappingList;
 		}
 	}
 }

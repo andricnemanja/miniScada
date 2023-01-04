@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-using ModelWcfServiceLibrary.Serializer;
+﻿using System.Collections.Generic;
+using System.Linq;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.Signals;
+using ModelWcfServiceLibrary.Serializer;
 
 namespace ModelWcfServiceLibrary.Repository
 {
@@ -11,13 +11,13 @@ namespace ModelWcfServiceLibrary.Repository
     /// </summary>
     public sealed class RtuRepository : IRtuRepository
     {
-        private readonly IRtuSerializer rtuSerializer;
+        private readonly IListSerializer<RTU> rtuSerializer;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RtuRepository"/>
 		/// </summary>
-		/// <param name="rtuSerializer">Instance of the <see cref="IRtuSerializer"/> class</param>
-		public RtuRepository(IRtuSerializer rtuSerializer)
+		/// <param name="rtuSerializer">Instance of the <see cref="IListSerializer"/> class</param>
+		public RtuRepository(IListSerializer<RTU> rtuSerializer)
         {
             this.rtuSerializer = rtuSerializer;
             RtuList = new List<RTU>();
@@ -37,7 +37,7 @@ namespace ModelWcfServiceLibrary.Repository
         }
 
         /// <summary>
-        ///  Read RTUs data from a file in the <c>RtuList</c>.
+        ///  Read RTUs data from a file in the <c>DiscreteSignalMappingList</c>.
         /// </summary>
         public void Deserialize()
         {
