@@ -40,7 +40,19 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Ip adresa" Width ="*" Binding="{Binding RTUData.IpAddress}" IsReadOnly="True"/>
+
+                    <DataGridTemplateColumn Header="Adresa" Width ="*"  IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding RTUData.IpAddress}" />
+                                    <TextBlock Text=":" />
+                                    <TextBlock Text="{Binding RTUData.Port}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
 
                     <DataGridTemplateColumn Header="Diskretni signali" Width ="*" >
                         <DataGridTemplateColumn.CellTemplate>
@@ -70,7 +82,6 @@
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
                                                 <TextBlock VerticalAlignment="Center" Text=": " />
                                                 <TextBox VerticalAlignment="Center" Text="{Binding Value}" />
-                                                <TextBlock VerticalAlignment="Center" Text="{Binding Unit}" Margin="3,0,0,0"/>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                                                     <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="Sačuvaj" HorizontalAlignment="Center"
                                                         Command="{Binding Path=DataContext.SavaAnalogSignalCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
