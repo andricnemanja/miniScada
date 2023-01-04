@@ -28,10 +28,10 @@ namespace ClientWpfApp.ModbusServiceReference {
         System.Threading.Tasks.Task ReadDiscreteSignalAsync(int rtuId, int signalAddress);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal")]
-        void WriteAnalogSignal(int rtuId, int signalAddress, int newValue);
+        void WriteAnalogSignal(int rtuId, int signalAddress, double newValue);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal")]
-        System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, int newValue);
+        System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, double newValue);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal")]
         void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue);
@@ -50,7 +50,7 @@ namespace ClientWpfApp.ModbusServiceReference {
     public interface IModbusDuplexCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/UpdateAnalogSignalValue")]
-        void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue, string unit);
+        void UpdateAnalogSignalValue(int rtuId, int signalAddress, double signalValue);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/UpdateDiscreteSignalValue")]
         void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue);
@@ -103,11 +103,11 @@ namespace ClientWpfApp.ModbusServiceReference {
             return base.Channel.ReadDiscreteSignalAsync(rtuId, signalAddress);
         }
         
-        public void WriteAnalogSignal(int rtuId, int signalAddress, int newValue) {
+        public void WriteAnalogSignal(int rtuId, int signalAddress, double newValue) {
             base.Channel.WriteAnalogSignal(rtuId, signalAddress, newValue);
         }
         
-        public System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, int newValue) {
+        public System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, double newValue) {
             return base.Channel.WriteAnalogSignalAsync(rtuId, signalAddress, newValue);
         }
         

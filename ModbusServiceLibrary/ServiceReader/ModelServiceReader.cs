@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ModbusServiceLibrary.Model.RTU;
+using ModbusServiceLibrary.Model.SignalMapping;
 
 namespace ModbusServiceLibrary.ServiceReader
 {
@@ -32,6 +33,49 @@ namespace ModbusServiceLibrary.ServiceReader
 			}
 
 			return rtus;
+		}
+
+		/// <summary>
+		/// Reads all analog signal mappings from model service
+		/// </summary>
+		/// <returns>List of analog signal mappings</returns>
+		public List<AnalogSignalMapping> ReadAnalogSignalMappings() 
+		{
+			List<AnalogSignalMapping> analogSignalMappings = new List<AnalogSignalMapping>();
+
+			foreach (var mapping in modelService.GetAnalogSignalMappings())
+			{
+				AnalogSignalMapping newMapping= new AnalogSignalMapping()
+				{
+					Id = mapping.Id,
+					Name = mapping.Name,
+					K = mapping.K,
+					N = mapping.N
+				};
+				analogSignalMappings.Add(newMapping);
+			}
+			return analogSignalMappings;
+		}
+
+		/// <summary>
+		/// Reads all discrete signal mappings from model service
+		/// </summary>
+		/// <returns>List of discrete signal mappings</returns>
+		public List<DiscreteSignalMapping> ReadDiscreteSignalMappings()
+		{
+			List<DiscreteSignalMapping> discreteSignalMappings = new List<DiscreteSignalMapping>();
+
+			foreach (var mapping in modelService.GetDiscreteSignalMappings())
+			{
+				DiscreteSignalMapping newMapping = new DiscreteSignalMapping()
+				{
+					Id = mapping.Id,
+					Name = mapping.Name,
+					Inverted = mapping.Inverted,
+				};
+				discreteSignalMappings.Add(newMapping);
+			}
+			return discreteSignalMappings;
 		}
 	}
 }

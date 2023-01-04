@@ -1,4 +1,4 @@
-﻿namespace ModelWcfServiceLibrary.Model.SignalMapping
+﻿namespace ModbusServiceLibrary.Model.SignalMapping
 {
 	/// <summary>
 	/// Class <see cref="AnalogSignalMapping"/> contains data required to represent signal physicly.

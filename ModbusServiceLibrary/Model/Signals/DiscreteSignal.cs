@@ -17,16 +17,20 @@
 		/// Name of the discrete signal
 		/// </summary>
 		public string Name { get; set; }
+		/// <summary>
+		/// Discrete signal mapping ID
+		/// </summary>
+		public int MappingId { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DiscreteSignal"/> class.
 		/// </summary>
-		/// <param name="iD">Number unique to the RTU.</param>
+		/// <param name="id">Number unique to the RTU.</param>
 		/// <param name="address">Address of the signal.</param>
 		/// <param name="name">Name of the signal.</param>
-		public DiscreteSignal(int iD, int address, string name)
+		public DiscreteSignal(int id, int address, string name)
 		{
-			ID = iD;
+			ID = id;
 			Address = address;
 			Name = name;
 		}
@@ -40,6 +44,7 @@
 			ID = discreteSignalStaticData.ID;
 			Address = discreteSignalStaticData.Address;
 			Name = discreteSignalStaticData.Name;
+			MappingId = discreteSignalStaticData.MappingId;
 		}
 	}
 }

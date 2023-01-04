@@ -3,6 +3,7 @@
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" />
   <xs:element name="GetAllRTUs">
     <xs:complexType>
       <xs:sequence />
@@ -66,6 +67,30 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" minOccurs="0" name="GetRTUsEssentialDataResult" nillable="true" type="q5:ArrayOfRTUData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnalogSignalMappings">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnalogSignalMappingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" minOccurs="0" name="GetAnalogSignalMappingsResult" nillable="true" type="q6:ArrayOfAnalogSignalMapping" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscreteSignalMappings">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscreteSignalMappingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" minOccurs="0" name="GetDiscreteSignalMappingsResult" nillable="true" type="q7:ArrayOfDiscreteSignalMapping" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

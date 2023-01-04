@@ -36,14 +36,11 @@ namespace ModbusServiceLibrary
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			if(modbusCommandInvoker.TryReadAnalogSignalValue(rtuId, signalAddress, out int value))
 			{
-				int realValue = valueConverter.ConvertToRealValue(rtuId, signalAddress, value);
-				string unit = valueConverter.GetSignalUnit(rtuId, signalAddress);
-				callback.UpdateAnalogSignalValue(rtuId, signalAddress, realValue,  unit);
+				double realValue = valueConverter.ConvertAnalogSignalToRealValue(rtuId, signalAddress, value);
+				callback.UpdateAnalogSignalValue(rtuId, signalAddress, realValue);
 			}
-
 			else
 				callback.ChangeConnectionStatusToFalse(rtuId);
-			
 		}
 
 		/// <summary>
@@ -66,9 +63,9 @@ namespace ModbusServiceLibrary
 		/// <param name="rtuId">Number specific to the RTU.</param>
 		/// <param name="signalAddress">Address of the signal.</param>
 		/// <param name="newValue">New value of the analog signal.</param>
-		public void WriteAnalogSignal(int rtuId, int signalAddress, int newValue)
+		public void WriteAnalogSignal(int rtuId, int signalAddress, double newValue)
 		{
-			int convertedValue = valueConverter.ConvertToSensorValue(rtuId, signalAddress, newValue);
+			int convertedValue = valueConverter.ConvertRealValueToAnalogSignal(rtuId, signalAddress, newValue);
 			if(!modbusCommandInvoker.TryWriteAnalogSignalValue(rtuId, signalAddress, convertedValue))
 			{
 				IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();

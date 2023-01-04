@@ -22,6 +22,7 @@ namespace ModbusServiceHost.ModelServiceReference {
         System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.RTU[]> GetAllRTUsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ModbusServiceLibrary.ModelServiceReference.ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
         ModbusServiceLibrary.ModelServiceReference.RTU GetRTU(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
@@ -44,6 +45,18 @@ namespace ModbusServiceHost.ModelServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
         System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.RTUData[]> GetRTUsEssentialDataAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
+        ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping[] GetAnalogSignalMappings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
+        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping[]> GetAnalogSignalMappingsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
+        ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping[] GetDiscreteSignalMappings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
+        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,6 +124,22 @@ namespace ModbusServiceHost.ModelServiceReference {
         
         public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.RTUData[]> GetRTUsEssentialDataAsync() {
             return base.Channel.GetRTUsEssentialDataAsync();
+        }
+        
+        public ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping[] GetAnalogSignalMappings() {
+            return base.Channel.GetAnalogSignalMappings();
+        }
+        
+        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping[]> GetAnalogSignalMappingsAsync() {
+            return base.Channel.GetAnalogSignalMappingsAsync();
+        }
+        
+        public ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping[] GetDiscreteSignalMappings() {
+            return base.Channel.GetDiscreteSignalMappings();
+        }
+        
+        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync() {
+            return base.Channel.GetDiscreteSignalMappingsAsync();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ModbusServiceLibrary.Model.SignalValues
 		/// <summary>
 		/// Value of the analog signal
 		/// </summary>
-		public int Value { get; set; }
+		public double Value { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AnalogSignalValue"/> class.

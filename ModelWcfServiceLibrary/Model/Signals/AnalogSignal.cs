@@ -23,5 +23,10 @@ namespace ModelWcfServiceLibrary.Model.Signals
 		/// </summary>
 		[DataMember]
 		public string Name { get; set; }
-    }
+		/// <summary>
+		/// Analog signal mapping ID
+		/// </summary>
+		[DataMember]
+		public int MappingId { get; set; }
+	}
 }

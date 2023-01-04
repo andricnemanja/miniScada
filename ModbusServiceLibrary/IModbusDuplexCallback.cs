@@ -12,7 +12,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal we are updating</param>
 		/// <param name="signalValue">Updated value</param>
 		[OperationContract(IsOneWay = true)]
-		void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue, string unit);
+		void UpdateAnalogSignalValue(int rtuId, int signalAddress, double signalValue);
 
 		/// <summary>
 		/// Updates value of the discrete signal

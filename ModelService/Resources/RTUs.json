@@ -10,24 +10,28 @@
       {
         "ID": 1,
         "Address": 1,
-        "Name": "Napon 1"
+        "Name": "Napon 1",
+        "MappingId": 1
       },
       {
         "ID": 2,
         "Address": 2,
-        "Name": "Temperatura 1"
+        "Name": "Temperatura 1",
+        "MappingId": 2
       },
       {
         "ID": 3,
         "Address": 5,
-        "Name": "Napon 2"
+        "Name": "Napon 2",
+        "MappingId": 3
       }
     ],
     "DiscreteSignals": [
       {
         "ID": 1,
         "Address": 1,
-        "Name": "Discrete signal 1"
+        "Name": "Discrete signal 1",
+        "MappingId": 2
       }
     ]
   },
@@ -42,24 +46,28 @@
       {
         "ID": 1,
         "Address": 1,
-        "Name": "Napon 1"
+        "Name": "Napon 1",
+        "MappingId": 5
       },
       {
         "ID": 2,
         "Address": 4,
-        "Name": "Temperatura 1"
+        "Name": "Temperatura 1",
+        "MappingId": 5
       }
     ],
     "DiscreteSignals": [
       {
         "ID": 1,
         "Address": 2,
-        "Name": "Prekidac 1"
+        "Name": "Prekidac 1",
+        "MappingId": 2
       },
       {
         "ID": 2,
         "Address": 3,
-        "Name": "Prekidac 2"
+        "Name": "Prekidac 2",
+        "MappingId": 1
       }
     ]
   }

@@ -17,16 +17,20 @@
 		/// Name of the analog signal
 		/// </summary>
 		public string Name { get; set; }
-		
+		/// <summary>
+		/// Analog signal mapping ID
+		/// </summary>
+		public int MappingId { get; set; }
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AnalogSignal"/> class.
 		/// </summary>
-		/// <param name="iD">Number unique to the RTU.</param>
+		/// <param name="id">Number unique to the RTU.</param>
 		/// <param name="address">Address of the signal.</param>
 		/// <param name="name">Name of the signal.</param>
-		public AnalogSignal(int iD, int address, string name)
+		public AnalogSignal(int id, int address, string name)
 		{
-			ID = iD;
+			ID = id;
 			Address = address;
 			Name = name;
 		}
@@ -40,6 +44,7 @@
 			ID = analogSignalStaticData.ID;
 			Address = analogSignalStaticData.Address;
 			Name = analogSignalStaticData.Name;
+			MappingId = analogSignalStaticData.MappingId;
 		}
 	}
 }

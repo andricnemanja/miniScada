@@ -2,31 +2,31 @@
   {
     "Id": 1,
     "Name": "Analog signal mapping 1",
-    "K": -10,
-    "N": 5
+    "K": 0.008,
+    "N": -40
   },
   {
     "Id": 2,
     "Name": "Analog signal mapping 2",
-    "K": 1,
-    "N": 0
+    "K": 0.1,
+    "N": -300
   },
   {
     "Id": 3,
     "Name": "Analog signal mapping 3",
-    "K": 1,
-    "N": 0
+    "K": 0.02,
+    "N": -100
   },
   {
     "Id": 4,
     "Name": "Analog signal mapping 4",
-    "K": 1,
-    "N": 0
+    "K": 0.01,
+    "N": -100
   },
   {
     "Id": 5,
     "Name": "Analog signal mapping 5",
-    "K": 1,
-    "N": 0
+    "K": 0.008,
+    "N": -40
   }
 ]

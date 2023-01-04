@@ -106,11 +106,8 @@
     <Compile Include="ModbusCommands\ReadAnalogSignalValueCommand.cs" />
     <Compile Include="ModbusCommunication\IModbusSimulatorClient.cs" />
     <Compile Include="ModbusCommunication\ModbusSimulatorClient.cs" />
-    <Compile Include="Model\SignalMapping\SignalMapping.cs" />
-    <Compile Include="Repository\ISignalMappingRepository.cs" />
-    <Compile Include="Repository\SignalMappingRepository.cs" />
-    <Compile Include="Serializer\IListSerializer.cs" />
-    <Compile Include="Serializer\JsonListSerializer.cs" />
+    <Compile Include="Model\SignalMapping\DiscreteSignalMapping.cs" />
+    <Compile Include="Model\SignalMapping\AnalogSignalMapping.cs" />
     <Compile Include="ServiceReader\IModelServiceReader.cs" />
     <Compile Include="ModbusClient\NModbusClient.cs" />
     <Compile Include="ServiceReader\ModelServiceReader.cs" />
@@ -131,7 +128,13 @@
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.AnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.DiscreteSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.RTU.datasource">
@@ -141,6 +144,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.SignalMapping.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Signals.xsd">

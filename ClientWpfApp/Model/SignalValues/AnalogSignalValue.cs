@@ -6,9 +6,9 @@ namespace ClientWpfApp.Model.SignalValues
 	public class AnalogSignalValue : INotifyPropertyChanged
 	{
 		public AnalogSignal AnalogSignal { get; set; }
-		private int _value;
+		private double _value;
 
-		public int Value
+		public double Value
 		{
 			get { return _value; }
 			set
@@ -20,22 +20,6 @@ namespace ClientWpfApp.Model.SignalValues
 				}
 			}
 		}
-
-		private string _unit = "";
-
-		public string Unit
-		{
-			get { return _unit; }
-			set 
-			{
-				if (value != _unit)
-				{
-					_unit = value;
-					RaisePropertyChanged(nameof(Unit));
-				}
-			}
-		}
-
 
 		public event PropertyChangedEventHandler PropertyChanged;
 

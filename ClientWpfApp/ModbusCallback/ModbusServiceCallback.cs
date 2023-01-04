@@ -23,14 +23,13 @@ namespace ClientWpfApp.ModbusCallback
 			rtu.IsConnected = false;
 		}
 
-		public async void UpdateAnalogSignalValue(int rtuId, int signalAddress, int signalValue, string unit)
+		public async void UpdateAnalogSignalValue(int rtuId, int signalAddress, double signalValue)
 		{
 			await Task.Run(() =>
 			{
 				RTU rtu = FindRtu(rtuId);
 				AnalogSignalValue analogSignalValue = rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault();
 				analogSignalValue.Value = signalValue;
-				analogSignalValue.Unit = unit;
 			});
 		}
 

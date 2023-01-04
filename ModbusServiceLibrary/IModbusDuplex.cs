@@ -28,7 +28,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal</param>
 		/// <param name="newValue">New value of the analog signal</param>
 		[OperationContract(IsOneWay = true)]
-		void WriteAnalogSignal(int rtuId, int signalAddress, int newValue);
+		void WriteAnalogSignal(int rtuId, int signalAddress, double newValue);
 
 		/// <summary>
 		/// Write new discrete value

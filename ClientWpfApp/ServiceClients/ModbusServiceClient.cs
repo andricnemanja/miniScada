@@ -35,7 +35,7 @@ namespace ClientWpfApp.ServiceClients
 			});
 		}
 
-		public void WriteAnalogSignalValue(int rtuId, int signalAddress, int value)
+		public void WriteAnalogSignalValue(int rtuId, int signalAddress, double value)
 		{
 			modbusDuplexClient.WriteAnalogSignal(rtuId, signalAddress, value);
 		}

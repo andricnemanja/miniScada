@@ -9,6 +9,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RTUData" nillable="true" type="tns:RTUData" />
+  <xs:complexType name="ModelServiceException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FaultCode" type="tns:FaultCodes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ModelServiceException" nillable="true" type="tns:ModelServiceException" />
+  <xs:simpleType name="FaultCodes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IdDoesNotExist" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FaultCodes" nillable="true" type="tns:FaultCodes" />
   <xs:complexType name="ArrayOfRTUData">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="RTUData" nillable="true" type="tns:RTUData" />

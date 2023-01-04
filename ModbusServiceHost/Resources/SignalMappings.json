@@ -1,47 +1,27 @@
 [
   {
-    "RtuId": 1,
-    "AnalogSignalAddress": 1,
-    "MinSensorValue": 0,
-    "MaxSensorValue": 1000,
-    "MinRealValue": -100,
-    "MaxRealValue": 100,
-    "Unit": "V"
+    "Id": 1,
+    "K": -10,
+    "N": 5
   },
   {
-    "RtuId": 1,
-    "AnalogSignalAddress": 2,
-    "MinSensorValue": 0,
-    "MaxSensorValue": 10000,
-    "MinRealValue": -50,
-    "MaxRealValue": 150,
-    "Unit": "C"
+    "Id": 2,
+    "K": 1,
+    "N": 0
   },
   {
-    "RtuId": 1,
-    "AnalogSignalAddress": 5,
-    "MinSensorValue": 0,
-    "MaxSensorValue": 5000,
-    "MinRealValue": -300,
-    "MaxRealValue": 300,
-    "Unit": "V"
+    "Id": 3,
+    "K": 1,
+    "N": 0
   },
   {
-    "RtuId": 2,
-    "AnalogSignalAddress": 1,
-    "MinSensorValue": 0,
-    "MaxSensorValue": 10000,
-    "MinRealValue": -300,
-    "MaxRealValue": 300,
-    "Unit": "V"
+    "Id": 4,
+    "K": 1,
+    "N": 0
   },
   {
-    "RtuId": 2,
-    "AnalogSignalAddress": 4,
-    "MinSensorValue": 0,
-    "MaxSensorValue": 1000,
-    "MinRealValue": -100,
-    "MaxRealValue": 100,
-    "Unit": "C"
+    "Id": 5,
+    "K": 1,
+    "N": 0
   }
 ]

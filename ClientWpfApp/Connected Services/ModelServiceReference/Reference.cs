@@ -199,6 +199,9 @@ namespace ClientWpfApp.ModelServiceReference {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MappingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -233,6 +236,19 @@ namespace ClientWpfApp.ModelServiceReference {
                 if ((this.IDField.Equals(value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MappingId {
+            get {
+                return this.MappingIdField;
+            }
+            set {
+                if ((this.MappingIdField.Equals(value) != true)) {
+                    this.MappingIdField = value;
+                    this.RaisePropertyChanged("MappingId");
                 }
             }
         }
@@ -276,6 +292,9 @@ namespace ClientWpfApp.ModelServiceReference {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MappingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -310,6 +329,19 @@ namespace ClientWpfApp.ModelServiceReference {
                 if ((this.IDField.Equals(value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MappingId {
+            get {
+                return this.MappingIdField;
+            }
+            set {
+                if ((this.MappingIdField.Equals(value) != true)) {
+                    this.MappingIdField = value;
+                    this.RaisePropertyChanged("MappingId");
                 }
             }
         }
@@ -404,10 +436,10 @@ namespace ClientWpfApp.ModelServiceReference {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int KField;
+        private double KField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NField;
+        private double NField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -436,7 +468,7 @@ namespace ClientWpfApp.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int K {
+        public double K {
             get {
                 return this.KField;
             }
@@ -449,7 +481,7 @@ namespace ClientWpfApp.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int N {
+        public double N {
             get {
                 return this.NField;
             }
