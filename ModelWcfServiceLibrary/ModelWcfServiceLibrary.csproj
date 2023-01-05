@@ -92,6 +92,7 @@
     <Compile Include="Model\RTU\RTU.cs" />
     <Compile Include="Model\SignalMapping\AnalogSignalMapping.cs" />
     <Compile Include="Model\SignalMapping\DiscreteSignalMapping.cs" />
+    <Compile Include="Model\SignalMapping\DiscreteSignalType.cs" />
     <Compile Include="Model\Signals\AnalogSignal.cs" />
     <Compile Include="Model\Signals\DiscreteSignal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

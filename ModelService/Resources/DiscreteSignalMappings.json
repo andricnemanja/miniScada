@@ -2,11 +2,23 @@
   {
     "Id": 1,
     "Name": "Discrete signal mapping 1",
-    "Inverted": true
+    "DiscreteValueToState": 
+    {
+      "00": "Error",
+      "11": "Transit",
+      "01": "Open",
+      "10": "Close" 
+    }
   },
   {
     "Id": 2,
     "Name": "Discrete signal mapping 2",
-    "Inverted": false
+    "DiscreteValueToState": 
+    {
+      "00": "Error",
+      "11": "Transit",
+      "01": "On",
+      "10": "Off" 
+    }
   }
 ]

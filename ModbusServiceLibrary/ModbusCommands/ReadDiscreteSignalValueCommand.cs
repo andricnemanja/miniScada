@@ -39,7 +39,6 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// </summary>
 		public override bool Execute()
 		{
-
 			if(!modbusSimulatorClient.TryReadDiscreteInput(rtuId, signalAddress, out bool value))
 				return false;
 

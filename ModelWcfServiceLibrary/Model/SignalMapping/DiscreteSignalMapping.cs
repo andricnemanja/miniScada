@@ -1,4 +1,6 @@
-﻿namespace ModelWcfServiceLibrary.Model.SignalMapping
+﻿using System.Collections.Generic;
+
+namespace ModelWcfServiceLibrary.Model.SignalMapping
 {
 	/// <summary>
 	/// Class <see cref="DiscreteSignalMapping"/> contains data required to represent signal physicly.
@@ -16,7 +18,7 @@
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool Inverted { get; set; }
+		public Dictionary<string, string> DiscreteValueToState { get; set; }
 
 	}
 }

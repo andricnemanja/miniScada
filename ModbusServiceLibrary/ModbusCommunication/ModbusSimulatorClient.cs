@@ -65,10 +65,10 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		/// <param name="id">Number specific to the RTU</param>
 		/// <param name="signalAddress">Address of the register</param>
 		/// <returns>Returns the value of the register</returns>
-		public bool TryReadAnalogInput(int id, int signalAddress, out int value)
+		public bool TryReadAnalogInput(int rtuId, int signalAddress, out int value)
 		{
 			value = 0;
-			if (!TryFindRtu(id, out RTU rtu))
+			if (!TryFindRtu(rtuId, out RTU rtu))
 				return false;
 
 			if (!rtu.Connection.Client.TryReadSingleHoldingRegister(signalAddress, out value))
@@ -81,13 +81,13 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		/// <summary>
 		/// Read single discrete input from the simulator
 		/// </summary>
-		/// <param name="id">Number specific to the RTU</param>
+		/// <param name="rtuId">Number specific to the RTU</param>
 		/// <param name="signalAddress">Address of the discrete input</param>
 		/// <returns>Returns the value of the discrete input</returns>
-		public bool TryReadDiscreteInput(int id, int signalAddress, out bool value)
+		public bool TryReadDiscreteInput(int rtuId, int signalAddress, out bool value)
 		{
 			value = false;
-			if (!TryFindRtu(id, out RTU rtu))
+			if (!TryFindRtu(rtuId, out RTU rtu))
 				return false;
 
 			if (!rtu.Connection.Client.TryReadSingleCoil(signalAddress, out value))

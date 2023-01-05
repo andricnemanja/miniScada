@@ -29,8 +29,9 @@
     "DiscreteSignals": [
       {
         "ID": 1,
-        "Address": 1,
         "Name": "Discrete signal 1",
+        "Address": 1,
+        "DiscreteSignalType": "Two_Bit",
         "MappingId": 2
       }
     ]
@@ -59,14 +60,16 @@
     "DiscreteSignals": [
       {
         "ID": 1,
-        "Address": 2,
         "Name": "Prekidac 1",
+        "DiscreteSignalType": "One_Bit",
+        "Address": 2,
         "MappingId": 2
       },
       {
         "ID": 2,
-        "Address": 3,
         "Name": "Prekidac 2",
+        "DiscreteSignalType": "Two_Bit",
+        "Address": 3,
         "MappingId": 1
       }
     ]
