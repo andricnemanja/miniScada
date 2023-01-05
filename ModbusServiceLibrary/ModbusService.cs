@@ -52,7 +52,10 @@ namespace ModbusServiceLibrary
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			if(modbusCommandInvoker.TryReadDiscreteSignalValue(rtuId, signalAddress, out bool value))
-				callback.UpdateDiscreteSignalValue(rtuId, signalAddress, value);
+			{
+				bool convertedValue = valueConverter.ConvertDiscreteSignalToRealValue(rtuId, signalAddress, value);
+				callback.UpdateDiscreteSignalValue(rtuId, signalAddress, convertedValue);
+			}
 			else
 				callback.ChangeConnectionStatusToFalse(rtuId);
 		}
@@ -81,7 +84,8 @@ namespace ModbusServiceLibrary
 		/// <param name="newValue">New value of the discrete signal.</param>
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue)
 		{
-			if(!modbusCommandInvoker.TryWriteDiscreteSignalValue(rtuId, signalAddress, newValue))
+			bool convertedValue = valueConverter.ConvertRealValueToDiscreteSignal(rtuId, signalAddress, newValue);
+			if(!modbusCommandInvoker.TryWriteDiscreteSignalValue(rtuId, signalAddress, convertedValue))
 			{
 				IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 				callback.ChangeConnectionStatusToFalse(rtuId);

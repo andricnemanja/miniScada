@@ -65,6 +65,39 @@ namespace ModbusServiceLibrary.SignalConverter
 			return (int)Math.Round((value - analogSignalMapping.N) / analogSignalMapping.K);
 		}
 
+		/// <summary>
+		/// Convert sensor values to real values that have physical meaning.
+		/// </summary>
+		/// <param name="rtuId">ID of the RTU.</param>
+		/// <param name="discreteSignalAddress">Address of the discrete signal.</param>
+		/// <param name="value">Value that is being converted.</param>
+		/// <returns>Value with it's phyisical connotation.</returns>
+		public bool ConvertDiscreteSignalToRealValue(int rtuId, int discreteSignalAddress, bool value)
+		{
+			DiscreteSignalMapping discreteSignalMapping = FindDiscreteSignalMapping(rtuId, discreteSignalAddress);
+			return discreteSignalMapping.Inverted ? !value : value;
+		}
+
+		/// <summary>
+		/// Convert real values to sensor values.
+		/// </summary>
+		/// <param name="rtuId">ID of the RTU.</param>
+		/// <param name="discreteSignalAddress">Address of the discrete signal.</param>
+		/// <param name="value">Value that is being converted.</param>
+		/// <returns>Value represented in it's sensor form.</returns>
+		public bool ConvertRealValueToDiscreteSignal(int rtuId, int discreteSignalAddress, bool value)
+		{
+			DiscreteSignalMapping discreteSignalMapping = FindDiscreteSignalMapping(rtuId, discreteSignalAddress);
+			return discreteSignalMapping.Inverted ? !value : value;
+		}
+
+		private DiscreteSignalMapping FindDiscreteSignalMapping(int rtuId, int discreteSignalAddress)
+		{
+			RTU rtu = modbusSimulatorClient.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
+			DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.FirstOrDefault(s => s.DiscreteSignal.Address == discreteSignalAddress);
+			return discreteSignalMappingList.FirstOrDefault(m => m.Id == discreteSignalValue.DiscreteSignal.MappingId);
+		}
+
 		private AnalogSignalMapping FindAnalogSignalMapping(int rtuId, int analogSignalAddress)
 		{
 			RTU rtu = modbusSimulatorClient.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
