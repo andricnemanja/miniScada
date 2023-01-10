@@ -53,7 +53,7 @@ namespace ModbusServiceLibrary
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			if(modbusCommandInvoker.TryReadDiscreteSignalValue(rtuId, signalAddress, out bool value))
 			{
-				bool convertedValue = valueConverter.ConvertDiscreteSignalToRealValue(rtuId, signalAddress, value);
+				string convertedValue = valueConverter.ConvertDiscreteSignalToRealValue(rtuId, signalAddress, value);
 				callback.UpdateDiscreteSignalValue(rtuId, signalAddress, convertedValue);
 			}
 			else

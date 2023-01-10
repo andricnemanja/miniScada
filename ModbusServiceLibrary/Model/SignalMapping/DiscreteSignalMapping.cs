@@ -1,4 +1,6 @@
-﻿namespace ModbusServiceLibrary.Model.SignalMapping
+﻿using System.Collections.Generic;
+
+namespace ModbusServiceLibrary.Model.SignalMapping
 {
 	/// <summary>
 	/// Class <see cref="DiscreteSignalMapping"/> contains data required to represent signal physicly.
@@ -10,13 +12,13 @@
 		/// </summary>
 		public int Id { get; set; }
 		/// <summary>
-		/// Mapping name
+		/// Mapping name.
 		/// </summary>
 		public string Name { get; set; }
 		/// <summary>
-		/// 
+		/// Mapping for a 1-bit or 2-bit signal. 
 		/// </summary>
-		public bool Inverted { get; set; }
+		public Dictionary<string, string> DiscreteValueToState { get; set; }
 
 	}
 }

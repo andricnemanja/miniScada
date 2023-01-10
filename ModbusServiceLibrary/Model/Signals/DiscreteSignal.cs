@@ -1,4 +1,7 @@
-﻿namespace ModbusServiceLibrary.Model.Signals
+﻿using ModbusServiceLibrary.Model.SignalMapping;
+using System.Collections.Generic;
+
+namespace ModbusServiceLibrary.Model.Signals
 {
 	/// <summary>
 	/// Class <see cref="DiscreteSignal"/> models discrete signal from the RTU.
@@ -6,19 +9,23 @@
 	public class DiscreteSignal
 	{
 		/// <summary>
-		/// Unique identification number for digital signal
+		/// Unique identification number for digital signal.
 		/// </summary>
 		public int ID { get; set; }
 		/// <summary>
-		/// Digital signal address
+		/// Digital signal address.
 		/// </summary>
 		public int Address { get; set; }
 		/// <summary>
-		/// Name of the discrete signal
+		/// Name of the discrete signal.
 		/// </summary>
 		public string Name { get; set; }
 		/// <summary>
-		/// Discrete signal mapping ID
+		/// Signal type, one bit or two bit signal.
+		/// </summary>
+		public DiscreteSignalType SignalType { get; set; }
+		/// <summary>
+		/// Discrete signal mapping ID.
 		/// </summary>
 		public int MappingId { get; set; }
 
@@ -44,6 +51,7 @@
 			ID = discreteSignalStaticData.ID;
 			Address = discreteSignalStaticData.Address;
 			Name = discreteSignalStaticData.Name;
+			SignalType = (DiscreteSignalType)discreteSignalStaticData.SignalType;
 			MappingId = discreteSignalStaticData.MappingId;
 		}
 	}

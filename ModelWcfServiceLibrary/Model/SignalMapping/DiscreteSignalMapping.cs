@@ -12,11 +12,11 @@ namespace ModelWcfServiceLibrary.Model.SignalMapping
 		/// </summary>
 		public int Id { get; set; }
 		/// <summary>
-		/// Mapping name
+		/// Mapping name.
 		/// </summary>
 		public string Name { get; set; }
 		/// <summary>
-		/// 
+		/// Mapping for a 2-bit signal. 
 		/// </summary>
 		public Dictionary<string, string> DiscreteValueToState { get; set; }
 

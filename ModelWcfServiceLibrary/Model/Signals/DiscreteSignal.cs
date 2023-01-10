@@ -10,27 +10,27 @@ namespace ModelWcfServiceLibrary.Model.Signals
 	public class DiscreteSignal
 	{
 		/// <summary>
-		/// Unique identification number for digital signal
+		/// Unique identification number for digital signal.
 		/// </summary>
 		[DataMember]
 		public int ID { get; set; }
 		/// <summary>
-		/// Name of the discrete signal
+		/// Name of the discrete signal.
 		/// </summary>
 		[DataMember]
 		public string Name { get; set; }
 		/// <summary>
-		/// Digital signal address
+		/// Digital signal address.
 		/// </summary>
 		[DataMember]
 		public int Address { get; set; }
 		/// <summary>
-		/// Signal type, one bit or two bit signal
+		/// Signal type, one bit or two bit signal.
 		/// </summary>
 		[DataMember]
 		public DiscreteSignalType SignalType { get; set; }
 		/// <summary>
-		/// Discrete signal mapping ID
+		/// Discrete signal mapping ID.
 		/// </summary>
 		[DataMember]
 		public int MappingId { get; set; }

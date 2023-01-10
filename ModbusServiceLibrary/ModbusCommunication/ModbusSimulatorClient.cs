@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.Model.RTU;
+using ModbusServiceLibrary.Model.Signals;
 using ModbusServiceLibrary.Model.SignalValues;
 using ModbusServiceLibrary.ServiceReader;
 
@@ -84,26 +86,64 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		/// <param name="rtuId">Number specific to the RTU</param>
 		/// <param name="signalAddress">Address of the discrete input</param>
 		/// <returns>Returns the value of the discrete input</returns>
-		public bool TryReadDiscreteInput(int rtuId, int signalAddress, out bool value)
+		public bool TryReadDiscreteInput(int rtuId, int signalAddress, out bool[] value)
+		{
+			value = null;
+			if (!TryFindRtu(rtuId, out RTU rtu))
+				return false;
+
+			if (FindDiscreteSignal(rtu, signalAddress).DiscreteSignal.SignalType == DiscreteSignalType.One_Bit)
+			{
+				if (!rtu.Connection.Client.TryReadSingleCoil(signalAddress, out value[0]))
+					return false;
+
+				FindDiscreteSignal(rtu, signalAddress).Value[0] = value[0];
+				return true;
+			}
+			else if (FindDiscreteSignal(rtu, signalAddress).DiscreteSignal.SignalType == DiscreteSignalType.Two_Bit)
+			{
+				value = rtu.Connection.Client.ReadCoils(signalAddress, 2);
+				FindDiscreteSignal(rtu, signalAddress).Value = value;
+				return true;
+			}
+			else return false;
+
+		}
+
+
+		public bool TryReadSingleDiscreteInput(int rtuId, int signalAddress, out bool value)
 		{
 			value = false;
 			if (!TryFindRtu(rtuId, out RTU rtu))
 				return false;
-
 			if (!rtu.Connection.Client.TryReadSingleCoil(signalAddress, out value))
 				return false;
 
+			FindDiscreteSignal(rtu, signalAddress).Value[0] = value;
+			return true;
+		}
+
+		public bool TryReadMultipleDiscreteInput(int rtuId, int signalAddress, out bool[] value)
+		{
+			value = null;
+			if (!TryFindRtu(rtuId, out RTU rtu))
+				return false;
+			if (!rtu.Connection.Client.TryReadSingleCoil(signalAddress, out value[0]))
+				return false;
+			if (!rtu.Connection.Client.TryReadSingleCoil(signalAddress + 1, out value[1]))
+				return false;
+		
 			FindDiscreteSignal(rtu, signalAddress).Value = value;
 			return true;
 		}
 
 		/// <summary>
-		/// Write value of the single analog signal 
+		/// Write value of the single analog signal. 
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU</param>
-		/// <param name="signalAddress">Address of the register</param>
-		/// <param name="value">Updated value</param>
-		/// <returns>Updated value</returns>
+		/// <param name="rtuId">Number specific to the RTU.</param>
+		/// <param name="signalAddress">Address of the register.</param>
+		/// <param name="value">Updated value.</param>
+		/// <returns>Updated value.</returns>
 		public bool TryWriteAnalogSignalValue(int rtuId, int signalAddress, int value)
 		{
 			if (!TryFindRtu(rtuId, out RTU rtu))
@@ -131,7 +171,7 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			if (!rtu.Connection.Client.TryWriteSingleCoil(signalAddress, value))
 				return false;
 
-			FindDiscreteSignal(rtu, signalAddress).Value = value;
+			FindDiscreteSignal(rtu, signalAddress).Value[0] = value;
 			return true;
 		}
 

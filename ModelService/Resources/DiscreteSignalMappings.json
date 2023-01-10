@@ -13,12 +13,19 @@
   {
     "Id": 2,
     "Name": "Discrete signal mapping 2",
-    "DiscreteValueToState": 
-    {
+    "DiscreteValueToState": {
       "00": "Error",
       "11": "Transit",
       "01": "On",
-      "10": "Off" 
+      "10": "Off"
+    }
+  },
+  {
+    "Id": 3,
+    "Name": "Discrete signal mapping 3",
+    "DiscreteValueToState": {
+      "1": "On",
+      "0": "Off"
     }
   }
 ]

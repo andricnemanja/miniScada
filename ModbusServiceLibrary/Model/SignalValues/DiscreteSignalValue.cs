@@ -8,14 +8,14 @@ namespace ModbusServiceLibrary.Model.SignalValues
 	public class DiscreteSignalValue
 	{
 		/// <summary>
-		/// Discrete signal
+		/// Discrete signal.
 		/// </summary>
 		public DiscreteSignal DiscreteSignal { get; set; }
 	
 		/// <summary>
-		/// Value of the discrete signal
+		/// Value of the discrete signal.
 		/// </summary>
-		public bool Value { get; set; }
+		public bool[] Value { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DiscreteSignalValue"/> class.
@@ -24,7 +24,7 @@ namespace ModbusServiceLibrary.Model.SignalValues
 		public DiscreteSignalValue(ModelServiceReference.DiscreteSignal discreteSignalStaticData)
 		{
 			DiscreteSignal = new DiscreteSignal(discreteSignalStaticData);
-			Value = false;
+			Value[0] = false;
 		}
 
 		public DiscreteSignalValue() {}

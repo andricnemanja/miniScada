@@ -72,10 +72,14 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <param name="discreteSignalAddress">Address of the discrete signal.</param>
 		/// <param name="value">Value that is being converted.</param>
 		/// <returns>Value with it's phyisical connotation.</returns>
-		public bool ConvertDiscreteSignalToRealValue(int rtuId, int discreteSignalAddress, bool value)
+		public string ConvertDiscreteSignalToRealValue(int rtuId, int discreteSignalAddress, bool[] value)
 		{
 			DiscreteSignalMapping discreteSignalMapping = FindDiscreteSignalMapping(rtuId, discreteSignalAddress);
-			return discreteSignalMapping.Inverted ? !value : value;
+			string mappingValues = value.ToString();
+			if (discreteSignalMapping.DiscreteValueToState.TryGetValue(mappingValues, out string state))
+				return state;
+			else return "Greska!";
+
 		}
 
 		/// <summary>
