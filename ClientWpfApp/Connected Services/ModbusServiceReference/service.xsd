@@ -30,7 +30,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="rtuId" type="xs:int" />
         <xs:element minOccurs="0" name="signalAddress" type="xs:int" />
-        <xs:element minOccurs="0" name="newValue" type="xs:boolean" />
+        <xs:element minOccurs="0" name="newValue" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -62,7 +62,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="rtuId" type="xs:int" />
         <xs:element minOccurs="0" name="signalAddress" type="xs:int" />
-        <xs:element minOccurs="0" name="signalValue" type="xs:boolean" />
+        <xs:element minOccurs="0" name="signalValue" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

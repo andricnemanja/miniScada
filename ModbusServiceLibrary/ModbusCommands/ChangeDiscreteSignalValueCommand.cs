@@ -10,7 +10,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <summary>
 		/// Value that needs to be written.
 		/// </summary>
-		private bool newValue;
+		private bool[] newValue;
 
 		/// <summary>
 		/// Number unique to the RTU.
@@ -28,7 +28,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <param name="modbusSimulatorClient">Instance of the <see cref="IModbusSimulatorClient"/> class.</param>
 		/// <param name="newValue">Value that needs to be written.</param>
 		/// <param name="signalAddress">Address of the signal to which the new value should be assigned.</param>
-		public ChangeDiscreteSignalValueCommand(IModbusSimulatorClient modbusSimulatorClient, bool newValue, int rtuId, int signalAddress)
+		public ChangeDiscreteSignalValueCommand(IModbusSimulatorClient modbusSimulatorClient, bool[] newValue, int rtuId, int signalAddress)
 			: base(modbusSimulatorClient)
 		{
 			this.newValue = newValue;

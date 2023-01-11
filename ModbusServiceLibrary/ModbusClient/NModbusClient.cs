@@ -61,28 +61,6 @@ namespace ModbusServiceLibrary.ModbusClient
 		}
 
 		/// <summary>
-		/// Read multiple holding registers from the RTU.
-		/// </summary>
-		/// <param name="startingAddress">Address of the RTU.</param>
-		/// <param name="numberOfRegisters">Number of registers that we read the values from.</param>
-		/// <returns>Array of values read from the RTU.</returns>
-		public ushort[] ReadHoldingRegisters(int startingAddress, int numberOfRegisters)
-		{
-			return master.ReadHoldingRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
-		}
-
-		/// <summary>
-		/// Read multiple analog inputs from the RTU.
-		/// </summary>
-		/// <param name="startingAddress">Address of the RTU.</param>
-		/// <param name="numberOfAnalogInputs">Number of analog inputs that we read the values from.</param>
-		/// <returns>Array of values read from the RTU.</returns>
-		public ushort[] ReadAnalogInputs(int startingAddress, int numberOfAnalogInputs)
-		{
-			return master.ReadInputRegisters(1, (ushort)startingAddress, (ushort)numberOfAnalogInputs);
-		}
-
-		/// <summary>
 		/// Read single coil from the RTU.
 		/// </summary>
 		/// <param name="startingAddress">Address of the RTU.</param>
@@ -127,20 +105,18 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <param name="startingAddress">Address of the RTU.</param>
 		/// <param name="numberOfCoils">Number of coil that we read from.</param>
 		/// <returns>Array of values that were read.</returns>
-		public bool[] ReadCoils(int startingAddress, int numberOfCoils)
+		public bool TryReadCoils(int startingAddress, int numberOfCoils, out bool[] values)
 		{
-			return master.ReadCoils(1, (ushort)startingAddress, (ushort)numberOfCoils);
-		}
-
-		/// <summary>
-		/// Read values of multiple discrete inputs.
-		/// </summary>
-		/// <param name="startingAddress">Address of the RTU.</param>
-		/// <param name="numberOfDiscreteInputs">Number of discrete inputs that we read from.</param>
-		/// <returns>Array of values that were read.</returns>
-		public bool[] ReadDiscreteInputs(int startingAddress, int numberOfDiscreteInputs)
-		{
-			return master.ReadInputs(1, (ushort)startingAddress, (ushort)numberOfDiscreteInputs);
+			values = null;
+			try
+			{
+				values = master.ReadCoils(1, (ushort)startingAddress, (ushort)numberOfCoils);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
 		}
 
 		/// <summary>
@@ -148,9 +124,17 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// </summary>
 		/// <param name="coilAddress">Address of the RTU.</param>
 		/// <param name="data">Values that need to be written.</param>
-		public void WriteMultipleCoil(int coilAddress, bool[] data)
+		public bool TryWriteMultipleCoil(int coilAddress, bool[] data)
 		{
-			master.WriteMultipleCoils(1, (ushort)coilAddress, data);
+			try
+			{
+				master.WriteMultipleCoils(1, (ushort)coilAddress, data);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
 		}
 
 		/// <summary>

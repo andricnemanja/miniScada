@@ -40,7 +40,7 @@ namespace ClientWpfApp.ServiceClients
 			modbusDuplexClient.WriteAnalogSignal(rtuId, signalAddress, value);
 		}
 
-		public void WriteDiscreteSignalValue(int rtuId, int signalAddress, bool value)
+		public void WriteDiscreteSignalValue(int rtuId, int signalAddress, string value)
 		{
 			modbusDuplexClient.WriteDiscreteSignal(rtuId, signalAddress, value);
 		}

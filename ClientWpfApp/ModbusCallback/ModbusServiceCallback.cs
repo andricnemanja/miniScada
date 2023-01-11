@@ -33,13 +33,13 @@ namespace ClientWpfApp.ModbusCallback
 			});
 		}
 
-		public async void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue)
+		public async void UpdateDiscreteSignalValue(int rtuId, int signalAddress, string signalValue)
 		{
 			await Task.Run(() =>
 			{
 				RTU rtu = FindRtu(rtuId);
 				DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault();
-				discreteSignalValue.Value = signalValue;
+				discreteSignalValue.State = signalValue;
 			});
 		}
 

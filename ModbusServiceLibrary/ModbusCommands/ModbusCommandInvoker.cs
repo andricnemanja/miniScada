@@ -26,7 +26,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <summary>
 		/// Queue of commands. Commands are executed sequentially.
 		/// </summary>
-		public Queue<ModbusCommand> Commands { get; set; } = new Queue<ModbusCommand>();
+		public Queue<ModbusCommand> Commands { get; } = new Queue<ModbusCommand>();
 		/// <summary>
 		/// Writes the new value of the analog signal.
 		/// </summary>
@@ -50,7 +50,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <param name="rtuId">Number specific and unique to the RTU.</param>
 		/// <param name="signalAddress">Address of the specific signal.</param>
 		/// <param name="newValue">New value that we are writing.</param>
-		public bool TryWriteDiscreteSignalValue(int rtuId, int signalAddress, bool newValue)
+		public bool TryWriteDiscreteSignalValue(int rtuId, int signalAddress, bool[] newValue)
 		{
 			ModbusCommand changeDiscreteSignalCommand = new ChangeDiscreteSignalValueCommand(modbusSimulatorClient, newValue, rtuId, signalAddress);
 			lock (lockObject)
@@ -87,10 +87,10 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <param name="rtuId">Number specific and unique to the RTU.</param>
 		/// <param name="signalAddress">Address of the specific signal.</param>
 		/// <returns>New value read from the RTU.</returns>
-		public bool TryReadDiscreteSignalValue(int rtuId, int signalAddress, out bool value)
+		public bool TryReadDiscreteSignalValue(int rtuId, int signalAddress, out bool[] values)
 		{
 			ReadDiscreteSignalValueCommand readDiscreteSignalCommand = new ReadDiscreteSignalValueCommand(modbusSimulatorClient, rtuId, signalAddress);
-			value = false;
+			values = null;
 			lock (lockObject)
 			{
 				if (!readDiscreteSignalCommand.Execute())
@@ -98,7 +98,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 				Commands.Enqueue(readDiscreteSignalCommand);
 			}
 
-			value = readDiscreteSignalCommand.NewValue;
+			values = readDiscreteSignalCommand.NewValue;
 			return true;
 		}
 	}

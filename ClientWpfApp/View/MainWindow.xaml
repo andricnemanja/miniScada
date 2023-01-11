@@ -41,7 +41,7 @@
                     </DataGridTemplateColumn>
 
 
-                    <DataGridTemplateColumn Header="Adresa" Width ="*"  IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Adresa" Width ="*" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -61,9 +61,15 @@
                                           SelectedItem="{Binding Path=DataContext.SelectedDiscreteSignal, RelativeSource = {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding DiscreteSignal.Name}" 
-                                                      Command="{Binding Path=DataContext.DiscreteSignalCheckboxCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
-                                                      CommandParameter="{Binding}" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <!--<CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding DiscreteSignal.Name}" 
+                                                          Command="{Binding Path=DataContext.DiscreteSignalCheckboxCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
+                                                          CommandParameter="{Binding}" />-->
+                                                <TextBlock Text="{Binding DiscreteSignal.Name }"></TextBlock>
+                                                <TextBlock Text=": "></TextBlock>
+                                                <TextBlock Text="{Binding State}" FontWeight="Bold"></TextBlock>
+
+                                            </StackPanel>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
@@ -81,7 +87,7 @@
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
                                                 <TextBlock VerticalAlignment="Center" Text=": " />
-                                                <TextBox VerticalAlignment="Center" Text="{Binding Value}" />
+                                                <TextBox VerticalAlignment="Center" Text="{Binding Value}" FontWeight="Bold"/>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                                                     <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="Sačuvaj" HorizontalAlignment="Center"
                                                         Command="{Binding Path=DataContext.SavaAnalogSignalCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 

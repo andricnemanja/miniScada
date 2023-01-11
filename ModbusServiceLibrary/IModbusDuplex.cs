@@ -37,7 +37,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal</param>
 		/// <param name="newValue">New value of the discrete signal</param>
 		[OperationContract(IsOneWay = true)]
-		void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue);
+		void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue);
 
 		/// <summary>
 		/// Make a connection with the RTU

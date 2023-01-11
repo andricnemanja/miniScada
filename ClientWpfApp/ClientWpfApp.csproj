@@ -144,6 +144,9 @@
     <None Include="Connected Services\ModbusServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.AnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

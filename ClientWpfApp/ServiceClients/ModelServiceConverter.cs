@@ -74,7 +74,7 @@ namespace ClientWpfApp.ServiceClients
 						ID = discreteSignal.ID,
 						Name = discreteSignal.Name
 					},
-					Value = false
+					State = ""
 				});
 			}
 

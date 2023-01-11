@@ -71,7 +71,7 @@ namespace ModbusServiceLibrary.ServiceReader
 				{
 					Id = mapping.Id,
 					Name = mapping.Name,
-					Inverted = mapping.Inverted,
+					DiscreteValueToState = mapping.DiscreteValueToState,
 				};
 				discreteSignalMappings.Add(newMapping);
 			}

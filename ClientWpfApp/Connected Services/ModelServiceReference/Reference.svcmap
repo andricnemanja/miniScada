@@ -29,8 +29,9 @@
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="62382316-a296-4087-8502-cf0634e27f78" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
     <MetadataFile FileName="ModelWcfServiceLibrary.Model.RTU.xsd" MetadataType="Schema" ID="9714c6a2-74f8-4138-8dd9-77878393fed0" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
     <MetadataFile FileName="ModelWcfServiceLibrary.Model.Signals.xsd" MetadataType="Schema" ID="11bc4413-aa2e-4b69-b263-1a81b7991426" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
-    <MetadataFile FileName="ModelWcfServiceLibrary.xsd" MetadataType="Schema" ID="d3249ba4-381a-4cf7-839d-d978c7f0c2bc" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
     <MetadataFile FileName="ModelWcfServiceLibrary.Model.SignalMapping.xsd" MetadataType="Schema" ID="9f945e9d-1cb8-47d5-8ccf-0d401ed9c6e7" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="ModelWcfServiceLibrary.xsd" MetadataType="Schema" ID="d3249ba4-381a-4cf7-839d-d978c7f0c2bc" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="3a61704d-c87d-4797-bfd9-86fcaccab149" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

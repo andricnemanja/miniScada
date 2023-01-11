@@ -24,7 +24,7 @@ namespace ModbusServiceLibrary.Model.SignalValues
 		public DiscreteSignalValue(ModelServiceReference.DiscreteSignal discreteSignalStaticData)
 		{
 			DiscreteSignal = new DiscreteSignal(discreteSignalStaticData);
-			Value[0] = false;
+			Value = new bool[2];
 		}
 
 		public DiscreteSignalValue() {}

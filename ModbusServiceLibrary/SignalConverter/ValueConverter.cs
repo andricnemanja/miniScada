@@ -75,10 +75,9 @@ namespace ModbusServiceLibrary.SignalConverter
 		public string ConvertDiscreteSignalToRealValue(int rtuId, int discreteSignalAddress, bool[] value)
 		{
 			DiscreteSignalMapping discreteSignalMapping = FindDiscreteSignalMapping(rtuId, discreteSignalAddress);
-			string mappingValues = value.ToString();
-			if (discreteSignalMapping.DiscreteValueToState.TryGetValue(mappingValues, out string state))
-				return state;
-			else return "Greska!";
+			if (discreteSignalMapping.DiscreteValueToState.Keys.Count == 2)
+				return discreteSignalMapping.DiscreteValueToState[BoolToStringRepresentation(value[0])];
+			return discreteSignalMapping.DiscreteValueToState[BoolArrayToStringRepresentation(value)];
 
 		}
 
@@ -89,10 +88,11 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <param name="discreteSignalAddress">Address of the discrete signal.</param>
 		/// <param name="value">Value that is being converted.</param>
 		/// <returns>Value represented in it's sensor form.</returns>
-		public bool ConvertRealValueToDiscreteSignal(int rtuId, int discreteSignalAddress, bool value)
+		public bool[] ConvertRealValueToDiscreteSignal(int rtuId, int discreteSignalAddress, string value)
 		{
 			DiscreteSignalMapping discreteSignalMapping = FindDiscreteSignalMapping(rtuId, discreteSignalAddress);
-			return discreteSignalMapping.Inverted ? !value : value;
+			string discreteSignalStringValue = discreteSignalMapping.DiscreteValueToState.SingleOrDefault(x => x.Value == value).Key;
+			return StringRepresentationToBoolArray(discreteSignalStringValue);
 		}
 
 		private DiscreteSignalMapping FindDiscreteSignalMapping(int rtuId, int discreteSignalAddress)
@@ -107,6 +107,35 @@ namespace ModbusServiceLibrary.SignalConverter
 			RTU rtu = modbusSimulatorClient.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
 			AnalogSignalValue analogSignalValue = rtu.AnalogSignalValues.FirstOrDefault(s => s.AnalogSignal.Address == analogSignalAddress);
 			return analogSignalMappingList.FirstOrDefault(m => m.Id == analogSignalValue.AnalogSignal.MappingId);
+		}
+
+		private string BoolArrayToStringRepresentation(bool[] values) 
+		{
+			string stringValue = "";
+
+			foreach(bool value in values)
+			{
+				stringValue += value ? "1" : "0";
+			}
+
+			return stringValue;
+		}
+
+		private string BoolToStringRepresentation(bool value)
+		{
+			return value ? "1" : "0";
+		}
+
+		private bool[] StringRepresentationToBoolArray(string values)
+		{
+			bool[] discreteSignalValues = new bool[2];
+
+			for (int i = 0; i < values.Length; i++)
+			{
+				discreteSignalValues[i] = values[i] == '1';
+			}
+
+			return discreteSignalValues;
 		}
 	}
 }

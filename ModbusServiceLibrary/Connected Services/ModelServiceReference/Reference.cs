@@ -391,10 +391,10 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     public enum DiscreteSignalType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        One_Bit = 1,
+        OneBit = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Two_Bit = 2,
+        TwoBit = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

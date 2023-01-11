@@ -34,10 +34,10 @@ namespace ClientWpfApp.ModbusServiceReference {
         System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, double newValue);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal")]
-        void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue);
+        void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal")]
-        System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, bool newValue);
+        System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, string newValue);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/TryConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/TryConnectToRtuResponse")]
         bool TryConnectToRtu(int rtuId);
@@ -53,7 +53,7 @@ namespace ClientWpfApp.ModbusServiceReference {
         void UpdateAnalogSignalValue(int rtuId, int signalAddress, double signalValue);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/UpdateDiscreteSignalValue")]
-        void UpdateDiscreteSignalValue(int rtuId, int signalAddress, bool signalValue);
+        void UpdateDiscreteSignalValue(int rtuId, int signalAddress, string signalValue);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ChangeConnectionStatusToFalse")]
         void ChangeConnectionStatusToFalse(int rtuId);
@@ -111,11 +111,11 @@ namespace ClientWpfApp.ModbusServiceReference {
             return base.Channel.WriteAnalogSignalAsync(rtuId, signalAddress, newValue);
         }
         
-        public void WriteDiscreteSignal(int rtuId, int signalAddress, bool newValue) {
+        public void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue) {
             base.Channel.WriteDiscreteSignal(rtuId, signalAddress, newValue);
         }
         
-        public System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, bool newValue) {
+        public System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, string newValue) {
             return base.Channel.WriteDiscreteSignalAsync(rtuId, signalAddress, newValue);
         }
         

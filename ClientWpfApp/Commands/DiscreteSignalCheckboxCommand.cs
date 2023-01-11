@@ -29,10 +29,10 @@ namespace ClientWpfApp.Commands
 			DiscreteSignalValue discreteSignalValue = (DiscreteSignalValue)parameter;
 
 			if (MessageBox.Show("Da li želite da promenite vrednost signala " + discreteSignalValue.DiscreteSignal.Name
-				 + " na vrednost " + (discreteSignalValue.Value).ToString(), "Question", MessageBoxButton.YesNo,
+				 + " na vrednost " + (discreteSignalValue.State).ToString(), "Question", MessageBoxButton.YesNo,
 				 MessageBoxImage.Warning) == MessageBoxResult.Yes)
 			{
-				modbusServiceClient.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.Address, discreteSignalValue.Value);
+				modbusServiceClient.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.Address, discreteSignalValue.State);
 			}
 			else
 			{

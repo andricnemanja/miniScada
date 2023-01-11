@@ -33,6 +33,13 @@
         "Address": 1,
         "DiscreteSignalType": "Two_Bit",
         "MappingId": 2
+      },
+      {
+        "ID": 2,
+        "Name": "Discrete signal 2",
+        "Address": 3,
+        "DiscreteSignalType": "One_Bit",
+        "MappingId": 3
       }
     ]
   },
@@ -62,14 +69,14 @@
         "ID": 1,
         "Name": "Prekidac 1",
         "DiscreteSignalType": "One_Bit",
-        "Address": 2,
-        "MappingId": 2
+        "Address": 1,
+        "MappingId": 3
       },
       {
         "ID": 2,
         "Name": "Prekidac 2",
         "DiscreteSignalType": "Two_Bit",
-        "Address": 3,
+        "Address": 2,
         "MappingId": 1
       }
     ]

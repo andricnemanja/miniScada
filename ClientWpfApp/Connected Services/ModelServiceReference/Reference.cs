@@ -297,6 +297,9 @@ namespace ClientWpfApp.ModelServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ClientWpfApp.ModelServiceReference.DiscreteSignalType SignalTypeField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -359,6 +362,19 @@ namespace ClientWpfApp.ModelServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ClientWpfApp.ModelServiceReference.DiscreteSignalType SignalType {
+            get {
+                return this.SignalTypeField;
+            }
+            set {
+                if ((this.SignalTypeField.Equals(value) != true)) {
+                    this.SignalTypeField = value;
+                    this.RaisePropertyChanged("SignalType");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -367,6 +383,18 @@ namespace ClientWpfApp.ModelServiceReference {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignalType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+        "g")]
+    public enum DiscreteSignalType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        OneBit = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwoBit = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -527,10 +555,10 @@ namespace ClientWpfApp.ModelServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
+        private System.Collections.Generic.Dictionary<string, string> DiscreteValueToStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool InvertedField;
+        private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -546,6 +574,19 @@ namespace ClientWpfApp.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<string, string> DiscreteValueToState {
+            get {
+                return this.DiscreteValueToStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DiscreteValueToStateField, value) != true)) {
+                    this.DiscreteValueToStateField = value;
+                    this.RaisePropertyChanged("DiscreteValueToState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id {
             get {
                 return this.IdField;
@@ -554,19 +595,6 @@ namespace ClientWpfApp.ModelServiceReference {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Inverted {
-            get {
-                return this.InvertedField;
-            }
-            set {
-                if ((this.InvertedField.Equals(value) != true)) {
-                    this.InvertedField = value;
-                    this.RaisePropertyChanged("Inverted");
                 }
             }
         }

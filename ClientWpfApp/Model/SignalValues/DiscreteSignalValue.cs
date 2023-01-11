@@ -6,17 +6,17 @@ namespace ClientWpfApp.Model.SignalValues
 	public class DiscreteSignalValue : INotifyPropertyChanged
 	{
 		public DiscreteSignal DiscreteSignal { get; set; }
-		private bool _value;
 
-		public bool Value
+		private string _state;
+		public string State
 		{
-			get { return _value; }
+			get { return _state; }
 			set
 			{
-				if (value != _value)
+				if (value != _state)
 				{
-					_value = value;
-					RaisePropertyChanged(nameof(Value));
+					_state = value;
+					RaisePropertyChanged(nameof(State));
 				}
 			}
 		}

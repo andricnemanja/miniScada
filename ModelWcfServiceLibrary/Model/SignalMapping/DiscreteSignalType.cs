@@ -1,8 +1,13 @@
-﻿namespace ModelWcfServiceLibrary.Model.SignalMapping
+﻿using System.Runtime.Serialization;
+
+namespace ModelWcfServiceLibrary.Model.SignalMapping
 {
+	[DataContract(Name = "DiscreteSignalType")]
 	public enum DiscreteSignalType
 	{
-		One_Bit = 1,
-		Two_Bit = 2,
+		[EnumMember]
+		OneBit,
+		[EnumMember]
+		TwoBit
 	}
 }
