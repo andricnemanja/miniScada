@@ -11,6 +11,7 @@
     <Window.Resources>
         <converters:ConnectionButtonColorConverter x:Key="ConnectionButtonColorConverter" />
         <converters:ConnectionStatusConverter x:Key="ConnectionStatusConverter" />
+        <converters:DiscreteSignalButtonStatusConverter x:Key="DiscreteSignalButtonStatusConverter" />
     </Window.Resources>
 
 
@@ -70,10 +71,24 @@
                                                 <TextBlock Text="{Binding State}" FontWeight="Bold"></TextBlock>
                                                 <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="{Binding PossibleStates[0]}" HorizontalAlignment="Center"
                                                         Command="{Binding Path=DataContext.ChangeDiscreteSignalFirstStateCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
-                                                        CommandParameter="{Binding}" />
+                                                        CommandParameter="{Binding}">
+                                                    <Button.IsEnabled>
+                                                        <MultiBinding Converter="{StaticResource DiscreteSignalButtonStatusConverter}">
+                                                            <Binding Path="PossibleStates[0]"/>
+                                                            <Binding Path="State"/>
+                                                        </MultiBinding>
+                                                    </Button.IsEnabled>
+                                                </Button>
                                                 <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="{Binding PossibleStates[1]}" HorizontalAlignment="Center"
                                                         Command="{Binding Path=DataContext.ChangeDiscreteSignalSecondStateCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
-                                                        CommandParameter="{Binding}" />
+                                                        CommandParameter="{Binding}" >
+                                                    <Button.IsEnabled>
+                                                        <MultiBinding Converter="{StaticResource DiscreteSignalButtonStatusConverter}">
+                                                            <Binding Path="PossibleStates[1]"/>
+                                                            <Binding Path="State"/>
+                                                        </MultiBinding>
+                                                    </Button.IsEnabled>
+                                                </Button>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
