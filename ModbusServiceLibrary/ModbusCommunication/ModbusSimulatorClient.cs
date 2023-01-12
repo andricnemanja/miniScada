@@ -182,7 +182,7 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			}
 			else if (FindDiscreteSignal(rtu, signalAddress).DiscreteSignal.SignalType == DiscreteSignalType.TwoBit)
 			{
-				if (rtu.Connection.Client.TryWriteMultipleCoil(signalAddress, values))
+				if (!rtu.Connection.Client.TryWriteMultipleCoil(signalAddress, values))
 					return false;
 
 				FindDiscreteSignal(rtu, signalAddress).Value = values;

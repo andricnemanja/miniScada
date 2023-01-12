@@ -59,6 +59,13 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of discrete signal mappings</returns>
 		[OperationContract]
 		IEnumerable<DiscreteSignalMapping> GetDiscreteSignalMappings();
+		/// <summary>
+		/// Get possible states for discrete signal.
+		/// </summary>
+		/// <returns>List of discrete signal mappings</returns>
+		[OperationContract]
+		string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
+
 
 	}
 }

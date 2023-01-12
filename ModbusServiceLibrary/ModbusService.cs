@@ -5,7 +5,7 @@ using ModbusServiceLibrary.SignalConverter;
 
 namespace ModbusServiceLibrary
 {
-	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
+	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
 	public sealed class ModbusService : IModbusDuplex
 	{
 		private readonly IModbusSimulatorClient modbusSimulatorClient;

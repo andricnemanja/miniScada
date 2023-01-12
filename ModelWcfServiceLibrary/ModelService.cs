@@ -98,5 +98,16 @@ namespace ModelWcfServiceLibrary
 		{
 			return discreteSignalMappingRepository.DiscreteSignalMappingList;
 		}
+
+		/// <summary>
+		/// Get possible states for discrete signal
+		/// </summary>
+		/// <returns>List of discrete signal mappings</returns>
+		public string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress)
+		{
+			RTU rtu = rtuRepository.GetRTUByID(rtuId);
+			DiscreteSignal signal = rtu.DiscreteSignals.FirstOrDefault(s => s.Address == signalAddress);
+			return discreteSignalMappingRepository.GetDiscreteSignalPossibleStates(signal.MappingId);
+		}
 	}
 }

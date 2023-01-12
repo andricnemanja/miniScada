@@ -89,6 +89,12 @@
   <wsdl:message name="IModelService_GetDiscreteSignalMappings_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDiscreteSignalMappingsResponse" />
   </wsdl:message>
+  <wsdl:message name="IModelService_GetDiscreteSignalPossibleStates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscreteSignalPossibleStates" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetDiscreteSignalPossibleStates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscreteSignalPossibleStatesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IModelService">
     <wsdl:operation name="GetAllRTUs">
       <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetAllRTUs" message="tns:IModelService_GetAllRTUs_InputMessage" />
@@ -118,6 +124,10 @@
     <wsdl:operation name="GetDiscreteSignalMappings">
       <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings" message="tns:IModelService_GetDiscreteSignalMappings_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse" message="tns:IModelService_GetDiscreteSignalMappings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscreteSignalPossibleStates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates" message="tns:IModelService_GetDiscreteSignalPossibleStates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse" message="tns:IModelService_GetDiscreteSignalPossibleStates_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IModelService" type="tns:IModelService">
@@ -183,6 +193,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDiscreteSignalMappings">
       <soap12:operation soapAction="http://tempuri.org/IModelService/GetDiscreteSignalMappings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscreteSignalPossibleStates">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

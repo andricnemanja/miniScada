@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.Signals;
 using ClientWpfApp.Model.SignalValues;
@@ -74,7 +75,8 @@ namespace ClientWpfApp.ServiceClients
 						ID = discreteSignal.ID,
 						Name = discreteSignal.Name
 					},
-					State = ""
+					State = "",
+					PossibleStates = modelService.GetDiscreteSignalPossibleStates(rtuID, discreteSignal.Address).ToArray()
 				});
 			}
 

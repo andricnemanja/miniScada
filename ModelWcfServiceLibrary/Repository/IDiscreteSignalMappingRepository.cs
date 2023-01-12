@@ -8,7 +8,8 @@ namespace ModelWcfServiceLibrary.Repository
 		List<DiscreteSignalMapping> DiscreteSignalMappingList { get; }
 
 		void Deserialize();
-		DiscreteSignalMapping GetByID(int id);
 		void Serialize();
+		DiscreteSignalMapping GetByID(int id);
+		string[] GetDiscreteSignalPossibleStates(int mappingId);
 	}
 }

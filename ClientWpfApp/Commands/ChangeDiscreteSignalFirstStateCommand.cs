@@ -7,11 +7,11 @@ using ClientWpfApp.ServiceClients;
 
 namespace ClientWpfApp.Commands
 {
-	public sealed class DiscreteSignalCheckboxCommand : ICommand
+	public sealed class ChangeDiscreteSignalFirstStateCommand : ICommand
 	{
 		private readonly ModbusServiceClient modbusServiceClient;
 
-		public DiscreteSignalCheckboxCommand(ModbusServiceClient modbusServiceClient)
+		public ChangeDiscreteSignalFirstStateCommand(ModbusServiceClient modbusServiceClient)
 		{
 			this.modbusServiceClient = modbusServiceClient;
 		}
@@ -29,17 +29,15 @@ namespace ClientWpfApp.Commands
 			DiscreteSignalValue discreteSignalValue = (DiscreteSignalValue)parameter;
 
 			if (MessageBox.Show("Da li želite da promenite vrednost signala " + discreteSignalValue.DiscreteSignal.Name
-				 + " na vrednost " + (discreteSignalValue.State).ToString(), "Question", MessageBoxButton.YesNo,
-				 MessageBoxImage.Warning) == MessageBoxResult.Yes)
+				+ " na " + discreteSignalValue.PossibleStates[0], "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
 			{
-				modbusServiceClient.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.Address, discreteSignalValue.State);
+				modbusServiceClient.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.Address, discreteSignalValue.PossibleStates[0]);
+				discreteSignalValue.State = discreteSignalValue.PossibleStates[0];
 			}
 			else
 			{
 				return;
 			}
-
-
 		}
 	}
 }

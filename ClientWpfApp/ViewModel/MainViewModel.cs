@@ -17,10 +17,10 @@ namespace ClientWpfApp.ViewModel
 
 		#region Commands
 		public ICommand ConnectToRtuCommand { get; set; }
-		public ICommand SetRegistryValuesCommand { get; set; }
 		public ICommand ReadRtuValuesCommand { get; set; }
-		public DiscreteSignalCheckboxCommand DiscreteSignalCheckboxCommand { get; set; }
 		public SavaAnalogSignalCommand SavaAnalogSignalCommand { get; set; }
+		public ChangeDiscreteSignalFirstStateCommand ChangeDiscreteSignalFirstStateCommand { get; set; }
+		public ChangeDiscreteSignalSecondStateCommand ChangeDiscreteSignalSecondStateCommand { get; set; }
 		#endregion Commands
 
 		#region Public Properties
@@ -34,7 +34,8 @@ namespace ClientWpfApp.ViewModel
 			set
 			{
 				_selectedRtu = value;
-				DiscreteSignalCheckboxCommand.SelectedRtu = value;
+				ChangeDiscreteSignalFirstStateCommand.SelectedRtu = value;
+				ChangeDiscreteSignalSecondStateCommand.SelectedRtu = value;
 				SavaAnalogSignalCommand.SelectedRtu = value;
 			}
 		}
@@ -68,10 +69,10 @@ namespace ClientWpfApp.ViewModel
 		private void InitializeCommands()
 		{
 			ReadRtuValuesCommand = new ReadRtuValuesCommand(modbusServiceClient);
-			SetRegistryValuesCommand = new SetRegistryValuesCommand();
 			ConnectToRtuCommand = new ConnectToRtuCommand(new RtuConnection(modbusDuplexClient));
-			DiscreteSignalCheckboxCommand = new DiscreteSignalCheckboxCommand(modbusServiceClient);
 			SavaAnalogSignalCommand = new SavaAnalogSignalCommand(modbusServiceClient);
+			ChangeDiscreteSignalFirstStateCommand = new ChangeDiscreteSignalFirstStateCommand(modbusServiceClient);
+			ChangeDiscreteSignalSecondStateCommand = new ChangeDiscreteSignalSecondStateCommand(modbusServiceClient);
 		}
 	}
 }

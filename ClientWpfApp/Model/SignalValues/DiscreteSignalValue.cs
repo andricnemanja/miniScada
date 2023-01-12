@@ -21,6 +21,20 @@ namespace ClientWpfApp.Model.SignalValues
 			}
 		}
 
+		private string[] _possibleStates;
+
+		public string[] PossibleStates
+		{
+			get { return _possibleStates; }
+			set {
+				if (value != _possibleStates)
+				{
+					_possibleStates = value;
+					RaisePropertyChanged(nameof(PossibleStates));
+				}
+			}
+		}
+
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
