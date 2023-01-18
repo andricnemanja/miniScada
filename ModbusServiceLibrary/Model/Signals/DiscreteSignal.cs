@@ -1,7 +1,4 @@
-﻿using ModbusServiceLibrary.Model.SignalMapping;
-using System.Collections.Generic;
-
-namespace ModbusServiceLibrary.Model.Signals
+﻿namespace ModbusServiceLibrary.Model.Signals
 {
 	/// <summary>
 	/// Class <see cref="DiscreteSignal"/> models discrete signal from the RTU.
@@ -35,11 +32,12 @@ namespace ModbusServiceLibrary.Model.Signals
 		/// <param name="id">Number unique to the RTU.</param>
 		/// <param name="address">Address of the signal.</param>
 		/// <param name="name">Name of the signal.</param>
-		public DiscreteSignal(int id, int address, string name)
+		public DiscreteSignal(int id, int address, string name, int mappingId)
 		{
 			ID = id;
 			Address = address;
 			Name = name;
+			MappingId = mappingId;
 		}
 
 		/// <summary>
