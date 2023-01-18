@@ -50,7 +50,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <param name="rtuId">Number specific and unique to the RTU.</param>
 		/// <param name="signalAddress">Address of the specific signal.</param>
 		/// <param name="newValue">New value that we are writing.</param>
-		public bool TryWriteDiscreteSignalValue(int rtuId, int signalAddress, bool[] newValue)
+		public bool TryWriteDiscreteSignalValue(int rtuId, int signalAddress, byte newValue)
 		{
 			ModbusCommand changeDiscreteSignalCommand = new ChangeDiscreteSignalValueCommand(modbusSimulatorClient, newValue, rtuId, signalAddress);
 			lock (lockObject)
@@ -87,10 +87,10 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <param name="rtuId">Number specific and unique to the RTU.</param>
 		/// <param name="signalAddress">Address of the specific signal.</param>
 		/// <returns>New value read from the RTU.</returns>
-		public bool TryReadDiscreteSignalValue(int rtuId, int signalAddress, out bool[] values)
+		public bool TryReadDiscreteSignalValue(int rtuId, int signalAddress, out byte values)
 		{
 			ReadDiscreteSignalValueCommand readDiscreteSignalCommand = new ReadDiscreteSignalValueCommand(modbusSimulatorClient, rtuId, signalAddress);
-			values = null;
+			values = 0;
 			lock (lockObject)
 			{
 				if (!readDiscreteSignalCommand.Execute())

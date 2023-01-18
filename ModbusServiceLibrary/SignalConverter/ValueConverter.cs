@@ -72,12 +72,10 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <param name="discreteSignalAddress">Address of the discrete signal.</param>
 		/// <param name="value">Value that is being converted.</param>
 		/// <returns>Value with it's phyisical connotation.</returns>
-		public string ConvertDiscreteSignalToRealValue(int rtuId, int discreteSignalAddress, bool[] value)
+		public string ConvertDiscreteSignalToRealValue(int rtuId, int discreteSignalAddress, byte value)
 		{
 			DiscreteSignalMapping discreteSignalMapping = FindDiscreteSignalMapping(rtuId, discreteSignalAddress);
-			if (discreteSignalMapping.DiscreteValueToState.Keys.Count == 2)
-				return discreteSignalMapping.DiscreteValueToState[BoolToStringRepresentation(value[0])];
-			return discreteSignalMapping.DiscreteValueToState[BoolArrayToStringRepresentation(value)];
+			return discreteSignalMapping.DiscreteValueToState[value];
 
 		}
 
@@ -88,11 +86,10 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <param name="discreteSignalAddress">Address of the discrete signal.</param>
 		/// <param name="value">Value that is being converted.</param>
 		/// <returns>Value represented in it's sensor form.</returns>
-		public bool[] ConvertRealValueToDiscreteSignal(int rtuId, int discreteSignalAddress, string value)
+		public byte ConvertRealValueToDiscreteSignal(int rtuId, int discreteSignalAddress, string value)
 		{
 			DiscreteSignalMapping discreteSignalMapping = FindDiscreteSignalMapping(rtuId, discreteSignalAddress);
-			string discreteSignalStringValue = discreteSignalMapping.DiscreteValueToState.SingleOrDefault(x => x.Value == value).Key;
-			return StringRepresentationToBoolArray(discreteSignalStringValue);
+			return discreteSignalMapping.DiscreteValueToState.SingleOrDefault(x => x.Value == value).Key;
 		}
 
 		private DiscreteSignalMapping FindDiscreteSignalMapping(int rtuId, int discreteSignalAddress)
@@ -107,35 +104,6 @@ namespace ModbusServiceLibrary.SignalConverter
 			RTU rtu = modbusSimulatorClient.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
 			AnalogSignalValue analogSignalValue = rtu.AnalogSignalValues.FirstOrDefault(s => s.AnalogSignal.Address == analogSignalAddress);
 			return analogSignalMappingList.FirstOrDefault(m => m.Id == analogSignalValue.AnalogSignal.MappingId);
-		}
-
-		private string BoolArrayToStringRepresentation(bool[] values) 
-		{
-			string stringValue = "";
-
-			foreach(bool value in values)
-			{
-				stringValue += value ? "1" : "0";
-			}
-
-			return stringValue;
-		}
-
-		private string BoolToStringRepresentation(bool value)
-		{
-			return value ? "1" : "0";
-		}
-
-		private bool[] StringRepresentationToBoolArray(string values)
-		{
-			bool[] discreteSignalValues = new bool[2];
-
-			for (int i = 0; i < values.Length; i++)
-			{
-				discreteSignalValues[i] = values[i] == '1';
-			}
-
-			return discreteSignalValues;
 		}
 	}
 }

@@ -62,8 +62,8 @@ namespace ModelWcfServiceLibrary.Repository
 			}
 
 			string[] possibleStates = new string[2];
-			possibleStates[0] = mapping.DiscreteValueToState["01"];
-			possibleStates[1] = mapping.DiscreteValueToState["10"];
+			possibleStates[0] = mapping.DiscreteValueToState[1];
+			possibleStates[1] = mapping.DiscreteValueToState[2];
 			return possibleStates;
 
 		}

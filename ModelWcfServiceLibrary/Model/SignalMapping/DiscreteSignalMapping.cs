@@ -18,7 +18,7 @@ namespace ModelWcfServiceLibrary.Model.SignalMapping
 		/// <summary>
 		/// Mapping for a 2-bit signal. 
 		/// </summary>
-		public Dictionary<string, string> DiscreteValueToState { get; set; }
+		public Dictionary<byte, string> DiscreteValueToState { get; set; }
 
 	}
 }

@@ -2,30 +2,29 @@
   {
     "Id": 1,
     "Name": "Discrete signal mapping 1",
-    "DiscreteValueToState": 
-    {
-      "00": "Error",
-      "11": "Transit",
-      "01": "Open",
-      "10": "Close" 
+    "DiscreteValueToState": {
+      "0": "Error",
+      "1": "Open",
+      "2": "Close",
+      "3": "Transit"
     }
   },
   {
     "Id": 2,
     "Name": "Discrete signal mapping 2",
     "DiscreteValueToState": {
-      "00": "Error",
-      "11": "Transit",
-      "01": "On",
-      "10": "Off"
+      "0": "Error",
+      "1": "On",
+      "2": "Off",
+      "3": "Transit"
     }
   },
   {
     "Id": 3,
     "Name": "Discrete signal mapping 3",
     "DiscreteValueToState": {
-      "1": "On",
-      "0": "Off"
+      "0": "Off",
+      "1": "On"
     }
   }
 ]

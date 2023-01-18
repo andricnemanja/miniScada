@@ -391,10 +391,10 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     public enum DiscreteSignalType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        OneBit = 1,
+        OneBit = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwoBit = 2,
+        TwoBit = 1,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -555,7 +555,7 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.Dictionary<string, string> DiscreteValueToStateField;
+        private System.Collections.Generic.Dictionary<byte, string> DiscreteValueToStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -574,7 +574,7 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.Dictionary<string, string> DiscreteValueToState {
+        public System.Collections.Generic.Dictionary<byte, string> DiscreteValueToState {
             get {
                 return this.DiscreteValueToStateField;
             }
@@ -668,6 +668,12 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping>> GetDiscreteSignalMappingsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
+        System.Collections.Generic.List<string> GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -751,6 +757,14 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping>> GetDiscreteSignalMappingsAsync() {
             return base.Channel.GetDiscreteSignalMappingsAsync();
+        }
+        
+        public System.Collections.Generic.List<string> GetDiscreteSignalPossibleStates(int rtuId, int signalAddress) {
+            return base.Channel.GetDiscreteSignalPossibleStates(rtuId, signalAddress);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress) {
+            return base.Channel.GetDiscreteSignalPossibleStatesAsync(rtuId, signalAddress);
         }
     }
 }

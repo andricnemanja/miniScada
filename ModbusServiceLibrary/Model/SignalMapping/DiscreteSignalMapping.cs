@@ -18,7 +18,7 @@ namespace ModbusServiceLibrary.Model.SignalMapping
 		/// <summary>
 		/// Mapping for a 1-bit or 2-bit signal. 
 		/// </summary>
-		public Dictionary<string, string> DiscreteValueToState { get; set; }
+		public Dictionary<byte, string> DiscreteValueToState { get; set; }
 
 	}
 }

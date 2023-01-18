@@ -32,14 +32,14 @@ namespace ModbusServiceLibrary.ModbusCommands
 		/// <summary>
 		/// Attribute containing value that has been read.
 		/// </summary>
-		public bool[] NewValue { get; set; }
+		public byte NewValue { get; set; }
 
 		/// <summary>
 		/// Executing the command for reading discrete signal value.
 		/// </summary>
 		public override bool Execute()
 		{
-			if(!modbusSimulatorClient.TryReadDiscreteInput(rtuId, signalAddress, out bool[] values))
+			if(!modbusSimulatorClient.TryReadDiscreteInput(rtuId, signalAddress, out byte values))
 				return false;
 
 			NewValue = values;

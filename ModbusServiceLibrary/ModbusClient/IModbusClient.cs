@@ -1,13 +1,14 @@
-﻿namespace ModbusServiceLibrary.ModbusClient
+﻿
+using ModbusServiceLibrary.Model.Signals;
+
+namespace ModbusServiceLibrary.ModbusClient
 {
 	public interface IModbusClient
 	{
 		void Disconnect();
-		bool TryReadCoils(int startingAddress, int numberOfCoils, out bool[] values);
-		bool TryReadSingleCoil(int startingAddress, out bool value);
+		bool TryReadCoils(int startingAddress, DiscreteSignalType discreteSignalType, out byte signalValue);
 		bool TryReadSingleHoldingRegister(int startingAddress, out int value);
-		bool TryWriteMultipleCoil(int coilAddress, bool[] data);
-		bool TryWriteSingleCoil(int coilAddress, bool value);
+		bool TryWriteCoils(int coilAddress, DiscreteSignalType discreteSignalType, byte valueToWrite);
 		bool TryWriteSingleHoldingRegister(int startingAddress, int value);
 	}
 }

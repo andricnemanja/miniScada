@@ -1,4 +1,5 @@
 ﻿using System.Net.Sockets;
+using ModbusServiceLibrary.Model.Signals;
 using NModbus;
 
 namespace ModbusServiceLibrary.ModbusClient
@@ -61,56 +62,20 @@ namespace ModbusServiceLibrary.ModbusClient
 		}
 
 		/// <summary>
-		/// Read single coil from the RTU.
-		/// </summary>
-		/// <param name="startingAddress">Address of the RTU.</param>
-		/// <param name="value">Value that has been read.</param>
-		/// <returns>Confirmation that method was executed successfully.</returns>
-		public bool TryReadSingleCoil(int startingAddress, out bool value)
-		{
-			try
-			{
-				value = master.ReadCoils(1, (ushort)startingAddress, 1)[0];
-				return true;
-			}
-			catch
-			{
-				value = false;
-				return false;
-			}
-		}
-
-		/// <summary>
-		/// Write in value for the single coil.
-		/// </summary>
-		/// <param name="coilAddress">Address of the coil.</param>
-		/// <param name="value">Value that needs to be written.</param>
-		/// <returns>Confirmation that method was executed successfully.</returns>
-		public bool TryWriteSingleCoil(int coilAddress, bool value)
-		{
-			try
-			{
-				master.WriteSingleCoil(1, (ushort)coilAddress, value);
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-		}
-
-		/// <summary>
 		/// Read values of multiple coils.
 		/// </summary>
 		/// <param name="startingAddress">Address of the RTU.</param>
 		/// <param name="numberOfCoils">Number of coil that we read from.</param>
 		/// <returns>Array of values that were read.</returns>
-		public bool TryReadCoils(int startingAddress, int numberOfCoils, out bool[] values)
+		public bool TryReadCoils(int startingAddress, DiscreteSignalType discreteSignalType, out byte signalValue)
 		{
-			values = null;
+			signalValue = 0;
 			try
 			{
-				values = master.ReadCoils(1, (ushort)startingAddress, (ushort)numberOfCoils);
+				if (discreteSignalType == DiscreteSignalType.TwoBit)
+					signalValue = BoolArrayToByte(master.ReadCoils(1, (ushort)startingAddress, 2));
+				else
+					signalValue = BoolArrayToByte(master.ReadCoils(1, (ushort)startingAddress, 1));
 				return true;
 			}
 			catch
@@ -124,11 +89,11 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// </summary>
 		/// <param name="coilAddress">Address of the RTU.</param>
 		/// <param name="data">Values that need to be written.</param>
-		public bool TryWriteMultipleCoil(int coilAddress, bool[] data)
+		public bool TryWriteCoils(int coilAddress, DiscreteSignalType discreteSignalType, byte valueToWrite)
 		{
 			try
 			{
-				master.WriteMultipleCoils(1, (ushort)coilAddress, data);
+				master.WriteMultipleCoils(1, (ushort)coilAddress, ByteToBoolArray(discreteSignalType, valueToWrite));
 				return true;
 			}
 			catch
@@ -143,6 +108,30 @@ namespace ModbusServiceLibrary.ModbusClient
 		public void Disconnect()
 		{
 			master.Dispose();
+		}
+
+		private byte BoolArrayToByte(bool[] readValues)
+		{
+			if (readValues.Length == 1)
+				return (byte)(readValues[0] ? 1 : 0);
+
+			return (byte)((readValues[0] ? 2 : 0) + (readValues[1] ? 1 : 0));
+		}
+
+		private bool[] ByteToBoolArray(DiscreteSignalType discreteSignalType, byte value)
+		{
+			if (discreteSignalType == DiscreteSignalType.OneBit)
+			{
+				return value == 1 ? new bool[1] { true } : new bool[1] { false };
+			}
+
+			switch (value)
+			{
+				case 0: return new bool[2] { false, false };
+				case 1: return new bool[2] { false, true };
+				case 2: return new bool[2] { true, false };
+				default: return new bool[2] { true, true };
+			}
 		}
 	}
 }
