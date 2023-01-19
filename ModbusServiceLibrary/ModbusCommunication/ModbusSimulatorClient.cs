@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.Model.SignalValues;
 using ModbusServiceLibrary.ServiceReader;
+using NModbus;
 
 namespace ModbusServiceLibrary.ModbusCommunication
 {
@@ -48,7 +50,10 @@ namespace ModbusServiceLibrary.ModbusCommunication
 
 			try
 			{
-				rtu.Connection.Client = new NModbusClient(rtu.RTUData.IpAddress, rtu.RTUData.Port);
+				TcpClient client = new TcpClient(rtu.RTUData.IpAddress, rtu.RTUData.Port);
+				var factory = new ModbusFactory();
+				IModbusMaster master = factory.CreateMaster(client);
+				rtu.Connection.Client = new NModbusClient(master);
 				rtu.Connection.Status = true;
 				
 				return true;
@@ -92,7 +97,11 @@ namespace ModbusServiceLibrary.ModbusCommunication
 
 			DiscreteSignalValue signal = FindDiscreteSignal(rtu, signalAddress);
 
-			return rtu.Connection.Client.TryReadCoils(signalAddress, signal.DiscreteSignal.SignalType, out discreteValue);
+			if (!rtu.Connection.Client.TryReadCoils(signalAddress, signal.DiscreteSignal.SignalType, out discreteValue))
+				return false;
+
+			FindDiscreteSignal(rtu, signalAddress).Value = discreteValue;
+			return true;
 		}
 
 		/// <summary>

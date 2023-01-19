@@ -26,17 +26,17 @@ namespace ModbusServiceLibrary.Tests
 					{
 						new AnalogSignalValue()
 						{
-							AnalogSignal = new AnalogSignal(1, 1, "AnalogSignal 1"),
+							AnalogSignal = new AnalogSignal(1, 1, "AnalogSignal 1", 1),
 							Value = 0
 						},
 						new AnalogSignalValue()
 						{
-							AnalogSignal = new AnalogSignal(2, 5, "AnalogSignal 2"),
+							AnalogSignal = new AnalogSignal(2, 5, "AnalogSignal 2",2 ),
 							Value = 10
 						},
 						new AnalogSignalValue()
 						{
-							AnalogSignal = new AnalogSignal(3, 7, "AnalogSignal 3"),
+							AnalogSignal = new AnalogSignal(3, 7, "AnalogSignal 3", 3),
 							Value = 14
 						}
 					},
@@ -73,17 +73,17 @@ namespace ModbusServiceLibrary.Tests
 					{
 						new AnalogSignalValue()
 						{
-							AnalogSignal = new AnalogSignal(1, 1, "AnalogSignal 1"),
+							AnalogSignal = new AnalogSignal(1, 1, "AnalogSignal 1", 5),
 							Value = 0
 						},
 						new AnalogSignalValue()
 						{
-							AnalogSignal = new AnalogSignal(2, 5, "AnalogSignal 2"),
+							AnalogSignal = new AnalogSignal(2, 5, "AnalogSignal 2", 5),
 							Value = 10
 						},
 						new AnalogSignalValue()
 						{
-							AnalogSignal = new AnalogSignal(3, 7, "AnalogSignal 3"),
+							AnalogSignal = new AnalogSignal(3, 7, "AnalogSignal 3", 4),
 							Value = 14
 						}
 					},
@@ -120,17 +120,17 @@ namespace ModbusServiceLibrary.Tests
 					{
 						new AnalogSignalValue()
 						{
-							AnalogSignal = new AnalogSignal(1, 1, "AnalogSignal 1"),
+							AnalogSignal = new AnalogSignal(1, 1, "AnalogSignal 1", 2),
 							Value = 0
 						},
 						new AnalogSignalValue()
 						{
-							AnalogSignal = new AnalogSignal(2, 5, "AnalogSignal 2"),
+							AnalogSignal = new AnalogSignal(2, 5, "AnalogSignal 2", 3),
 							Value = 10
 						},
 						new AnalogSignalValue()
 						{
-							AnalogSignal = new AnalogSignal(3, 7, "AnalogSignal 3"),
+							AnalogSignal = new AnalogSignal(3, 7, "AnalogSignal 3", 1),
 							Value = 14
 						}
 					},

@@ -11,7 +11,7 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 		public void ReadValue_SimulatorAvailable()
 		{
 			//Arrange
-			bool value = false;
+			byte value = 0;
 			var modbusSimulatorClientMock = new Mock<IModbusSimulatorClient>();
 			modbusSimulatorClientMock.Setup(x => x.TryReadDiscreteInput(1, 1, out value)).Returns(true);
 			ReadDiscreteSignalValueCommand readDiscreteSignalValueCommand =
@@ -29,7 +29,7 @@ namespace ModbusServiceLibrary.Tests.CommandTests
 		public void ReadValue_SimulatorNotAvailable()
 		{
 			//Arrange
-			bool value = false;
+			byte value = 0;
 			var modbusSimulatorClientMock = new Mock<IModbusSimulatorClient>();
 			modbusSimulatorClientMock.Setup(x => x.TryReadDiscreteInput(1, 1, out value)).Returns(false);
 			ReadDiscreteSignalValueCommand readDiscreteSignalValueCommand =

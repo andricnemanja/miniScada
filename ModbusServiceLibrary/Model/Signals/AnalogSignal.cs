@@ -28,11 +28,12 @@
 		/// <param name="id">Number unique to the RTU.</param>
 		/// <param name="address">Address of the signal.</param>
 		/// <param name="name">Name of the signal.</param>
-		public AnalogSignal(int id, int address, string name)
+		public AnalogSignal(int id, int address, string name, int mappingId)
 		{
 			ID = id;
 			Address = address;
 			Name = name;
+			MappingId = mappingId;
 		}
 
 		/// <summary>

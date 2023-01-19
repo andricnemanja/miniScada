@@ -1,5 +1,6 @@
 ﻿using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.ModbusCommunication;
+using ModbusServiceLibrary.SignalConverter;
 using Moq;
 using Xunit;
 
@@ -15,7 +16,8 @@ namespace ModbusServiceLibrary.Tests.ModbusServiceTests
 		{
 			var modbusConnectionMock = new Mock<IModbusSimulatorClient>();
 			var modbusCommandInvokerMock = new Mock<IModbusCommandInvoker>();
-			ModbusService modbusService = new ModbusService(modbusConnectionMock.Object, modbusCommandInvokerMock.Object);
+			var valueConverterMock = new Mock<IValueConverter>();
+			ModbusService modbusService = new ModbusService(modbusConnectionMock.Object, modbusCommandInvokerMock.Object, valueConverterMock.Object);
 
 			modbusService.ReadAnalogSignal(rtuId, signalAddress);
 

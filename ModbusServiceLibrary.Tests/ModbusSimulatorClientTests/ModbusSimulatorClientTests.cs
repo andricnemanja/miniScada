@@ -62,7 +62,7 @@ namespace ModbusServiceLibrary.Tests.ModbusConnecitonTests
 
 			//Assert
 			Assert.True(returnValue);
-			Assert.Equal(modbusClientReadValue, rtu.AnalogSignalValues.Where(c => c.AnalogSignal.ID == 1).FirstOrDefault().Value);
+			Assert.Equal(modbusClientReadValue, rtu.AnalogSignalValues.Where(c => c.AnalogSignal.Address == 1).FirstOrDefault().Value);
 			nModbusClientMock.Verify(n => n.TryReadSingleHoldingRegister(1, out modbusClientReadValue));
 		}
 		[Fact]
@@ -108,17 +108,17 @@ namespace ModbusServiceLibrary.Tests.ModbusConnecitonTests
 			//Arrange
 			RTU rtu = modbusSimulatorClient.RtuList.Where(r => r.RTUData.ID == 1).FirstOrDefault();
 			var nModbusClientMock = new Mock<IModbusClient>();
-			bool modbusClientReadValue = true;
-			nModbusClientMock.Setup(n => n.TryReadSingleCoil(1, out modbusClientReadValue)).Returns(true);
+			byte modbusClientReadValue = 0;
+			nModbusClientMock.Setup(n => n.TryReadCoils(1, Model.Signals.DiscreteSignalType.OneBit, out modbusClientReadValue)).Returns(true);
 			rtu.Connection.Client = nModbusClientMock.Object;
 
 			//Act
-			bool returnValue = modbusSimulatorClient.TryReadDiscreteInput(1, 1, out bool readValue);
+			bool returnValue = modbusSimulatorClient.TryReadDiscreteInput(1, 1, out byte readValue);
 
 			//Assert
 			Assert.True(returnValue);
-			Assert.Equal(modbusClientReadValue, rtu.DiscreteSignalValues.FirstOrDefault(c => c.DiscreteSignal.ID == 1).Value);
-			nModbusClientMock.Verify(n => n.TryReadSingleCoil(1, out modbusClientReadValue));
+			Assert.Equal(modbusClientReadValue, rtu.DiscreteSignalValues.FirstOrDefault(c => c.DiscreteSignal.Address == 1).Value);
+			nModbusClientMock.Verify(n => n.TryReadCoils(1, Model.Signals.DiscreteSignalType.OneBit, out modbusClientReadValue));
 		}
 
 		[Fact]
@@ -127,35 +127,150 @@ namespace ModbusServiceLibrary.Tests.ModbusConnecitonTests
 			//Arrange
 			RTU rtu = modbusSimulatorClient.RtuList.Where(r => r.RTUData.ID == 1).FirstOrDefault();
 			var nModbusClientMock = new Mock<IModbusClient>();
-			bool modbusClientReadValue = true;
-			nModbusClientMock.Setup(n => n.TryReadSingleCoil(1, out modbusClientReadValue)).Returns(false);
+			byte modbusClientReadValue = 0;
+			nModbusClientMock.Setup(n => n.TryReadCoils(1, Model.Signals.DiscreteSignalType.OneBit, out modbusClientReadValue)).Returns(false);
 			rtu.Connection.Client = nModbusClientMock.Object;
 
 			//Act
-			bool returnValue = modbusSimulatorClient.TryReadDiscreteInput(1, 1, out bool readValue);
+			bool returnValue = modbusSimulatorClient.TryReadDiscreteInput(1, 1, out byte readValue);
 
 			//Assert
 			Assert.False(returnValue);
-			nModbusClientMock.Verify(n => n.TryReadSingleCoil(1, out modbusClientReadValue));
+			nModbusClientMock.Verify(n => n.TryReadCoils(1, Model.Signals.DiscreteSignalType.OneBit, out modbusClientReadValue));
 		}
 
 		[Fact]
-		private void TryReadDiscreteInput_RtuDoesnNotExist_ClientAvailable()
+		private void TryReadDiscreteInput_RtuDoesNotExist_ClientAvailable()
 		{
 			//Arrange
 			RTU rtu = modbusSimulatorClient.RtuList.Where(r => r.RTUData.ID == 1).FirstOrDefault();
 			var nModbusClientMock = new Mock<IModbusClient>();
-			bool modbusClientReadValue = true;
-			nModbusClientMock.Setup(n => n.TryReadSingleCoil(1, out modbusClientReadValue)).Returns(true);
+			byte modbusClientReadValue = 0;
+			nModbusClientMock.Setup(n => n.TryReadCoils(1, Model.Signals.DiscreteSignalType.OneBit, out modbusClientReadValue)).Returns(true);
 			rtu.Connection.Client = nModbusClientMock.Object;
 
 			//Act
-			bool returnValue = modbusSimulatorClient.TryReadDiscreteInput(5, 1, out bool readValue);
+			bool returnValue = modbusSimulatorClient.TryReadDiscreteInput(5, 1, out byte readValue);
 
 			//Assert
 			Assert.False(returnValue);
-			nModbusClientMock.Verify(n => n.TryReadSingleCoil(1, out modbusClientReadValue), Times.Never());
+			nModbusClientMock.Verify(n => n.TryReadCoils(1, Model.Signals.DiscreteSignalType.OneBit, out modbusClientReadValue), Times.Never());
 		}
 		#endregion
+
+		#region TryWriteAnalogSignalValue
+		[Fact]
+		private void TryWriteAnalogSignalValue_RtuExist_ClientAvailable()
+		{
+			//Arrange
+			RTU rtu = modbusSimulatorClient.RtuList.Where(r => r.RTUData.ID == 1).FirstOrDefault();
+			var nModbusClientMock = new Mock<IModbusClient>();
+			int valueToWrite = 101;
+			nModbusClientMock.Setup(n => n.TryWriteSingleHoldingRegister(1, valueToWrite)).Returns(true);
+			rtu.Connection.Client = nModbusClientMock.Object;
+
+			//Act
+			bool returnValue = modbusSimulatorClient.TryWriteAnalogSignalValue(1, 1, valueToWrite);
+
+			//Assert
+			Assert.True(returnValue);
+			Assert.Equal(valueToWrite, rtu.AnalogSignalValues.Where(c => c.AnalogSignal.Address == 1).FirstOrDefault().Value);
+			nModbusClientMock.Verify(n => n.TryWriteSingleHoldingRegister(1, valueToWrite));
+		}
+
+		[Fact]
+		private void TryWriteAnalogSignalValue_RtuDoesNotExist_ClientAvailable()
+		{
+			//Arrange
+			RTU rtu = modbusSimulatorClient.RtuList.Where(r => r.RTUData.ID == 1).FirstOrDefault();
+			var nModbusClientMock = new Mock<IModbusClient>();
+			int valueToWrite = 101;
+			nModbusClientMock.Setup(n => n.TryWriteSingleHoldingRegister(1, valueToWrite)).Returns(true);
+			rtu.Connection.Client = nModbusClientMock.Object;
+
+			//Act
+			bool returnValue = modbusSimulatorClient.TryWriteAnalogSignalValue(5, 1, valueToWrite);
+
+			//Assert
+			Assert.False(returnValue);
+			nModbusClientMock.Verify(n => n.TryWriteSingleHoldingRegister(1, valueToWrite), Times.Never());
+		}
+
+		[Fact]
+		private void TryWriteAnalogSignalValue_RtuExist_ClientNotAvailable()
+		{
+			//Arrange
+			RTU rtu = modbusSimulatorClient.RtuList.Where(r => r.RTUData.ID == 1).FirstOrDefault();
+			var nModbusClientMock = new Mock<IModbusClient>();
+			int valueToWrite = 101;
+			nModbusClientMock.Setup(n => n.TryWriteSingleHoldingRegister(1, valueToWrite)).Returns(false);
+			rtu.Connection.Client = nModbusClientMock.Object;
+
+			//Act
+			bool returnValue = modbusSimulatorClient.TryWriteAnalogSignalValue(1, 1, valueToWrite);
+
+			//Assert
+			Assert.False(returnValue);
+			nModbusClientMock.Verify(n => n.TryWriteSingleHoldingRegister(1, valueToWrite));
+		}
+		#endregion
+
+		#region TryWriteDiscreteSignalValue
+		[Fact]
+		private void TryWriteDiscreteSignal_RtuExist_ClientAvailable()
+		{
+			//Arrange
+			RTU rtu = modbusSimulatorClient.RtuList.Where(r => r.RTUData.ID == 1).FirstOrDefault();
+			var nModbusClientMock = new Mock<IModbusClient>();
+			byte valueToWrite = 1;
+			nModbusClientMock.Setup(n => n.TryWriteCoils(1, Model.Signals.DiscreteSignalType.OneBit ,valueToWrite)).Returns(true);
+			rtu.Connection.Client = nModbusClientMock.Object;
+
+			//Act
+			bool returnValue = modbusSimulatorClient.TryWriteDiscreteSignalValue(1, 1, valueToWrite);
+
+			//Assert
+			Assert.True(returnValue);
+			Assert.Equal(valueToWrite, rtu.DiscreteSignalValues.Where(c => c.DiscreteSignal.Address == 1).FirstOrDefault().Value);
+			nModbusClientMock.Verify(n => n.TryWriteCoils(1, Model.Signals.DiscreteSignalType.OneBit, valueToWrite));
+		}
+
+		[Fact]
+		private void TryWriteDiscreteSignal_RtuDoesNotExist_ClientAvailable()
+		{
+			//Arrange
+			RTU rtu = modbusSimulatorClient.RtuList.Where(r => r.RTUData.ID == 1).FirstOrDefault();
+			var nModbusClientMock = new Mock<IModbusClient>();
+			byte valueToWrite = 1;
+			nModbusClientMock.Setup(n => n.TryWriteCoils(1, Model.Signals.DiscreteSignalType.OneBit, valueToWrite)).Returns(false);
+			rtu.Connection.Client = nModbusClientMock.Object;
+
+			//Act
+			bool returnValue = modbusSimulatorClient.TryWriteDiscreteSignalValue(5, 1, valueToWrite);
+
+			//Assert
+			Assert.False(returnValue);
+			nModbusClientMock.Verify(n => n.TryWriteCoils(1, Model.Signals.DiscreteSignalType.OneBit, valueToWrite), Times.Never());
+		}
+
+		[Fact]
+		private void TryWriteDiscreteSignal_RtuExist_ClientNotAvailable()
+		{
+			//Arrange
+			RTU rtu = modbusSimulatorClient.RtuList.Where(r => r.RTUData.ID == 1).FirstOrDefault();
+			var nModbusClientMock = new Mock<IModbusClient>();
+			byte valueToWrite = 1;
+			nModbusClientMock.Setup(n => n.TryWriteCoils(1, Model.Signals.DiscreteSignalType.OneBit, valueToWrite)).Returns(false);
+			rtu.Connection.Client = nModbusClientMock.Object;
+
+			//Act
+			bool returnValue = modbusSimulatorClient.TryWriteDiscreteSignalValue(1, 1, valueToWrite);
+
+			//Assert
+			Assert.False(returnValue);
+			nModbusClientMock.Verify(n => n.TryWriteCoils(1, Model.Signals.DiscreteSignalType.OneBit, valueToWrite));
+		}
+		#endregion
+
 	}
 }

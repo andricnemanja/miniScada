@@ -1,5 +1,4 @@
-﻿using System.Net.Sockets;
-using ModbusServiceLibrary.Model.Signals;
+﻿using ModbusServiceLibrary.Model.Signals;
 using NModbus;
 
 namespace ModbusServiceLibrary.ModbusClient
@@ -12,11 +11,9 @@ namespace ModbusServiceLibrary.ModbusClient
 	{
 		private readonly IModbusMaster master;
 
-		public NModbusClient(string ipAddress, int port)
+		public NModbusClient(IModbusMaster modbusMaster)
 		{
-			TcpClient client = new TcpClient(ipAddress, port);
-			var factory = new ModbusFactory();
-			master = factory.CreateMaster(client);
+			master = modbusMaster;
 		}
 
 
@@ -30,8 +27,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		{
 			try
 			{
-				ushort[] valueArr = master.ReadHoldingRegisters(1, (ushort)startingAddress, 1);
-				value = valueArr[0];
+				value = master.ReadHoldingRegisters(1, (ushort)startingAddress, 1)[0];
 				return true;
 			}
 			catch
@@ -122,16 +118,10 @@ namespace ModbusServiceLibrary.ModbusClient
 		{
 			if (discreteSignalType == DiscreteSignalType.OneBit)
 			{
-				return value == 1 ? new bool[1] { true } : new bool[1] { false };
+				return new bool[1] { value == 1 };
 			}
 
-			switch (value)
-			{
-				case 0: return new bool[2] { false, false };
-				case 1: return new bool[2] { false, true };
-				case 2: return new bool[2] { true, false };
-				default: return new bool[2] { true, true };
-			}
+			return new bool[2] { (value & 2) == 2, (value & 1) == 1 };
 		}
 	}
 }

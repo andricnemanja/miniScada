@@ -40,6 +40,9 @@
     <Reference Include="Moq, Version=4.18.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.18.3\lib\net462\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="NModbus, Version=3.0.72.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NModbus.3.0.72\lib\net46\NModbus.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -73,10 +76,13 @@
     <Compile Include="CommandTests\ReadAnalogSignalValueCommandTests.cs" />
     <Compile Include="CommandTests\ChangeAnalogSignalValueCommandTests.cs" />
     <Compile Include="CommandTests\ChangeDiscreteSignalValueCommandTests.cs" />
+    <Compile Include="MappinTestData.cs" />
+    <Compile Include="ModbusClientTests\NModbusClientTests.cs" />
     <Compile Include="ModbusSimulatorClientTests\ModbusSimulatorClientTests.cs" />
     <Compile Include="ModbusServiceTests\ModbusServiceTests.cs" />
     <Compile Include="RtuTestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignalConverterTests\ValueConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">
