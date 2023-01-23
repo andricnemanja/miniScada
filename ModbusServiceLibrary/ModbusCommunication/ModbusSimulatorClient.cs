@@ -76,10 +76,17 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			if (!TryFindRtu(rtuId, out RTU rtu))
 				return false;
 
-			if (!rtu.Connection.Client.TryReadSingleHoldingRegister(signalAddress, out value))
-				return false;
+			AnalogSignalValue signalValue = FindAnalogSignal(rtu, signalAddress);
 
-			FindAnalogSignal(rtu, signalAddress).Value = value;
+			lock (signalValue)
+			{
+				if (!rtu.Connection.Client.TryReadSingleHoldingRegister(signalAddress, out value))
+				{
+					return false;
+				}
+			}
+
+			signalValue.Value = value;
 			return true;
 		}
 
@@ -95,12 +102,15 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			if (!TryFindRtu(rtuId, out RTU rtu))
 				return false;
 
-			DiscreteSignalValue signal = FindDiscreteSignal(rtu, signalAddress);
+			DiscreteSignalValue signalValue = FindDiscreteSignal(rtu, signalAddress);
 
-			if (!rtu.Connection.Client.TryReadCoils(signalAddress, signal.DiscreteSignal.SignalType, out discreteValue))
-				return false;
+			lock (signalValue)
+			{
+				if (!rtu.Connection.Client.TryReadCoils(signalAddress, signalValue.DiscreteSignal.SignalType, out discreteValue))
+					return false;
+			}
 
-			FindDiscreteSignal(rtu, signalAddress).Value = discreteValue;
+			signalValue.Value = discreteValue;
 			return true;
 		}
 
@@ -116,10 +126,15 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			if (!TryFindRtu(rtuId, out RTU rtu))
 				return false;
 
-			if (!rtu.Connection.Client.TryWriteSingleHoldingRegister(signalAddress, value))
-				return false;
+			AnalogSignalValue signalValue = FindAnalogSignal(rtu, signalAddress);
 
-			FindAnalogSignal(rtu, signalAddress).Value = value;
+			lock (signalValue)
+			{
+				if (!rtu.Connection.Client.TryWriteSingleHoldingRegister(signalAddress, value))
+					return false;
+			}
+
+			signalValue.Value = value;
 			return true;
 		}
 
@@ -135,12 +150,15 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			if (!TryFindRtu(rtuId, out RTU rtu))
 				return false;
 
-			DiscreteSignalValue signal = FindDiscreteSignal(rtu, signalAddress);
+			DiscreteSignalValue signalValue = FindDiscreteSignal(rtu, signalAddress);
 
-			if (!rtu.Connection.Client.TryWriteCoils(signalAddress, signal.DiscreteSignal.SignalType, discreteValue))
-				return false;
+			lock (signalValue)
+			{
+				if (!rtu.Connection.Client.TryWriteCoils(signalAddress, signalValue.DiscreteSignal.SignalType, discreteValue))
+					return false;
+			}
 
-			signal.Value = discreteValue;
+			signalValue.Value = discreteValue;
 			return true;
 		}
 
