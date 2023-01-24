@@ -24,9 +24,9 @@ namespace ModbusServiceLibrary
 		void UpdateDiscreteSignalValue(int rtuId, int signalAddress, string signalValue);
 
 		/// <summary>
-		/// Changes conncetion status to false.
+		/// Changes connection status to false when connection is terminated.
 		/// </summary>
-		/// <param name="rtuId">ID of the RTU.</param>
+		/// <param name="rtuId">ID of the RTU that lost connection</param>
 		[OperationContract(IsOneWay = true)]
 		void ChangeConnectionStatusToFalse(int rtuId);
 	}

@@ -14,24 +14,25 @@ namespace ModbusServiceLibrary.Model.RTU
 		public RTUData RTUData { get; set; }
 
 		/// <summary>
-		/// Attribut containing connection.
+		/// Object that holds information about connection to the RTU.
 		/// </summary>
 		public RTUConnection Connection { get; set; }
 
 		/// <summary>
-		/// List of analog signal values.
+		/// List of analog signals with values.
 		/// </summary>
 		public List<AnalogSignalValue> AnalogSignalValues { get; set; } = new List<AnalogSignalValue>();
 
 		/// <summary>
-		/// List of discrete signal values.
+		/// List of discrete signals with values.
 		/// </summary>
 		public List<DiscreteSignalValue> DiscreteSignalValues { get; set; } = new List<DiscreteSignalValue>();
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RTU"/> class.
 		/// </summary>
-		/// <param name="rtuStaticData">Static data of the RTU.</param>
+		/// <param name="rtuStaticData">An instance of the <see cref="ModelServiceReference.RTU rtuStaticData"/>.
+		/// Allows converting Model Service static data to Modbus Service model class</param>
 		public RTU(ModelServiceReference.RTU rtuStaticData)
 		{
 			RTUData = new RTUData(rtuStaticData.RTUData);
@@ -46,8 +47,9 @@ namespace ModbusServiceLibrary.Model.RTU
 
 			Connection = new RTUConnection(null, false);
 		}
-		public RTU()
-		{
-		}
+		/// <summary>
+		/// Initializes a new instance of the <see cref="RTU"/> class without data.
+		/// </summary>
+		public RTU() {}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿namespace ModbusServiceLibrary.Model.SignalMapping
 {
 	/// <summary>
-	/// Class <see cref="AnalogSignalMapping"/> contains data required to represent signal physicly.
+	/// Class <see cref="AnalogSignalMapping"/> contains data required to convert from analog signal value to real value.
 	/// </summary>
 	public class AnalogSignalMapping
 	{

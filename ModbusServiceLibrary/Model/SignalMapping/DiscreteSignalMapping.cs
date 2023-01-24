@@ -3,7 +3,7 @@
 namespace ModbusServiceLibrary.Model.SignalMapping
 {
 	/// <summary>
-	/// Class <see cref="DiscreteSignalMapping"/> contains data required to represent signal physicly.
+	/// Class <see cref="DiscreteSignalMapping"/> contains data required to convert from discrete signal value to signal state.
 	/// </summary>
 	public class DiscreteSignalMapping
 	{
@@ -16,7 +16,7 @@ namespace ModbusServiceLibrary.Model.SignalMapping
 		/// </summary>
 		public string Name { get; set; }
 		/// <summary>
-		/// Mapping for a 1-bit or 2-bit signal. 
+		/// Dictionary which maps discrete signal value to signal state
 		/// </summary>
 		public Dictionary<byte, string> DiscreteValueToState { get; set; }
 

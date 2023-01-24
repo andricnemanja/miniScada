@@ -7,7 +7,7 @@ namespace ModbusServiceLibrary.ServiceReader
 	public interface IModelServiceReader
 	{
 		/// <summary>
-		/// Reads all RTUs
+		/// Reads all RTU static data from Model Service
 		/// </summary>
 		/// <returns>List of RTUs</returns>
 		List<RTU> ReadAllRTUs();

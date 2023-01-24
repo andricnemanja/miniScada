@@ -12,14 +12,14 @@ namespace ModbusServiceLibrary.ServiceReader
 		/// <summary>
 		/// Initializes the new instance of the <see cref="ModelServiceReader"/> class.
 		/// </summary>
-		/// <param name="modelService">An instance of the <see cref="IModelService"/>.</param>
+		/// <param name="modelService">An instance of the <see cref="ModelServiceReference.IModelService"/>.</param>
 		public ModelServiceReader(ModelServiceReference.IModelService modelService)
 		{
 			this.modelService = modelService;
 		}
 
 		/// <summary>
-		/// Reads all RTUs
+		/// Reads all RTU static data from Model Service
 		/// </summary>
 		/// <returns>List of RTUs</returns>
 		public List<RTU> ReadAllRTUs()
@@ -36,7 +36,7 @@ namespace ModbusServiceLibrary.ServiceReader
 		}
 
 		/// <summary>
-		/// Reads all analog signal mappings from model service
+		/// Reads all analog signal mappings from Model Service
 		/// </summary>
 		/// <returns>List of analog signal mappings</returns>
 		public List<AnalogSignalMapping> ReadAnalogSignalMappings() 

@@ -1,7 +1,7 @@
 ﻿namespace ModbusServiceLibrary.Model.RTU
 {
 	/// <summary>
-	/// Class <c>RTUData</c> models data of the RTU.
+	/// Class <c>RTUData</c> models static RTU data.
 	/// </summary>
 	public class RTUData
 	{
@@ -25,7 +25,8 @@
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RTUData"/> class.
 		/// </summary>
-		/// <param name="rtuData">Static data of the RTU. Data from the <see cref="ModelServiceReference"/> namespace.</param>
+		/// <param name="rtuData">An instance of the <see cref="ModelServiceReference.RTUData"/>.
+		/// Allows converting Model Service static data to Modbus Service model class</param>
 		public RTUData(ModelServiceReference.RTUData rtuData)
 		{
 			Name = rtuData.Name;
@@ -33,7 +34,9 @@
 			IpAddress = rtuData.IpAddress;
 			Port = rtuData.Port;
 		}
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="RTUData"/> class without data.
+		/// </summary>
 		public RTUData() {}
 	}
 }

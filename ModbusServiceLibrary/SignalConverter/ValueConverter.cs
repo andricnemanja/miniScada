@@ -14,9 +14,6 @@ namespace ModbusServiceLibrary.SignalConverter
 	/// </summary>
 	public class ValueConverter : IValueConverter
 	{
-		/// <summary>
-		/// Repository that contains all data required for converting.
-		/// </summary>
 		private readonly IModelServiceReader modelServiceReader;
 		private readonly IModbusSimulatorClient modbusSimulatorClient;
 		private List<AnalogSignalMapping> analogSignalMappingList;
@@ -25,13 +22,17 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <summary>
 		/// Initializes a instance of class <see cref="ValueConverter"/>.
 		/// </summary>
-		/// <param name="signalRepo">Signal Mapping repository.</param>
+		/// <param name="modelServiceReader">Instance of the <see cref="IModelServiceReader"/> class</param>
+		/// <param name="modbusSimulatorClient">Instance of the <see cref="IModbusSimulatorClient"/> class</param>
 		public ValueConverter(IModelServiceReader modelServiceReader, IModbusSimulatorClient modbusSimulatorClient)
 		{
 			this.modelServiceReader = modelServiceReader;
 			this.modbusSimulatorClient = modbusSimulatorClient;
 		}
 
+		/// <summary>
+		/// Reads analog and discrete signal mappings from Model Service. Needs to be called before using class methods./>.
+		/// </summary>
 		public void Initialize()
 		{
 			analogSignalMappingList = modelServiceReader.ReadAnalogSignalMappings();
@@ -66,12 +67,12 @@ namespace ModbusServiceLibrary.SignalConverter
 		}
 
 		/// <summary>
-		/// Convert sensor values to real values that have physical meaning.
+		/// Convert sensor values to discrete signal state.
 		/// </summary>
 		/// <param name="rtuId">ID of the RTU.</param>
 		/// <param name="discreteSignalAddress">Address of the discrete signal.</param>
 		/// <param name="value">Value that is being converted.</param>
-		/// <returns>Value with it's phyisical connotation.</returns>
+		/// <returns>Discrete signal state.</returns>
 		public string ConvertDiscreteSignalToRealValue(int rtuId, int discreteSignalAddress, byte value)
 		{
 			DiscreteSignalMapping discreteSignalMapping = FindDiscreteSignalMapping(rtuId, discreteSignalAddress);
@@ -80,7 +81,7 @@ namespace ModbusServiceLibrary.SignalConverter
 		}
 
 		/// <summary>
-		/// Convert real values to sensor values.
+		/// Convert discrete signal state to sensor values.
 		/// </summary>
 		/// <param name="rtuId">ID of the RTU.</param>
 		/// <param name="discreteSignalAddress">Address of the discrete signal.</param>
@@ -92,6 +93,12 @@ namespace ModbusServiceLibrary.SignalConverter
 			return discreteSignalMapping.DiscreteValueToState.SingleOrDefault(x => x.Value == value).Key;
 		}
 
+		/// <summary>
+		/// Finds mapping for discrete signal.
+		/// </summary>
+		/// <param name="rtuId">ID of the RTU.</param>
+		/// <param name="discreteSignalAddress">Address of the discrete signal.</param>
+		/// <returns>Discrete signal mapping for signal with given address.</returns>
 		private DiscreteSignalMapping FindDiscreteSignalMapping(int rtuId, int discreteSignalAddress)
 		{
 			RTU rtu = modbusSimulatorClient.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
@@ -99,6 +106,12 @@ namespace ModbusServiceLibrary.SignalConverter
 			return discreteSignalMappingList.FirstOrDefault(m => m.Id == discreteSignalValue.DiscreteSignal.MappingId);
 		}
 
+		/// <summary>
+		/// Finds mapping for analog signal.
+		/// </summary>
+		/// <param name="rtuId">ID of the RTU.</param>
+		/// <param name="analogSignalAddress">Address of the analog signal.</param>
+		/// <returns>Discrete signal mapping for signal with given address.</returns>
 		private AnalogSignalMapping FindAnalogSignalMapping(int rtuId, int analogSignalAddress)
 		{
 			RTU rtu = modbusSimulatorClient.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);

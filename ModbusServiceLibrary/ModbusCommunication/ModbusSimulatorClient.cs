@@ -10,7 +10,7 @@ using NModbus;
 namespace ModbusServiceLibrary.ModbusCommunication
 {
 	/// <summary>
-	/// Class responsible for making connection with RTU. Contains various functionalities with connected RTU.
+	/// Class responsible for making connection with RTU and reading signal values.
 	/// </summary>
 	public sealed class ModbusSimulatorClient : IModbusSimulatorClient
 	{
@@ -31,7 +31,7 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		public List<RTU> RtuList { get; private set; }
 
 		/// <summary>
-		/// Initialize static data by reading all of RTUs
+		/// Initialize static data by reading all of RTUs from Model Service. Need to be called before using class methods.
 		/// </summary>
 		public void InitializeData()
 		{
@@ -39,10 +39,10 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		}
 
 		/// <summary>
-		/// Make a connection with specific RTU
+		/// Try to make a connection with specific RTU.
 		/// </summary>
-		/// <param name="rtudId">Number specific to the RTU</param>
-		/// <returns></returns>
+		/// <param name="rtudId">Id of RTU to connect to.</param>
+		/// <returns>True if connection is made, false if there is error that prevents connecting</returns>
 		public bool TryConnectToRtu(int rtudId)
 		{
 			if (!TryFindRtu(rtudId, out RTU rtu))
@@ -65,11 +65,12 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		}
 
 		/// <summary>
-		/// Read single register from the RTU
+		/// Try to read single register from the RTU
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU</param>
+		/// <param name="rtuId">Id of RTU to read from</param>
 		/// <param name="signalAddress">Address of the register</param>
-		/// <returns>Returns the value of the register</returns>
+		/// <param name="value">Function output - value of the read signal</param>
+		/// <returns>True if signal is read, false if an error occurred during reading</returns>
 		public bool TryReadAnalogInput(int rtuId, int signalAddress, out int value)
 		{
 			value = 0;
@@ -91,11 +92,12 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		}
 
 		/// <summary>
-		/// Read single discrete input from the simulator
+		/// Try to read single discrete input from
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU</param>
+		/// <param name="rtuId">Id of RTU to read from</param>
 		/// <param name="signalAddress">Address of the discrete input</param>
-		/// <returns>Returns the value of the discrete input</returns>
+		/// <param name="discreteValue">Function output - value of the read signal</param>
+		/// <returns>True if signal is read, false if an error occurred during reading</returns>
 		public bool TryReadDiscreteInput(int rtuId, int signalAddress, out byte discreteValue)
 		{
 			discreteValue = 0;
@@ -115,12 +117,12 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		}
 
 		/// <summary>
-		/// Write value of the single analog signal. 
+		/// Try to write value of the single analog signal.
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU.</param>
+		/// <param name="rtuId">Id of RTU to write to.</param>
 		/// <param name="signalAddress">Address of the register.</param>
-		/// <param name="value">Updated value.</param>
-		/// <returns>Updated value.</returns>
+		/// <param name="value">New value.</param>
+		/// <returns>True if the signal is written, false if an error occurred during writing.</returns>
 		public bool TryWriteAnalogSignalValue(int rtuId, int signalAddress, int value)
 		{
 			if (!TryFindRtu(rtuId, out RTU rtu))
@@ -139,12 +141,12 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		}
 
 		/// <summary>
-		/// Write value of the single discrete signal
+		/// Try to write value of the single discrete signal.
 		/// </summary>
-		/// <param name="rtuId">Number specific to the RTU</param>
-		/// <param name="signalAddress">Address of the register</param>
-		/// <param name="value">Updated value</param>
-		/// <returns>Updated value</returns>
+		/// <param name="rtuId">Id of RTU to write to.</param>
+		/// <param name="signalAddress">Address of the register.</param>
+		/// <param name="discreteValue">New value.</param>
+		/// <returns>True if the signal is written, false if an error occurred during writing.</returns>
 		public bool TryWriteDiscreteSignalValue(int rtuId, int signalAddress, byte discreteValue)
 		{
 			if (!TryFindRtu(rtuId, out RTU rtu))
@@ -166,7 +168,8 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		/// Find the RTU by its ID
 		/// </summary>
 		/// <param name="rtuId">Number specific to the RTU</param>
-		/// <returns>RTU</returns>
+		/// <param name="rtu">Function output - RTU with <paramref name="rtuId"/> ID</param>
+		/// <returns>True if RTU is found, false otherwise</returns>
 		public bool TryFindRtu(int rtuId, out RTU rtu)
 		{
 			rtu = RtuList.Where(r => r.RTUData.ID == rtuId).FirstOrDefault();

@@ -11,18 +11,21 @@ namespace ModbusServiceLibrary.ModbusClient
 	{
 		private readonly IModbusMaster master;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NModbusClient"/>.
+		/// </summary>
+		/// <param name="modbusMaster">Instance of the <see cref="IModbusMaster"/> class.</param>
 		public NModbusClient(IModbusMaster modbusMaster)
 		{
 			master = modbusMaster;
 		}
 
-
 		/// <summary>
-		/// Read single holding register from the RTU.
+		/// Try to read single holding register from the RTU.
 		/// </summary>
 		/// <param name="startingAddress">Address of the signal.</param>
-		/// <param name="value">Value that we read.</param>
-		/// <returns>Confirmation that method was executed successfully.</returns>
+		/// <param name="value">Output read value.</param>
+		/// <returns>True if signal is successfully read, false if error occured during reading.</returns>
 		public bool TryReadSingleHoldingRegister(int startingAddress, out int value)
 		{
 			try
@@ -38,11 +41,11 @@ namespace ModbusServiceLibrary.ModbusClient
 		}
 
 		/// <summary>
-		/// Write in the value of the single holding register.
+		/// Try to write new value in the single holding register.
 		/// </summary>
 		/// <param name="startingAddress">Address of the signal.</param>
 		/// <param name="value">Value that needs to be written.</param>
-		/// <returns>Confirmation that method was executed successfully.</returns>
+		/// <returns>True if signal is successfully written, false if error occured during writing.</returns>
 		public bool TryWriteSingleHoldingRegister(int startingAddress, int value)
 		{
 			try
@@ -58,11 +61,12 @@ namespace ModbusServiceLibrary.ModbusClient
 		}
 
 		/// <summary>
-		/// Read values of multiple coils.
+		/// Try to read values of multiple coils.
 		/// </summary>
 		/// <param name="startingAddress">Address of the RTU.</param>
-		/// <param name="numberOfCoils">Number of coil that we read from.</param>
-		/// <returns>Array of values that were read.</returns>
+		/// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
+		/// <param name="signalValue">Read value.</param>
+		/// <returns>True if coils are successfully read, false if error occured during reading.</returns>
 		public bool TryReadCoils(int startingAddress, DiscreteSignalType discreteSignalType, out byte signalValue)
 		{
 			signalValue = 0;
@@ -84,7 +88,9 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// Write in values for multiple coils.
 		/// </summary>
 		/// <param name="coilAddress">Address of the RTU.</param>
-		/// <param name="data">Values that need to be written.</param>
+		/// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
+		/// <param name="valueToWrite">Value that needs to be written.</param>
+		/// <returns>True if coils are successfully written, false if error occured during writing.</returns>
 		public bool TryWriteCoils(int coilAddress, DiscreteSignalType discreteSignalType, byte valueToWrite)
 		{
 			try
@@ -99,13 +105,18 @@ namespace ModbusServiceLibrary.ModbusClient
 		}
 
 		/// <summary>
-		/// Disconnect. 
+		/// Dispose connection to RTU.
 		/// </summary>
 		public void Disconnect()
 		{
 			master.Dispose();
 		}
 
+		/// <summary>
+		/// Converts array of bools that is read from RTU device to numerical representation.
+		/// </summary>
+		/// <param name="readValues">Bool values that are read from RTU device.</param>
+		/// <returns>Signal value converted from array of bools to number.</returns>
 		private byte BoolArrayToByte(bool[] readValues)
 		{
 			if (readValues.Length == 1)
@@ -114,6 +125,12 @@ namespace ModbusServiceLibrary.ModbusClient
 			return (byte)((readValues[0] ? 2 : 0) + (readValues[1] ? 1 : 0));
 		}
 
+		/// <summary>
+		/// Converts numerical representation of discrete signal to array of bools that is needed for changing signal value.
+		/// </summary>
+		/// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
+		/// <param name="value">Numerical representation of discrete signal value.</param>
+		/// <returns>Array of bools needed for changing discrete signal value.</returns>
 		private bool[] ByteToBoolArray(DiscreteSignalType discreteSignalType, byte value)
 		{
 			if (discreteSignalType == DiscreteSignalType.OneBit)
