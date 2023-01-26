@@ -13,7 +13,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 		protected IModbusSimulatorClient modbusSimulatorClient;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="RtuRepository"/>.
+		/// Initializes a new instance of the <see cref="ModbusCommand"/>.
 		/// </summary>
 		/// <param name="modbusSimulatorClient">Instance of the <see cref="IModbusSimulatorClient"/> class.</param>
 		protected ModbusCommand(IModbusSimulatorClient modbusConnection)

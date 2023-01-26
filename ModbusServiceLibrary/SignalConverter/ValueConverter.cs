@@ -101,7 +101,7 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <returns>Discrete signal mapping for signal with given address.</returns>
 		private DiscreteSignalMapping FindDiscreteSignalMapping(int rtuId, int discreteSignalAddress)
 		{
-			RTU rtu = modbusSimulatorClient.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
+			RTU rtu = modelServiceReader.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
 			DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.FirstOrDefault(s => s.DiscreteSignal.Address == discreteSignalAddress);
 			return discreteSignalMappingList.FirstOrDefault(m => m.Id == discreteSignalValue.DiscreteSignal.MappingId);
 		}
@@ -114,7 +114,7 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <returns>Discrete signal mapping for signal with given address.</returns>
 		private AnalogSignalMapping FindAnalogSignalMapping(int rtuId, int analogSignalAddress)
 		{
-			RTU rtu = modbusSimulatorClient.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
+			RTU rtu = modelServiceReader.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
 			AnalogSignalValue analogSignalValue = rtu.AnalogSignalValues.FirstOrDefault(s => s.AnalogSignal.Address == analogSignalAddress);
 			return analogSignalMappingList.FirstOrDefault(m => m.Id == analogSignalValue.AnalogSignal.MappingId);
 		}

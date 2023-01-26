@@ -102,6 +102,7 @@
     <Compile Include="ModbusCommands\IModbusCommandInvoker.cs" />
     <Compile Include="ModbusCommands\ModbusCommand.cs" />
     <Compile Include="ModbusCommands\ModbusCommandInvoker.cs" />
+    <Compile Include="ModbusCommands\ConnectToRtuCommand.cs" />
     <Compile Include="ModbusCommands\ReadDiscreteSignalValueCommand.cs" />
     <Compile Include="ModbusCommands\ReadAnalogSignalValueCommand.cs" />
     <Compile Include="ModbusCommunication\IModbusSimulatorClient.cs" />

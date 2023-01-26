@@ -78,7 +78,7 @@ namespace ModbusServiceLibrary.ModbusCommands
 			return true;
 		}
 		/// <summary>
-		/// Reads discrete signal value from the RTU.
+		/// Try to read discrete signal value from the RTU.
 		/// </summary>
 		/// <param name="rtuId">Number specific and unique to the RTU.</param>
 		/// <param name="signalAddress">Address of the specific signal.</param>
@@ -93,6 +93,22 @@ namespace ModbusServiceLibrary.ModbusCommands
 			Commands.Enqueue(readDiscreteSignalCommand);
 
 			values = readDiscreteSignalCommand.NewValue;
+			return true;
+		}
+
+		/// <summary>
+		/// Try to connect to RTU
+		/// </summary>
+		/// <param name="rtuId">RTU identification number.</param>
+		/// <returns>True if connection is made, false if an error occurred.</returns>
+		public bool TryConnectToRTU(int rtuId)
+		{
+			ConnectToRtuCommand connectToRtuCommand = new ConnectToRtuCommand(modbusSimulatorClient, rtuId);
+
+			if (!connectToRtuCommand.Execute())
+				return false;
+
+			Commands.Enqueue(connectToRtuCommand);
 			return true;
 		}
 	}

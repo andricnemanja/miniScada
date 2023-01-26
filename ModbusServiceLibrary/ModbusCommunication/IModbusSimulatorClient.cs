@@ -1,18 +1,9 @@
-﻿using System.Collections.Generic;
-using ModbusServiceLibrary.Model.RTU;
+﻿using ModbusServiceLibrary.Model.RTU;
 
 namespace ModbusServiceLibrary.ModbusCommunication
 {
 	public interface IModbusSimulatorClient
 	{
-		/// <summary>
-		/// List of RTUs.
-		/// </summary>
-		List<RTU> RtuList { get; }
-		/// <summary>
-		/// Initialize static data by reading all of RTUs from Model Service. Need to be called before using class methods.
-		/// </summary>
-		void InitializeData();
 		/// <summary>
 		/// Try to make a connection with specific RTU.
 		/// </summary>

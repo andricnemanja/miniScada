@@ -15,11 +15,10 @@ namespace ModbusServiceLibrary.Tests.SignalConverterTests
 		public ValueConverterTests()
 		{
 			modelServiceReaderMock = new Mock<IModelServiceReader>();
-			modelServiceReaderMock.Setup(x => x.ReadAllRTUs()).Returns(RtuTestData.GetRtuTestList());
+			modelServiceReaderMock.Setup(x => x.RtuList).Returns(RtuTestData.GetRtuTestList());
 			modelServiceReaderMock.Setup(x => x.ReadAnalogSignalMappings()).Returns(MappinTestData.GetAnalogSignalMappingsTestList());
 			modelServiceReaderMock.Setup(x => x.ReadDiscreteSignalMappings()).Returns(MappinTestData.GetDiscreteSignalMappingsTestList());
 			modbusSimulatorClient = new ModbusSimulatorClient(modelServiceReaderMock.Object);
-			modbusSimulatorClient.InitializeData();
 			valueConverter = new ValueConverter(modelServiceReaderMock.Object, modbusSimulatorClient);
 			valueConverter.Initialize();
 		}

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using ModbusServiceLibrary.ModbusClient;
@@ -25,18 +24,6 @@ namespace ModbusServiceLibrary.ModbusCommunication
 			this.modelServiceReader = modelServiceReader;
 		}
 
-		/// <summary>
-		/// List of RTUs.
-		/// </summary>
-		public List<RTU> RtuList { get; private set; }
-
-		/// <summary>
-		/// Initialize static data by reading all of RTUs from Model Service. Need to be called before using class methods.
-		/// </summary>
-		public void InitializeData()
-		{
-			RtuList = modelServiceReader.ReadAllRTUs();
-		}
 
 		/// <summary>
 		/// Try to make a connection with specific RTU.
@@ -172,12 +159,12 @@ namespace ModbusServiceLibrary.ModbusCommunication
 		/// <returns>True if RTU is found, false otherwise</returns>
 		public bool TryFindRtu(int rtuId, out RTU rtu)
 		{
-			rtu = RtuList.Where(r => r.RTUData.ID == rtuId).FirstOrDefault();
+			rtu = modelServiceReader.RtuList.Where(r => r.RTUData.ID == rtuId).FirstOrDefault();
 			return rtu != null;
 		}
 
 		/// <summary>
-		/// Finds the value of the analog signal by it's address. 
+		/// Finds the value of the analog signal by it's address.
 		/// </summary>
 		/// <param name="rtu">RTU which contains that analog signal.</param>
 		/// <param name="signalAddress">Address of the analog signal.</param>

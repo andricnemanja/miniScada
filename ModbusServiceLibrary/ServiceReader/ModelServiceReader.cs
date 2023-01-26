@@ -19,6 +19,19 @@ namespace ModbusServiceLibrary.ServiceReader
 		}
 
 		/// <summary>
+		/// List of RTUs.
+		/// </summary>
+		public List<RTU> RtuList { get; private set; }
+
+		/// <summary>
+		/// Initialize static data by reading all of RTUs from Model Service. Need to be called before using class methods.
+		/// </summary>
+		public void InitializeData()
+		{
+			RtuList = ReadAllRTUs();
+		}
+
+		/// <summary>
 		/// Reads all RTU static data from Model Service
 		/// </summary>
 		/// <returns>List of RTUs</returns>

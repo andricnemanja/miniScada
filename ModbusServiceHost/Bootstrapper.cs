@@ -20,10 +20,10 @@ namespace ModbusServiceHost
 			ContainerBuilder builder = new ContainerBuilder();
 
 			builder.RegisterType<ModbusServiceLibrary.ModelServiceReference.ModelServiceClient>().As<ModbusServiceLibrary.ModelServiceReference.IModelService>();
-			builder.RegisterType<ModelServiceReader>().As<IModelServiceReader>();
-			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
-			builder.RegisterType<ModbusSimulatorClient>().As<IModbusSimulatorClient>()
+			builder.RegisterType<ModelServiceReader>().As<IModelServiceReader>()
 				.OnActivated(c => c.Instance.InitializeData()).SingleInstance();
+			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
+			builder.RegisterType<ModbusSimulatorClient>().As<IModbusSimulatorClient>();
 			builder.RegisterType<ModbusCommandInvoker>().As<IModbusCommandInvoker>();
 			builder.RegisterType<ValueConverter>().As<IValueConverter>()
 				.OnActivated(c => c.Instance.Initialize()); ;

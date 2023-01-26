@@ -1,6 +1,5 @@
 ﻿using System.ServiceModel;
 using ModbusServiceLibrary.ModbusCommands;
-using ModbusServiceLibrary.ModbusCommunication;
 using ModbusServiceLibrary.SignalConverter;
 
 namespace ModbusServiceLibrary
@@ -8,20 +7,17 @@ namespace ModbusServiceLibrary
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
 	public sealed class ModbusService : IModbusDuplex
 	{
-		private readonly IModbusSimulatorClient modbusSimulatorClient;
 		private readonly IModbusCommandInvoker modbusCommandInvoker;
 		private readonly IValueConverter valueConverter;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModbusService"/>
 		/// </summary>
-		/// <param name="modbusSimulatorClient">Instance of the <see cref="IModbusSimulatorClient"/> class</param>
 		/// <param name="modbusCommandInvoker">Instance of the <see cref="IModbusCommandInvoker"/> class</param>
 		/// <param name="valueConverter">Instance of the <see cref="IValueConverter"/> class</param>
 
-		public ModbusService(IModbusSimulatorClient modbusSimulatorClient, IModbusCommandInvoker modbusCommandInvoker, IValueConverter valueConverter)
+		public ModbusService(IModbusCommandInvoker modbusCommandInvoker, IValueConverter valueConverter)
 		{
-			this.modbusSimulatorClient = modbusSimulatorClient;
 			this.modbusCommandInvoker = modbusCommandInvoker;
 			this.valueConverter = valueConverter;
 		}
@@ -99,7 +95,7 @@ namespace ModbusServiceLibrary
 		/// <returns>True if the connection is made, false otherwise.</returns>
 		public bool TryConnectToRtu(int rtuId)
 		{
-			return modbusSimulatorClient.TryConnectToRtu(rtuId);
+			return modbusCommandInvoker.TryConnectToRTU(rtuId);
 		}
 	}
 }
