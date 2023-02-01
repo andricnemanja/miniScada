@@ -1,5 +1,6 @@
-﻿using ModbusServiceLibrary.Model.Signals;
-using NModbus;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ModbusServiceLibrary.Model.Signals;
 
 namespace ModbusServiceLibrary.ModbusClient
 {
@@ -9,16 +10,7 @@ namespace ModbusServiceLibrary.ModbusClient
 	/// </summary>
 	public sealed class NModbusClient : IModbusClient
 	{
-		private readonly IModbusMaster master;
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="NModbusClient"/>.
-		/// </summary>
-		/// <param name="modbusMaster">Instance of the <see cref="IModbusMaster"/> class.</param>
-		public NModbusClient(IModbusMaster modbusMaster)
-		{
-			master = modbusMaster;
-		}
+		private List<RtuConnection> rtuConnections = new List<RtuConnection>();
 
 		/// <summary>
 		/// Try to read single holding register from the RTU.
@@ -109,7 +101,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// </summary>
 		public void Disconnect()
 		{
-			master.Dispose();
+			GetRtuConnection(rtuId).modbusMaster.Dispose();
 		}
 
 		/// <summary>
@@ -139,6 +131,11 @@ namespace ModbusServiceLibrary.ModbusClient
 			}
 
 			return new bool[2] { (value & 2) == 2, (value & 1) == 1 };
+		}
+
+		private RtuConnection GetRtuConnection(int rtuId)
+		{
+			return rtuConnections.SingleOrDefault(r => r.RtuId == rtuId);
 		}
 	}
 }

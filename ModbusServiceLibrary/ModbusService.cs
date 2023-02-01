@@ -1,10 +1,11 @@
 ﻿using System.ServiceModel;
 using ModbusServiceLibrary.ModbusCommands;
+using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.SignalConverter;
 
 namespace ModbusServiceLibrary
 {
-	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
+	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
 	public sealed class ModbusService : IModbusDuplex
 	{
 		private readonly IModbusCommandInvoker modbusCommandInvoker;
@@ -46,6 +47,10 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal.</param>
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
+			CommandReceiver commandReceiver = new CommandReceiver();
+
+			commandReceiver.ReceiveCommand(new ReadSingleCoilCommand());
+
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			if(modbusCommandInvoker.TryReadDiscreteSignalValue(rtuId, signalAddress, out byte value))
 			{
