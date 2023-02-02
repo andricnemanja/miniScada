@@ -146,6 +146,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\ModbusServiceReference\ModbusServiceLibrary.CommandResult.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModbusServiceReference\service.wsdl" />
     <None Include="Connected Services\ModbusServiceReference\service.xsd">
       <SubType>Designer</SubType>
@@ -194,6 +197,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.CommandResult.ConnectToRtuResult.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.CommandResult.ConnectToRtuResult2.datasource" />
     <None Include="Properties\DataSources\SharedModel.Model.RTU.RTU.datasource" />
     <None Include="Properties\DataSources\SharedModel.Model.Signals.AnalogSignal.datasource" />
     <None Include="Properties\DataSources\SharedModel.Model.Signals.DiscreteSignal.datasource" />
@@ -247,6 +252,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">
+      <Project>{E7FDB680-6D8C-41BB-B54E-F250BF051C5E}</Project>
+      <Name>ModbusServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

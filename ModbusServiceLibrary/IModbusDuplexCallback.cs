@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using ModbusServiceLibrary.CommandResult;
 
 namespace ModbusServiceLibrary
 {
@@ -21,7 +22,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal we are updating</param>
 		/// <param name="signalValue">Updated value</param>
 		[OperationContract(IsOneWay = true)]
-		void UpdateDiscreteSignalValue(int rtuId, int signalAddress, string signalValue);
+		void UpdateDiscreteSignalValue(ReadSingleCoilResult readSingleCoilResult);
 
 		/// <summary>
 		/// Changes connection status to false when connection is terminated.

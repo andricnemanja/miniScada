@@ -90,10 +90,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandProcessing\CommandReceiver.cs" />
-    <Compile Include="CommandProcessing\CommandResult.cs" />
+    <Compile Include="CommandProcessing\ConnectoToRtuCommandProcessor.cs" />
     <Compile Include="CommandProcessing\ICommandProcessor.cs" />
+    <Compile Include="CommandProcessing\ICommandReceiver.cs" />
     <Compile Include="CommandProcessing\ReadSingleHoldingRegisterCommandProcessor.cs" />
     <Compile Include="CommandProcessing\ReadSingleCoilCommandProcessor.cs" />
+    <Compile Include="CommandResult\CommandStatus.cs" />
+    <Compile Include="CommandResult\ConnectToRtuResult2.cs" />
+    <Compile Include="CommandResult\ConnectToRtuResult.cs" />
+    <Compile Include="CommandResult\ICommandResult.cs" />
+    <Compile Include="CommandResult\ReadSingleCoilResult.cs" />
     <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,6 +108,9 @@
     <Compile Include="IModbusDuplex.cs" />
     <Compile Include="IModbusDuplexCallback.cs" />
     <Compile Include="ModbusClient\IModbusClient.cs" />
+    <Compile Include="ModbusClient\IModbusClient2.cs" />
+    <Compile Include="ModbusClient\NModbusClient2.cs" />
+    <Compile Include="ModbusClient\RtuConnection.cs" />
     <Compile Include="ModbusCommands\ChangeAnalogSignalValueCommand.cs" />
     <Compile Include="ModbusCommands\ChangeDiscreteSignalValueCommand.cs" />
     <Compile Include="ModbusCommands\IModbusCommandInvoker.cs" />
@@ -115,9 +124,14 @@
     <Compile Include="Model\SignalMapping\DiscreteSignalMapping.cs" />
     <Compile Include="Model\SignalMapping\AnalogSignalMapping.cs" />
     <Compile Include="Model\Signals\DiscreteSignalType.cs" />
+    <Compile Include="RtuCommands\ConnectToRtuCommand.cs" />
     <Compile Include="RtuCommands\IRtuCommand.cs" />
+    <Compile Include="RtuCommands\IRtuCommandInvoker.cs" />
     <Compile Include="RtuCommands\ReadSingleCoilCommand.cs" />
     <Compile Include="RtuCommands\ReadSingleHoldingRegisterCommand.cs" />
+    <Compile Include="RtuCommands\RtuCommandInvoker.cs" />
+    <Compile Include="SignalConverter\ISignalMapper.cs" />
+    <Compile Include="SignalConverter\SignalMapper.cs" />
     <Compile Include="ServiceReader\IModelServiceReader.cs" />
     <Compile Include="ModbusClient\NModbusClient.cs" />
     <Compile Include="ServiceReader\ModelServiceReader.cs" />

@@ -4,6 +4,7 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.SignalValues;
+using ModbusServiceLibrary.CommandResult;
 
 namespace ClientWpfApp.ModbusCallback
 {
@@ -33,13 +34,16 @@ namespace ClientWpfApp.ModbusCallback
 			});
 		}
 
-		public async void UpdateDiscreteSignalValue(int rtuId, int signalAddress, string signalValue)
+		public async void UpdateDiscreteSignalValue(ReadSingleCoilResult result)
 		{
 			await Task.Run(() =>
 			{
-				RTU rtu = FindRtu(rtuId);
-				DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == signalAddress).FirstOrDefault();
-				discreteSignalValue.State = signalValue;
+				if(result.CommandStatus == CommandStatus.Executed)
+				{
+					RTU rtu = FindRtu(result.RtuId);
+					DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == result.CoilAddress).FirstOrDefault();
+					discreteSignalValue.State = result.CoilState;
+				}
 			});
 		}
 

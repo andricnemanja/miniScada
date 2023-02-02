@@ -8,7 +8,7 @@ namespace ModbusServiceLibrary.Tests.ModbusClientTests
 	public class NModbusClientTests
 	{
 		private Mock<IModbusMaster> modbusMasterMock;
-		private NModbusClient modbusClient;
+		private NModbusClient2 modbusClient;
 		public NModbusClientTests() 
 		{
 			modbusMasterMock = new Mock<IModbusMaster>();

@@ -25,6 +25,7 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="e08e5105-f2c2-4277-9585-dfd2cfdd4056" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="e1088127-be2c-4dc6-8ad9-9877b4a0fa33" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="a09d0718-a121-45b7-831c-8992b3da0b1f" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+    <MetadataFile FileName="ModbusServiceLibrary.CommandResult.xsd" MetadataType="Schema" ID="8f9086a1-92a5-4946-9a8e-75ad281000a4" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

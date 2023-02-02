@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.SignalConverter;
@@ -9,6 +10,7 @@ namespace ModbusServiceLibrary
 	public sealed class ModbusService : IModbusDuplex
 	{
 		private readonly IModbusCommandInvoker modbusCommandInvoker;
+		private readonly IRtuCommandInvoker rtuCommandInvoker;
 		private readonly IValueConverter valueConverter;
 
 		/// <summary>
@@ -17,10 +19,11 @@ namespace ModbusServiceLibrary
 		/// <param name="modbusCommandInvoker">Instance of the <see cref="IModbusCommandInvoker"/> class</param>
 		/// <param name="valueConverter">Instance of the <see cref="IValueConverter"/> class</param>
 
-		public ModbusService(IModbusCommandInvoker modbusCommandInvoker, IValueConverter valueConverter)
+		public ModbusService(IModbusCommandInvoker modbusCommandInvoker, IValueConverter valueConverter, IRtuCommandInvoker rtuCommandInvoker)
 		{
 			this.modbusCommandInvoker = modbusCommandInvoker;
 			this.valueConverter = valueConverter;
+			this.rtuCommandInvoker = rtuCommandInvoker;
 		}
 
 		/// <summary>
@@ -47,18 +50,8 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal.</param>
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
-			CommandReceiver commandReceiver = new CommandReceiver();
-
-			commandReceiver.ReceiveCommand(new ReadSingleCoilCommand());
-
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			if(modbusCommandInvoker.TryReadDiscreteSignalValue(rtuId, signalAddress, out byte value))
-			{
-				string convertedValue = valueConverter.ConvertDiscreteSignalToRealValue(rtuId, signalAddress, value);
-				callback.UpdateDiscreteSignalValue(rtuId, signalAddress, convertedValue);
-			}
-			else
-				callback.ChangeConnectionStatusToFalse(rtuId);
+			callback.UpdateDiscreteSignalValue((ReadSingleCoilResult)rtuCommandInvoker.ReadSingleCoil(rtuId, signalAddress));
 		}
 
 		/// <summary>
@@ -98,9 +91,9 @@ namespace ModbusServiceLibrary
 		/// </summary>
 		/// <param name="rtuId">RTU identification number.</param>
 		/// <returns>True if the connection is made, false otherwise.</returns>
-		public bool TryConnectToRtu(int rtuId)
+		public ConnectToRtuResult ConnectToRtu(int rtuId)
 		{
-			return modbusCommandInvoker.TryConnectToRTU(rtuId);
+			return (ConnectToRtuResult)rtuCommandInvoker.ConnectToRtu(rtuId);
 		}
 	}
 }

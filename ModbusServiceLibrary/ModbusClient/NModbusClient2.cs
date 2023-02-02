@@ -1,4 +1,7 @@
-﻿using ModbusServiceLibrary.Model.Signals;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net.Sockets;
+using ModbusServiceLibrary.Model.Signals;
 using NModbus;
 
 namespace ModbusServiceLibrary.ModbusClient
@@ -7,18 +10,25 @@ namespace ModbusServiceLibrary.ModbusClient
 	/// Class <c>NModbusClient</c> models a Modbus client.
 	/// Contains methods for commmunicating and operating with RTU.
 	/// </summary>
-	public sealed class NModbusClient : IModbusClient
+	public sealed class NModbusClient2 : IModbusClient2
 	{
-		private readonly IModbusMaster master;
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="NModbusClient"/>.
-		/// </summary>
-		/// <param name="modbusMaster">Instance of the <see cref="IModbusMaster"/> class.</param>
-		public NModbusClient(IModbusMaster modbusMaster)
+		private List<RtuConnection> rtuConnections = new List<RtuConnection>();
+		private ModbusFactory modbusFactory = new ModbusFactory();
+		public bool TryConnect(int rtuId, string IpAdrress, int port)
 		{
-			master = modbusMaster;
+			try
+			{
+				TcpClient client = new TcpClient(IpAdrress, port);
+				IModbusMaster master = modbusFactory.CreateMaster(client);
+				rtuConnections.Add(new RtuConnection() { RtuId = rtuId, modbusMaster = master });
+			}
+			catch
+			{
+				return false;
+			}
+			return true;
 		}
+
 
 		/// <summary>
 		/// Try to read single holding register from the RTU.
@@ -26,7 +36,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <param name="startingAddress">Address of the signal.</param>
 		/// <param name="value">Output read value.</param>
 		/// <returns>True if signal is successfully read, false if error occured during reading.</returns>
-		public bool TryReadSingleHoldingRegister(int startingAddress, out int value)
+		/*public bool TryReadSingleHoldingRegister(int startingAddress, out int value)
 		{
 			try
 			{
@@ -38,7 +48,7 @@ namespace ModbusServiceLibrary.ModbusClient
 				value = 0;
 				return false;
 			}
-		}
+		}*/
 
 		/// <summary>
 		/// Try to write new value in the single holding register.
@@ -46,7 +56,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <param name="startingAddress">Address of the signal.</param>
 		/// <param name="value">Value that needs to be written.</param>
 		/// <returns>True if signal is successfully written, false if error occured during writing.</returns>
-		public bool TryWriteSingleHoldingRegister(int startingAddress, int value)
+		/*public bool TryWriteSingleHoldingRegister(int startingAddress, int value)
 		{
 			try
 			{
@@ -58,7 +68,7 @@ namespace ModbusServiceLibrary.ModbusClient
 				return false;
 			}
 
-		}
+		}*/
 
 		/// <summary>
 		/// Try to read values of multiple coils.
@@ -67,21 +77,18 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
 		/// <param name="signalValue">Read value.</param>
 		/// <returns>True if coils are successfully read, false if error occured during reading.</returns>
-		public bool TryReadCoils(int startingAddress, DiscreteSignalType discreteSignalType, out byte signalValue)
+		public bool TryReadCoils(int rtuId, int startingAddress, int numberOfCoils, out bool[] signalValue)
 		{
-			signalValue = 0;
 			try
 			{
-				if (discreteSignalType == DiscreteSignalType.TwoBit)
-					signalValue = BoolArrayToByte(master.ReadCoils(1, (ushort)startingAddress, 2));
-				else
-					signalValue = BoolArrayToByte(master.ReadCoils(1, (ushort)startingAddress, 1));
-				return true;
+				signalValue = GetRtuConnection(rtuId).modbusMaster.ReadCoils(1, (ushort)startingAddress, (ushort)numberOfCoils);
 			}
 			catch
 			{
+				signalValue = null;
 				return false;
 			}
+			return true;
 		}
 
 		/// <summary>
@@ -91,7 +98,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
 		/// <param name="valueToWrite">Value that needs to be written.</param>
 		/// <returns>True if coils are successfully written, false if error occured during writing.</returns>
-		public bool TryWriteCoils(int coilAddress, DiscreteSignalType discreteSignalType, byte valueToWrite)
+		/*public bool TryWriteCoils(int coilAddress, DiscreteSignalType discreteSignalType, byte valueToWrite)
 		{
 			try
 			{
@@ -102,14 +109,14 @@ namespace ModbusServiceLibrary.ModbusClient
 			{
 				return false;
 			}
-		}
+		}*/
 
 		/// <summary>
 		/// Dispose connection to RTU.
 		/// </summary>
-		public void Disconnect()
+		public void Disconnect(int rtuId)
 		{
-			master.Dispose();
+			GetRtuConnection(rtuId).modbusMaster.Dispose();
 		}
 
 		/// <summary>
@@ -139,6 +146,11 @@ namespace ModbusServiceLibrary.ModbusClient
 			}
 
 			return new bool[2] { (value & 2) == 2, (value & 1) == 1 };
+		}
+
+		private RtuConnection GetRtuConnection(int rtuId)
+		{
+			return rtuConnections.SingleOrDefault(r => r.RtuId == rtuId);
 		}
 	}
 }

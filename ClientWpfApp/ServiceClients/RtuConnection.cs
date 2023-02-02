@@ -1,4 +1,5 @@
 ﻿using ClientWpfApp.ModbusServiceReference;
+using ModbusServiceLibrary.CommandResult;
 
 namespace ClientWpfApp.ServiceClients
 {
@@ -11,9 +12,9 @@ namespace ClientWpfApp.ServiceClients
 			this.modbusDuplexClient = modbusDuplexClient;
 		}
 
-		public bool TryConnectToRtu(int rtuId)
+		public ConnectToRtuResult TryConnectToRtu(int rtuId)
 		{
-			return modbusDuplexClient.TryConnectToRtu(rtuId);
+			return modbusDuplexClient.ConnectToRtu(rtuId);
 		}
 	}
 }

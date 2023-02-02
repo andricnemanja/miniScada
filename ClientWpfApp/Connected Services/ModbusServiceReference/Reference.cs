@@ -39,11 +39,11 @@ namespace ClientWpfApp.ModbusServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal")]
         System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, string newValue);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/TryConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/TryConnectToRtuResponse")]
-        bool TryConnectToRtu(int rtuId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse")]
+        ModbusServiceLibrary.CommandResult.ConnectToRtuResult ConnectToRtu(int rtuId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/TryConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/TryConnectToRtuResponse")]
-        System.Threading.Tasks.Task<bool> TryConnectToRtuAsync(int rtuId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse")]
+        System.Threading.Tasks.Task<ModbusServiceLibrary.CommandResult.ConnectToRtuResult> ConnectToRtuAsync(int rtuId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -53,7 +53,7 @@ namespace ClientWpfApp.ModbusServiceReference {
         void UpdateAnalogSignalValue(int rtuId, int signalAddress, double signalValue);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/UpdateDiscreteSignalValue")]
-        void UpdateDiscreteSignalValue(int rtuId, int signalAddress, string signalValue);
+        void UpdateDiscreteSignalValue(ModbusServiceLibrary.CommandResult.ReadSingleCoilResult readSingleCoilResult);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ChangeConnectionStatusToFalse")]
         void ChangeConnectionStatusToFalse(int rtuId);
@@ -119,12 +119,12 @@ namespace ClientWpfApp.ModbusServiceReference {
             return base.Channel.WriteDiscreteSignalAsync(rtuId, signalAddress, newValue);
         }
         
-        public bool TryConnectToRtu(int rtuId) {
-            return base.Channel.TryConnectToRtu(rtuId);
+        public ModbusServiceLibrary.CommandResult.ConnectToRtuResult ConnectToRtu(int rtuId) {
+            return base.Channel.ConnectToRtu(rtuId);
         }
         
-        public System.Threading.Tasks.Task<bool> TryConnectToRtuAsync(int rtuId) {
-            return base.Channel.TryConnectToRtuAsync(rtuId);
+        public System.Threading.Tasks.Task<ModbusServiceLibrary.CommandResult.ConnectToRtuResult> ConnectToRtuAsync(int rtuId) {
+            return base.Channel.ConnectToRtuAsync(rtuId);
         }
     }
 }
