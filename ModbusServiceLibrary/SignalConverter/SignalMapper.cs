@@ -22,6 +22,11 @@ namespace ModbusServiceLibrary.SignalConverter
 			return FindDiscreteSingalMapping(mappingId).DiscreteValueToState[signalValue];
 		}
 
+		public byte ConvertStateToDiscreteSignalValue(int mappingId, string value)
+		{
+			return FindDiscreteSingalMapping(mappingId).DiscreteValueToState.SingleOrDefault(x => x.Value == value).Key;
+		}
+
 		private DiscreteSignalMapping FindDiscreteSingalMapping(int mappingId)
 		{
 			return discreteSignalMappings.SingleOrDefault(m => m.Id == mappingId);

@@ -1,4 +1,5 @@
 ﻿using ModbusServiceLibrary.CommandResult;
+using System.Windows.Input;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {

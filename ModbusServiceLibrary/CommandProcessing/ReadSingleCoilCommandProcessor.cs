@@ -2,6 +2,7 @@
 using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.SignalConverter;
+using System.Windows.Input;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {

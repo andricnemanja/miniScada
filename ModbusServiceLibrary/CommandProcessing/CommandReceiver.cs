@@ -4,25 +4,25 @@ using ModbusServiceLibrary.CommandProcessing;
 using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.RtuCommands;
+using ModbusServiceLibrary.ServiceReader;
 using ModbusServiceLibrary.SignalConverter;
 
 namespace ModbusServiceLibrary
 {
 	public class CommandReceiver : ICommandReceiver
 	{
-		private readonly IModbusClient2 modbusClient;
-		private readonly ISignalMapper signalMapper;
+
 		private readonly Dictionary<Type, ICommandProcessor> commandProcessors;
 
-		public CommandReceiver(IModbusClient2 modbusClient, ISignalMapper signalMapper)
+		public CommandReceiver(IModbusClient2 modbusClient, ISignalMapper signalMapper, IModelServiceReader modelServiceReader)
 		{
-			this.modbusClient = modbusClient;
-			this.signalMapper = signalMapper;
+
 			this.commandProcessors = new Dictionary<Type, ICommandProcessor>()
 			{
 				{typeof(ConnectToRtuCommand), new ConnectoToRtuCommandProcessor(modbusClient) },
 				{typeof(ReadSingleCoilCommand), new ReadSingleCoilCommandProcessor(modbusClient, signalMapper) },
-				{typeof(ReadSingleHoldingRegisterCommand), new ReadSingleHoldingRegisterCommandProcessor() }
+				{typeof(ReadSingleHoldingRegisterCommand), new ReadSingleHoldingRegisterCommandProcessor() },
+				{typeof(WriteSingleCoilCommand), new WriteSingleCoilCommandProcessor(modbusClient, modelServiceReader) }
 			};
 		}
 

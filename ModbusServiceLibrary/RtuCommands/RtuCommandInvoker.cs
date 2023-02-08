@@ -9,35 +9,27 @@ namespace ModbusServiceLibrary.RtuCommands
 	public class RtuCommandInvoker : IRtuCommandInvoker
 	{
 		private readonly ICommandReceiver commandReceiver;
-		private readonly IModelServiceReader modelServiceReader;
 
 		public RtuCommandInvoker(ICommandReceiver commandReceiver, IModelServiceReader modelServiceReader)
 		{
 			this.commandReceiver = commandReceiver;
-			this.modelServiceReader = modelServiceReader;
 		}
 
-		public ICommandResult ReadSingleCoil(int rtuId, int singalAddress)
+		public ICommandResult ReadSingleCoil(int rtuId, int signalId)
 		{
-			DiscreteSignal discreteSignal = FindDiscreteSignal(rtuId, singalAddress);
-			int numberOfCoils = (discreteSignal.SignalType == DiscreteSignalType.TwoBit) ? 2 : 1;
-			return commandReceiver.ReceiveCommand(new ReadSingleCoilCommand(rtuId, singalAddress, numberOfCoils, discreteSignal.MappingId));
+			return commandReceiver.ReceiveCommand(new ReadSingleCoilCommand(rtuId, signalId));
 		}
 
-		public ICommandResult ConnectToRtu(int rtuId)
+		public ICommandResult WriteSingleCoil(int rtuId, int signalId, string state)
 		{
-			RTU rtu = modelServiceReader.RtuList.SingleOrDefault(r => r.RTUData.ID == rtuId);
-			return commandReceiver.ReceiveCommand(new ConnectToRtuCommand(rtuId, rtu.RTUData.IpAddress, rtu.RTUData.Port));
+			return commandReceiver.ReceiveCommand(new WriteSingleCoilCommand(rtuId, signalId, state));
 		}
 
-		private RTU FindRtu(int rtuId)
-		{
-			return modelServiceReader.RtuList.SingleOrDefault(r => r.RTUData.ID == rtuId);
-		}
+		//public ICommandResult ConnectToRtu(int rtuId)
+		//{
+		//	RTU rtu = modelServiceReader.RtuList.SingleOrDefault(r => r.RTUData.ID == rtuId);
+		//	return commandReceiver.ReceiveCommand(new ConnectToRtuCommand(rtuId, rtu.RTUData.IpAddress, rtu.RTUData.Port));
+		//}
 
-		private DiscreteSignal FindDiscreteSignal(int rtuId, int signalAddress)
-		{
-			return FindRtu(rtuId).DiscreteSignalValues.SingleOrDefault(s => s.DiscreteSignal.Address == signalAddress).DiscreteSignal;
-		}
 	}
 }

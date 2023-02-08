@@ -4,15 +4,15 @@
 	{
 		public int RtuId { get; }
 		public int CoilAddress { get;  }
-		public int NumberOfCoils { get; }
-		public int MappingId { get; set; }
+		//public int NumberOfCoils { get; }
+		//public int MappingId { get; set; }
 
-		public ReadSingleCoilCommand(int rtuId, int coilAddress, int numberOfCoils, int mappingId)
+		public ReadSingleCoilCommand(int rtuId, int coilAddress)
 		{
 			RtuId = rtuId;
 			CoilAddress = coilAddress;
-			NumberOfCoils = numberOfCoils;
-			MappingId = mappingId;
+			//NumberOfCoils = numberOfCoils;
+			//MappingId = mappingId;
 		}
 	}
 }
