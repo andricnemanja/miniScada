@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Class <see cref="DiscreteSignal"/> models discrete signal from the RTU.
 	/// </summary>
-	public class DiscreteSignal
+	public class DiscreteSignal : ISignal
 	{
 		/// <summary>
 		/// Unique identification number for digital signal.

@@ -1,6 +1,9 @@
 ﻿using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.ModbusClient;
+using ModbusServiceLibrary.Model.Signals;
+using ModbusServiceLibrary.Model.SignalValues;
 using ModbusServiceLibrary.RtuCommands;
+using ModbusServiceLibrary.ServiceReader;
 using ModbusServiceLibrary.SignalConverter;
 
 namespace ModbusServiceLibrary.CommandProcessing
@@ -9,19 +12,32 @@ namespace ModbusServiceLibrary.CommandProcessing
 	{
 		private readonly IModbusClient2 modbusClient;
 		private readonly ISignalMapper signalMapper;
+		private readonly IRtuConfiguration rtuConfiguration;
 
-		public ReadSingleCoilCommandProcessor(IModbusClient2 modbusClient, ISignalMapper signalMapper)
+		public ReadSingleCoilCommandProcessor(IModbusClient2 modbusClient, ISignalMapper signalMapper, IRtuConfiguration rtuConfiguration)
 		{
 			this.modbusClient = modbusClient;
 			this.signalMapper = signalMapper;
+			this.rtuConfiguration = rtuConfiguration;
 		}
 
-		public ICommandResult ProcessCommand(object command)
+		public ICommandResult ProcessCommand(IRtuCommand command)
 		{
 			ReadSingleCoilCommand readSingleCoilCommand = (ReadSingleCoilCommand)command;
-			modbusClient.TryReadCoils(readSingleCoilCommand.RtuId, readSingleCoilCommand.CoilAddress, readSingleCoilCommand.NumberOfCoils, out bool[] values);
+			int mappingId = rtuConfiguration.GetMappingIdForDiscreteSignal(readSingleCoilCommand.RtuId, readSingleCoilCommand.SignalId);
+			ISignalValue signalValue = rtuConfiguration.GetSignalValue(readSingleCoilCommand.RtuId, readSingleCoilCommand.SignalId);
 
-			return new ReadSingleCoilResult(readSingleCoilCommand.RtuId, CommandStatus.Executed, readSingleCoilCommand.CoilAddress, ConvertCoilValueToState(readSingleCoilCommand.MappingId, values));
+			if(signalValue.GetType() == typeof(DiscreteSignalValue))
+			{
+				return ReadSignalValue((DiscreteSignalValue)signalValue, readSingleCoilCommand.RtuId);
+			}
+			return null;
+		}
+
+		private ICommandResult ReadSignalValue(DiscreteSignalValue discreteSignalValue, int rtuId)
+		{
+			modbusClient.TryReadCoils(rtuId, discreteSignalValue.SignalData.Address, (int)(((DiscreteSignal)discreteSignalValue.SignalData).SignalType + 1), out bool[] values);
+			return new ReadSingleCoilResult(rtuId, CommandStatus.Executed, discreteSignalValue.SignalData.Address, ConvertCoilValueToState(discreteSignalValue.SignalData.MappingId, values));
 		}
 
 		private string ConvertCoilValueToState(int mappingId, bool[] values)

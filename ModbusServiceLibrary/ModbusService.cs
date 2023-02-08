@@ -1,28 +1,20 @@
 ﻿using System.ServiceModel;
 using ModbusServiceLibrary.CommandResult;
-using ModbusServiceLibrary.ModbusCommands;
 using ModbusServiceLibrary.RtuCommands;
-using ModbusServiceLibrary.SignalConverter;
 
 namespace ModbusServiceLibrary
 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
 	public sealed class ModbusService : IModbusDuplex
 	{
-		private readonly IModbusCommandInvoker modbusCommandInvoker;
 		private readonly IRtuCommandInvoker rtuCommandInvoker;
-		private readonly IValueConverter valueConverter;
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModbusService"/>
 		/// </summary>
-		/// <param name="modbusCommandInvoker">Instance of the <see cref="IModbusCommandInvoker"/> class</param>
-		/// <param name="valueConverter">Instance of the <see cref="IValueConverter"/> class</param>
+		/// <param name="rtuCommandInvoker">Instance of the <see cref="IRtuCommandInvoker"/> class</param>
 
-		public ModbusService(IModbusCommandInvoker modbusCommandInvoker, IValueConverter valueConverter, IRtuCommandInvoker rtuCommandInvoker)
+		public ModbusService(IRtuCommandInvoker rtuCommandInvoker)
 		{
-			this.modbusCommandInvoker = modbusCommandInvoker;
-			this.valueConverter = valueConverter;
 			this.rtuCommandInvoker = rtuCommandInvoker;
 		}
 
@@ -33,6 +25,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal.</param>
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
+			/*
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 			if(modbusCommandInvoker.TryReadAnalogSignalValue(rtuId, signalAddress, out int value))
 			{
@@ -41,6 +34,7 @@ namespace ModbusServiceLibrary
 			}
 			else
 				callback.ChangeConnectionStatusToFalse(rtuId);
+			*/
 		}
 
 		/// <summary>
@@ -51,7 +45,7 @@ namespace ModbusServiceLibrary
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.UpdateDiscreteSignalValue((ReadSingleCoilResult)rtuCommandInvoker.ReadSingleCoil(rtuId, signalAddress));
+			callback.UpdateDiscreteSignalValue(rtuCommandInvoker.ReadSingleCoil(rtuId, signalAddress));
 		}
 
 		/// <summary>
@@ -62,12 +56,14 @@ namespace ModbusServiceLibrary
 		/// <param name="newValue">New value of the analog signal.</param>
 		public void WriteAnalogSignal(int rtuId, int signalAddress, double newValue)
 		{
+			/*
 			int convertedValue = valueConverter.ConvertRealValueToAnalogSignal(rtuId, signalAddress, newValue);
 			if(!modbusCommandInvoker.TryWriteAnalogSignalValue(rtuId, signalAddress, convertedValue))
 			{
 				IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 				callback.ChangeConnectionStatusToFalse(rtuId);
 			}
+			*/
 		}
 
 		/// <summary>
@@ -78,12 +74,14 @@ namespace ModbusServiceLibrary
 		/// <param name="newValue">New value of the discrete signal.</param>
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue)
 		{
+			/*
 			byte convertedValue = valueConverter.ConvertRealValueToDiscreteSignal(rtuId, signalAddress, newValue);
 			if(!modbusCommandInvoker.TryWriteDiscreteSignalValue(rtuId, signalAddress, convertedValue))
 			{
 				IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
 				callback.ChangeConnectionStatusToFalse(rtuId);
 			}
+			*/
 		}
 
 		/// <summary>

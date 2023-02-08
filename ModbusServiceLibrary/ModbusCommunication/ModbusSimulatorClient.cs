@@ -13,13 +13,13 @@ namespace ModbusServiceLibrary.ModbusCommunication
 	/// </summary>
 	public sealed class ModbusSimulatorClient : IModbusSimulatorClient
 	{
-		private readonly IModelServiceReader modelServiceReader;
+		private readonly IRtuConfiguration modelServiceReader;
 
 		/// <summary>
 		/// An instance of <see cref="ModbusSimulatorClient"/> class.
 		/// </summary>
-		/// <param name="modelServiceReader">An instance of class <see cref="IModelServiceReader"/></param>
-		public ModbusSimulatorClient(IModelServiceReader modelServiceReader)
+		/// <param name="modelServiceReader">An instance of class <see cref="IRtuConfiguration"/></param>
+		public ModbusSimulatorClient(IRtuConfiguration modelServiceReader)
 		{
 			this.modelServiceReader = modelServiceReader;
 		}

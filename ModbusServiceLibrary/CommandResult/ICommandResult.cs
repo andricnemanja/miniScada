@@ -2,7 +2,7 @@
 {
 	public interface ICommandResult
 	{
-		int RtuId { get; }
-		CommandStatus CommandStatus { get; }
+		int RtuId { get; set; }
+		CommandStatus CommandStatus { get; set; }
 	}
 }

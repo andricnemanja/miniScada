@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.Model.SignalMapping;
+using ModbusServiceLibrary.Model.SignalValues;
 
 namespace ModbusServiceLibrary.ServiceReader
 {
-	public interface IModelServiceReader
+	public interface IRtuConfiguration
 	{
 		/// <summary>
 		/// List of RTUs.
@@ -31,5 +32,11 @@ namespace ModbusServiceLibrary.ServiceReader
 		/// </summary>
 		/// <returns>List of discrete signal mappings</returns>
 		List<DiscreteSignalMapping> ReadDiscreteSignalMappings();
+
+		int GetMappingIdForDiscreteSignal(int rtuId, int signalId);
+
+		ISignalValue GetSignalValue(int rtuId, int signalId);
+
+		RTUData FindRtuData(int rtuId);
 	}
 }

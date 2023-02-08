@@ -14,7 +14,7 @@ namespace ModbusServiceLibrary.SignalConverter
 	/// </summary>
 	public class ValueConverter : IValueConverter
 	{
-		private readonly IModelServiceReader modelServiceReader;
+		private readonly IRtuConfiguration modelServiceReader;
 		private readonly IModbusSimulatorClient modbusSimulatorClient;
 		private List<AnalogSignalMapping> analogSignalMappingList;
 		private List<DiscreteSignalMapping> discreteSignalMappingList;
@@ -22,9 +22,9 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <summary>
 		/// Initializes a instance of class <see cref="ValueConverter"/>.
 		/// </summary>
-		/// <param name="modelServiceReader">Instance of the <see cref="IModelServiceReader"/> class</param>
+		/// <param name="modelServiceReader">Instance of the <see cref="IRtuConfiguration"/> class</param>
 		/// <param name="modbusSimulatorClient">Instance of the <see cref="IModbusSimulatorClient"/> class</param>
-		public ValueConverter(IModelServiceReader modelServiceReader, IModbusSimulatorClient modbusSimulatorClient)
+		public ValueConverter(IRtuConfiguration modelServiceReader, IModbusSimulatorClient modbusSimulatorClient)
 		{
 			this.modelServiceReader = modelServiceReader;
 			this.modbusSimulatorClient = modbusSimulatorClient;
@@ -102,8 +102,8 @@ namespace ModbusServiceLibrary.SignalConverter
 		private DiscreteSignalMapping FindDiscreteSignalMapping(int rtuId, int discreteSignalAddress)
 		{
 			RTU rtu = modelServiceReader.RtuList.FirstOrDefault(r => r.RTUData.ID == rtuId);
-			DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.FirstOrDefault(s => s.DiscreteSignal.Address == discreteSignalAddress);
-			return discreteSignalMappingList.FirstOrDefault(m => m.Id == discreteSignalValue.DiscreteSignal.MappingId);
+			ISignalValue discreteSignalValue = rtu.DiscreteSignalValues.FirstOrDefault(s => s.SignalData.Address == discreteSignalAddress);
+			return discreteSignalMappingList.FirstOrDefault(m => m.Id == discreteSignalValue.SignalData.MappingId);
 		}
 
 		/// <summary>

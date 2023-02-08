@@ -1,19 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.Model.SignalMapping;
+using ModbusServiceLibrary.Model.Signals;
+using ModbusServiceLibrary.Model.SignalValues;
 
 namespace ModbusServiceLibrary.ServiceReader
 {
-	public sealed class ModelServiceReader : IModelServiceReader
+	public sealed class RtuConfiguration : IRtuConfiguration
 	{
 		private readonly ModelServiceReference.IModelService modelService;
 
 
 		/// <summary>
-		/// Initializes the new instance of the <see cref="ModelServiceReader"/> class.
+		/// Initializes the new instance of the <see cref="RtuConfiguration"/> class.
 		/// </summary>
 		/// <param name="modelService">An instance of the <see cref="ModelServiceReference.IModelService"/>.</param>
-		public ModelServiceReader(ModelServiceReference.IModelService modelService)
+		public RtuConfiguration(ModelServiceReference.IModelService modelService)
 		{
 			this.modelService = modelService;
 		}
@@ -31,6 +34,16 @@ namespace ModbusServiceLibrary.ServiceReader
 			RtuList = ReadAllRTUs();
 		}
 
+		public ISignalValue GetSignalValue(int rtuId, int signalId)
+		{
+			AnalogSignalValue signalValue = (AnalogSignalValue)FindRtu(rtuId).AnalogSignalValues.SingleOrDefault(s => s.SignalData.ID == signalId);
+			
+			if(signalValue != null)
+				return signalValue;
+
+			return FindRtu(rtuId).DiscreteSignalValues.SingleOrDefault(s => s.SignalData.ID == signalId);
+		}
+
 		/// <summary>
 		/// Reads all RTU static data from Model Service
 		/// </summary>
@@ -46,6 +59,27 @@ namespace ModbusServiceLibrary.ServiceReader
 			}
 
 			return rtus;
+		}
+
+
+		public int GetMappingIdForDiscreteSignal(int rtuId, int signalId)
+		{
+			return FindDiscreteSignal(rtuId, signalId).MappingId;
+		}
+
+		private RTU FindRtu(int rtuId)
+		{
+			return RtuList.SingleOrDefault(r => r.RTUData.ID == rtuId);
+		}
+
+		public RTUData FindRtuData(int rtuId)
+		{
+			return FindRtu(rtuId).RTUData;
+		}
+
+		private ISignal FindDiscreteSignal(int rtuId, int signalId)
+		{
+			return FindRtu(rtuId).DiscreteSignalValues.SingleOrDefault(s => s.SignalData.ID == signalId).SignalData;
 		}
 
 		/// <summary>

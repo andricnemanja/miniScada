@@ -22,7 +22,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal we are updating</param>
 		/// <param name="signalValue">Updated value</param>
 		[OperationContract(IsOneWay = true)]
-		void UpdateDiscreteSignalValue(ReadSingleCoilResult readSingleCoilResult);
+		void UpdateDiscreteSignalValue(ICommandResult readSingleCoilResult);
 
 		/// <summary>
 		/// Changes connection status to false when connection is terminated.

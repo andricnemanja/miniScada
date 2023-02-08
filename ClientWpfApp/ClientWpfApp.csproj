@@ -159,24 +159,6 @@
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.AnalogSignal.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.AnalogSignalMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.DiscreteSignal.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.DiscreteSignalMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.RTU.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.RTUData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -199,6 +181,12 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.CommandResult.ConnectToRtuResult.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.CommandResult.ConnectToRtuResult2.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.AnalogSignal.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.DiscreteSignal.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.RTU.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.RTUData.datasource" />
     <None Include="Properties\DataSources\SharedModel.Model.RTU.RTU.datasource" />
     <None Include="Properties\DataSources\SharedModel.Model.Signals.AnalogSignal.datasource" />
     <None Include="Properties\DataSources\SharedModel.Model.Signals.DiscreteSignal.datasource" />

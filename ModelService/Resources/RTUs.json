@@ -28,14 +28,14 @@
     ],
     "DiscreteSignals": [
       {
-        "ID": 1,
+        "ID": 4,
         "Name": "Discrete signal 1",
         "Address": 1,
         "SignalType": 1,
         "MappingId": 2
       },
       {
-        "ID": 2,
+        "ID": 5,
         "Name": "Discrete signal 2",
         "Address": 3,
         "SignalType": 0,
@@ -52,13 +52,13 @@
     },
     "AnalogSignals": [
       {
-        "ID": 1,
+        "ID": 6,
         "Address": 1,
         "Name": "Napon 1",
         "MappingId": 5
       },
       {
-        "ID": 2,
+        "ID": 7,
         "Address": 4,
         "Name": "Temperatura 1",
         "MappingId": 5
@@ -66,15 +66,15 @@
     ],
     "DiscreteSignals": [
       {
-        "ID": 1,
-        "Name": "Prekidac 1",
+        "ID": 8,
+        "Name": "Prekidac 3",
         "SignalType": 0,
         "Address": 1,
         "MappingId": 3
       },
       {
-        "ID": 2,
-        "Name": "Prekidac 2",
+        "ID": 9,
+        "Name": "Prekidac 4",
         "SignalType": 1,
         "Address": 2,
         "MappingId": 1

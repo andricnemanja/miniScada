@@ -61,7 +61,7 @@
   <xs:element name="UpdateDiscreteSignalValue">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult" minOccurs="0" name="readSingleCoilResult" nillable="true" type="q2:ReadSingleCoilResult" />
+        <xs:element minOccurs="0" name="readSingleCoilResult" nillable="true" type="xs:anyType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

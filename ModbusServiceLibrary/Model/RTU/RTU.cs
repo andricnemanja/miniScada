@@ -21,12 +21,12 @@ namespace ModbusServiceLibrary.Model.RTU
 		/// <summary>
 		/// List of analog signals with values.
 		/// </summary>
-		public List<AnalogSignalValue> AnalogSignalValues { get; set; } = new List<AnalogSignalValue>();
+		public List<ISignalValue> AnalogSignalValues { get; set; } = new List<ISignalValue>();
 
 		/// <summary>
 		/// List of discrete signals with values.
 		/// </summary>
-		public List<DiscreteSignalValue> DiscreteSignalValues { get; set; } = new List<DiscreteSignalValue>();
+		public List<ISignalValue> DiscreteSignalValues { get; set; } = new List<ISignalValue>();
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RTU"/> class.

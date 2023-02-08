@@ -5,12 +5,12 @@ namespace ModbusServiceLibrary.Model.SignalValues
 	/// <summary>
 	/// Class <see cref="AnalogSignalValue"/> models value of the analog signal.
 	/// </summary>
-	public class AnalogSignalValue
+	public class AnalogSignalValue : ISignalValue
 	{
 		/// <summary>
 		/// Analog signal static data.
 		/// </summary>
-		public AnalogSignal AnalogSignal { get; set; }
+		public ISignal SignalData { get; set; }
 
 		/// <summary>
 		/// Value of the analog signal.
@@ -24,7 +24,7 @@ namespace ModbusServiceLibrary.Model.SignalValues
 		/// Allows converting Model Service static data to Modbus Service model class</param>
 		public AnalogSignalValue(ModelServiceReference.AnalogSignal analogSignalStaticData)
 		{
-			AnalogSignal = new AnalogSignal(analogSignalStaticData);
+			SignalData = new AnalogSignal(analogSignalStaticData);
 			Value = 0;
 		}
 

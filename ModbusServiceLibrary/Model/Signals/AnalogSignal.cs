@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Class <see cref="AnalogSignal"/> models analog signal from the RTU.
 	/// </summary>
-	public class AnalogSignal
+	public class AnalogSignal : ISignal
 	{
 		/// <summary>
 		/// Unique identification number for analog signal

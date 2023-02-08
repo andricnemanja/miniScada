@@ -53,7 +53,9 @@ namespace ClientWpfApp.ModbusServiceReference {
         void UpdateAnalogSignalValue(int rtuId, int signalAddress, double signalValue);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/UpdateDiscreteSignalValue")]
-        void UpdateDiscreteSignalValue(ModbusServiceLibrary.CommandResult.ReadSingleCoilResult readSingleCoilResult);
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandStatus))]
+        void UpdateDiscreteSignalValue(object readSingleCoilResult);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ChangeConnectionStatusToFalse")]
         void ChangeConnectionStatusToFalse(int rtuId);

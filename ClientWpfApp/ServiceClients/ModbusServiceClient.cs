@@ -49,7 +49,7 @@ namespace ClientWpfApp.ServiceClients
 		{
 			foreach (DiscreteSignalValue signalValue in rtu.DiscreteSignalValues)
 			{
-				modbusDuplexClient.ReadDiscreteSignal(rtu.RTUData.ID, signalValue.DiscreteSignal.Address);
+				modbusDuplexClient.ReadDiscreteSignal(rtu.RTUData.ID, signalValue.DiscreteSignal.ID);
 
 			}
 			/*

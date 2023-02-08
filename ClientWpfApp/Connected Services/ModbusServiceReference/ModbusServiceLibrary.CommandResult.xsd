@@ -14,13 +14,4 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="CommandStatus" nillable="true" type="tns:CommandStatus" />
-  <xs:complexType name="ReadSingleCoilResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CoilAddress" type="xs:int" />
-      <xs:element minOccurs="0" name="CoilState" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CommandStatus" type="tns:CommandStatus" />
-      <xs:element minOccurs="0" name="RtuId" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ReadSingleCoilResult" nillable="true" type="tns:ReadSingleCoilResult" />
 </xs:schema>

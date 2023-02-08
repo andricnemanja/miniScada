@@ -34,15 +34,15 @@ namespace ClientWpfApp.ModbusCallback
 			});
 		}
 
-		public async void UpdateDiscreteSignalValue(ReadSingleCoilResult result)
+		public async void UpdateDiscreteSignalValue(object result)
 		{
 			await Task.Run(() =>
 			{
-				if(result.CommandStatus == CommandStatus.Executed)
+				if(result.GetType() == typeof(ReadSingleCoilResult))
 				{
-					RTU rtu = FindRtu(result.RtuId);
-					DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == result.CoilAddress).FirstOrDefault();
-					discreteSignalValue.State = result.CoilState;
+					RTU rtu = FindRtu(((ReadSingleCoilResult)result).RtuId);
+					DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == ((ReadSingleCoilResult)result).CoilAddress).FirstOrDefault();
+					discreteSignalValue.State = ((ReadSingleCoilResult)result).CoilState;
 				}
 			});
 		}

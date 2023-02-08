@@ -11,10 +11,10 @@ namespace ModbusServiceLibrary.Tests.ModbusConnecitonTests
 	public class ModbusSimulatorClientTests
 	{
 		private ModbusSimulatorClient modbusSimulatorClient;
-		private Mock<IModelServiceReader> modelServiceReaderMock;
+		private Mock<IRtuConfiguration> modelServiceReaderMock;
 		public ModbusSimulatorClientTests()
 		{
-			modelServiceReaderMock = new Mock<IModelServiceReader>();
+			modelServiceReaderMock = new Mock<IRtuConfiguration>();
 			modelServiceReaderMock.Setup(x => x.RtuList).Returns(RtuTestData.GetRtuTestList());
 			modbusSimulatorClient = new ModbusSimulatorClient(modelServiceReaderMock.Object);
 			modelServiceReaderMock.Object.InitializeData();
