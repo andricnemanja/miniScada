@@ -5,6 +5,6 @@ namespace ModbusServiceLibrary
 {
 	public interface ICommandReceiver
 	{
-		ICommandResult ReceiveCommand(IRtuCommand command);
+		CommandResultBase ReceiveCommand(IRtuCommand command);
 	}
 }

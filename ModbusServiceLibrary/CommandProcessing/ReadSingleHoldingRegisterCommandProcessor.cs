@@ -6,7 +6,7 @@ namespace ModbusServiceLibrary.CommandProcessing
 {
 	public class ReadSingleHoldingRegisterCommandProcessor : ICommandProcessor
 	{
-		public ICommandResult ProcessCommand(IRtuCommand command)
+		public CommandResultBase ProcessCommand(IRtuCommand command)
 		{
 			throw new NotImplementedException();
 		}

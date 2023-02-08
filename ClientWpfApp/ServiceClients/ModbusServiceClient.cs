@@ -52,11 +52,11 @@ namespace ClientWpfApp.ServiceClients
 				modbusDuplexClient.ReadDiscreteSignal(rtu.RTUData.ID, signalValue.DiscreteSignal.ID);
 
 			}
-			/*
+			
 			foreach (AnalogSignalValue signalValue in rtu.AnalogSignalValues)
 			{
 				modbusDuplexClient.ReadAnalogSignal(rtu.RTUData.ID, signalValue.AnalogSignal.Address);
-			}*/
+			}
 		}
 
 

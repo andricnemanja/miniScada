@@ -17,7 +17,7 @@ namespace ModbusServiceLibrary.CommandProcessing
 			this.rtuConfiguration = rtuConfiguration;
 		}
 
-		public ICommandResult ProcessCommand(IRtuCommand command)
+		public CommandResultBase ProcessCommand(IRtuCommand command)
 		{
 			ConnectToRtuCommand connectToRtuCommand = (ConnectToRtuCommand)command;
 			RTUData rtuData = rtuConfiguration.FindRtuData(connectToRtuCommand.RtuId);

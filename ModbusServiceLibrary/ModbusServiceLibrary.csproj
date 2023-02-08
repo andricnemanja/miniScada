@@ -97,10 +97,10 @@
     <Compile Include="CommandProcessing\ReadSingleCoilCommandProcessor.cs" />
     <Compile Include="CommandResult\CommandResultBase.cs" />
     <Compile Include="CommandResult\CommandStatus.cs" />
-    <Compile Include="CommandResult\ConnectToRtuResult2.cs" />
     <Compile Include="CommandResult\ConnectToRtuResult.cs" />
     <Compile Include="CommandResult\ICommandResult.cs" />
-    <Compile Include="CommandResult\ReadSingleCoilResult.cs" />
+    <Compile Include="CommandResult\ReadSingleAnalogSignalResult.cs" />
+    <Compile Include="CommandResult\ReadSingleDiscreteSignalResult.cs" />
     <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

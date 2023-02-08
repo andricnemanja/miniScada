@@ -24,25 +24,28 @@ namespace ClientWpfApp.ModbusCallback
 			rtu.IsConnected = false;
 		}
 
-		public async void UpdateAnalogSignalValue(int rtuId, int signalAddress, double signalValue)
+		public async void UpdateAnalogSignalValue(CommandResultBase result)
 		{
 			await Task.Run(() =>
 			{
-				RTU rtu = FindRtu(rtuId);
-				AnalogSignalValue analogSignalValue = rtu.AnalogSignalValues.Where(s => s.AnalogSignal.Address == signalAddress).FirstOrDefault();
-				analogSignalValue.Value = signalValue;
+				if (result.GetType() == typeof(ReadSingleAnalogSignalResult))
+				{
+					RTU rtu = FindRtu(((ReadSingleAnalogSignalResult)result).RtuId);
+					AnalogSignalValue analogSignalValue = rtu.AnalogSignalValues.Where(s => s.AnalogSignal.ID == ((ReadSingleAnalogSignalResult)result).SignalId).FirstOrDefault();
+					analogSignalValue.Value = ((ReadSingleAnalogSignalResult)result).SignalValue;
+				}
 			});
 		}
 
-		public async void UpdateDiscreteSignalValue(object result)
+		public async void UpdateDiscreteSignalValue(CommandResultBase result)
 		{
 			await Task.Run(() =>
 			{
-				if(result.GetType() == typeof(ReadSingleCoilResult))
+				if(result.GetType() == typeof(ReadSingleDiscreteSignalResult))
 				{
-					RTU rtu = FindRtu(((ReadSingleCoilResult)result).RtuId);
-					DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.Address == ((ReadSingleCoilResult)result).CoilAddress).FirstOrDefault();
-					discreteSignalValue.State = ((ReadSingleCoilResult)result).CoilState;
+					RTU rtu = FindRtu(((ReadSingleDiscreteSignalResult)result).RtuId);
+					DiscreteSignalValue discreteSignalValue = rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.ID == ((ReadSingleDiscreteSignalResult)result).SignalId).FirstOrDefault();
+					discreteSignalValue.State = ((ReadSingleDiscreteSignalResult)result).State;
 				}
 			});
 		}

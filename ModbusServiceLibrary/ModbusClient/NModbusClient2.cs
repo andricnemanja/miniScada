@@ -36,19 +36,19 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <param name="startingAddress">Address of the signal.</param>
 		/// <param name="value">Output read value.</param>
 		/// <returns>True if signal is successfully read, false if error occured during reading.</returns>
-		/*public bool TryReadSingleHoldingRegister(int startingAddress, out int value)
+		public bool TryReadHoldingRegisters(int rtuId, int startingAddress, int numberOfRegisters, out ushort[] value)
 		{
 			try
 			{
-				value = master.ReadHoldingRegisters(1, (ushort)startingAddress, 1)[0];
+				value = GetRtuConnection(rtuId).modbusMaster.ReadHoldingRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
 				return true;
 			}
 			catch
 			{
-				value = 0;
+				value = null;
 				return false;
 			}
-		}*/
+		}
 
 		/// <summary>
 		/// Try to write new value in the single holding register.

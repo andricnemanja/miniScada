@@ -25,16 +25,8 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal.</param>
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
-			/*
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			if(modbusCommandInvoker.TryReadAnalogSignalValue(rtuId, signalAddress, out int value))
-			{
-				double realValue = valueConverter.ConvertAnalogSignalToRealValue(rtuId, signalAddress, value);
-				callback.UpdateAnalogSignalValue(rtuId, signalAddress, realValue);
-			}
-			else
-				callback.ChangeConnectionStatusToFalse(rtuId);
-			*/
+			callback.UpdateAnalogSignalValue(rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress));
 		}
 
 		/// <summary>
@@ -45,7 +37,7 @@ namespace ModbusServiceLibrary
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.UpdateDiscreteSignalValue(rtuCommandInvoker.ReadSingleCoil(rtuId, signalAddress));
+			callback.UpdateDiscreteSignalValue(rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress));
 		}
 
 		/// <summary>

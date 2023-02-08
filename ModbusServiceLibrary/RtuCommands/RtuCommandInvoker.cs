@@ -11,12 +11,12 @@ namespace ModbusServiceLibrary.RtuCommands
 			this.commandReceiver = commandReceiver;
 		}
 
-		public ICommandResult ReadSingleCoil(int rtuId, int singalAddress)
+		public CommandResultBase ReadSingleSignalCommand(int rtuId, int singalAddress)
 		{
-			return commandReceiver.ReceiveCommand(new ReadSingleCoilCommand(rtuId, singalAddress));
+			return commandReceiver.ReceiveCommand(new ReadSingleSignalCommand(rtuId, singalAddress));
 		}
 
-		public ICommandResult ConnectToRtu(int rtuId)
+		public CommandResultBase ConnectToRtu(int rtuId)
 		{
 			return commandReceiver.ReceiveCommand(new ConnectToRtuCommand(rtuId));
 		}

@@ -22,11 +22,34 @@ namespace ModbusServiceLibrary.SignalConverter
 			return FindDiscreteSingalMapping(mappingId).DiscreteValueToState[signalValue];
 		}
 
+		/// <summary>
+		/// Convert sensor values to real values that have physical meaning.
+		/// </summary>
+		/// <param name="rtuId">ID of the RTU.</param>
+		/// <param name="analogSignalAddress">Address of the analog signal.</param>
+		/// <param name="value">Value that is being converted.</param>
+		/// <returns>Value with it's phyisical connotation.</returns>
+		public double ConvertAnalogSignalToRealValue(int rtuId, double signalValue)
+		{
+			AnalogSignalMapping analogSignalMapping = FindAnalogSignalMapping(rtuId);
+
+			return signalValue * analogSignalMapping.K + analogSignalMapping.N;
+		}
+
 		private DiscreteSignalMapping FindDiscreteSingalMapping(int mappingId)
 		{
 			return discreteSignalMappings.SingleOrDefault(m => m.Id == mappingId);
 		}
 
+		/// <summary>
+		/// Finds mapping for analog signal.
+		/// </summary>
+		/// <param name="rtuId">ID of the RTU.</param>
+		/// <returns>Discrete signal mapping for signal with given address.</returns>
+		private AnalogSignalMapping FindAnalogSignalMapping(int mappingId)
+		{
+			return analogSignalMappings.SingleOrDefault(m => m.Id == mappingId);
+		}
 
 		private List<AnalogSignalMapping> ReadAnalogSignalMappings()
 		{

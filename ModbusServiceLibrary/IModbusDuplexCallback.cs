@@ -13,7 +13,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal we are updating</param>
 		/// <param name="signalValue">Updated value</param>
 		[OperationContract(IsOneWay = true)]
-		void UpdateAnalogSignalValue(int rtuId, int signalAddress, double signalValue);
+		void UpdateAnalogSignalValue(CommandResultBase readResult);
 
 		/// <summary>
 		/// Updates value of the discrete signal
@@ -22,7 +22,7 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal we are updating</param>
 		/// <param name="signalValue">Updated value</param>
 		[OperationContract(IsOneWay = true)]
-		void UpdateDiscreteSignalValue(ICommandResult readSingleCoilResult);
+		void UpdateDiscreteSignalValue(CommandResultBase readResult);
 
 		/// <summary>
 		/// Changes connection status to false when connection is terminated.
