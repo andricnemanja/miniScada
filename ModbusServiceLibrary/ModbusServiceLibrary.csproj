@@ -94,8 +94,7 @@
     <Compile Include="CommandProcessing\ConnectoToRtuCommandProcessor.cs" />
     <Compile Include="CommandProcessing\ICommandProcessor.cs" />
     <Compile Include="CommandProcessing\ICommandReceiver.cs" />
-    <Compile Include="CommandProcessing\ReadSingleHoldingRegisterCommandProcessor.cs" />
-    <Compile Include="CommandProcessing\ReadSingleCoilCommandProcessor.cs" />
+    <Compile Include="CommandProcessing\ReadSingleSignalCommandProcessor.cs" />
     <Compile Include="CommandResult\CommandResultBase.cs" />
     <Compile Include="CommandProcessing\WriteSingleCoilCommandProcessor.cs" />
     <Compile Include="CommandResult\CommandStatus.cs" />

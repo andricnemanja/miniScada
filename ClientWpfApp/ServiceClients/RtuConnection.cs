@@ -14,7 +14,14 @@ namespace ClientWpfApp.ServiceClients
 
 		public ConnectToRtuResult TryConnectToRtu(int rtuId)
 		{
-			return modbusDuplexClient.ConnectToRtu(rtuId);
+			try
+			{
+				return modbusDuplexClient.ConnectToRtu(rtuId);
+			}
+			catch
+			{
+				return new ConnectToRtuResult(rtuId, CommandStatus.Failed);
+			}
 		}
 	}
 }
