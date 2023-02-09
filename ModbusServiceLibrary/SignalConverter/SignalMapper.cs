@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ModbusServiceLibrary.ModelServiceReference;
 
@@ -29,11 +30,16 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <param name="analogSignalAddress">Address of the analog signal.</param>
 		/// <param name="value">Value that is being converted.</param>
 		/// <returns>Value with it's phyisical connotation.</returns>
-		public double ConvertAnalogSignalToRealValue(int rtuId, double signalValue)
+		public double ConvertAnalogSignalToRealValue(int mappingId, double signalValue)
 		{
-			AnalogSignalMapping analogSignalMapping = FindAnalogSignalMapping(rtuId);
-
+			AnalogSignalMapping analogSignalMapping = FindAnalogSignalMapping(mappingId);
 			return signalValue * analogSignalMapping.K + analogSignalMapping.N;
+		}
+
+		public int ConvertRealValueToAnalogSignalValue(int mappingId, double signalValue)
+		{
+			AnalogSignalMapping analogSignalMapping = FindAnalogSignalMapping(mappingId);
+			return (int)Math.Round((signalValue - analogSignalMapping.N) / analogSignalMapping.K);
 		}
 
 		private DiscreteSignalMapping FindDiscreteSingalMapping(int mappingId)

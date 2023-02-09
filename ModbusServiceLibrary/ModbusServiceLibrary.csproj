@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandProcessing\CommandReceiver.cs" />
+    <Compile Include="CommandProcessing\WriteAnalogSignalCommandProcessor.cs" />
     <Compile Include="CommandProcessing\ConnectoToRtuCommandProcessor.cs" />
     <Compile Include="CommandProcessing\ICommandProcessor.cs" />
     <Compile Include="CommandProcessing\ICommandReceiver.cs" />
@@ -120,8 +121,8 @@
     <Compile Include="RtuCommands\ConnectToRtuCommand.cs" />
     <Compile Include="RtuCommands\IRtuCommand.cs" />
     <Compile Include="RtuCommands\IRtuCommandInvoker.cs" />
-    <Compile Include="RtuCommands\ReadSingleCoilCommand.cs" />
-    <Compile Include="RtuCommands\ReadSingleHoldingRegisterCommand.cs" />
+    <Compile Include="RtuCommands\WriteAnalogSignalCommand.cs" />
+    <Compile Include="RtuCommands\ReadSingleSignalCommand.cs" />
     <Compile Include="RtuCommands\RtuCommandInvoker.cs" />
     <Compile Include="SignalConverter\ISignalMapper.cs" />
     <Compile Include="SignalConverter\SignalMapper.cs" />

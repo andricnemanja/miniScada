@@ -56,11 +56,11 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <param name="startingAddress">Address of the signal.</param>
 		/// <param name="value">Value that needs to be written.</param>
 		/// <returns>True if signal is successfully written, false if error occured during writing.</returns>
-		/*public bool TryWriteSingleHoldingRegister(int startingAddress, int value)
+		public bool TryWriteSingleHoldingRegister(int rtuId, int startingAddress, int value)
 		{
 			try
 			{
-				master.WriteSingleRegister(1, (ushort)startingAddress, (ushort)value);
+				GetRtuConnection(rtuId).modbusMaster.WriteSingleRegister(1, (ushort)startingAddress, (ushort)value);
 				return true;
 			}
 			catch
@@ -68,7 +68,7 @@ namespace ModbusServiceLibrary.ModbusClient
 				return false;
 			}
 
-		}*/
+		}
 
 		/// <summary>
 		/// Try to read values of multiple coils.

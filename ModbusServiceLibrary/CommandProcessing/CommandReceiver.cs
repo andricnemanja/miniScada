@@ -19,7 +19,7 @@ namespace ModbusServiceLibrary
 			{
 				{typeof(ConnectToRtuCommand), new ConnectoToRtuCommandProcessor(modbusClient, rtuConfiguration) },
 				{typeof(ReadSingleSignalCommand), new ReadSingleSignalCommandProcessor(modbusClient, signalMapper, rtuConfiguration) },
-				{typeof(ReadSingleHoldingRegisterCommand), new ReadSingleHoldingRegisterCommandProcessor() }
+				{typeof(WriteAnalogSignalCommand), new WriteAnalogSignalCommandProcessor(modbusClient, rtuConfiguration, signalMapper) }
 			};
 		}
 

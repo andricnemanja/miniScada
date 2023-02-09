@@ -31,7 +31,7 @@ namespace ClientWpfApp.Commands
 			if (MessageBox.Show("Da li želite da promenite vrednost signala " + discreteSignalValue.DiscreteSignal.Name
 				+ " na " + discreteSignalValue.PossibleStates[1], "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
 			{
-				modbusServiceClient.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.Address, discreteSignalValue.PossibleStates[1]);
+				modbusServiceClient.WriteDiscreteSignalValue(SelectedRtu.RTUData.ID, discreteSignalValue.DiscreteSignal.ID, discreteSignalValue.PossibleStates[1]);
 				discreteSignalValue.State = discreteSignalValue.PossibleStates[1];
 			}
 			else

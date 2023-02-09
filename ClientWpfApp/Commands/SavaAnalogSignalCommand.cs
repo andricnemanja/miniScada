@@ -32,7 +32,7 @@ namespace ClientWpfApp.Commands
 				 + " na vrednost " + (analogSignalValue.Value).ToString(), "Question", MessageBoxButton.YesNo,
 				 MessageBoxImage.Warning) == MessageBoxResult.Yes)
 			{
-				modbusServiceClient.WriteAnalogSignalValue(SelectedRtu.RTUData.ID, analogSignalValue.AnalogSignal.Address, analogSignalValue.Value);
+				modbusServiceClient.WriteAnalogSignalValue(SelectedRtu.RTUData.ID, analogSignalValue.AnalogSignal.ID, analogSignalValue.Value);
 			}
 			else
 			{

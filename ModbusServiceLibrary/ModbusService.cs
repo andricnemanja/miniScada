@@ -48,14 +48,8 @@ namespace ModbusServiceLibrary
 		/// <param name="newValue">New value of the analog signal.</param>
 		public void WriteAnalogSignal(int rtuId, int signalAddress, double newValue)
 		{
-			/*
-			int convertedValue = valueConverter.ConvertRealValueToAnalogSignal(rtuId, signalAddress, newValue);
-			if(!modbusCommandInvoker.TryWriteAnalogSignalValue(rtuId, signalAddress, convertedValue))
-			{
-				IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-				callback.ChangeConnectionStatusToFalse(rtuId);
-			}
-			*/
+			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
+			callback.UpdateDiscreteSignalValue(rtuCommandInvoker.WriteAnalogSignalCommand(rtuId, signalAddress, newValue));
 		}
 
 		/// <summary>
