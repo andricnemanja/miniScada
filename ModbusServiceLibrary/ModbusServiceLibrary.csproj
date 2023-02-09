@@ -103,7 +103,7 @@
     <Compile Include="CommandResult\ICommandResult.cs" />
     <Compile Include="CommandResult\ReadSingleAnalogSignalResult.cs" />
     <Compile Include="CommandResult\ReadSingleDiscreteSignalResult.cs" />
-    <Compile Include="CommandResult\WriteSingleCoilResult.cs" />
+    <Compile Include="CommandResult\WriteDiscreteSignalCommandResult.cs" />
     <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

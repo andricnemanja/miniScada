@@ -60,14 +60,8 @@ namespace ModbusServiceLibrary
 		/// <param name="newValue">New value of the discrete signal.</param>
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue)
 		{
-			/*
-			byte convertedValue = valueConverter.ConvertRealValueToDiscreteSignal(rtuId, signalAddress, newValue);
-			if(!modbusCommandInvoker.TryWriteDiscreteSignalValue(rtuId, signalAddress, convertedValue))
-			{
-				IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-				callback.ChangeConnectionStatusToFalse(rtuId);
-			}
-			*/
+			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
+			callback.UpdateDiscreteSignalValue(rtuCommandInvoker.WriteDiscreteSignalCommand(rtuId, signalAddress, newValue));
 		}
 
 		/// <summary>

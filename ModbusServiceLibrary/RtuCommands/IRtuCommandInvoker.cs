@@ -7,6 +7,6 @@ namespace ModbusServiceLibrary.RtuCommands
 		CommandResultBase ConnectToRtu(int rtuId);
 		CommandResultBase ReadSingleSignalCommand(int rtuId, int singalAddress);
 		CommandResultBase WriteAnalogSignalCommand(int rtuId, int signalId, double valueToWrite);
-		ICommandResult WriteSingleCoil(int rtuId, int singalId, string state);
+		CommandResultBase WriteDiscreteSignalCommand(int rtuId, int singalId, string state);
 	}
 }

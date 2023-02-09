@@ -5,6 +5,7 @@ namespace ModbusServiceLibrary.CommandResult
 	[DataContract]
 	[KnownType(typeof(ReadSingleDiscreteSignalResult))]
 	[KnownType(typeof(ReadSingleAnalogSignalResult))]
+	[KnownType(typeof(WriteDiscreteSignalCommandResult))]
 	public class CommandResultBase
 	{
 		[DataMember]

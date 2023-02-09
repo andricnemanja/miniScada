@@ -1,6 +1,5 @@
 ﻿using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.RtuCommands;
-using System.Windows.Input;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {

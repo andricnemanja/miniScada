@@ -1,51 +1,36 @@
 ﻿using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.ModbusClient;
-using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.Model.Signals;
+using ModbusServiceLibrary.Model.SignalValues;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.ServiceReader;
 using ModbusServiceLibrary.SignalConverter;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {
-	public class WriteSingleCoilCommandProcessor: ICommandProcessor
+	public class WriteDiscreteSignalCommandProcessor: ICommandProcessor
 	{
-		private readonly IModelServiceReader modelServiceReader;
+		private readonly IRtuConfiguration rtuConfiguration;
 		private readonly IModbusClient2 modbusClient;
 		private readonly ISignalMapper signalMapper;
 
-		public WriteSingleCoilCommandProcessor(IModbusClient2 modbusClient, IModelServiceReader modelServiceReader)
+		public WriteDiscreteSignalCommandProcessor(IModbusClient2 modbusClient, IRtuConfiguration rtuConfiguration, ISignalMapper signalMapper)
 		{
-			this.modbusClient = modbusClient;		
-			this.modelServiceReader = modelServiceReader;
+			this.modbusClient = modbusClient;
+			this.rtuConfiguration = rtuConfiguration;
+			this.signalMapper = signalMapper;
 		}
 
-		public ICommandResult ProcessCommand(object command)
+		public CommandResultBase ProcessCommand(IRtuCommand command)
 		{
-			WriteSingleCoilCommand writeOneBitCoilCommand = (WriteSingleCoilCommand)command;
-			DiscreteSignal discreteSignal = FindDiscreteSignal(writeOneBitCoilCommand.RtuId, writeOneBitCoilCommand.SignalId);
-			byte stateToByte = ConvertStateToByte(discreteSignal.MappingId, writeOneBitCoilCommand.State);
-			bool[] boolArray = ByteToBoolArray(discreteSignal.SignalType, stateToByte);
+			RtuCommands.WriteDiscreteSignalCommand writeDiscreteSignalCommand = (RtuCommands.WriteDiscreteSignalCommand)command;
+			DiscreteSignalValue discreteSignal = (DiscreteSignalValue)rtuConfiguration.GetSignalValue(writeDiscreteSignalCommand.RtuId, writeDiscreteSignalCommand.SignalId);
+			byte stateToByte = ConvertStateToByte(discreteSignal.SignalData.MappingId, writeDiscreteSignalCommand.State);
+			bool[] boolArray = ByteToBoolArray(((DiscreteSignal)discreteSignal.SignalData).SignalType, stateToByte);
 
-			modbusClient.TryWriteCoils(writeOneBitCoilCommand.RtuId, discreteSignal.Address, boolArray);
+			modbusClient.TryWriteCoils(writeDiscreteSignalCommand.RtuId, discreteSignal.SignalData.Address, boolArray);
 
-			return new WriteSingleCoilResult(CommandStatus.Executed);
-		}
-		
-		private RTU FindRtu(int rtuId)
-		{
-			return modelServiceReader.RtuList.SingleOrDefault(r => r.RTUData.ID == rtuId);
-		}
-
-		private DiscreteSignal FindDiscreteSignal(int rtuId, int signalId)
-		{
-			return FindRtu(rtuId).DiscreteSignalValues.FirstOrDefault(s => s.DiscreteSignal.ID == signalId).DiscreteSignal;
+			return new WriteDiscreteSignalCommandResult(writeDiscreteSignalCommand.RtuId);
 		}
 
 		private byte ConvertStateToByte(int mappingId, string value)

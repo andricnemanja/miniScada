@@ -20,7 +20,7 @@ namespace ModbusServiceLibrary
 				{typeof(ConnectToRtuCommand), new ConnectoToRtuCommandProcessor(modbusClient, rtuConfiguration) },
 				{typeof(ReadSingleSignalCommand), new ReadSingleSignalCommandProcessor(modbusClient, signalMapper, rtuConfiguration) },
 				{typeof(WriteAnalogSignalCommand), new WriteAnalogSignalCommandProcessor(modbusClient, rtuConfiguration, signalMapper) },
-				{typeof(WriteSingleCoilCommand), new WriteSingleCoilCommandProcessor(modbusClient, modelServiceReader) }
+				{typeof(WriteDiscreteSignalCommand), new WriteDiscreteSignalCommandProcessor(modbusClient, rtuConfiguration, signalMapper) }
 			};
 		}
 
