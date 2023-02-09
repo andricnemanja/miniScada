@@ -98,18 +98,19 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
 		/// <param name="valueToWrite">Value that needs to be written.</param>
 		/// <returns>True if coils are successfully written, false if error occured during writing.</returns>
-		/*public bool TryWriteCoils(int coilAddress, DiscreteSignalType discreteSignalType, byte valueToWrite)
+		public bool TryWriteCoils(int rtuId, int coilAddress, bool[] valueToWrite)
 		{
 			try
 			{
-				master.WriteMultipleCoils(1, (ushort)coilAddress, ByteToBoolArray(discreteSignalType, valueToWrite));
+				GetRtuConnection(rtuId).modbusMaster.WriteMultipleCoils(1, (ushort)coilAddress, valueToWrite);
+				// master.WriteMultipleCoils(1, (ushort)coilAddress, ByteToBoolArray(discreteSignalType, valueToWrite));
 				return true;
 			}
 			catch
 			{
 				return false;
 			}
-		}*/
+		}
 
 		/// <summary>
 		/// Dispose connection to RTU.
@@ -132,21 +133,21 @@ namespace ModbusServiceLibrary.ModbusClient
 			return (byte)((readValues[0] ? 2 : 0) + (readValues[1] ? 1 : 0));
 		}
 
-		/// <summary>
-		/// Converts numerical representation of discrete signal to array of bools that is needed for changing signal value.
-		/// </summary>
-		/// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
-		/// <param name="value">Numerical representation of discrete signal value.</param>
-		/// <returns>Array of bools needed for changing discrete signal value.</returns>
-		private bool[] ByteToBoolArray(DiscreteSignalType discreteSignalType, byte value)
-		{
-			if (discreteSignalType == DiscreteSignalType.OneBit)
-			{
-				return new bool[1] { value == 1 };
-			}
+		///// <summary>
+		///// Converts numerical representation of discrete signal to array of bools that is needed for changing signal value.
+		///// </summary>
+		///// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
+		///// <param name="value">Numerical representation of discrete signal value.</param>
+		///// <returns>Array of bools needed for changing discrete signal value.</returns>
+		//private bool[] ByteToBoolArray(DiscreteSignalType discreteSignalType, byte value)
+		//{
+		//	if (discreteSignalType == DiscreteSignalType.OneBit)
+		//	{
+		//		return new bool[1] { value == 1 };
+		//	}
 
-			return new bool[2] { (value & 2) == 2, (value & 1) == 1 };
-		}
+		//	return new bool[2] { (value & 2) == 2, (value & 1) == 1 };
+		//}
 
 		private RtuConnection GetRtuConnection(int rtuId)
 		{

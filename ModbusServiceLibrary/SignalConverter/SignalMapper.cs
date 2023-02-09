@@ -41,6 +41,11 @@ namespace ModbusServiceLibrary.SignalConverter
 			AnalogSignalMapping analogSignalMapping = FindAnalogSignalMapping(mappingId);
 			return (int)Math.Round((signalValue - analogSignalMapping.N) / analogSignalMapping.K);
 		}
+		
+		public byte ConvertStateToDiscreteSignalValue(int mappingId, string value)
+		{
+			return FindDiscreteSingalMapping(mappingId).DiscreteValueToState.SingleOrDefault(x => x.Value == value).Key;
+		}
 
 		private DiscreteSignalMapping FindDiscreteSingalMapping(int mappingId)
 		{

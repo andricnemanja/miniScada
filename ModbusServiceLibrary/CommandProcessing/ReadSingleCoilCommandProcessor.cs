@@ -5,6 +5,7 @@ using ModbusServiceLibrary.Model.SignalValues;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.ServiceReader;
 using ModbusServiceLibrary.SignalConverter;
+using System.Windows.Input;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {

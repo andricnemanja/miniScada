@@ -1,4 +1,6 @@
-﻿namespace ModbusServiceLibrary.ModbusClient
+﻿using ModbusServiceLibrary.Model.Signals;
+
+namespace ModbusServiceLibrary.ModbusClient
 {
 	public interface IModbusClient2
 	{
@@ -7,6 +9,7 @@
 		bool TryConnect(int rtuId, string rtuAddress, int rtuPort);
 		bool TryReadHoldingRegisters(int rtuId, int startingAddress, int numberOfRegisters, out ushort[] value);
 		bool TryWriteSingleHoldingRegister(int rtuId, int startingAddress, int value);
+		bool TryWriteCoils(int rtuId, int coilAddress,  bool[] valueToWrite);
 		//bool TryReadSingleHoldingRegister(int startingAddress, out int value);
 		//bool TryWriteCoils(int coilAddress, DiscreteSignalType discreteSignalType, byte valueToWrite);
 	}

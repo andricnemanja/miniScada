@@ -25,5 +25,10 @@ namespace ModbusServiceLibrary.RtuCommands
 		{
 			return commandReceiver.ReceiveCommand(new ConnectToRtuCommand(rtuId));
 		}
+
+		public ICommandResult WriteSingleCoil(int rtuId, int signalId, string state)
+		{
+			return commandReceiver.ReceiveCommand(new WriteSingleCoilCommand(rtuId, signalId, state));
+		}
 	}
 }
