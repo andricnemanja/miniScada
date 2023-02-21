@@ -26,7 +26,7 @@ namespace ModbusServiceLibrary
 		public void ReadAnalogSignal(int rtuId, int signalAddress)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.UpdateAnalogSignalValue(rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress));
+			callback.ReceiveCommandResult(rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress));
 		}
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace ModbusServiceLibrary
 		public void ReadDiscreteSignal(int rtuId, int signalAddress)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.UpdateDiscreteSignalValue(rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress));
+			callback.ReceiveCommandResult(rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress));
 		}
 
 		/// <summary>
@@ -49,7 +49,7 @@ namespace ModbusServiceLibrary
 		public void WriteAnalogSignal(int rtuId, int signalAddress, double newValue)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.UpdateDiscreteSignalValue(rtuCommandInvoker.WriteAnalogSignalCommand(rtuId, signalAddress, newValue));
+			callback.ReceiveCommandResult(rtuCommandInvoker.WriteAnalogSignalCommand(rtuId, signalAddress, newValue));
 		}
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace ModbusServiceLibrary
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue)
 		{
 			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.UpdateDiscreteSignalValue(rtuCommandInvoker.WriteDiscreteSignalCommand(rtuId, signalAddress, newValue));
+			callback.ReceiveCommandResult(rtuCommandInvoker.WriteDiscreteSignalCommand(rtuId, signalAddress, newValue));
 		}
 
 		/// <summary>

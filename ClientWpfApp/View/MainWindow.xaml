@@ -23,7 +23,7 @@
                     Command="{Binding Path=ReadRtuValuesCommand}">
                 <TextBlock Margin="0, -6, 0, 0">⟲</TextBlock>
             </Button>
-            <DataGrid ItemsSource="{Binding RTUList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="940px" x:Name="DevicesDataGrid">
+            <DataGrid ItemsSource="{Binding RtuCache.RtuList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="940px" x:Name="DevicesDataGrid">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
 

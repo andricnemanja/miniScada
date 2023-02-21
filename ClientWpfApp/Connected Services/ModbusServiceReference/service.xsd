@@ -49,24 +49,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateAnalogSignalValue">
+  <xs:element name="ReceiveCommandResult">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult" minOccurs="0" name="readResult" nillable="true" type="q2:CommandResultBase" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateDiscreteSignalValue">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult" minOccurs="0" name="readResult" nillable="true" type="q3:CommandResultBase" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ChangeConnectionStatusToFalse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="rtuId" type="xs:int" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult" minOccurs="0" name="commandResult" nillable="true" type="q2:CommandResultBase" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

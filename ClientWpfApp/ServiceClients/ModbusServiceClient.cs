@@ -1,8 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using System.Threading.Tasks;
 using ClientWpfApp.ModbusCallback;
 using ClientWpfApp.ModbusServiceReference;
+using ClientWpfApp.Model;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.SignalValues;
 
@@ -10,25 +10,28 @@ namespace ClientWpfApp.ServiceClients
 {
 	public sealed class ModbusServiceClient
 	{
-		private readonly ObservableCollection<RTU> rtuList;
+		private readonly IRtuCache rtuCache;
 		private ModbusDuplexClient modbusDuplexClient;
 
-		public ModbusServiceClient(ModbusDuplexClient modbusDuplexClient, ObservableCollection<RTU> rtuList)
+		public ModbusServiceClient(ModbusDuplexClient modbusDuplexClient, IRtuCache rtuCache)
 		{
 			this.modbusDuplexClient = modbusDuplexClient;
-			this.rtuList = rtuList;
+			this.rtuCache = rtuCache;
 		}
 
 		public ModbusDuplexClient ConnectToModbusService()
 		{
-			InstanceContext instanceContext = new InstanceContext(new ModbusServiceCallback(rtuList));
+			ICommandResultReceiver commandResultReceiver = new CommandResultReceiver(rtuCache);
+			CommandResultQueue commandResultQueue = new CommandResultQueue(commandResultReceiver);
+			ModbusServiceCallback modbusServiceCallback = new ModbusServiceCallback(commandResultQueue);
+			InstanceContext instanceContext = new InstanceContext(modbusServiceCallback);
 			modbusDuplexClient = new ModbusDuplexClient(instanceContext);
 			return modbusDuplexClient;
 		}
 
 		public void ReadValues()
 		{
-			Parallel.ForEach(rtuList, rtu =>
+			Parallel.ForEach(rtuCache.RtuList, rtu =>
 			{
 				if (rtu.IsConnected)
 					ReadSingleRTU(rtu);
@@ -50,7 +53,6 @@ namespace ClientWpfApp.ServiceClients
 			foreach (DiscreteSignalValue signalValue in rtu.DiscreteSignalValues)
 			{
 				modbusDuplexClient.ReadDiscreteSignal(rtu.RTUData.ID, signalValue.DiscreteSignal.ID);
-
 			}
 			
 			foreach (AnalogSignalValue signalValue in rtu.AnalogSignalValues)

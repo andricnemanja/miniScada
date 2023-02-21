@@ -47,4 +47,12 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="ReadSingleAnalogSignalResult" nillable="true" type="tns:ReadSingleAnalogSignalResult" />
+  <xs:complexType name="WriteDiscreteSignalCommandResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WriteDiscreteSignalCommandResult" nillable="true" type="tns:WriteDiscreteSignalCommandResult" />
 </xs:schema>

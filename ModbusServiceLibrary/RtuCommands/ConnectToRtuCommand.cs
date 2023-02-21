@@ -1,10 +1,10 @@
 ﻿namespace ModbusServiceLibrary.RtuCommands
 {
-	public class ConnectToRtuCommand : IRtuCommand
+	public class ReadSingleSignalCommandResult : IRtuCommand
 	{
 		public int RtuId { get; set; }
 
-		public ConnectToRtuCommand(int rtuId)
+		public ReadSingleSignalCommandResult(int rtuId)
 		{
 			RtuId = rtuId;
 		}

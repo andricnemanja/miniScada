@@ -1,6 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using ClientWpfApp.Commands;
+using ClientWpfApp.Model;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.SignalValues;
 using ClientWpfApp.ServiceClients;
@@ -24,7 +24,7 @@ namespace ClientWpfApp.ViewModel
 		#endregion Commands
 
 		#region Public Properties
-		public ObservableCollection<RTU> RTUList { get; set; } = new ObservableCollection<RTU>();
+		public IRtuCache RtuCache { get; set; } = new RtuCache();
 
 		private RTU _selectedRtu;
 
@@ -45,24 +45,19 @@ namespace ClientWpfApp.ViewModel
 
 		public MainViewModel()
 		{
-			ConnectToModelService();
 			ReadRTUStaticData();
 			ConnectToModbusServices();
 			InitializeCommands();
 		}
 
-		private void ConnectToModelService()
-		{
-			modelServiceConverter = new ModelServiceConverter(new ModelServiceReference.ModelServiceClient());
-		}
 		private void ReadRTUStaticData()
 		{
-			RTUList = modelServiceConverter.ReadAllRTUs();
+			RtuCache.ReadRtuStaticData();
 		}
 
 		private void ConnectToModbusServices()
 		{
-			modbusServiceClient = new ModbusServiceClient(modbusDuplexClient, RTUList);
+			modbusServiceClient = new ModbusServiceClient(modbusDuplexClient, RtuCache);
 			modbusDuplexClient = modbusServiceClient.ConnectToModbusService();
 		}
 

@@ -58,14 +58,8 @@
   <wsdl:message name="IModbusDuplex_ConnectToRtu_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConnectToRtuResponse" />
   </wsdl:message>
-  <wsdl:message name="IModbusDuplex_UpdateAnalogSignalValue_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UpdateAnalogSignalValue" />
-  </wsdl:message>
-  <wsdl:message name="IModbusDuplex_UpdateDiscreteSignalValue_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UpdateDiscreteSignalValue" />
-  </wsdl:message>
-  <wsdl:message name="IModbusDuplex_ChangeConnectionStatusToFalse_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ChangeConnectionStatusToFalse" />
+  <wsdl:message name="IModbusDuplex_ReceiveCommandResult_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveCommandResult" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IModbusDuplex">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReadAnalogSignal">
@@ -84,14 +78,8 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/ConnectToRtu" message="tns:IModbusDuplex_ConnectToRtu_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse" message="tns:IModbusDuplex_ConnectToRtu_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateAnalogSignalValue">
-      <wsdl:output wsaw:Action="http://tempuri.org/IModbusDuplex/UpdateAnalogSignalValue" message="tns:IModbusDuplex_UpdateAnalogSignalValue_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateDiscreteSignalValue">
-      <wsdl:output wsaw:Action="http://tempuri.org/IModbusDuplex/UpdateDiscreteSignalValue" message="tns:IModbusDuplex_UpdateDiscreteSignalValue_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ChangeConnectionStatusToFalse">
-      <wsdl:output wsaw:Action="http://tempuri.org/IModbusDuplex/ChangeConnectionStatusToFalse" message="tns:IModbusDuplex_ChangeConnectionStatusToFalse_OutputCallbackMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveCommandResult">
+      <wsdl:output wsaw:Action="http://tempuri.org/IModbusDuplex/ReceiveCommandResult" message="tns:IModbusDuplex_ReceiveCommandResult_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IModbusDuplex" type="tns:IModbusDuplex">
@@ -131,20 +119,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateAnalogSignalValue">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/UpdateAnalogSignalValue" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateDiscreteSignalValue">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/UpdateDiscreteSignalValue" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ChangeConnectionStatusToFalse">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ChangeConnectionStatusToFalse" style="document" />
+    <wsdl:operation name="ReceiveCommandResult">
+      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ReceiveCommandResult" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
