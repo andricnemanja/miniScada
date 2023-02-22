@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ClientWpfApp.Model;
 using ModbusServiceLibrary.CommandResult;
-using ModbusServiceLibrary.RtuCommands;
 
 namespace ClientWpfApp.ModbusCallback
 {
@@ -14,7 +13,7 @@ namespace ClientWpfApp.ModbusCallback
 		{
 			this.commandResultProcessors = new Dictionary<Type, ICommandResultProcessor>()
 			{
-				{typeof(ReadSingleSignalCommandResult), new ReadSingleAnalogSignalResultProcessor(rtuCache) },
+				{typeof(ReadSingleAnalogSignalResult), new ReadSingleAnalogSignalResultProcessor(rtuCache) },
 				{typeof(ReadSingleDiscreteSignalResult), new ReadSingleDiscreteSignalResultProcessor(rtuCache) }
 			};
 		}
