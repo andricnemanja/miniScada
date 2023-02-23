@@ -21,6 +21,10 @@
 		/// Analog signal mapping ID
 		/// </summary>
 		public int MappingId { get; set; }
+		/// <summary>
+		/// Indicates whether the signal is read only or read-write
+		/// </summary>
+		public SignalAccessType AccessType { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AnalogSignal"/> class.
@@ -46,6 +50,7 @@
 			Address = analogSignalStaticData.Address;
 			Name = analogSignalStaticData.Name;
 			MappingId = analogSignalStaticData.MappingId;
+			AccessType = (SignalAccessType)analogSignalStaticData.AccessType;
 		}
 	}
 }

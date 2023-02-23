@@ -18,5 +18,9 @@
 		/// Analog signal mapping ID
 		/// </summary>
 		int MappingId { get; set; }
+		/// <summary>
+		/// Indicates whether the signal is read only or read-write
+		/// </summary>
+		SignalAccessType AccessType { get; set; }
 	}
 }

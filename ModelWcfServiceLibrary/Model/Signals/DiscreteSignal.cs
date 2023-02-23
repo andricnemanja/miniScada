@@ -1,5 +1,4 @@
 ﻿using System.Runtime.Serialization;
-using ModelWcfServiceLibrary.Model.SignalMapping;
 
 namespace ModelWcfServiceLibrary.Model.Signals
 {
@@ -25,14 +24,19 @@ namespace ModelWcfServiceLibrary.Model.Signals
 		[DataMember]
 		public int Address { get; set; }
 		/// <summary>
+		/// Discrete signal mapping ID
+		/// </summary>
+		[DataMember]
+		public int MappingId { get; set; }
+		/// <summary>
 		/// Signal type, one bit or two bit signal
 		/// </summary>
 		[DataMember]
 		public DiscreteSignalType SignalType { get; set; }
 		/// <summary>
-		/// Discrete signal mapping ID
+		/// Indicates whether the signal is read only or read-write
 		/// </summary>
 		[DataMember]
-		public int MappingId { get; set; }
+		public SignalAccessType AccessType { get; set; }
 	}
 }

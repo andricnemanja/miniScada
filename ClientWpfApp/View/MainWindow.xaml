@@ -12,6 +12,7 @@
         <converters:ConnectionButtonColorConverter x:Key="ConnectionButtonColorConverter" />
         <converters:ConnectionStatusConverter x:Key="ConnectionStatusConverter" />
         <converters:DiscreteSignalButtonStatusConverter x:Key="DiscreteSignalButtonStatusConverter" />
+        <converters:SignalChangeButtonVisibiltyConverter x:Key="SignalChangeButtonVisibiltyConverter" />
     </Window.Resources>
 
 
@@ -69,26 +70,28 @@
                                                 <TextBlock Text="{Binding DiscreteSignal.Name }"></TextBlock>
                                                 <TextBlock Text=": "></TextBlock>
                                                 <TextBlock Text="{Binding State}" FontWeight="Bold"></TextBlock>
-                                                <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="{Binding PossibleStates[0]}" HorizontalAlignment="Center"
-                                                        Command="{Binding Path=DataContext.ChangeDiscreteSignalFirstStateCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
-                                                        CommandParameter="{Binding}">
-                                                    <Button.IsEnabled>
-                                                        <MultiBinding Converter="{StaticResource DiscreteSignalButtonStatusConverter}">
-                                                            <Binding Path="PossibleStates[0]"/>
-                                                            <Binding Path="State"/>
-                                                        </MultiBinding>
-                                                    </Button.IsEnabled>
-                                                </Button>
-                                                <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="{Binding PossibleStates[1]}" HorizontalAlignment="Center"
-                                                        Command="{Binding Path=DataContext.ChangeDiscreteSignalSecondStateCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
-                                                        CommandParameter="{Binding}" >
-                                                    <Button.IsEnabled>
-                                                        <MultiBinding Converter="{StaticResource DiscreteSignalButtonStatusConverter}">
-                                                            <Binding Path="PossibleStates[1]"/>
-                                                            <Binding Path="State"/>
-                                                        </MultiBinding>
-                                                    </Button.IsEnabled>
-                                                </Button>
+                                                <StackPanel Orientation="Horizontal" Visibility="{Binding DiscreteSignal.AccessType, Converter={StaticResource SignalChangeButtonVisibiltyConverter}}">
+                                                    <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="{Binding PossibleStates[0]}" HorizontalAlignment="Center"
+                                                            Command="{Binding Path=DataContext.ChangeDiscreteSignalFirstStateCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
+                                                            CommandParameter="{Binding}">
+                                                        <Button.IsEnabled>
+                                                            <MultiBinding Converter="{StaticResource DiscreteSignalButtonStatusConverter}">
+                                                                <Binding Path="PossibleStates[0]"/>
+                                                                <Binding Path="State"/>
+                                                            </MultiBinding>
+                                                        </Button.IsEnabled>
+                                                    </Button>
+                                                    <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="{Binding PossibleStates[1]}" HorizontalAlignment="Center"
+                                                            Command="{Binding Path=DataContext.ChangeDiscreteSignalSecondStateCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
+                                                            CommandParameter="{Binding}" >
+                                                        <Button.IsEnabled>
+                                                            <MultiBinding Converter="{StaticResource DiscreteSignalButtonStatusConverter}">
+                                                                <Binding Path="PossibleStates[1]"/>
+                                                                <Binding Path="State"/>
+                                                            </MultiBinding>
+                                                        </Button.IsEnabled>
+                                                    </Button>
+                                                </StackPanel>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
@@ -108,7 +111,7 @@
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
                                                 <TextBlock VerticalAlignment="Center" Text=": " />
                                                 <TextBox VerticalAlignment="Center" Text="{Binding Value}" FontWeight="Bold"/>
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding AnalogSignal.AccessType, Converter={StaticResource SignalChangeButtonVisibiltyConverter}}">
                                                     <Button Margin="10,0,0,0" Padding="5,0,5,0" Content="Sačuvaj" HorizontalAlignment="Center"
                                                         Command="{Binding Path=DataContext.SavaAnalogSignalCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
                                                         CommandParameter="{Binding}" />

@@ -11,19 +11,22 @@
         "ID": 1,
         "Address": 1,
         "Name": "Napon 1",
-        "MappingId": 1
+        "MappingId": 1,
+        "AccessType": 1
       },
       {
         "ID": 2,
         "Address": 2,
         "Name": "Temperatura 1",
-        "MappingId": 2
+        "MappingId": 2,
+        "AccessType": 1
       },
       {
         "ID": 3,
-        "Address": 5,
+        "Address": 1,
         "Name": "Napon 2",
-        "MappingId": 3
+        "MappingId": 3,
+        "AccessType": 0
       }
     ],
     "DiscreteSignals": [
@@ -32,14 +35,24 @@
         "Name": "Discrete signal 1",
         "Address": 1,
         "SignalType": 1,
-        "MappingId": 2
+        "MappingId": 2,
+        "AccessType": 1
       },
       {
         "ID": 5,
         "Name": "Discrete signal 2",
         "Address": 3,
         "SignalType": 0,
-        "MappingId": 3
+        "MappingId": 3,
+        "AccessType": 1
+      },
+      {
+        "ID": 10,
+        "Name": "Discrete signal 3",
+        "Address": 1,
+        "SignalType": 1,
+        "MappingId": 4,
+        "AccessType": 0
       }
     ]
   },
@@ -55,13 +68,22 @@
         "ID": 6,
         "Address": 1,
         "Name": "Napon 1",
-        "MappingId": 5
+        "MappingId": 5,
+        "AccessType": 1
       },
       {
         "ID": 7,
         "Address": 4,
         "Name": "Temperatura 1",
-        "MappingId": 5
+        "MappingId": 5,
+        "AccessType": 1
+      },
+      {
+        "ID": 13,
+        "Address": 1,
+        "Name": "Napon 2",
+        "MappingId": 3,
+        "AccessType": 0
       }
     ],
     "DiscreteSignals": [
@@ -70,14 +92,24 @@
         "Name": "Prekidac 3",
         "SignalType": 0,
         "Address": 1,
-        "MappingId": 3
+        "MappingId": 3,
+        "AccessType": 1
       },
       {
         "ID": 9,
         "Name": "Prekidac 4",
         "SignalType": 1,
         "Address": 2,
-        "MappingId": 1
+        "MappingId": 1,
+        "AccessType": 1
+      },
+      {
+        "ID": 12,
+        "Name": "Prekidac 5",
+        "SignalType": 1,
+        "Address": 1,
+        "MappingId": 2,
+        "AccessType": 0
       }
     ]
   }

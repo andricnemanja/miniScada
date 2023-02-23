@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
-using ModbusServiceLibrary.Model.Signals;
 using NModbus;
 
 namespace ModbusServiceLibrary.ModbusClient
@@ -31,7 +30,7 @@ namespace ModbusServiceLibrary.ModbusClient
 
 
 		/// <summary>
-		/// Try to read single holding register from the RTU.
+		/// Try to read holding registers from the RTU.
 		/// </summary>
 		/// <param name="startingAddress">Address of the signal.</param>
 		/// <param name="value">Output read value.</param>
@@ -41,6 +40,26 @@ namespace ModbusServiceLibrary.ModbusClient
 			try
 			{
 				value = GetRtuConnection(rtuId).modbusMaster.ReadHoldingRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
+				return true;
+			}
+			catch
+			{
+				value = null;
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Try to read input registers from the RTU.
+		/// </summary>
+		/// <param name="startingAddress">Address of the signal.</param>
+		/// <param name="value">Output read value.</param>
+		/// <returns>True if signal is successfully read, false if error occured during reading.</returns>
+		public bool TryReadInputRegisters(int rtuId, int startingAddress, int numberOfRegisters, out ushort[] value)
+		{
+			try
+			{
+				value = GetRtuConnection(rtuId).modbusMaster.ReadInputRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
 				return true;
 			}
 			catch
@@ -82,6 +101,27 @@ namespace ModbusServiceLibrary.ModbusClient
 			try
 			{
 				signalValue = GetRtuConnection(rtuId).modbusMaster.ReadCoils(1, (ushort)startingAddress, (ushort)numberOfCoils);
+			}
+			catch
+			{
+				signalValue = null;
+				return false;
+			}
+			return true;
+		}
+
+		/// <summary>
+		/// Try to read values of multiple inputs.
+		/// </summary>
+		/// <param name="startingAddress">Address of the RTU.</param>
+		/// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
+		/// <param name="signalValue">Read value.</param>
+		/// <returns>True if coils are successfully read, false if error occured during reading.</returns>
+		public bool TryReadInputs(int rtuId, int startingAddress, int numberOfCoils, out bool[] signalValue)
+		{
+			try
+			{
+				signalValue = GetRtuConnection(rtuId).modbusMaster.ReadInputs(1, (ushort)startingAddress, (ushort)numberOfCoils);
 			}
 			catch
 			{

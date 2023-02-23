@@ -15,7 +15,7 @@ namespace ModbusServiceLibrary.Tests
 				new RTU()
 				{
 					Connection = new RTUConnection(null),
-					RTUData = new RTUData
+					RTUData = new RTUConnectionParameters
 					{
 						ID = 1,
 						Name = "RTU 1",
@@ -62,7 +62,7 @@ namespace ModbusServiceLibrary.Tests
 				new RTU()
 				{
 					Connection = new RTUConnection(null),
-					RTUData = new RTUData
+					RTUData = new RTUConnectionParameters
 					{
 						ID = 2,
 						Name = "RTU 2",
@@ -109,7 +109,7 @@ namespace ModbusServiceLibrary.Tests
 				new RTU()
 				{
 					Connection = new RTUConnection(null),
-					RTUData = new RTUData
+					RTUData = new RTUConnectionParameters
 					{
 						ID = 3,
 						Name = "RTU 3",

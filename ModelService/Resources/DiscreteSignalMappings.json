@@ -26,5 +26,15 @@
       "0": "Off",
       "1": "On"
     }
+  },
+  {
+    "Id": 4,
+    "Name": "Discrete signal mapping 4",
+    "DiscreteValueToState": {
+      "0": "Error",
+      "1": "High",
+      "2": "Low",
+      "3": "Transit"
+    }
   }
 ]

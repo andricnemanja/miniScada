@@ -1,7 +1,6 @@
 ﻿using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.Model.Signals;
-using ModbusServiceLibrary.Model.SignalValues;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.ServiceReader;
 using ModbusServiceLibrary.SignalConverter;
@@ -23,12 +22,13 @@ namespace ModbusServiceLibrary.CommandProcessing
 
 		public CommandResultBase ProcessCommand(IRtuCommand command)
 		{
-			RtuCommands.WriteDiscreteSignalCommand writeDiscreteSignalCommand = (RtuCommands.WriteDiscreteSignalCommand)command;
-			DiscreteSignalValue discreteSignal = (DiscreteSignalValue)rtuConfiguration.GetSignalValue(writeDiscreteSignalCommand.RtuId, writeDiscreteSignalCommand.SignalId);
-			byte stateToByte = ConvertStateToByte(discreteSignal.SignalData.MappingId, writeDiscreteSignalCommand.State);
-			bool[] boolArray = ByteToBoolArray(((DiscreteSignal)discreteSignal.SignalData).SignalType, stateToByte);
+			WriteDiscreteSignalCommand writeDiscreteSignalCommand = (WriteDiscreteSignalCommand)command;
+			DiscreteSignal discreteSignal = (DiscreteSignal)rtuConfiguration.GetSignal(writeDiscreteSignalCommand.RtuId, writeDiscreteSignalCommand.SignalId);
 
-			modbusClient.TryWriteCoils(writeDiscreteSignalCommand.RtuId, discreteSignal.SignalData.Address, boolArray);
+			byte stateToByte = ConvertStateToByte(discreteSignal.MappingId, writeDiscreteSignalCommand.State);
+			bool[] boolArray = ByteToBoolArray(discreteSignal.SignalType, stateToByte);
+
+			modbusClient.TryWriteCoils(writeDiscreteSignalCommand.RtuId, discreteSignal.Address, boolArray);
 
 			return new WriteDiscreteSignalCommandResult(writeDiscreteSignalCommand.RtuId);
 		}

@@ -14,5 +14,9 @@
 		/// Name of the analog signal
 		/// </summary>
 		public string Name { get; set; }
+		/// <summary>
+		/// Indicates whether the signal is read only or read-write
+		/// </summary>
+		public SignalAccessType AccessType { get; set; }
 	}
 }

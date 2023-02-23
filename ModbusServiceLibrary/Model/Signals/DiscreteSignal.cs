@@ -18,13 +18,17 @@
 		/// </summary>
 		public string Name { get; set; }
 		/// <summary>
+		/// Discrete signal mapping ID.
+		/// </summary>
+		public int MappingId { get; set; }
+		/// <summary>
 		/// Signal type, one bit or two bit signal.
 		/// </summary>
 		public DiscreteSignalType SignalType { get; set; }
 		/// <summary>
-		/// Discrete signal mapping ID.
+		/// Indicates whether the signal is read only or read-write
 		/// </summary>
-		public int MappingId { get; set; }
+		public SignalAccessType AccessType { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DiscreteSignal"/> class.
@@ -51,6 +55,7 @@
 			Name = discreteSignalStaticData.Name;
 			SignalType = (DiscreteSignalType)discreteSignalStaticData.SignalType;
 			MappingId = discreteSignalStaticData.MappingId;
+			AccessType = (SignalAccessType)discreteSignalStaticData.AccessType;
 		}
 	}
 }

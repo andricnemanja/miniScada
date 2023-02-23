@@ -193,6 +193,9 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ModbusServiceLibrary.ModelServiceReference.SignalAccessType AccessTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -211,6 +214,19 @@ namespace ModbusServiceLibrary.ModelServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModbusServiceLibrary.ModelServiceReference.SignalAccessType AccessType {
+            get {
+                return this.AccessTypeField;
+            }
+            set {
+                if ((this.AccessTypeField.Equals(value) != true)) {
+                    this.AccessTypeField = value;
+                    this.RaisePropertyChanged("AccessType");
+                }
             }
         }
         
@@ -286,6 +302,9 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ModbusServiceLibrary.ModelServiceReference.SignalAccessType AccessTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -307,6 +326,19 @@ namespace ModbusServiceLibrary.ModelServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModbusServiceLibrary.ModelServiceReference.SignalAccessType AccessType {
+            get {
+                return this.AccessTypeField;
+            }
+            set {
+                if ((this.AccessTypeField.Equals(value) != true)) {
+                    this.AccessTypeField = value;
+                    this.RaisePropertyChanged("AccessType");
+                }
             }
         }
         
@@ -386,8 +418,18 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignalType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
-        "g")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SignalAccessType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    public enum SignalAccessType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Input = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Output = 1,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignalType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
     public enum DiscreteSignalType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]

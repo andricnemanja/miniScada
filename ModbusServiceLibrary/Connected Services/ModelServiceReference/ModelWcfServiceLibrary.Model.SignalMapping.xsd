@@ -1,13 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:simpleType name="DiscreteSignalType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="OneBit" />
-      <xs:enumeration value="TwoBit" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="DiscreteSignalType" nillable="true" type="tns:DiscreteSignalType" />
   <xs:complexType name="ArrayOfAnalogSignalMapping">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="AnalogSignalMapping" nillable="true" type="tns:AnalogSignalMapping" />

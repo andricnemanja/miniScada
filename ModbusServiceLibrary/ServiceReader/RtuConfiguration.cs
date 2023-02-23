@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ModbusServiceLibrary.Model.RTU;
-using ModbusServiceLibrary.Model.SignalMapping;
 using ModbusServiceLibrary.Model.Signals;
-using ModbusServiceLibrary.Model.SignalValues;
 
 namespace ModbusServiceLibrary.ServiceReader
 {
 	public sealed class RtuConfiguration : IRtuConfiguration
 	{
 		private readonly ModelServiceReference.IModelService modelService;
+		/// <summary>
+		/// List of RTUs.
+		/// </summary>
+		private List<RTU> RtuList;
 
 
 		/// <summary>
@@ -22,26 +24,12 @@ namespace ModbusServiceLibrary.ServiceReader
 		}
 
 		/// <summary>
-		/// List of RTUs.
-		/// </summary>
-		public List<RTU> RtuList { get; private set; }
-
-		/// <summary>
-		/// Initialize static data by reading all of RTUs from Model Service. Need to be called before using class methods.
+		/// Initialize static data by reading all of RTUs from Model Service.
+		/// Need to be called before using class methods.
 		/// </summary>
 		public void InitializeData()
 		{
 			RtuList = ReadAllRTUs();
-		}
-
-		public ISignalValue GetSignalValue(int rtuId, int signalId)
-		{
-			AnalogSignalValue signalValue = (AnalogSignalValue)FindRtu(rtuId).AnalogSignalValues.SingleOrDefault(s => s.SignalData.ID == signalId);
-			
-			if(signalValue != null)
-				return signalValue;
-
-			return FindRtu(rtuId).DiscreteSignalValues.SingleOrDefault(s => s.SignalData.ID == signalId);
 		}
 
 		/// <summary>
@@ -61,68 +49,25 @@ namespace ModbusServiceLibrary.ServiceReader
 			return rtus;
 		}
 
-
-		public int GetMappingIdForDiscreteSignal(int rtuId, int signalId)
+		public int GetMappingSignal(int rtuId, int signalId)
 		{
-			return FindDiscreteSignal(rtuId, signalId).MappingId;
+			return GetSignal(rtuId, signalId).MappingId;
+		}
+
+		public RTUConnectionParameters GetRtuConnectionParameters(int rtuId)
+		{
+			return FindRtu(rtuId).RTUConnectionParameters;
+		}
+
+		public ISignal GetSignal(int rtuId, int signalId)
+		{
+			return FindRtu(rtuId).Signals.SingleOrDefault(s => s.ID == signalId);
 		}
 
 		private RTU FindRtu(int rtuId)
 		{
-			return RtuList.SingleOrDefault(r => r.RTUData.ID == rtuId);
+			return RtuList.SingleOrDefault(r => r.ID == rtuId);
 		}
 
-		public RTUData FindRtuData(int rtuId)
-		{
-			return FindRtu(rtuId).RTUData;
-		}
-
-		private ISignal FindDiscreteSignal(int rtuId, int signalId)
-		{
-			return FindRtu(rtuId).DiscreteSignalValues.SingleOrDefault(s => s.SignalData.ID == signalId).SignalData;
-		}
-
-		/// <summary>
-		/// Reads all analog signal mappings from Model Service
-		/// </summary>
-		/// <returns>List of analog signal mappings</returns>
-		public List<AnalogSignalMapping> ReadAnalogSignalMappings() 
-		{
-			List<AnalogSignalMapping> analogSignalMappings = new List<AnalogSignalMapping>();
-
-			foreach (var mapping in modelService.GetAnalogSignalMappings())
-			{
-				AnalogSignalMapping newMapping= new AnalogSignalMapping()
-				{
-					Id = mapping.Id,
-					Name = mapping.Name,
-					K = mapping.K,
-					N = mapping.N
-				};
-				analogSignalMappings.Add(newMapping);
-			}
-			return analogSignalMappings;
-		}
-
-		/// <summary>
-		/// Reads all discrete signal mappings from model service
-		/// </summary>
-		/// <returns>List of discrete signal mappings</returns>
-		public List<DiscreteSignalMapping> ReadDiscreteSignalMappings()
-		{
-			List<DiscreteSignalMapping> discreteSignalMappings = new List<DiscreteSignalMapping>();
-
-			foreach (var mapping in modelService.GetDiscreteSignalMappings())
-			{
-				DiscreteSignalMapping newMapping = new DiscreteSignalMapping()
-				{
-					Id = mapping.Id,
-					Name = mapping.Name,
-					DiscreteValueToState = mapping.DiscreteValueToState,
-				};
-				discreteSignalMappings.Add(newMapping);
-			}
-			return discreteSignalMappings;
-		}
 	}
 }

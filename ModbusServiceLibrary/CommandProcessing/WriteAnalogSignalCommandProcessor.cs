@@ -1,6 +1,6 @@
 ﻿using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.ModbusClient;
-using ModbusServiceLibrary.Model.SignalValues;
+using ModbusServiceLibrary.Model.Signals;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.ServiceReader;
 using ModbusServiceLibrary.SignalConverter;
@@ -23,11 +23,12 @@ namespace ModbusServiceLibrary.CommandProcessing
 		public CommandResultBase ProcessCommand(IRtuCommand command)
 		{
 			WriteAnalogSignalCommand writeAnalogSignalCommand = (WriteAnalogSignalCommand)command;
-			AnalogSignalValue signalValue = (AnalogSignalValue)rtuConfiguration.GetSignalValue(writeAnalogSignalCommand.RtuId, writeAnalogSignalCommand.SignalId);
 
-			int convertedValue = signalMapper.ConvertRealValueToAnalogSignalValue(signalValue.SignalData.MappingId, writeAnalogSignalCommand.ValueToWrite);
+			AnalogSignal signal = (AnalogSignal)rtuConfiguration.GetSignal(writeAnalogSignalCommand.RtuId, writeAnalogSignalCommand.SignalId);
 
-			modbusClient.TryWriteSingleHoldingRegister(writeAnalogSignalCommand.RtuId, signalValue.SignalData.Address, convertedValue);
+			int convertedValue = signalMapper.ConvertRealValueToAnalogSignalValue(signal.MappingId, writeAnalogSignalCommand.ValueToWrite);
+
+			modbusClient.TryWriteSingleHoldingRegister(writeAnalogSignalCommand.RtuId, signal.Address, convertedValue);
 			return new CommandResultBase(writeAnalogSignalCommand.RtuId);
 		}
 	}

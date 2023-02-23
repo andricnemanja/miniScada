@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace ModelWcfServiceLibrary.Model.SignalMapping
+namespace ModelWcfServiceLibrary.Model.Signals
 {
 	[DataContract(Name = "DiscreteSignalType")]
 	public enum DiscreteSignalType

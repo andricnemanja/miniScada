@@ -101,6 +101,7 @@
     <Compile Include="Converters\ConnectionButtonColorConverter.cs" />
     <Compile Include="Converters\ConnectionStatusConverter.cs" />
     <Compile Include="Converters\DiscreteSignalButtonStatusConverter.cs" />
+    <Compile Include="Converters\SignalChangeButtonVisibiltyConverter.cs" />
     <Compile Include="ModbusCallback\CommandResultReceiver.cs" />
     <Compile Include="ModbusCallback\CommandResultQueue.cs" />
     <Compile Include="ModbusCallback\ICommandResultProcessor.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Model\RTU\RTU.cs" />
     <Compile Include="Model\RTU\RTUData.cs" />
     <Compile Include="Model\Signals\AnalogSignal.cs" />
+    <Compile Include="Model\Signals\SignalAccessType.cs" />
     <Compile Include="Model\SignalValues\AnalogSignalValue.cs" />
     <Compile Include="Model\Signals\DiscreteSignal.cs" />
     <Compile Include="Model\SignalValues\DiscreteSignalValue.cs" />

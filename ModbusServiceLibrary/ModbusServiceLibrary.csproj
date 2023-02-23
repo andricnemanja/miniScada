@@ -118,6 +118,7 @@
     <Compile Include="Model\SignalMapping\AnalogSignalMapping.cs" />
     <Compile Include="Model\Signals\DiscreteSignalType.cs" />
     <Compile Include="Model\Signals\ISignal.cs" />
+    <Compile Include="Model\Signals\SignalAccessType.cs" />
     <Compile Include="Model\SignalValues\ISignalValue.cs" />
     <Compile Include="RtuCommands\ConnectToRtuCommand.cs" />
     <Compile Include="RtuCommands\IRtuCommand.cs" />
@@ -126,14 +127,13 @@
     <Compile Include="RtuCommands\ReadSingleSignalCommand.cs" />
     <Compile Include="RtuCommands\RtuCommandInvoker.cs" />
     <Compile Include="RtuCommands\WriteSingleCoilCommand.cs" />
+    <Compile Include="ServiceReader\IRtuConfiguration.cs" />
     <Compile Include="SignalConverter\ISignalMapper.cs" />
     <Compile Include="SignalConverter\SignalMapper.cs" />
-    <Compile Include="ServiceReader\IRtuConfiguration.cs" />
     <Compile Include="ModbusClient\NModbusClient.cs" />
     <Compile Include="ServiceReader\RtuConfiguration.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
-    <Compile Include="Model\RTU\RTUConnection.cs" />
-    <Compile Include="Model\RTU\RTUData.cs" />
+    <Compile Include="Model\RTU\RTUConnectionParameters.cs" />
     <Compile Include="Model\Signals\AnalogSignal.cs" />
     <Compile Include="Model\Signals\DiscreteSignal.cs" />
     <Compile Include="Model\SignalValues\AnalogSignalValue.cs" />

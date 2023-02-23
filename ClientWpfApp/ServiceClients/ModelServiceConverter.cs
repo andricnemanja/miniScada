@@ -52,7 +52,8 @@ namespace ClientWpfApp.ServiceClients
 					{
 						Address = analogSignal.Address,
 						ID = analogSignal.ID,
-						Name = analogSignal.Name
+						Name = analogSignal.Name,
+						AccessType = (SignalAccessType)analogSignal.AccessType
 					},
 					Value = 0
 				});
@@ -73,7 +74,8 @@ namespace ClientWpfApp.ServiceClients
 					{
 						Address = discreteSignal.Address,
 						ID = discreteSignal.ID,
-						Name = discreteSignal.Name
+						Name = discreteSignal.Name,
+						AccessType = (SignalAccessType)discreteSignal.AccessType
 					},
 					State = "",
 					PossibleStates = modelService.GetDiscreteSignalPossibleStates(rtuID, discreteSignal.Address).ToArray()

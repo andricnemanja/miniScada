@@ -20,8 +20,9 @@ namespace ModbusServiceLibrary.CommandProcessing
 		public CommandResultBase ProcessCommand(IRtuCommand command)
 		{
 			ReadSingleSignalCommandResult connectToRtuCommand = (ReadSingleSignalCommandResult)command;
-			RTUData rtuData = rtuConfiguration.FindRtuData(connectToRtuCommand.RtuId);
-			if (modbusClient.TryConnect(rtuData.ID, rtuData.IpAddress, rtuData.Port))
+			RTUConnectionParameters connectionParameters = rtuConfiguration.GetRtuConnectionParameters(connectToRtuCommand.RtuId);
+
+			if (modbusClient.TryConnect(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port))
 			{
 				return new ConnectToRtuResult(connectToRtuCommand.RtuId, CommandStatus.Executed);
 			}

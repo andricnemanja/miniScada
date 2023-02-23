@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ModbusServiceLibrary.Model.SignalValues;
+using ModbusServiceLibrary.Model.Signals;
 
 namespace ModbusServiceLibrary.Model.RTU
 {
@@ -9,24 +9,23 @@ namespace ModbusServiceLibrary.Model.RTU
 	public class RTU
 	{
 		/// <summary>
-		/// Static data of the RTU.
+		/// Name of the RTU
 		/// </summary>
-		public RTUData RTUData { get; set; }
+		public string Name { get; set; }
+		/// <summary>
+		/// Unique identification number for RTU
+		/// </summary>
+		public int ID { get; set; }
+		/// <summary>
+		/// Parameters for connecting to the RTU device.
+		/// </summary>
+		public RTUConnectionParameters RTUConnectionParameters { get; set; }
 
 		/// <summary>
-		/// Object that holds information about connection to the RTU.
+		/// List of signals.
 		/// </summary>
-		public RTUConnection Connection { get; set; }
+		public List<ISignal> Signals { get; set; } = new List<ISignal>();
 
-		/// <summary>
-		/// List of analog signals with values.
-		/// </summary>
-		public List<ISignalValue> AnalogSignalValues { get; set; } = new List<ISignalValue>();
-
-		/// <summary>
-		/// List of discrete signals with values.
-		/// </summary>
-		public List<ISignalValue> DiscreteSignalValues { get; set; } = new List<ISignalValue>();
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RTU"/> class.
@@ -35,17 +34,17 @@ namespace ModbusServiceLibrary.Model.RTU
 		/// Allows converting Model Service static data to Modbus Service model class</param>
 		public RTU(ModelServiceReference.RTU rtuStaticData)
 		{
-			RTUData = new RTUData(rtuStaticData.RTUData);
+			Name = rtuStaticData.RTUData.Name;
+			ID = rtuStaticData.RTUData.ID;
+			RTUConnectionParameters = new RTUConnectionParameters(rtuStaticData.RTUData);
 			foreach (var analogSignalStaticData in rtuStaticData.AnalogSignals)
 			{
-				AnalogSignalValues.Add(new AnalogSignalValue(analogSignalStaticData));
+				Signals.Add(new AnalogSignal(analogSignalStaticData));
 			}
 			foreach (var discreteSignalStaticData in rtuStaticData.DiscreteSignals)
 			{
-				DiscreteSignalValues.Add(new DiscreteSignalValue(discreteSignalStaticData));
+				Signals.Add(new DiscreteSignal(discreteSignalStaticData));
 			}
-
-			Connection = new RTUConnection(null, false);
 		}
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RTU"/> class without data.

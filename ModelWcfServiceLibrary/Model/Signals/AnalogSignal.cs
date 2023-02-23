@@ -28,5 +28,10 @@ namespace ModelWcfServiceLibrary.Model.Signals
 		/// </summary>
 		[DataMember]
 		public int MappingId { get; set; }
+		/// <summary>
+		/// Indicates whether the signal is read only or read-write
+		/// </summary>
+		[DataMember]
+		public SignalAccessType AccessType { get; set; }
 	}
 }
