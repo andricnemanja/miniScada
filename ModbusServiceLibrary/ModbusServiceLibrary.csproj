@@ -95,13 +95,14 @@
     <Compile Include="CommandProcessing\ICommandProcessor.cs" />
     <Compile Include="CommandProcessing\ICommandReceiver.cs" />
     <Compile Include="CommandProcessing\ReadSingleSignalCommandProcessor.cs" />
+    <Compile Include="CommandResult\CommandProcessorNotFoundResult.cs" />
     <Compile Include="CommandResult\CommandResultBase.cs" />
     <Compile Include="CommandProcessing\WriteSingleCoilCommandProcessor.cs" />
-    <Compile Include="CommandResult\CommandStatus.cs" />
+    <Compile Include="CommandResult\ConnectToRtuFailedResult.cs" />
     <Compile Include="CommandResult\ConnectToRtuResult.cs" />
-    <Compile Include="CommandResult\ICommandResult.cs" />
     <Compile Include="CommandResult\ReadSingleAnalogSignalResult.cs" />
     <Compile Include="CommandResult\ReadSingleDiscreteSignalResult.cs" />
+    <Compile Include="CommandResult\WriteAnalogSignalCommandResult.cs" />
     <Compile Include="CommandResult\WriteDiscreteSignalCommandResult.cs" />
     <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -119,7 +120,6 @@
     <Compile Include="Model\Signals\DiscreteSignalType.cs" />
     <Compile Include="Model\Signals\ISignal.cs" />
     <Compile Include="Model\Signals\SignalAccessType.cs" />
-    <Compile Include="Model\SignalValues\ISignalValue.cs" />
     <Compile Include="RtuCommands\ConnectToRtuCommand.cs" />
     <Compile Include="RtuCommands\IRtuCommand.cs" />
     <Compile Include="RtuCommands\IRtuCommandInvoker.cs" />
@@ -136,8 +136,6 @@
     <Compile Include="Model\RTU\RTUConnectionParameters.cs" />
     <Compile Include="Model\Signals\AnalogSignal.cs" />
     <Compile Include="Model\Signals\DiscreteSignal.cs" />
-    <Compile Include="Model\SignalValues\AnalogSignalValue.cs" />
-    <Compile Include="Model\SignalValues\DiscreteSignalValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModbusService.cs" />
   </ItemGroup>

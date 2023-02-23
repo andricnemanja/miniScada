@@ -6,12 +6,12 @@ namespace ModbusServiceLibrary.CommandResult
 	public class ConnectToRtuResult : CommandResultBase
 	{
 		[DataMember]
-		public CommandStatus CommandStatus { get; set; }
+		public int RtuId { get; set; }
 
-		public ConnectToRtuResult(int rtuId, CommandStatus commandStatus) : base(rtuId)
+
+		public ConnectToRtuResult(int rtuId)
 		{
 			RtuId = rtuId;
-			CommandStatus = commandStatus;
 		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.ServiceClients;
+using ModbusServiceLibrary.CommandResult;
 
 namespace ClientWpfApp.Commands
 {
@@ -28,7 +29,7 @@ namespace ClientWpfApp.Commands
 			await Task.Run(() =>
 			{
 				RTU rtu = (RTU)parameter;
-				if (rtuConnection.TryConnectToRtu(rtu.RTUData.ID).CommandStatus == ModbusServiceLibrary.CommandResult.CommandStatus.Executed)
+				if (rtuConnection.TryConnectToRtu(rtu.RTUData.ID).GetType() == typeof(ConnectToRtuResult))
 					rtu.IsConnected = true;
 				else
 					MessageBox.Show("Ne moze se ostvariti veza sa " + rtu.RTUData.Name);

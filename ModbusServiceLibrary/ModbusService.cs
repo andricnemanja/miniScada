@@ -69,9 +69,9 @@ namespace ModbusServiceLibrary
 		/// </summary>
 		/// <param name="rtuId">RTU identification number.</param>
 		/// <returns>True if the connection is made, false otherwise.</returns>
-		public ConnectToRtuResult ConnectToRtu(int rtuId)
+		public CommandResultBase ConnectToRtu(int rtuId)
 		{
-			return (ConnectToRtuResult)rtuCommandInvoker.ConnectToRtu(rtuId);
+			return rtuCommandInvoker.ConnectToRtu(rtuId);
 		}
 	}
 }

@@ -46,6 +46,6 @@ namespace ModbusServiceLibrary
 		/// <param name="rtuId">RTU identification number.</param>
 		/// <returns>True if the connection is made, false otherwise.</returns>
 		[OperationContract(IsOneWay = false)]
-		ConnectToRtuResult ConnectToRtu(int rtuId);
+		CommandResultBase ConnectToRtu(int rtuId);
 	}
 }

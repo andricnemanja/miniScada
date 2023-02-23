@@ -9,11 +9,14 @@ namespace ModbusServiceLibrary.CommandResult
 		public int SignalId { get; set; }
 		[DataMember]
 		public string State { get; set; }
+		[DataMember]
+		public int RtuId { get; set; }
 
-		public ReadSingleDiscreteSignalResult(int rtuId, int signalId, string state) : base(rtuId)
+		public ReadSingleDiscreteSignalResult(int rtuId, int signalId, string state)
 		{
 			SignalId = signalId;
 			State = state;
+			RtuId = rtuId;
 		}
 	}
 }

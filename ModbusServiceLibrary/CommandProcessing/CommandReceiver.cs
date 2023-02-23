@@ -30,7 +30,7 @@ namespace ModbusServiceLibrary
 			{
 				return commandProcessor.ProcessCommand(command);
 			}
-			return null;
+			return new CommandProcessorNotFoundResult(command);
 		}
 	}
 }

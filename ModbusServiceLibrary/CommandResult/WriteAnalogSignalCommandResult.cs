@@ -3,11 +3,11 @@
 namespace ModbusServiceLibrary.CommandResult
 {
 	[DataContract]
-	public class WriteDiscreteSignalCommandResult : CommandResultBase
+	public class WriteAnalogSignalCommandResult : CommandResultBase
 	{
 		[DataMember]
 		public int RtuId { get; set; }
-		public WriteDiscreteSignalCommandResult(int rtuId)
+		public WriteAnalogSignalCommandResult(int rtuId)
 		{
 			RtuId = rtuId;
 		}

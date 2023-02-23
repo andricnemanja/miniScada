@@ -40,10 +40,15 @@ namespace ClientWpfApp.ModbusServiceReference {
         System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, string newValue);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse")]
-        ModbusServiceLibrary.CommandResult.ConnectToRtuResult ConnectToRtu(int rtuId);
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteDiscreteSignalCommandResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteAnalogSignalCommandResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandProcessorNotFoundResult))]
+        ModbusServiceLibrary.CommandResult.CommandResultBase ConnectToRtu(int rtuId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.CommandResult.ConnectToRtuResult> ConnectToRtuAsync(int rtuId);
+        System.Threading.Tasks.Task<ModbusServiceLibrary.CommandResult.CommandResultBase> ConnectToRtuAsync(int rtuId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -53,7 +58,8 @@ namespace ClientWpfApp.ModbusServiceReference {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteDiscreteSignalCommandResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteAnalogSignalCommandResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandProcessorNotFoundResult))]
         void ReceiveCommandResult(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult);
     }
     
@@ -117,11 +123,11 @@ namespace ClientWpfApp.ModbusServiceReference {
             return base.Channel.WriteDiscreteSignalAsync(rtuId, signalAddress, newValue);
         }
         
-        public ModbusServiceLibrary.CommandResult.ConnectToRtuResult ConnectToRtu(int rtuId) {
+        public ModbusServiceLibrary.CommandResult.CommandResultBase ConnectToRtu(int rtuId) {
             return base.Channel.ConnectToRtu(rtuId);
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.CommandResult.ConnectToRtuResult> ConnectToRtuAsync(int rtuId) {
+        public System.Threading.Tasks.Task<ModbusServiceLibrary.CommandResult.CommandResultBase> ConnectToRtuAsync(int rtuId) {
             return base.Channel.ConnectToRtuAsync(rtuId);
         }
     }

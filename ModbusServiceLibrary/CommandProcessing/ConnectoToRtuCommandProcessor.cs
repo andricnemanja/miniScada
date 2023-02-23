@@ -24,9 +24,9 @@ namespace ModbusServiceLibrary.CommandProcessing
 
 			if (modbusClient.TryConnect(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port))
 			{
-				return new ConnectToRtuResult(connectToRtuCommand.RtuId, CommandStatus.Executed);
+				return new ConnectToRtuResult(connectToRtuCommand.RtuId);
 			}
-			return new ConnectToRtuResult(connectToRtuCommand.RtuId, CommandStatus.Failed);
+			return new ConnectToRtuFailedResult(connectToRtuCommand.RtuId);
 		}
 	}
 }

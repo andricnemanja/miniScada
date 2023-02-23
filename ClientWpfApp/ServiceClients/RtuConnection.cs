@@ -12,7 +12,7 @@ namespace ClientWpfApp.ServiceClients
 			this.modbusDuplexClient = modbusDuplexClient;
 		}
 
-		public ConnectToRtuResult TryConnectToRtu(int rtuId)
+		public CommandResultBase TryConnectToRtu(int rtuId)
 		{
 			try
 			{
@@ -20,7 +20,7 @@ namespace ClientWpfApp.ServiceClients
 			}
 			catch
 			{
-				return new ConnectToRtuResult(rtuId, CommandStatus.Failed);
+				return new ConnectToRtuFailedResult(rtuId);
 			}
 		}
 	}

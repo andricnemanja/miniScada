@@ -189,6 +189,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.CommandResult.CommandResultBase.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.CommandResult.ConnectToRtuResult.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.CommandResult.ConnectToRtuResult2.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.AnalogSignal.datasource" />

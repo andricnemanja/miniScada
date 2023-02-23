@@ -29,7 +29,7 @@ namespace ModbusServiceLibrary.CommandProcessing
 			int convertedValue = signalMapper.ConvertRealValueToAnalogSignalValue(signal.MappingId, writeAnalogSignalCommand.ValueToWrite);
 
 			modbusClient.TryWriteSingleHoldingRegister(writeAnalogSignalCommand.RtuId, signal.Address, convertedValue);
-			return new CommandResultBase(writeAnalogSignalCommand.RtuId);
+			return new WriteAnalogSignalCommandResult(writeAnalogSignalCommand.RtuId);
 		}
 	}
 }
