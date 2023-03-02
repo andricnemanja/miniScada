@@ -1,28 +1,28 @@
 ﻿using ModbusServiceLibrary.CommandResult;
-using ModbusServiceLibrary.ModbusClient;
+using ModbusServiceLibrary.Modbus;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.RtuCommands;
-using ModbusServiceLibrary.ServiceReader;
+using ModbusServiceLibrary.RtuConfiguration;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {
 	public class ConnectoToRtuCommandProcessor : ICommandProcessor
 	{
-		private readonly IModbusClient2 modbusClient;
+		private readonly IProtocolDriver protocolDriver;
 		private readonly IRtuConfiguration rtuConfiguration;
 
-		public ConnectoToRtuCommandProcessor(IModbusClient2 modbusClient, IRtuConfiguration rtuConfiguration)
+		public ConnectoToRtuCommandProcessor(IProtocolDriver protocolDriver, IRtuConfiguration rtuConfiguration)
 		{
-			this.modbusClient = modbusClient;
+			this.protocolDriver = protocolDriver;
 			this.rtuConfiguration = rtuConfiguration;
 		}
 
 		public CommandResultBase ProcessCommand(IRtuCommand command)
 		{
-			ReadSingleSignalCommandResult connectToRtuCommand = (ReadSingleSignalCommandResult)command;
+			ConnectToRtuCommand connectToRtuCommand = (ConnectToRtuCommand)command;
 			RTUConnectionParameters connectionParameters = rtuConfiguration.GetRtuConnectionParameters(connectToRtuCommand.RtuId);
 
-			if (modbusClient.TryConnect(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port))
+			if (protocolDriver.TryConnectToRtu(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port))
 			{
 				return new ConnectToRtuResult(connectToRtuCommand.RtuId);
 			}

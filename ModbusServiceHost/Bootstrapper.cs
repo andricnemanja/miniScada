@@ -1,8 +1,9 @@
 ﻿using Autofac;
 using ModbusServiceLibrary;
+using ModbusServiceLibrary.Modbus;
 using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.RtuCommands;
-using ModbusServiceLibrary.ServiceReader;
+using ModbusServiceLibrary.RtuConfiguration;
 using ModbusServiceLibrary.SignalConverter;
 
 namespace ModbusServiceHost
@@ -25,8 +26,11 @@ namespace ModbusServiceHost
 			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
 			builder.RegisterType<RtuCommandInvoker>().As<IRtuCommandInvoker>();
 			builder.RegisterType<CommandReceiver>().As<ICommandReceiver>();
-			builder.RegisterType<NModbusClient2>().As<IModbusClient2>();
+			builder.RegisterType<NModbusClient>().As<IModbusClient>()
+				.SingleInstance();
 			builder.RegisterType<SignalMapper>().As<ISignalMapper>();
+			builder.RegisterType<ModbusDriver>().As<IProtocolDriver>()
+				.OnActivated(c => c.Instance.Initialize()); ;
 
 			return builder;
 		}

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using ModbusServiceLibrary.CommandProcessing;
 using ModbusServiceLibrary.CommandResult;
-using ModbusServiceLibrary.ModbusClient;
+using ModbusServiceLibrary.Modbus;
 using ModbusServiceLibrary.RtuCommands;
-using ModbusServiceLibrary.ServiceReader;
-using ModbusServiceLibrary.SignalConverter;
+using ModbusServiceLibrary.RtuConfiguration;
 
 namespace ModbusServiceLibrary
 {
@@ -13,14 +12,14 @@ namespace ModbusServiceLibrary
 	{
 		private readonly Dictionary<Type, ICommandProcessor> commandProcessors;
 
-		public CommandReceiver(IModbusClient2 modbusClient, ISignalMapper signalMapper, IRtuConfiguration rtuConfiguration)
+		public CommandReceiver(IRtuConfiguration rtuConfiguration, IProtocolDriver protocolDriver)
 		{
 			this.commandProcessors = new Dictionary<Type, ICommandProcessor>()
 			{
-				{typeof(ReadSingleSignalCommandResult), new ConnectoToRtuCommandProcessor(modbusClient, rtuConfiguration) },
-				{typeof(ReadSingleSignalCommand), new ReadSingleSignalCommandProcessor(modbusClient, signalMapper, rtuConfiguration) },
-				{typeof(WriteAnalogSignalCommand), new WriteAnalogSignalCommandProcessor(modbusClient, rtuConfiguration, signalMapper) },
-				{typeof(WriteDiscreteSignalCommand), new WriteDiscreteSignalCommandProcessor(modbusClient, rtuConfiguration, signalMapper) }
+				{typeof(ConnectToRtuCommand), new ConnectoToRtuCommandProcessor(protocolDriver, rtuConfiguration) },
+				{typeof(ReadSingleSignalCommand), new ReadSingleSignalCommandProcessor(protocolDriver, rtuConfiguration) },
+				{typeof(WriteAnalogSignalCommand), new WriteAnalogSignalCommandProcessor(protocolDriver) },
+				{typeof(WriteDiscreteSignalCommand), new WriteDiscreteSignalCommandProcessor(protocolDriver) }
 			};
 		}
 

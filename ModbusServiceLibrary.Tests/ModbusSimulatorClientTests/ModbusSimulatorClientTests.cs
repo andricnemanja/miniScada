@@ -2,7 +2,7 @@
 using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.ModbusCommunication;
 using ModbusServiceLibrary.Model.RTU;
-using ModbusServiceLibrary.ServiceReader;
+using ModbusServiceLibrary.RtuConfiguration;
 using Moq;
 using Xunit;
 

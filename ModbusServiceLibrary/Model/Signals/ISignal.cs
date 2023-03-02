@@ -7,17 +7,9 @@
 		/// </summary>
 		int ID { get; set; }
 		/// <summary>
-		/// Analog signal address
-		/// </summary>
-		int Address { get; set; }
-		/// <summary>
 		/// Name of the analog signal
 		/// </summary>
 		string Name { get; set; }
-		/// <summary>
-		/// Analog signal mapping ID
-		/// </summary>
-		int MappingId { get; set; }
 		/// <summary>
 		/// Indicates whether the signal is read only or read-write
 		/// </summary>

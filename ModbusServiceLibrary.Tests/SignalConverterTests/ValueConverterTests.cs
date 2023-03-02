@@ -1,5 +1,5 @@
 ﻿using ModbusServiceLibrary.ModbusCommunication;
-using ModbusServiceLibrary.ServiceReader;
+using ModbusServiceLibrary.RtuConfiguration;
 using ModbusServiceLibrary.SignalConverter;
 using Moq;
 using Xunit;

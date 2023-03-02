@@ -9,7 +9,7 @@ namespace ModbusServiceLibrary.SignalConverter
 	{
 		private readonly ModelServiceReference.IModelService modelService;
 		private List<AnalogSignalMapping> analogSignalMappings;
-		public List<DiscreteSignalMapping> discreteSignalMappings;
+		private List<DiscreteSignalMapping> discreteSignalMappings;
 
 		public SignalMapper(IModelService modelService)
 		{

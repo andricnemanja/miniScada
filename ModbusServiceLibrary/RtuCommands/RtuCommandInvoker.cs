@@ -23,7 +23,7 @@ namespace ModbusServiceLibrary.RtuCommands
 
 		public CommandResultBase ConnectToRtu(int rtuId)
 		{
-			return commandReceiver.ReceiveCommand(new ReadSingleSignalCommandResult(rtuId));
+			return commandReceiver.ReceiveCommand(new ConnectToRtuCommand(rtuId));
 		}
 
 		public CommandResultBase WriteDiscreteSignalCommand(int rtuId, int signalId, string state)

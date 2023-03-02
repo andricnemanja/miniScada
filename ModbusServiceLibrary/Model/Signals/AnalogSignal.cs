@@ -10,17 +10,9 @@
 		/// </summary>
 		public int ID { get; set; }
 		/// <summary>
-		/// Analog signal address
-		/// </summary>
-		public int Address { get; set; }
-		/// <summary>
 		/// Name of the analog signal
 		/// </summary>
 		public string Name { get; set; }
-		/// <summary>
-		/// Analog signal mapping ID
-		/// </summary>
-		public int MappingId { get; set; }
 		/// <summary>
 		/// Indicates whether the signal is read only or read-write
 		/// </summary>
@@ -35,9 +27,7 @@
 		public AnalogSignal(int id, int address, string name, int mappingId)
 		{
 			ID = id;
-			Address = address;
 			Name = name;
-			MappingId = mappingId;
 		}
 
 		/// <summary>
@@ -47,9 +37,7 @@
 		public AnalogSignal(ModelServiceReference.AnalogSignal analogSignalStaticData)
 		{
 			ID = analogSignalStaticData.ID;
-			Address = analogSignalStaticData.Address;
 			Name = analogSignalStaticData.Name;
-			MappingId = analogSignalStaticData.MappingId;
 			AccessType = (SignalAccessType)analogSignalStaticData.AccessType;
 		}
 	}

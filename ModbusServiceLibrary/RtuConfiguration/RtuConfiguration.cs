@@ -3,7 +3,7 @@ using System.Linq;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.Model.Signals;
 
-namespace ModbusServiceLibrary.ServiceReader
+namespace ModbusServiceLibrary.RtuConfiguration
 {
 	public sealed class RtuConfiguration : IRtuConfiguration
 	{
@@ -47,11 +47,6 @@ namespace ModbusServiceLibrary.ServiceReader
 			}
 
 			return rtus;
-		}
-
-		public int GetMappingSignal(int rtuId, int signalId)
-		{
-			return GetSignal(rtuId, signalId).MappingId;
 		}
 
 		public RTUConnectionParameters GetRtuConnectionParameters(int rtuId)

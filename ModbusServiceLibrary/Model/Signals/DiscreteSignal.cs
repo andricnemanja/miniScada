@@ -10,21 +10,9 @@
 		/// </summary>
 		public int ID { get; set; }
 		/// <summary>
-		/// Digital signal address.
-		/// </summary>
-		public int Address { get; set; }
-		/// <summary>
 		/// Name of the discrete signal.
 		/// </summary>
 		public string Name { get; set; }
-		/// <summary>
-		/// Discrete signal mapping ID.
-		/// </summary>
-		public int MappingId { get; set; }
-		/// <summary>
-		/// Signal type, one bit or two bit signal.
-		/// </summary>
-		public DiscreteSignalType SignalType { get; set; }
 		/// <summary>
 		/// Indicates whether the signal is read only or read-write
 		/// </summary>
@@ -39,9 +27,7 @@
 		public DiscreteSignal(int id, int address, string name, int mappingId)
 		{
 			ID = id;
-			Address = address;
 			Name = name;
-			MappingId = mappingId;
 		}
 
 		/// <summary>
@@ -51,10 +37,7 @@
 		public DiscreteSignal(ModelServiceReference.DiscreteSignal discreteSignalStaticData)
 		{
 			ID = discreteSignalStaticData.ID;
-			Address = discreteSignalStaticData.Address;
 			Name = discreteSignalStaticData.Name;
-			SignalType = (DiscreteSignalType)discreteSignalStaticData.SignalType;
-			MappingId = discreteSignalStaticData.MappingId;
 			AccessType = (SignalAccessType)discreteSignalStaticData.AccessType;
 		}
 	}

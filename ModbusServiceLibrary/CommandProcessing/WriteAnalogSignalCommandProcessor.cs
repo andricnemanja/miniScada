@@ -1,35 +1,32 @@
 ﻿using ModbusServiceLibrary.CommandResult;
-using ModbusServiceLibrary.ModbusClient;
+using ModbusServiceLibrary.Modbus;
 using ModbusServiceLibrary.Model.Signals;
 using ModbusServiceLibrary.RtuCommands;
-using ModbusServiceLibrary.ServiceReader;
-using ModbusServiceLibrary.SignalConverter;
+using ModbusServiceLibrary.RtuConfiguration;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {
 	public class WriteAnalogSignalCommandProcessor : ICommandProcessor
 	{
-		private readonly IModbusClient2 modbusClient;
-		private readonly IRtuConfiguration rtuConfiguration;
-		private readonly ISignalMapper signalMapper;
+		private readonly IProtocolDriver protocolDriver;
 
-		public WriteAnalogSignalCommandProcessor(IModbusClient2 modbusClient, IRtuConfiguration rtuConfiguration, ISignalMapper signalMapper)
+		public WriteAnalogSignalCommandProcessor(IProtocolDriver protocolDriver)
 		{
-			this.modbusClient = modbusClient;
-			this.rtuConfiguration = rtuConfiguration;
-			this.signalMapper = signalMapper;
+			this.protocolDriver = protocolDriver;
 		}
 
 		public CommandResultBase ProcessCommand(IRtuCommand command)
 		{
 			WriteAnalogSignalCommand writeAnalogSignalCommand = (WriteAnalogSignalCommand)command;
 
-			AnalogSignal signal = (AnalogSignal)rtuConfiguration.GetSignal(writeAnalogSignalCommand.RtuId, writeAnalogSignalCommand.SignalId);
-
-			int convertedValue = signalMapper.ConvertRealValueToAnalogSignalValue(signal.MappingId, writeAnalogSignalCommand.ValueToWrite);
-
-			modbusClient.TryWriteSingleHoldingRegister(writeAnalogSignalCommand.RtuId, signal.Address, convertedValue);
-			return new WriteAnalogSignalCommandResult(writeAnalogSignalCommand.RtuId);
+			if(protocolDriver.TryWriteAnalogSignal(writeAnalogSignalCommand.SignalId, writeAnalogSignalCommand.ValueToWrite))
+			{
+				return new WriteAnalogSignalCommandResult(writeAnalogSignalCommand.RtuId);
+			}
+			else
+			{
+				return new WriteAnalogSignalFailedCommandResult(writeAnalogSignalCommand.RtuId, "Read-only signal");
+			}
 		}
 	}
 }
