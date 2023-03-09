@@ -29,9 +29,9 @@ namespace ModbusServiceHost
 			builder.RegisterType<NModbusClient>().As<IModbusClient>()
 				.SingleInstance();
 			builder.RegisterType<SignalMapper>().As<ISignalMapper>();
-			builder.RegisterType<ModbusDriver>().As<IProtocolDriver>()
-				.OnActivated(c => c.Instance.Initialize()); ;
-
+			builder.RegisterType<ModbusDriver>().As<IProtocolDriver>();
+			builder.RegisterType<ModbusDataStaticCache>().As<IModbusDataStaticCache>()
+				.OnActivated(c => c.Instance.Initialize());
 			return builder;
 		}
 	}

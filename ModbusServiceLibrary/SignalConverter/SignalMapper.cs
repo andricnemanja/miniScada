@@ -57,7 +57,7 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// </summary>
 		/// <param name="rtuId">ID of the RTU.</param>
 		/// <returns>Discrete signal mapping for signal with given address.</returns>
-		private AnalogSignalMapping FindAnalogSignalMapping(int mappingId)
+		private AnalogSignalMapping FindAnalogSignalMapping(int mappingId)	
 		{
 			return analogSignalMappings.SingleOrDefault(m => m.Id == mappingId);
 		}
