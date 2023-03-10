@@ -84,6 +84,7 @@
     <Compile Include="ModbusTests\ModbusDataTypesTest\AnalogInputTests.cs" />
     <Compile Include="ModbusTests\ModbusDataTypesTest\ModbusTypesTestData.cs" />
     <Compile Include="ModbusTests\ModbusDriverTests.cs" />
+    <Compile Include="ModbusTests\SignalMapper\SignalMapperTests.cs" />
     <Compile Include="RtuTestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
