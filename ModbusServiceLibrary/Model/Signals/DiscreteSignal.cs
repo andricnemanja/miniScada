@@ -22,9 +22,8 @@
 		/// Initializes a new instance of the <see cref="DiscreteSignal"/> class.
 		/// </summary>
 		/// <param name="id">Unique identification number for digital signal.</param>
-		/// <param name="address">Address of the signal.</param>
 		/// <param name="name">Name of the signal.</param>
-		public DiscreteSignal(int id, int address, string name, int mappingId)
+		public DiscreteSignal(int id, string name)
 		{
 			ID = id;
 			Name = name;
