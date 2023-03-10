@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using ModbusServiceLibrary.Model.SignalMapping;
+using ModbusServiceLibrary.ModelServiceReference;
+
 
 namespace ModbusServiceLibrary.Tests
 {

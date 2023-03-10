@@ -4,7 +4,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusDataTypes
 {
 	public interface IAnalogPoint : IPoint
 	{
-		ushort Read(IModbusClient modbusClient);
+		bool TryRead(IModbusClient modbusClient, out ushort readValue);
 		bool TryWrite(IModbusClient modbusClient, int newValue);
 	}
 }

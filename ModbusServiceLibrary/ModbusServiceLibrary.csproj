@@ -100,7 +100,9 @@
     <Compile Include="CommandProcessing\WriteDiscreteSignalCommandProcessor.cs" />
     <Compile Include="CommandResult\ConnectToRtuFailedResult.cs" />
     <Compile Include="CommandResult\ConnectToRtuResult.cs" />
+    <Compile Include="CommandResult\ReadSingleAnalogSignalFailedResult.cs" />
     <Compile Include="CommandResult\ReadSingleAnalogSignalResult.cs" />
+    <Compile Include="CommandResult\ReadSingleDiscreteSignalFailedResult.cs" />
     <Compile Include="CommandResult\ReadSingleDiscreteSignalResult.cs" />
     <Compile Include="CommandResult\WriteDiscreteSignalFailedCommandResult.cs" />
     <Compile Include="CommandResult\WriteAnalogSignalFailedCommandResult.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Modbus\ModbusDataTypes\IAnalogPoint.cs" />
     <Compile Include="Modbus\ModbusDataTypes\IDigitalPoint.cs" />
     <Compile Include="Modbus\ModbusDataTypes\IPoint.cs" />
+    <Compile Include="Modbus\ModbusDataTypes\ModbusTypesTestData.cs" />
     <Compile Include="Modbus\ModbusDriver.cs" />
     <Compile Include="Modbus\ModbusDataStaticCache.cs" />
     <Compile Include="Model\SignalMapping\DiscreteSignalMapping.cs" />

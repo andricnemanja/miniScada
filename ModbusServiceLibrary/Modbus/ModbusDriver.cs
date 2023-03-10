@@ -16,17 +16,27 @@ namespace ModbusServiceLibrary.Modbus
 			this.modbusClient = modbusClient;
 			this.modbusDataStaticCache = modbusDataStaticCache;
 		}
-		public string ReadDiscreteSignal(int signalId)
+		public bool TryReadDiscreteSignal(int signalId, out string state)
 		{
 			IDigitalPoint digitalPoint = modbusDataStaticCache.FindDiscretePoint(signalId);
-			byte rawValue = digitalPoint.Read(modbusClient);
-			return signalMapper.ConvertDiscreteSignalValueToState(digitalPoint.MappingId, rawValue);
+			if(digitalPoint.TryRead(modbusClient, out byte rawValue))
+			{
+				state = signalMapper.ConvertDiscreteSignalValueToState(digitalPoint.MappingId, rawValue);
+				return true;
+			}
+			state = string.Empty;
+			return false;
 		}
-		public double ReadAnalogSignal(int signalId)
+		public bool TryReadAnalogSignal(int signalId, out double signalValue)
 		{
 			IAnalogPoint analogPoint = modbusDataStaticCache.FindAnalogPoint(signalId);
-			ushort rawValue = analogPoint.Read(modbusClient);
-			return signalMapper.ConvertAnalogSignalToRealValue(analogPoint.MappingId, rawValue);
+			if(analogPoint.TryRead(modbusClient, out ushort rawValue))
+			{
+				signalValue = signalMapper.ConvertAnalogSignalToRealValue(analogPoint.MappingId, rawValue);
+				return true;
+			}
+			signalValue = 0;
+			return false;
 		}
 		public bool TryWriteAnalogSignal(int signalId, double newValue)
 		{

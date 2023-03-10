@@ -19,10 +19,15 @@ namespace ModbusServiceLibrary.Modbus.ModbusDataTypes
 		public int Address { get; }
 		public int MappingId { get; }
 
-		public ushort Read(IModbusClient modbusClient)
+		public bool TryRead(IModbusClient modbusClient, out ushort readValue)
 		{
-			modbusClient.TryReadHoldingRegisters(RtuId, Address, 1, out ushort[] values);
-			return values[0];
+			if(modbusClient.TryReadHoldingRegisters(RtuId, Address, 1, out ushort[] values))
+			{
+				readValue = values[0];
+				return true;
+			}
+			readValue = 0;
+			return false;
 		}
 
 		public bool TryWrite(IModbusClient modbusClient, int newValue)

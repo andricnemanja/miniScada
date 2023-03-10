@@ -72,22 +72,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandTests\ReadDiscreteSignalValueCommandTests.cs" />
-    <Compile Include="CommandTests\ReadAnalogSignalValueCommandTests.cs" />
-    <Compile Include="CommandTests\ChangeAnalogSignalValueCommandTests.cs" />
-    <Compile Include="CommandTests\ChangeDiscreteSignalValueCommandTests.cs" />
+    <Compile Include="ComponentTests\ModbusComponentTest.cs" />
     <Compile Include="MappinTestData.cs" />
-    <Compile Include="ModbusClientTests\NModbusClientTests.cs" />
-    <Compile Include="ModbusSimulatorClientTests\ModbusSimulatorClientTests.cs" />
-    <Compile Include="ModbusServiceTests\ModbusServiceTests.cs" />
+    <Compile Include="ModbusTests\ModbusDataTypesTest\HoldingRegisterTests.cs" />
+    <Compile Include="ModbusTests\ModbusDataTypesTest\DigitalInputTests.cs" />
+    <Compile Include="ModbusTests\ModbusDataTypesTest\CoilTests.cs" />
+    <Compile Include="ModbusTests\ModbusDataTypesTest\AnalogInputTests.cs" />
+    <Compile Include="ModbusTests\ModbusDataTypesTest\ModbusTypesTestData.cs" />
+    <Compile Include="ModbusTests\ModbusDriverTests.cs" />
     <Compile Include="RtuTestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SignalConverterTests\ValueConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">
       <Project>{e7fdb680-6d8c-41bb-b54e-f250bf051c5e}</Project>
       <Name>ModbusServiceLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelWcfServiceLibrary\ModelWcfServiceLibrary.csproj">
+      <Project>{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9}</Project>
+      <Name>ModelWcfServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +101,7 @@
     <Analyzer Include="..\packages\xunit.analyzers.1.0.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
     <Analyzer Include="..\packages\xunit.analyzers.1.0.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

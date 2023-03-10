@@ -39,17 +39,20 @@ namespace ModbusServiceLibrary.CommandProcessing
 
 		private CommandResultBase ReadDiscreteSignalValue(ISignal signal, int rtuId)
 		{
-			string signalState = protocolDriver.ReadDiscreteSignal(signal.ID);
-			return new ReadSingleDiscreteSignalResult(rtuId, signal.ID, signalState);
+			if (protocolDriver.TryReadDiscreteSignal(signal.ID, out string signalState))
+			{
+				return new ReadSingleDiscreteSignalResult(rtuId, signal.ID, signalState);
+			}
+			return new ReadSingleDiscreteSignalFailedResult(rtuId, signal.ID);
 		}
 
 		private CommandResultBase ReadAnalogSignalValue(ISignal signal, int rtuId)
 		{
-			double signalValue = protocolDriver.ReadAnalogSignal(signal.ID);
-			return new ReadSingleAnalogSignalResult(rtuId, signal.ID, signalValue);
+			if(protocolDriver.TryReadAnalogSignal(signal.ID, out double signalValue))
+			{
+				return new ReadSingleAnalogSignalResult(rtuId, signal.ID, signalValue);
+			}
+			return new ReadSingleAnalogSignalFailedResult(rtuId, signal.ID);
 		}
-
-
-	
 	}
 }

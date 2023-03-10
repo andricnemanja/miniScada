@@ -21,10 +21,15 @@ namespace ModbusServiceLibrary.Modbus.ModbusDataTypes
 		public int MappingId { get; }
 		public byte Length { get; }
 
-		public byte Read(IModbusClient modbusClient)
+		public bool TryRead(IModbusClient modbusClient, out byte readValue)
 		{
-			modbusClient.TryReadCoils(RtuId, Address, Length, out bool[] values);
-			return BoolArrayToByte(values);
+			if(modbusClient.TryReadCoils(RtuId, Address, Length, out bool[] values))
+			{
+				readValue = BoolArrayToByte(values);
+				return true;
+			}
+			readValue = 0;
+			return false;
 		}
 
 		public bool TryWrite(IModbusClient modbusClient, byte newValue)

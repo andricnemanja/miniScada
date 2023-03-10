@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using ModbusServiceLibrary.Model;
-using ModbusServiceLibrary.Model.RTU;
-using ModbusServiceLibrary.Model.Signals;
-using ModbusServiceLibrary.Model.SignalValues;
+using ModbusServiceLibrary.ModelServiceReference;
 
 namespace ModbusServiceLibrary.Tests
 {
@@ -14,148 +11,117 @@ namespace ModbusServiceLibrary.Tests
 			{
 				new RTU()
 				{
-					Connection = new RTUConnection(null),
-					RTUData = new RTUConnectionParameters
+					RTUData = new RTUData
 					{
 						ID = 1,
 						Name = "RTU 1",
 						IpAddress = "127.0.0.1",
 						Port = 502
 					},
-					AnalogSignalValues = new List<AnalogSignalValue>()
+					AnalogSignals = new List<AnalogSignal>()
 					{
-						new AnalogSignalValue()
+						new AnalogSignal()
 						{
-							AnalogSignal = new AnalogSignal(1, 1, "AnalogSignal 1", 1),
-							Value = 0
+							ID = 1,
+							Name = "AnalogSignal 1",
+							Address = 1,
+							AccessType = SignalAccessType.Output,
+							MappingId = 1
 						},
-						new AnalogSignalValue()
+						new AnalogSignal()
 						{
-							AnalogSignal = new AnalogSignal(2, 5, "AnalogSignal 2",2 ),
-							Value = 10
+							ID = 2,
+							Name = "AnalogSignal 2",
+							Address = 5,
+							AccessType = SignalAccessType.Output,
+							MappingId = 2
 						},
-						new AnalogSignalValue()
+						new AnalogSignal()
 						{
-							AnalogSignal = new AnalogSignal(3, 7, "AnalogSignal 3", 3),
-							Value = 14
+							ID = 3,
+							Name = "AnalogSignal 3",
+							Address = 7,
+							AccessType = SignalAccessType.Output,
+							MappingId = 3
 						}
 					},
-					DiscreteSignalValues = new List<DiscreteSignalValue>()
+					DiscreteSignals = new List<DiscreteSignal>()
 					{
-						new DiscreteSignalValue()
+						new DiscreteSignal()
 						{
-							DiscreteSignal = new DiscreteSignal(1, 0, "DiscreteSignal 1", 1),
-							Value = 0
+							ID = 6,
+							Name = "DiscreteSignal 1",
+							Address = 1,
+							AccessType = SignalAccessType.Output,
+							MappingId = 1,
+							SignalType = DiscreteSignalType.OneBit
 						},
-						new DiscreteSignalValue()
+						new DiscreteSignal()
 						{
-							DiscreteSignal = new DiscreteSignal(2, 1, "DiscreteSignal 1", 2),
-							Value = 1
-						},
-						new DiscreteSignalValue()
-						{
-							DiscreteSignal = new DiscreteSignal(3, 2, "DiscreteSignal 1", 3),
-							Value = 2
+							ID = 7,
+							Name = "DiscreteSignal 2",
+							Address = 1,
+							AccessType = SignalAccessType.Output,
+							MappingId = 1,
+							SignalType = DiscreteSignalType.TwoBit
 						}
 					}
 				},
 				new RTU()
 				{
-					Connection = new RTUConnection(null),
-					RTUData = new RTUConnectionParameters
+					RTUData = new RTUData
 					{
 						ID = 2,
 						Name = "RTU 2",
 						IpAddress = "127.0.0.1",
 						Port = 503
 					},
-					AnalogSignalValues = new List<AnalogSignalValue>()
+					AnalogSignals = new List<AnalogSignal>()
 					{
-						new AnalogSignalValue()
+						new AnalogSignal()
 						{
-							AnalogSignal = new AnalogSignal(1, 1, "AnalogSignal 1", 5),
-							Value = 0
+							ID = 4,
+							Name = "AnalogSignal 1",
+							Address = 1,
+							AccessType = SignalAccessType.Output,
+							MappingId = 5
 						},
-						new AnalogSignalValue()
+						new AnalogSignal()
 						{
-							AnalogSignal = new AnalogSignal(2, 5, "AnalogSignal 2", 5),
-							Value = 10
-						},
-						new AnalogSignalValue()
-						{
-							AnalogSignal = new AnalogSignal(3, 7, "AnalogSignal 3", 4),
-							Value = 14
+							ID = 5,
+							Name = "AnalogSignal 2",
+							Address = 1,
+							AccessType = SignalAccessType.Output,
+							MappingId = 5
 						}
 					},
-					DiscreteSignalValues = new List<DiscreteSignalValue>()
+					DiscreteSignals = new List<DiscreteSignal>()
 					{
-						new DiscreteSignalValue()
+						new DiscreteSignal()
 						{
-							DiscreteSignal = new DiscreteSignal(1, 0, "DiscreteSignal 1", 3),
-							Value = 2
+							ID = 9,
+							Name = "DiscreteSignal 1",
+							Address = 1,
+							AccessType = SignalAccessType.Output,
+							MappingId = 1,
+							SignalType = DiscreteSignalType.OneBit
 						},
-						new DiscreteSignalValue()
+						new DiscreteSignal()
 						{
-							DiscreteSignal = new DiscreteSignal(2, 1, "DiscreteSignal 1", 2),
-							Value = 3
-						},
-						new DiscreteSignalValue()
-						{
-							DiscreteSignal = new DiscreteSignal(3, 2, "DiscreteSignal 1", 1),
-							Value = 1
-						}
-					}
-				},
-				new RTU()
-				{
-					Connection = new RTUConnection(null),
-					RTUData = new RTUConnectionParameters
-					{
-						ID = 3,
-						Name = "RTU 3",
-						IpAddress = "127.0.0.1",
-						Port = 504
-					},
-					AnalogSignalValues = new List<AnalogSignalValue>()
-					{
-						new AnalogSignalValue()
-						{
-							AnalogSignal = new AnalogSignal(1, 1, "AnalogSignal 1", 2),
-							Value = 0
-						},
-						new AnalogSignalValue()
-						{
-							AnalogSignal = new AnalogSignal(2, 5, "AnalogSignal 2", 3),
-							Value = 10
-						},
-						new AnalogSignalValue()
-						{
-							AnalogSignal = new AnalogSignal(3, 7, "AnalogSignal 3", 1),
-							Value = 14
-						}
-					},
-					DiscreteSignalValues = new List<DiscreteSignalValue>()
-					{
-						new DiscreteSignalValue()
-						{
-							DiscreteSignal = new DiscreteSignal(1, 0, "DiscreteSignal 1", 2),
-							Value = 1
-						},
-						new DiscreteSignalValue()
-						{
-							DiscreteSignal = new DiscreteSignal(2, 1, "DiscreteSignal 1", 3),
-							Value = 3
-						},
-						new DiscreteSignalValue()
-						{
-							DiscreteSignal = new DiscreteSignal(3, 2, "DiscreteSignal 1", 1),
-							Value = 0
+							ID = 10,
+							Name = "DiscreteSignal 2",
+							Address = 1,
+							AccessType = SignalAccessType.Output,
+							MappingId = 1,
+							SignalType = DiscreteSignalType.TwoBit
 						}
 					}
 				}
 			};
 
 			return rtuList;
+		
 		}
 	}
+		
 }
