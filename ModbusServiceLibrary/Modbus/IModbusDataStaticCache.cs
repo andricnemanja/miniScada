@@ -1,4 +1,5 @@
 ﻿using ModbusServiceLibrary.Modbus.ModbusDataTypes;
+using ModbusServiceLibrary.ModelServiceReference;
 
 namespace ModbusServiceLibrary.Modbus
 {
@@ -7,5 +8,7 @@ namespace ModbusServiceLibrary.Modbus
 		IAnalogPoint FindAnalogPoint(int signalId);
 		IDigitalPoint FindDiscretePoint(int signalId);
 		void Initialize();
+
+		RTU GetRTU(int rtuId);
 	}
 }

@@ -50,6 +50,11 @@ namespace ModbusServiceLibrary.Modbus
 			}
 		}
 
+		public RTU GetRTU(int rtuId)
+		{
+			return modelService.GetRTU(rtuId);
+		}
+
 		public IAnalogPoint FindAnalogPoint(int signalId)
 		{
 			return analogPoints.SingleOrDefault(s => s.SignalId == signalId);
