@@ -22,9 +22,8 @@
 		/// Initializes a new instance of the <see cref="AnalogSignal"/> class.
 		/// </summary>
 		/// <param name="id">Number unique to the RTU.</param>
-		/// <param name="address">Address of the signal.</param>
 		/// <param name="name">Name of the signal.</param>
-		public AnalogSignal(int id, int address, string name, int mappingId)
+		public AnalogSignal(int id, string name)
 		{
 			ID = id;
 			Name = name;
