@@ -74,7 +74,7 @@ namespace ModbusServiceLibrary.Tests
 				},
 				new DiscreteSignalMapping()
 				{
-					Id = 1,
+					Id = 3,
 					Name = "test",
 					DiscreteValueToState = new Dictionary<byte, string>()
 					{

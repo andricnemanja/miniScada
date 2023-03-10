@@ -33,8 +33,8 @@ namespace ModbusServiceLibrary.Tests
 							ID = 2,
 							Name = "AnalogSignal 2",
 							Address = 5,
-							AccessType = SignalAccessType.Output,
-							MappingId = 2
+							AccessType = SignalAccessType.Input,
+							MappingId = 1
 						},
 						new AnalogSignal()
 						{
@@ -53,16 +53,16 @@ namespace ModbusServiceLibrary.Tests
 							Name = "DiscreteSignal 1",
 							Address = 1,
 							AccessType = SignalAccessType.Output,
-							MappingId = 1,
-							SignalType = DiscreteSignalType.OneBit
+							MappingId = 2,
+							SignalType = DiscreteSignalType.TwoBit
 						},
 						new DiscreteSignal()
 						{
 							ID = 7,
 							Name = "DiscreteSignal 2",
 							Address = 1,
-							AccessType = SignalAccessType.Output,
-							MappingId = 1,
+							AccessType = SignalAccessType.Input,
+							MappingId = 2,
 							SignalType = DiscreteSignalType.TwoBit
 						}
 					}
