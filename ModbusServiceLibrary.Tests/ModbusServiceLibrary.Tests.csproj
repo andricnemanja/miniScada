@@ -77,10 +77,6 @@
     <Compile Include="CommandProcessingTests\ReadSingleSignalCommandProcessorTests.cs" />
     <Compile Include="CommandProcessingTests\WriteAnalogSignalCommandProcessorTests.cs" />
     <Compile Include="CommandProcessingTests\WriteDiscreteSignalCommandProcessorTests.cs" />
-    <Compile Include="CommandTests\ReadDiscreteSignalValueCommandTests.cs" />
-    <Compile Include="CommandTests\ReadAnalogSignalValueCommandTests.cs" />
-    <Compile Include="CommandTests\ChangeAnalogSignalValueCommandTests.cs" />
-    <Compile Include="CommandTests\ChangeDiscreteSignalValueCommandTests.cs" />
     <Compile Include="MappinTestData.cs" />
     <Compile Include="ModbusTests\ModbusDataTypesTest\HoldingRegisterTests.cs" />
     <Compile Include="ModbusTests\ModbusDataTypesTest\DigitalInputTests.cs" />
