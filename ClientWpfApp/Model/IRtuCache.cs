@@ -8,5 +8,7 @@ namespace ClientWpfApp.Model
 		void ReadRtuStaticData();
 		void UpdateAnalogSignalValue(int rtuId, int signalId, double newValue);
 		void UpdateDiscreteSignalValue(int rtuId, int signalId, string newState);
+		void UpdateSignalValue(int rtuId, int signalId, string newValue);
+
 	}
 }

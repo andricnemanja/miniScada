@@ -1,9 +1,13 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using ClientWpfApp.Commands;
 using ClientWpfApp.Model;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.SignalValues;
 using ClientWpfApp.ServiceClients;
+using StackExchange.Redis;
 
 namespace ClientWpfApp.ViewModel
 {
@@ -13,6 +17,7 @@ namespace ClientWpfApp.ViewModel
 		private ModbusServiceClient modbusServiceClient;
 		private ModelServiceConverter modelServiceConverter;
 		private ModbusServiceReference.ModbusDuplexClient modbusDuplexClient;
+		private ISubscriber subscriber;
 		#endregion Fields
 
 		#region Commands
@@ -48,6 +53,40 @@ namespace ClientWpfApp.ViewModel
 			ReadRTUStaticData();
 			ConnectToModbusServices();
 			InitializeCommands();
+			Task.Run(GetMessages);
+		}
+
+		public async Task GetMessages()
+		{
+			var muxer = ConnectionMultiplexer.Connect("localhost:6379");
+			var db = muxer.GetDatabase();
+			subscriber = muxer.GetSubscriber();
+
+			var signalValue = db.HashGet("signal:1", "value");
+			signalValue.TryParse(out double signalDoubleValue);
+
+			RtuCache.RtuList.FirstOrDefault(r => r.RTUData.ID == 1).AnalogSignalValues.FirstOrDefault(s => s.AnalogSignal.ID == 1).Value = signalDoubleValue;
+
+			List<Task> listOfSubscriptions = new List<Task>();
+			foreach(RTU rtu in RtuCache.RtuList)
+			{
+				listOfSubscriptions.Add(subscriber.SubscribeAsync("rtu:" + rtu.RTUData.ID + ".*", (channel, value) =>
+				{
+					ChangedSignalData changedSignalData = ParseSubscriptionChannel(channel);
+					RtuCache.UpdateSignalValue(changedSignalData.RtuId, changedSignalData.SignalId, value);
+				}));
+			}
+
+			await Task.WhenAll(listOfSubscriptions);
+		}
+
+		private ChangedSignalData ParseSubscriptionChannel(string channelName)
+		{
+			string[] channelNameArr = channelName.Split('.');
+			int rtuId = int.Parse(channelNameArr[0].Split(':')[1]);
+			int signalId = int.Parse(channelNameArr[2].Split(':')[1]);
+
+			return new ChangedSignalData(rtuId, signalId);
 		}
 
 		private void ReadRTUStaticData()
