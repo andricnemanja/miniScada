@@ -6,6 +6,8 @@ namespace ModbusServiceLibrary
 	[ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(IModbusDuplexCallback))]
 	public interface IModbusDuplex
 	{
+		[OperationContract (IsOneWay = true)]
+		void Subscribe();
 		/// <summary>
 		/// Read value of the analog signal from the RTU and update it through callback channel.
 		/// </summary>

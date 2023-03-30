@@ -15,7 +15,7 @@ namespace ClientWpfApp.ModbusCallback
 
 		public void ReceiveCommandResult(CommandResultBase commandResult)
 		{
-			commandResultQueue.AddToQueue(commandResult);
+			//commandResultQueue.AddToQueue(commandResult);
 		}
 	}
 }

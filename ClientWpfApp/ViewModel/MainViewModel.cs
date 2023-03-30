@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ClientWpfApp.Commands;
@@ -62,10 +61,18 @@ namespace ClientWpfApp.ViewModel
 			var db = muxer.GetDatabase();
 			subscriber = muxer.GetSubscriber();
 
-			var signalValue = db.HashGet("signal:1", "value");
-			signalValue.TryParse(out double signalDoubleValue);
-
-			RtuCache.RtuList.FirstOrDefault(r => r.RTUData.ID == 1).AnalogSignalValues.FirstOrDefault(s => s.AnalogSignal.ID == 1).Value = signalDoubleValue;
+			foreach(var rtu in RtuCache.RtuList)
+			{
+				foreach (var signal in rtu.AnalogSignalValues)
+				{
+					db.HashGet("signal:" + signal.AnalogSignal.ID, "value").TryParse(out double signalValue);
+					signal.Value = signalValue;
+				}
+				foreach (var signal in rtu.DiscreteSignalValues)
+				{ 
+					signal.State = db.HashGet("signal:" + signal.DiscreteSignal.ID, "value");
+				}
+			}
 
 			List<Task> listOfSubscriptions = new List<Task>();
 			foreach(RTU rtu in RtuCache.RtuList)
