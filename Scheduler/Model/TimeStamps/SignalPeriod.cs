@@ -9,7 +9,7 @@ namespace Scheduler.Model.TimeStamps
 	/// <summary>
 	/// Class that holds the information about time periods of a scheduler refresh.
 	/// </summary>
-	public class RefreshingPeriod
+	public class SignalPeriod
 	{
 		/// <summary>
 		/// ID of the period.

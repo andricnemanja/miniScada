@@ -1,17 +1,23 @@
-﻿using System;
+﻿using Scheduler.Model.Signals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ModelWcfServiceLibrary;
 
 namespace Scheduler.Model.RTU
 {
-	public class RTU
+	/// <summary>
+	/// Holds information crucial for the scheduler.
+	/// </summary>
+	public class RTU 
 	{
 		/// <summary>
 		/// Name of the RTU
 		/// </summary>
 		public string Name { get; set; }
+
 		/// <summary>
 		/// Unique identification number for RTU
 		/// </summary>
@@ -20,19 +26,17 @@ namespace Scheduler.Model.RTU
 		/// <summary>
 		/// List of signals.
 		/// </summary>
-		public List<ISignal> Signals { get; set; } = new List<ISignal>();
+		public List<ISignal> Signals { get; set; }  = new List<ISignal>();
 
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="RTU"/> class.
-		/// </summary>
-		/// <param name="rtuStaticData">An instance of the <see cref="ModelServiceReference.RTU rtuStaticData"/>.
-		/// Allows converting Model Service static data to Modbus Service model class</param>
-		public RTU(ModelServiceReference.RTU rtuStaticData)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Model.RTU"/> class.
+        /// </summary>
+        /// <param name="rtuStaticData">An instance of the <see cref="ModelServiceReference.RTU rtuStaticData"/>.
+        /// Allows converting Model Service static data to Modbus Service model class</param>
+        public RTU(ModelServiceReference.RTU rtuStaticData)
 		{
 			Name = rtuStaticData.RTUData.Name;
 			ID = rtuStaticData.RTUData.ID;
-			RTUConnectionParameters = new RTUConnectionParameters(rtuStaticData.RTUData);
 			foreach (var analogSignalStaticData in rtuStaticData.AnalogSignals)
 			{
 				Signals.Add(new AnalogSignal(analogSignalStaticData));
@@ -42,9 +46,10 @@ namespace Scheduler.Model.RTU
 				Signals.Add(new DiscreteSignal(discreteSignalStaticData));
 			}
 		}
-		/// <summary>
-		/// Initializes a new instance of the <see cref="RTU"/> class without data.
-		/// </summary>
-		public RTU() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Model.RTU"/> class without data.
+        /// </summary>
+        public RTU() { }
 	}
 }

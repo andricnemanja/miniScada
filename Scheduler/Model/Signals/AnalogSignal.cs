@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Scheduler.Model.Signals
 {
+	/// <summary>
+	/// Models analog signal.
+	/// </summary>
 	public class AnalogSignal : ISignal
 	{
 		/// <summary>

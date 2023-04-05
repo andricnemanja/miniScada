@@ -72,17 +72,30 @@
     <Compile Include="ISchedulerService.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
     <Compile Include="Model\Signals\AnalogSignal.cs" />
+    <Compile Include="Model\Signals\DiscreteSignal.cs" />
+    <Compile Include="Model\Signals\ISignal.cs" />
+    <Compile Include="Model\Signals\SignalAccessType.cs" />
+    <Compile Include="Model\TimeStamps\SignalPeriod.cs" />
     <Compile Include="PeriodicalRead\PointTypeScan\AnalogPointScan.cs" />
     <Compile Include="PeriodicalRead\PointTypeScan\Command.cs" />
     <Compile Include="PeriodicalRead\PointTypeScan\IScheduler.cs" />
     <Compile Include="PeriodicalRead\PointTypeScan\Scheduler.cs" />
+    <Compile Include="PeriodMapper\PeriodMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RtuConfiguration\IRtuConfiguration.cs" />
     <Compile Include="RtuConfiguration\RtuConfiguration.cs" />
+    <Compile Include="SchedulerConfiguration\SchedulerConfiguration.cs" />
     <Compile Include="SchedulerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModelWcfServiceLibrary\ModelWcfServiceLibrary.csproj">
+      <Project>{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9}</Project>
+      <Name>ModelWcfServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

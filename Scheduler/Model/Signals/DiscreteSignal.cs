@@ -1,5 +1,8 @@
 ﻿namespace Scheduler.Model.Signals
 {
+	/// <summary>
+	/// Models discrete signal.
+	/// </summary>
 	public class DiscreteSignal : ISignal
 	{
 		/// <summary>
