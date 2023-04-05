@@ -3,6 +3,9 @@ using ModbusServiceLibrary.CommandResult;
 
 namespace ModbusServiceLibrary
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	[ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(IModbusDuplexCallback))]
 	public interface IModbusDuplex
 	{

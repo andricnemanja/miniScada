@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ModbusServiceLibrary.Model.RTU;
 using ModbusServiceLibrary.Model.Signals;
@@ -31,6 +32,8 @@ namespace ModbusServiceLibrary.RtuConfiguration
 		{
 			RtuList = ReadAllRTUs();
 		}
+
+
 
 		/// <summary>
 		/// Reads all RTU static data from Model Service

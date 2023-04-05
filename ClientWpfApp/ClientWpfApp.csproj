@@ -122,6 +122,7 @@
     <Compile Include="Model\SignalValues\AnalogSignalValue.cs" />
     <Compile Include="Model\Signals\DiscreteSignal.cs" />
     <Compile Include="Model\SignalValues\DiscreteSignalValue.cs" />
+    <Compile Include="SchedulerCallback\SchedulerServiceCallback.cs" />
     <Compile Include="ServiceClients\ModbusServiceClient.cs" />
     <Compile Include="ServiceClients\ModelServiceConverter.cs" />
     <Compile Include="ServiceClients\RtuConnection.cs" />
@@ -258,5 +259,6 @@
       <Name>ModbusServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
