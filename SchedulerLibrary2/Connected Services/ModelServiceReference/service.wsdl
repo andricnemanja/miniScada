@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ModelService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IModelService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256>
+                </sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict>
+                </sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IModelService_GetAllRTUs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRTUs" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetAllRTUs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRTUsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetRTU_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRTU" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetRTU_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRTUResponse" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetRTU_ModelServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" name="detail" element="q1:ModelServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetDiscreteSignalsForRtu_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscreteSignalsForRtu" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetDiscreteSignalsForRtu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscreteSignalsForRtuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetAnalogSignalsForRtu_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnalogSignalsForRtu" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetAnalogSignalsForRtu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnalogSignalsForRtuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetRTUsEssentialData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRTUsEssentialData" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetRTUsEssentialData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRTUsEssentialDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetAnalogSignalMappings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnalogSignalMappings" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetAnalogSignalMappings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnalogSignalMappingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetDiscreteSignalMappings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscreteSignalMappings" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetDiscreteSignalMappings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscreteSignalMappingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetDiscreteSignalPossibleStates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscreteSignalPossibleStates" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetDiscreteSignalPossibleStates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscreteSignalPossibleStatesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IModelService">
+    <wsdl:operation name="GetAllRTUs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetAllRTUs" message="tns:IModelService_GetAllRTUs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetAllRTUsResponse" message="tns:IModelService_GetAllRTUs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRTU">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetRTU" message="tns:IModelService_GetRTU_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetRTUResponse" message="tns:IModelService_GetRTU_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault" name="ModelServiceExceptionFault" message="tns:IModelService_GetRTU_ModelServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscreteSignalsForRtu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu" message="tns:IModelService_GetDiscreteSignalsForRtu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse" message="tns:IModelService_GetDiscreteSignalsForRtu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnalogSignalsForRtu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu" message="tns:IModelService_GetAnalogSignalsForRtu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse" message="tns:IModelService_GetAnalogSignalsForRtu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRTUsEssentialData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetRTUsEssentialData" message="tns:IModelService_GetRTUsEssentialData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse" message="tns:IModelService_GetRTUsEssentialData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnalogSignalMappings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetAnalogSignalMappings" message="tns:IModelService_GetAnalogSignalMappings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse" message="tns:IModelService_GetAnalogSignalMappings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscreteSignalMappings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings" message="tns:IModelService_GetDiscreteSignalMappings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse" message="tns:IModelService_GetDiscreteSignalMappings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscreteSignalPossibleStates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates" message="tns:IModelService_GetDiscreteSignalPossibleStates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse" message="tns:IModelService_GetDiscreteSignalPossibleStates_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IModelService" type="tns:IModelService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IModelService_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetAllRTUs">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetAllRTUs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRTU">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetRTU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ModelServiceExceptionFault">
+        <soap12:fault use="literal" name="ModelServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscreteSignalsForRtu">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnalogSignalsForRtu">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRTUsEssentialData">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetRTUsEssentialData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnalogSignalMappings">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetAnalogSignalMappings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscreteSignalMappings">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetDiscreteSignalMappings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscreteSignalPossibleStates">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ModelService">
+    <wsdl:port name="NetTcpBinding_IModelService" binding="tns:NetTcpBinding_IModelService">
+      <soap12:address location="net.tcp://localhost:65001/GettingStarted" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:65001/GettingStarted</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

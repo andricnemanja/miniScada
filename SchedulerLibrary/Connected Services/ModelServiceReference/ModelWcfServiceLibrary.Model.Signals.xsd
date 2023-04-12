@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfAnalogSignal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AnalogSignal" nillable="true" type="tns:AnalogSignal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnalogSignal" nillable="true" type="tns:ArrayOfAnalogSignal" />
+  <xs:complexType name="AnalogSignal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccessType" type="tns:SignalAccessType" />
+      <xs:element minOccurs="0" name="Address" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="MappingId" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnalogSignal" nillable="true" type="tns:AnalogSignal" />
+  <xs:simpleType name="SignalAccessType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Input" />
+      <xs:enumeration value="Output" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SignalAccessType" nillable="true" type="tns:SignalAccessType" />
+  <xs:complexType name="ArrayOfDiscreteSignal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DiscreteSignal" nillable="true" type="tns:DiscreteSignal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDiscreteSignal" nillable="true" type="tns:ArrayOfDiscreteSignal" />
+  <xs:complexType name="DiscreteSignal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccessType" type="tns:SignalAccessType" />
+      <xs:element minOccurs="0" name="Address" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="MappingId" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SignalType" type="tns:DiscreteSignalType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DiscreteSignal" nillable="true" type="tns:DiscreteSignal" />
+  <xs:simpleType name="DiscreteSignalType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OneBit" />
+      <xs:enumeration value="TwoBit" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DiscreteSignalType" nillable="true" type="tns:DiscreteSignalType" />
+</xs:schema>

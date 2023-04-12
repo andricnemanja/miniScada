@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FBCB2057-E318-4375-9972-5758B26FCCF1}</ProjectGuid>
+    <ProjectGuid>{AEC9FF0B-1411-4EBF-BC24-89104A7F5867}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Scheduler</RootNamespace>
-    <AssemblyName>Scheduler</AssemblyName>
+    <RootNamespace>SchedulerLibrary</RootNamespace>
+    <AssemblyName>SchedulerLibrary</AssemblyName>
     <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -68,34 +68,89 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ISchedulerCallback.cs" />
     <Compile Include="ISchedulerService.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
+    <Compile Include="Model\SignalPeriod\SignalPeriod.cs" />
     <Compile Include="Model\Signals\AnalogSignal.cs" />
     <Compile Include="Model\Signals\DiscreteSignal.cs" />
     <Compile Include="Model\Signals\ISignal.cs" />
     <Compile Include="Model\Signals\SignalAccessType.cs" />
-    <Compile Include="Model\TimeStamps\SignalPeriod.cs" />
-    <Compile Include="PeriodicalRead\PointTypeScan\AnalogPointScan.cs" />
-    <Compile Include="PeriodicalRead\PointTypeScan\Command.cs" />
-    <Compile Include="PeriodicalRead\PointTypeScan\IScheduler.cs" />
-    <Compile Include="PeriodicalRead\PointTypeScan\Scheduler.cs" />
-    <Compile Include="PeriodMapper\PeriodMapper.cs" />
+    <Compile Include="Period Mapper\PeriodMapper.cs" />
+    <Compile Include="PeriodicalScan\SignalTypeScan\Command.cs" />
+    <Compile Include="PeriodicalScan\SignalTypeScan\IScheduler.cs" />
+    <Compile Include="PeriodicalScan\SignalTypeScan\Scheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RtuConfiguration\IRtuConfiguration.cs" />
     <Compile Include="RtuConfiguration\RtuConfiguration.cs" />
-    <Compile Include="SchedulerConfiguration\SchedulerConfiguration.cs" />
     <Compile Include="SchedulerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.SignalMapping.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Signals.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.AnalogSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.AnalogSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.DiscreteSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.DiscreteSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.RTU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.RTUData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\service.wsdl" />
+    <None Include="Connected Services\ModelServiceReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModelWcfServiceLibrary\ModelWcfServiceLibrary.csproj">
-      <Project>{4DA5FC84-E371-4B33-98D3-CD5D5D6A34D9}</Project>
-      <Name>ModelWcfServiceLibrary</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ModelServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ModelServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ModelServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ModelServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

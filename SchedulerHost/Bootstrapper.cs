@@ -14,6 +14,8 @@ namespace SchedulerHost
 		public static ContainerBuilder RegisterContainerBuilder()
 		{
 			ContainerBuilder builder = new ContainerBuilder();
+			builder.RegisterType<Scheduler.ModelServiceReference.ModelServiceClient>().As<Scheduler.ModelServiceReference.IModelService>();
+
 			builder.RegisterType<SchedulerService>().As<ISchedulerService>();
 			return builder;
 		}
