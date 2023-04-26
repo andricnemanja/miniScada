@@ -30,6 +30,7 @@
     <MetadataFile FileName="ModelWcfServiceLibrary.xsd" MetadataType="Schema" ID="4a8638b5-15e4-453e-a18a-a6677a640384" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
     <MetadataFile FileName="ModelWcfServiceLibrary.Model.SignalMapping.xsd" MetadataType="Schema" ID="57b35f8d-e3c9-4477-859d-999d8b66af47" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
     <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="53d15f0b-67aa-48c8-a512-1deb4be2484e" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="ModelWcfServiceLibrary.Model.Flags.xsd" MetadataType="Schema" ID="24f3ee86-f5ba-47cb-af8b-11eb73cd32ad" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

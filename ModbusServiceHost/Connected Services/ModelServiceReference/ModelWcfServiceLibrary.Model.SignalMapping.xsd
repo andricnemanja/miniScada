@@ -1,26 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:simpleType name="DiscreteSignalType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="OneBit">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="TwoBit">
-        <xs:annotation>
-          <xs:appinfo>
-            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="DiscreteSignalType" nillable="true" type="tns:DiscreteSignalType" />
   <xs:complexType name="ArrayOfAnalogSignalMapping">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="AnalogSignalMapping" nillable="true" type="tns:AnalogSignalMapping" />
@@ -44,7 +24,7 @@
   <xs:element name="ArrayOfDiscreteSignalMapping" nillable="true" type="tns:ArrayOfDiscreteSignalMapping" />
   <xs:complexType name="DiscreteSignalMapping">
     <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DiscreteValueToState" nillable="true" type="q1:ArrayOfKeyValueOfstringstring" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DiscreteValueToState" nillable="true" type="q1:ArrayOfKeyValueOfunsignedBytestring" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
     </xs:sequence>

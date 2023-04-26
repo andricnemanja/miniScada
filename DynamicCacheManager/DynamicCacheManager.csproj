@@ -103,7 +103,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ISignalNameStringBuilder.cs" />
     <Compile Include="ModbusCallback\ModbusServiceCallback.cs" />
+    <Compile Include="Model\ISignal.cs" />
     <Compile Include="ResultsProcessing\CommandResultQueue.cs" />
     <Compile Include="ResultsProcessing\CommandResultReceiver.cs" />
     <Compile Include="ResultsProcessing\ICommandResultProcessor.cs" />
@@ -138,6 +140,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.Flag.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">

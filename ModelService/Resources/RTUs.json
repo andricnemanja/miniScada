@@ -12,21 +12,27 @@
         "Address": 1,
         "Name": "Napon 1",
         "MappingId": 1,
-        "AccessType": 1
+        "AccessType": 1,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       },
       {
         "ID": 2,
         "Address": 2,
         "Name": "Temperatura 1",
         "MappingId": 2,
-        "AccessType": 1
+        "AccessType": 1,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       },
       {
         "ID": 3,
         "Address": 1,
         "Name": "Napon 2",
         "MappingId": 3,
-        "AccessType": 0
+        "AccessType": 0,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       }
     ],
     "DiscreteSignals": [
@@ -36,7 +42,9 @@
         "Address": 1,
         "SignalType": 1,
         "MappingId": 2,
-        "AccessType": 1
+        "AccessType": 1,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       },
       {
         "ID": 5,
@@ -44,7 +52,9 @@
         "Address": 3,
         "SignalType": 0,
         "MappingId": 3,
-        "AccessType": 1
+        "AccessType": 1,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       },
       {
         "ID": 10,
@@ -52,7 +62,9 @@
         "Address": 1,
         "SignalType": 1,
         "MappingId": 4,
-        "AccessType": 0
+        "AccessType": 0,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       }
     ]
   },
@@ -69,21 +81,27 @@
         "Address": 1,
         "Name": "Napon 1",
         "MappingId": 5,
-        "AccessType": 1
+        "AccessType": 1,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       },
       {
         "ID": 7,
         "Address": 4,
         "Name": "Temperatura 1",
         "MappingId": 5,
-        "AccessType": 1
+        "AccessType": 1,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       },
       {
         "ID": 13,
         "Address": 1,
         "Name": "Napon 2",
         "MappingId": 3,
-        "AccessType": 0
+        "AccessType": 0,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       }
     ],
     "DiscreteSignals": [
@@ -93,7 +111,9 @@
         "SignalType": 0,
         "Address": 1,
         "MappingId": 3,
-        "AccessType": 1
+        "AccessType": 1,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       },
       {
         "ID": 9,
@@ -101,7 +121,9 @@
         "SignalType": 1,
         "Address": 2,
         "MappingId": 1,
-        "AccessType": 1
+        "AccessType": 1,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       },
       {
         "ID": 12,
@@ -109,7 +131,9 @@
         "SignalType": 1,
         "Address": 1,
         "MappingId": 2,
-        "AccessType": 0
+        "AccessType": 0,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
       }
     ]
   }

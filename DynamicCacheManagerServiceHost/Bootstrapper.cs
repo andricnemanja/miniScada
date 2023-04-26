@@ -19,6 +19,7 @@ namespace DynamicCacheManagerHost
 			builder.RegisterType<ServiceRtuCache>().As<IServiceRtuCache>().SingleInstance();
 			builder.RegisterType<CommandResultQueue>().As<ICommandResultQueue>();
 			builder.RegisterType<CommandResultReceiver>().As<ICommandResultReceiver>();
+			builder.RegisterType<RedisStringBuilder>().As<ISignalNameStringBuilder>();
 
 			return builder;
 		}

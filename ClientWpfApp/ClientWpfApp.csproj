@@ -134,6 +134,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Converters\SignalFlagToColorConverter.cs" />
     <Compile Include="Converters\ConnectionButtonColorConverter.cs" />
     <Compile Include="Converters\ConnectionStatusConverter.cs" />
     <Compile Include="Converters\DiscreteSignalButtonStatusConverter.cs" />
@@ -149,6 +150,8 @@
     <Compile Include="ModbusClients\IModbusClient.cs" />
     <Compile Include="ModbusClients\NModbusClient.cs" />
     <Compile Include="ModbusErrors.cs" />
+    <Compile Include="Model\Flags\Flag.cs" />
+    <Compile Include="Model\Flags\FlagType.cs" />
     <Compile Include="Model\IRtuCache.cs" />
     <Compile Include="Model\RtuCache.cs" />
     <Compile Include="Model\RTU\RTU.cs" />

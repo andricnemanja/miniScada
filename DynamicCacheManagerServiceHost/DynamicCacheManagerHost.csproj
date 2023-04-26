@@ -140,6 +140,9 @@
     <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.RTUData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -160,6 +163,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.Flag.datasource" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

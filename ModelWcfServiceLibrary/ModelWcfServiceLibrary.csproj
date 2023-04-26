@@ -89,6 +89,8 @@
     <Compile Include="FileAccessing\FileAccess.cs" />
     <Compile Include="IModelService.cs" />
     <Compile Include="ModelServiceException.cs" />
+    <Compile Include="Model\Flags\Flag.cs" />
+    <Compile Include="Model\Flags\FlagType.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
     <Compile Include="Model\SignalMapping\AnalogSignalMapping.cs" />
     <Compile Include="Model\SignalMapping\DiscreteSignalMapping.cs" />
@@ -102,8 +104,10 @@
     <Compile Include="Repository\DiscreteSignalMappingRepository.cs" />
     <Compile Include="Repository\IAnalogSignalMappingRepository.cs" />
     <Compile Include="Repository\IDiscreteSignalMappingRepository.cs" />
+    <Compile Include="Repository\IFlagRepository.cs" />
     <Compile Include="Repository\IRtuRepository.cs" />
     <Compile Include="Repository\AnalogSignalMappingRepository.cs" />
+    <Compile Include="Repository\FlagRepository.cs" />
     <Compile Include="Repository\RtuRepository.cs" />
     <Compile Include="Model\RTU\RTUData.cs" />
     <Compile Include="Serializer\IListSerializer.cs" />
@@ -116,6 +120,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

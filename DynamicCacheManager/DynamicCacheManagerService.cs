@@ -8,7 +8,7 @@ using ModbusServiceLibrary.CommandResult;
 namespace DynamicCacheManager
 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
-	public class DynamicCacheManagerService : IDynamicCacheManagerService
+	public sealed class DynamicCacheManagerService : IDynamicCacheManagerService
 	{
 		private readonly IStaticDataLoader staticDataLoader;
 		private readonly IServiceRtuCache serviceRtuCache;

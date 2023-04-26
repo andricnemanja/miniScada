@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ModelWcfServiceLibrary;
 using ModelWcfServiceLibrary.FileAccessing;
+using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.SignalMapping;
 using ModelWcfServiceLibrary.Repository;
@@ -28,12 +29,16 @@ namespace ModelServiceHost
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\AnalogSignalMappings.json"));
 			builder.RegisterType<JsonListSerializer<DiscreteSignalMapping>>().As<IListSerializer<DiscreteSignalMapping>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\DiscreteSignalMappings.json"));
+			builder.RegisterType<JsonListSerializer<Flag>>().As<IListSerializer<Flag>>()
+				.WithParameter(new TypedParameter(typeof(string), @"\Resources\Flags.json"));
 
 			builder.RegisterType<AnalogSignalMappingRepository>().As<IAnalogSignalMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<DiscreteSignalMappingRepository>().As<IDiscreteSignalMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<RtuRepository>().As<IRtuRepository>()
+				.OnActivated(c => c.Instance.Deserialize());
+			builder.RegisterType<FlagRepository>().As<IFlagRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 
 			builder.RegisterType<ModelService>().As<IModelService>();

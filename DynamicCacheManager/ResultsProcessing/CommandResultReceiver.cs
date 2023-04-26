@@ -5,7 +5,7 @@ using ModbusServiceLibrary.CommandResult;
 
 namespace DynamicCacheManager.ResultsProcessing
 {
-	public class CommandResultReceiver : ICommandResultReceiver
+	public sealed class CommandResultReceiver : ICommandResultReceiver
 	{
 		private readonly Dictionary<Type, ICommandResultProcessor> commandResultProcessors;
 
@@ -14,7 +14,7 @@ namespace DynamicCacheManager.ResultsProcessing
 			this.commandResultProcessors = new Dictionary<Type, ICommandResultProcessor>()
 			{
 				{typeof(ReadSingleAnalogSignalResult), new ReadSingleAnalogSignalResultProcessor(rtuCache, dynamicCacheClient) },
-				{typeof(ReadSingleDiscreteSignalResult), new ReadSingleDiscreteSignalResultProcessor(dynamicCacheClient) }
+				{typeof(ReadSingleDiscreteSignalResult), new ReadSingleDiscreteSignalResultProcessor(rtuCache, dynamicCacheClient) }
 			};
 		}
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.SignalMapping;
 using ModelWcfServiceLibrary.Model.Signals;
@@ -16,6 +17,7 @@ namespace ModelWcfServiceLibrary
 		private readonly IRtuRepository rtuRepository;
 		private readonly IDiscreteSignalMappingRepository discreteSignalMappingRepository;
 		private readonly IAnalogSignalMappingRepository analogSignalMappingRepository;
+		private readonly IFlagRepository flagRepository;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModelService"/>
@@ -23,11 +25,12 @@ namespace ModelWcfServiceLibrary
 		/// <param name="rtuRepository">Instance of the <see cref="IRtuRepository"/> class</param>
 		/// <param name="analogSignalMappingRepository"></param>
 		/// <param name="discreteSignalMappingRepository"></param>
-		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, IDiscreteSignalMappingRepository discreteSignalMappingRepository)
+		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, IDiscreteSignalMappingRepository discreteSignalMappingRepository, IFlagRepository flagRepository)
 		{
 			this.rtuRepository = rtuRepository;
 			this.analogSignalMappingRepository = analogSignalMappingRepository;
 			this.discreteSignalMappingRepository = discreteSignalMappingRepository;
+			this.flagRepository = flagRepository;
 		}
 
 		/// <summary>
@@ -108,6 +111,11 @@ namespace ModelWcfServiceLibrary
 			RTU rtu = rtuRepository.GetRTUByID(rtuId);
 			DiscreteSignal signal = rtu.DiscreteSignals.FirstOrDefault(s => s.Address == signalAddress);
 			return discreteSignalMappingRepository.GetDiscreteSignalPossibleStates(signal.MappingId);
+		}
+
+		public IEnumerable<Flag> GetAllFlags()
+		{
+			return flagRepository.FlagList;
 		}
 	}
 }

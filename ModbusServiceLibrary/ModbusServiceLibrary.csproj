@@ -170,11 +170,17 @@
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.Flag.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.RTU.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.RTUData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
       <SubType>Designer</SubType>

@@ -1,0 +1,18 @@
+[
+  {
+    "Name": "OnScan",
+    "Description": " ",
+    "Type": 0,
+    "ReadAllowed": true,
+    "CommandAllowed": true,
+    "UserAssignable": true
+  },
+  {
+    "Name": "OffScan",
+    "Description": " ",
+    "Type": 0,
+    "ReadAllowed": false,
+    "CommandAllowed": false,
+    "UserAssignable": true
+  }
+]

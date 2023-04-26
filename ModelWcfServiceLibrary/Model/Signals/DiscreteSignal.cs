@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace ModelWcfServiceLibrary.Model.Signals
 {
@@ -38,5 +39,9 @@ namespace ModelWcfServiceLibrary.Model.Signals
 		/// </summary>
 		[DataMember]
 		public SignalAccessType AccessType { get; set; }
+		[DataMember]
+		public double Deadband { get; set; }
+		[DataMember]
+		public TimeSpan StaleTime { get; set; }
 	}
 }

@@ -5,9 +5,9 @@ namespace DynamicCacheManager
 	public interface IDynamicCacheClient
 	{
 		void ConnectToDynamicCache();
-		void SaveSignalToCache(AnalogSignal analogSignal);
-		void SaveSignalToCache(DiscreteSignal discreteSignal);
-		void ChangeSignalValue(int rtuId, int signalId, double newValue);
-		void ChangeSignalValue(int rtuId, int signalId, string newValue);
+		void AddFlagToSignal(ISignal signal, string flag);
+		void SaveSignalToCache(ISignal signal);
+		void ChangeSignalValue(ISignal signal, double newValue);
+		void ChangeSignalValue(ISignal signal, string newValue);
 	}
 }

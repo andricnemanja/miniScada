@@ -1,9 +1,10 @@
-﻿using DynamicCacheManager.ServiceCache;
+﻿using DynamicCacheManager.Model;
+using DynamicCacheManager.ServiceCache;
 using ModbusServiceLibrary.CommandResult;
 
 namespace DynamicCacheManager.ResultsProcessing
 {
-	public class ReadSingleAnalogSignalResultProcessor : ICommandResultProcessor
+	public sealed class ReadSingleAnalogSignalResultProcessor : ICommandResultProcessor
 	{
 		private readonly IServiceRtuCache rtuCache;
 		private readonly IDynamicCacheClient dynamicCacheClient;
@@ -16,9 +17,11 @@ namespace DynamicCacheManager.ResultsProcessing
 
 		public void ProcessCommandResult(CommandResultBase commandResult)
 		{
-			ReadSingleAnalogSignalResult readSingleAnalogSignalResult = (ReadSingleAnalogSignalResult)commandResult;
+			ReadSingleAnalogSignalResult commandData = (ReadSingleAnalogSignalResult)commandResult;
 
-			dynamicCacheClient.ChangeSignalValue(readSingleAnalogSignalResult.RtuId, readSingleAnalogSignalResult.SignalId, readSingleAnalogSignalResult.SignalValue);
+			ISignal signal = rtuCache.GetSignal(commandData.RtuId, commandData.SignalId);
+
+			dynamicCacheClient.ChangeSignalValue(signal, commandData.SignalValue);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.SignalMapping;
 using ModelWcfServiceLibrary.Model.Signals;
@@ -66,6 +67,7 @@ namespace ModelWcfServiceLibrary
 		[OperationContract]
 		string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
 
-
+		[OperationContract]
+		IEnumerable<Flag> GetAllFlags();
 	}
 }

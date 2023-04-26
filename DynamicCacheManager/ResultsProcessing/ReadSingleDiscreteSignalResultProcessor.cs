@@ -1,21 +1,27 @@
-﻿using ModbusServiceLibrary.CommandResult;
+﻿using DynamicCacheManager.Model;
+using DynamicCacheManager.ServiceCache;
+using ModbusServiceLibrary.CommandResult;
 
 namespace DynamicCacheManager.ResultsProcessing
 {
-	public class ReadSingleDiscreteSignalResultProcessor : ICommandResultProcessor
+	public sealed class ReadSingleDiscreteSignalResultProcessor : ICommandResultProcessor
 	{
+		private readonly IServiceRtuCache rtuCache;
 		private readonly IDynamicCacheClient dynamicCacheClient;
 
-		public ReadSingleDiscreteSignalResultProcessor(IDynamicCacheClient dynamicCacheClient)
+		public ReadSingleDiscreteSignalResultProcessor(IServiceRtuCache rtuCache, IDynamicCacheClient dynamicCacheClient)
 		{
+			this.rtuCache = rtuCache;
 			this.dynamicCacheClient = dynamicCacheClient;
 		}
 
 		public void ProcessCommandResult(CommandResultBase commandResult)
 		{
-			ReadSingleDiscreteSignalResult readCommandResult = (ReadSingleDiscreteSignalResult)commandResult;
+			ReadSingleDiscreteSignalResult commandData = (ReadSingleDiscreteSignalResult)commandResult;
 
-			dynamicCacheClient.ChangeSignalValue(readCommandResult.RtuId, readCommandResult.SignalId, readCommandResult.State);
+			ISignal signal = rtuCache.GetSignal(commandData.RtuId, commandData.SignalId);
+
+			dynamicCacheClient.ChangeSignalValue(signal, commandData.State);
 		}
 	}
 }

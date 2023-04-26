@@ -98,6 +98,12 @@
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.Flag.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -199,6 +199,9 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         private int AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double DeadbandField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -206,6 +209,9 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan StaleTimeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -239,6 +245,19 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
                 if ((this.AddressField.Equals(value) != true)) {
                     this.AddressField = value;
                     this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Deadband {
+            get {
+                return this.DeadbandField;
+            }
+            set {
+                if ((this.DeadbandField.Equals(value) != true)) {
+                    this.DeadbandField = value;
+                    this.RaisePropertyChanged("Deadband");
                 }
             }
         }
@@ -282,6 +301,19 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan StaleTime {
+            get {
+                return this.StaleTimeField;
+            }
+            set {
+                if ((this.StaleTimeField.Equals(value) != true)) {
+                    this.StaleTimeField = value;
+                    this.RaisePropertyChanged("StaleTime");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -308,6 +340,9 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         private int AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double DeadbandField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -318,6 +353,9 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private DynamicCacheManagerHost.ModelServiceReference.DiscreteSignalType SignalTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan StaleTimeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -351,6 +389,19 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
                 if ((this.AddressField.Equals(value) != true)) {
                     this.AddressField = value;
                     this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Deadband {
+            get {
+                return this.DeadbandField;
+            }
+            set {
+                if ((this.DeadbandField.Equals(value) != true)) {
+                    this.DeadbandField = value;
+                    this.RaisePropertyChanged("Deadband");
                 }
             }
         }
@@ -403,6 +454,19 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
                 if ((this.SignalTypeField.Equals(value) != true)) {
                     this.SignalTypeField = value;
                     this.RaisePropertyChanged("SignalType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan StaleTime {
+            get {
+                return this.StaleTimeField;
+            }
+            set {
+                if ((this.StaleTimeField.Equals(value) != true)) {
+                    this.StaleTimeField = value;
+                    this.RaisePropertyChanged("StaleTime");
                 }
             }
         }
@@ -716,6 +780,12 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
         System.Threading.Tasks.Task<string[]> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
+        DynamicCacheManager.ModelServiceReference.Flag[] GetAllFlags();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
+        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.Flag[]> GetAllFlagsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -807,6 +877,14 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         
         public System.Threading.Tasks.Task<string[]> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress) {
             return base.Channel.GetDiscreteSignalPossibleStatesAsync(rtuId, signalAddress);
+        }
+        
+        public DynamicCacheManager.ModelServiceReference.Flag[] GetAllFlags() {
+            return base.Channel.GetAllFlags();
+        }
+        
+        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.Flag[]> GetAllFlagsAsync() {
+            return base.Channel.GetAllFlagsAsync();
         }
     }
 }

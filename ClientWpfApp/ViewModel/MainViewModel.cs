@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ClientWpfApp.Commands;
@@ -83,6 +85,29 @@ namespace ClientWpfApp.ViewModel
 					RtuCache.UpdateSignalValue(changedSignalData.RtuId, changedSignalData.SignalId, value);
 				}));
 			}
+
+			
+			listOfSubscriptions.Add(subscriber.SubscribeAsync("*:flags", (channel, value) =>
+			{
+				var signalId = Int32.Parse(channel.ToString().Split(':')[1]);
+				foreach(var rtu in RtuCache.RtuList)
+				{
+					var analogSignal = rtu.AnalogSignalValues.FirstOrDefault(s => s.AnalogSignal.ID == signalId);
+					if(analogSignal != null)
+					{
+						analogSignal.AnalogSignal.SignalFlags.Add(new Model.Flags.Flag(value, "", Model.Flags.FlagType.Warn));
+						return;
+					}
+
+					var discreteSignal = rtu.DiscreteSignalValues.FirstOrDefault(s => s.DiscreteSignal.ID == signalId);
+					if (discreteSignal != null)
+					{
+						discreteSignal.DiscreteSignal.SignalFlags.Add(new Model.Flags.Flag(value, "", Model.Flags.FlagType.Warn));
+						return;
+					}
+				}
+			}));
+			
 
 			await Task.WhenAll(listOfSubscriptions);
 		}
