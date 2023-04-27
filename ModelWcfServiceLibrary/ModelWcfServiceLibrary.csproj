@@ -90,6 +90,7 @@
     <Compile Include="IModelService.cs" />
     <Compile Include="ModelServiceException.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
+    <Compile Include="Model\ScanPeriodMapping\SignalScanPeriodMapping.cs" />
     <Compile Include="Model\SignalMapping\AnalogSignalMapping.cs" />
     <Compile Include="Model\SignalMapping\DiscreteSignalMapping.cs" />
     <Compile Include="Model\Signals\DiscreteSignalType.cs" />
@@ -104,8 +105,10 @@
     <Compile Include="Repository\IDiscreteSignalMappingRepository.cs" />
     <Compile Include="Repository\IRtuRepository.cs" />
     <Compile Include="Repository\AnalogSignalMappingRepository.cs" />
+    <Compile Include="Repository\ISignalScanPeriodMappingRepository.cs" />
     <Compile Include="Repository\RtuRepository.cs" />
     <Compile Include="Model\RTU\RTUData.cs" />
+    <Compile Include="Repository\SignalScanPeriodMappingRepository.cs" />
     <Compile Include="Serializer\IListSerializer.cs" />
     <Compile Include="Serializer\JsonListSerializer.cs" />
   </ItemGroup>

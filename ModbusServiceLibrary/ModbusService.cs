@@ -73,5 +73,11 @@ namespace ModbusServiceLibrary
 		{
 			return rtuCommandInvoker.ConnectToRtu(rtuId);
 		}
+
+		public void ReceiveCommand(CommandResultBase commandResult)
+		{
+
+		}
+
 	}
 }

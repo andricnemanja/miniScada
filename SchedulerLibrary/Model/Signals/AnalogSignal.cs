@@ -40,7 +40,7 @@ namespace SchedulerLibrary.Model.Signals
 		{
 			ID = analogSignalStaticData.ID;
 			Name = analogSignalStaticData.Name;
-			AccessType = analogSignalStaticData.SignalAccessType;
+			AccessType = (SignalAccessType)analogSignalStaticData.AccessType;
 		}
 	}
 }

@@ -11,8 +11,6 @@ namespace SchedulerLibrary
 	[ServiceContract]
 	public interface ISchedulerCallback
 	{
-		[OperationContract(IsOneWay = true)]
-		string RecieveCommandResults();
 
 
 		// TODO: Add your service operations here

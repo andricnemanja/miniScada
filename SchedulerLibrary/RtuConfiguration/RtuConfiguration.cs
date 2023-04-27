@@ -18,7 +18,7 @@ namespace SchedulerLibrary.RtuConfiguration
 		/// <summary>
 		/// List of RTUs.
 		/// </summary>
-		private List<RTU> RtuList;
+		public List<RTU> RtuList { get; private set; }
 
 		/// <summary>
 		/// Initializes instance of the class <see cref="RtuConfiguration"/.>

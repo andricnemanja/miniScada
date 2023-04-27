@@ -1,50 +1,52 @@
 ﻿using Quartz;
 using Quartz.Impl;
+using SchedulerLibrary.Model.SignalPeriod;
+using SchedulerLibrary.Period_Mapper;
+using SchedulerLibrary.RtuConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SchedulerLibrary.PeriodicalScan.SignalTypeScan
 {
 	public class Scheduler : IScheduler
 	{
-		public TimeSpan Time { get; }
-
 		private static Quartz.IScheduler scheduler;
 
-		public Scheduler(TimeSpan timeSpan)
+		public Scheduler()
 		{
-			Time = timeSpan;
-			Task.Run(() => CreateScheduler());
+			CreateScheduler();
 		}
 
-		private static async Task CreateScheduler()
+		private static async void CreateScheduler()
 		{
 			var schedulerFactory = new StdSchedulerFactory();
 
 			scheduler = await schedulerFactory.GetScheduler();
 		}
 
-		public async void StartScheduler()
+		public async void RegisterSchedulerJob<T>(TimeSpan time, IRtuConfiguration rtuConfiguration) where T : Quartz.IJob
 		{
-			var readTypes = JobBuilder.Create<Command>()
-				.WithIdentity("readTypes", "typeReading")
+			var schedulerJob = JobBuilder.Create<T>()
+				.WithIdentity(typeof(T).FullName)
 				.Build();
 
+			schedulerJob.JobDataMap["RtuConfiguration"] = rtuConfiguration;
+
 			var trigger = TriggerBuilder.Create()
-				.WithIdentity("Trigger", "typeReading")
+				.WithIdentity(typeof(T).FullName)
 				.StartNow()
 				.WithSimpleSchedule(x => x
-					.WithInterval(Time)
+					.WithInterval(time)
 					.RepeatForever())
 				.Build();
 
-			await scheduler.ScheduleJob(readTypes, trigger);
+			await scheduler.ScheduleJob(schedulerJob, trigger);
 
 			await scheduler.Start();
 		}
-
 	}
 }

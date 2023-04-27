@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "Name": "Analog signal period mapping 1",
+    "TimeStamp": "00:00:02"
+  },
+  {
+    "Id": 2,
+    "Name": "Analog signal period mapping 2",
+    "TimeStamp": "00:00:05"
+  },
+  {
+    "Id": 3,
+    "Name": "Analog signal period mapping 3",
+    "TimeStamp": "00:00:10"
+  },
+  {
+    "Id": 4,
+    "Name": "Analog signal period mapping 4",
+    "TimeStamp": "00:00:15"
+  }
+]

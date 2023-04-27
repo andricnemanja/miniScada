@@ -36,7 +36,7 @@
 		{
 			ID = discreteSignalStaticData.ID;
 			Name = discreteSignalStaticData.Name;
-			AccessType = discreteSignalStaticData.SignalAccessType;
+			AccessType = (SignalAccessType)discreteSignalStaticData.AccessType;
 		}
 	}
 	}

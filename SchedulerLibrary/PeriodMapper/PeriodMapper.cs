@@ -11,7 +11,7 @@ namespace SchedulerLibrary.Period_Mapper
 	/// <summary>
 	/// Holds information mapped from <see cref="ModelServiceReference"/>
 	/// </summary>
-	public class PeriodMapper
+	public class PeriodMapper : IPeriodMapper
 	{
 		private readonly IModelService modelService;
 
@@ -20,7 +20,7 @@ namespace SchedulerLibrary.Period_Mapper
 		/// </summary>
 		public List<SignalPeriod> signalPeriods = new List<SignalPeriod>();
 
-		public PeriodMapper(IModelService modelService, List<SignalPeriod> signalPeriods)
+		public PeriodMapper(IModelService modelService)
 		{
 			this.modelService = modelService;
 			this.signalPeriods = ReadPeriodMapping();
@@ -34,7 +34,7 @@ namespace SchedulerLibrary.Period_Mapper
 		{
 			List<SignalPeriod> periods = new List<SignalPeriod>();
 
-			foreach (var mapping in modelService.GetPeriodMapping)
+			foreach (var mapping in modelService.GetSignalScanPeriodMappings())
 			{
 				SignalPeriod newPeriod = new SignalPeriod()
 				{
@@ -57,6 +57,11 @@ namespace SchedulerLibrary.Period_Mapper
 		public SignalPeriod FindSignalPeriod(int mappingId)
 		{
 			return signalPeriods.SingleOrDefault(m => m.Id == mappingId);
+		}
+
+		public TimeSpan FindTimeSpanForSignal(int mappingId)
+		{
+			return FindSignalPeriod(mappingId).TimeStamp;
 		}
 	}
 }

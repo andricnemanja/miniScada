@@ -2,9 +2,10 @@
 
 namespace SchedulerLibrary
 {
-	[ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(ISchedulerCallback))]
+	[ServiceContract(SessionMode = SessionMode.Required)]
 	public interface ISchedulerService
 	{
-
+		[OperationContract]
+		int UselessMethod();
 	}
 }

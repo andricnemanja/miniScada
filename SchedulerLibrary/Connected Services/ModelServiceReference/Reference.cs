@@ -664,6 +664,84 @@ namespace SchedulerLibrary.ModelServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SignalScanPeriodMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMa" +
+        "pping")]
+    [System.SerializableAttribute()]
+    public partial class SignalScanPeriodMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan TimeStampField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
     public interface IModelService {
@@ -716,6 +794,12 @@ namespace SchedulerLibrary.ModelServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
         System.Threading.Tasks.Task<string[]> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
+        SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
+        System.Threading.Tasks.Task<SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -807,6 +891,14 @@ namespace SchedulerLibrary.ModelServiceReference {
         
         public System.Threading.Tasks.Task<string[]> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress) {
             return base.Channel.GetDiscreteSignalPossibleStatesAsync(rtuId, signalAddress);
+        }
+        
+        public SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings() {
+            return base.Channel.GetSignalScanPeriodMappings();
+        }
+        
+        public System.Threading.Tasks.Task<SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync() {
+            return base.Channel.GetSignalScanPeriodMappingsAsync();
         }
     }
 }

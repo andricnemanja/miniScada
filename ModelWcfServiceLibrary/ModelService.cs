@@ -2,6 +2,7 @@
 using System.Linq;
 using System.ServiceModel;
 using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.ScanPeriodMapping;
 using ModelWcfServiceLibrary.Model.SignalMapping;
 using ModelWcfServiceLibrary.Model.Signals;
 using ModelWcfServiceLibrary.Repository;
@@ -16,6 +17,7 @@ namespace ModelWcfServiceLibrary
 		private readonly IRtuRepository rtuRepository;
 		private readonly IDiscreteSignalMappingRepository discreteSignalMappingRepository;
 		private readonly IAnalogSignalMappingRepository analogSignalMappingRepository;
+		private readonly ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModelService"/>
@@ -23,11 +25,12 @@ namespace ModelWcfServiceLibrary
 		/// <param name="rtuRepository">Instance of the <see cref="IRtuRepository"/> class</param>
 		/// <param name="analogSignalMappingRepository"></param>
 		/// <param name="discreteSignalMappingRepository"></param>
-		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, IDiscreteSignalMappingRepository discreteSignalMappingRepository)
+		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, IDiscreteSignalMappingRepository discreteSignalMappingRepository, ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository)
 		{
 			this.rtuRepository = rtuRepository;
 			this.analogSignalMappingRepository = analogSignalMappingRepository;
 			this.discreteSignalMappingRepository = discreteSignalMappingRepository;
+			this.signalScanPeriodMappingRepository = signalScanPeriodMappingRepository;
 		}
 
 		/// <summary>
@@ -108,6 +111,11 @@ namespace ModelWcfServiceLibrary
 			RTU rtu = rtuRepository.GetRTUByID(rtuId);
 			DiscreteSignal signal = rtu.DiscreteSignals.FirstOrDefault(s => s.Address == signalAddress);
 			return discreteSignalMappingRepository.GetDiscreteSignalPossibleStates(signal.MappingId);
+		}
+
+		public IEnumerable<SignalScanPeriodMapping> GetSignalScanPeriodMappings()
+		{
+			return signalScanPeriodMappingRepository.SignalScanPeriodMappingList;
 		}
 	}
 }

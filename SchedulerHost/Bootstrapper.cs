@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using Scheduler;
+using SchedulerLibrary;
+using SchedulerLibrary.RtuConfiguration;
 
 namespace SchedulerHost
 {
@@ -14,8 +15,8 @@ namespace SchedulerHost
 		public static ContainerBuilder RegisterContainerBuilder()
 		{
 			ContainerBuilder builder = new ContainerBuilder();
-			builder.RegisterType<Scheduler.ModelServiceReference.ModelServiceClient>().As<Scheduler.ModelServiceReference.IModelService>();
-
+			builder.RegisterType<SchedulerLibrary.ModelServiceReference.ModelServiceClient>().As<SchedulerLibrary.ModelServiceReference.IModelService>();
+			builder.RegisterType<RtuConfiguration>().As<IRtuConfiguration>().OnActivated(r => r.Instance.InitializeData());
 			builder.RegisterType<SchedulerService>().As<ISchedulerService>();
 			return builder;
 		}

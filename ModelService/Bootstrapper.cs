@@ -2,6 +2,7 @@
 using ModelWcfServiceLibrary;
 using ModelWcfServiceLibrary.FileAccessing;
 using ModelWcfServiceLibrary.Model.RTU;
+using ModelWcfServiceLibrary.Model.ScanPeriodMapping;
 using ModelWcfServiceLibrary.Model.SignalMapping;
 using ModelWcfServiceLibrary.Repository;
 using ModelWcfServiceLibrary.Serializer;
@@ -28,12 +29,16 @@ namespace ModelServiceHost
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\AnalogSignalMappings.json"));
 			builder.RegisterType<JsonListSerializer<DiscreteSignalMapping>>().As<IListSerializer<DiscreteSignalMapping>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\DiscreteSignalMappings.json"));
+			builder.RegisterType<JsonListSerializer<SignalScanPeriodMapping>>().As<IListSerializer<SignalScanPeriodMapping>>()
+				.WithParameter(new TypedParameter(typeof(string), @"\Resources\ScanPeriodMappings.json"));
 
 			builder.RegisterType<AnalogSignalMappingRepository>().As<IAnalogSignalMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<DiscreteSignalMappingRepository>().As<IDiscreteSignalMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<RtuRepository>().As<IRtuRepository>()
+				.OnActivated(c => c.Instance.Deserialize());
+			builder.RegisterType<SignalScanPeriodMappingRepository>().As<ISignalScanPeriodMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 
 			builder.RegisterType<ModelService>().As<IModelService>();

@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Autofac.Core;
-using Scheduler;
+using SchedulerLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,9 @@ namespace SchedulerHost
 		{
 			IContainer container = Bootstrapper.RegisterContainerBuilder().Build();
 
-			ServiceHost selfHost = new ServiceHost(typeof(SchedulerService));
+			ISchedulerService schedulerService = container.Resolve<ISchedulerService>();
+
+			ServiceHost selfHost = new ServiceHost(schedulerService);
 			selfHost.AddDependencyInjectionBehavior<ISchedulerService>(container);
 
 			IComponentRegistration registration;
