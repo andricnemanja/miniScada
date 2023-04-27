@@ -21,7 +21,6 @@ namespace DynamicCacheManager.ServiceCache
 		{
 			List<Rtu> rtus = new List<Rtu>();
 
-			modelService.GetAllFlags();
 			foreach (var rtu in modelService.GetAllRTUs())
 			{
 				List<AnalogSignal> analogSignals = new List<AnalogSignal>();

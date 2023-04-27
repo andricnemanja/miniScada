@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using DynamicCacheManager;
+using DynamicCacheManager.DynamicCacheClient;
+using DynamicCacheManager.DynamicCacheClient.RedisCacheClient;
 using DynamicCacheManager.ResultsProcessing;
 using DynamicCacheManager.ServiceCache;
 

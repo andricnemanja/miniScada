@@ -59,6 +59,10 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 
 		public string GetSignalValue(ISignal signal)
 		{
+			if (!redisDatabase.KeyExists(redisStringBuilder.GenerateSignalKeyName(signal.Id)))
+			{
+				return string.Empty;
+			}
 			return redisDatabase.HashGet(redisStringBuilder.GenerateSignalKeyName(signal.Id), "value");
 		}
 	}

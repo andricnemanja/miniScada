@@ -23,6 +23,11 @@ namespace DynamicCacheManager.ServiceCache
 		{
 			Rtu rtu = RtuList.SingleOrDefault(r => r.Id == rtuId);
 
+			if(rtu == null)
+			{
+				return null;
+			}
+
 			ISignal signal = rtu.AnalogSignals.SingleOrDefault(s => s.Id == signalId);
 			if (signal == null)
 			{

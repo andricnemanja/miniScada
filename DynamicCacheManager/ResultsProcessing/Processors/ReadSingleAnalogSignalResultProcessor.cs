@@ -22,10 +22,16 @@ namespace DynamicCacheManager.ResultsProcessing
 			ReadSingleAnalogSignalResult commandData = (ReadSingleAnalogSignalResult)commandResult;
 			AnalogSignal signal = (AnalogSignal)rtuCache.GetSignal(commandData.RtuId, commandData.SignalId);
 
-			if(!double.TryParse(dynamicCacheClient.GetSignalValue(signal), out double currentSignalValue))
+			string signalCacheValue = dynamicCacheClient.GetSignalValue(signal);
+
+			if(signalCacheValue == string.Empty)
 			{
+				dynamicCacheClient.ChangeSignalValue(signal, commandData.SignalValue.ToString());
+				dynamicCacheClient.PublishSignalChange(signal, commandData.SignalValue.ToString());
 				return;
 			}
+
+			double.TryParse(signalCacheValue, out double currentSignalValue);
 
 			if (Math.Abs(currentSignalValue - commandData.SignalValue) > signal.Deadband) 
 			{ 
