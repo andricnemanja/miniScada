@@ -1,4 +1,5 @@
-﻿using DynamicCacheManager.Model;
+﻿using DynamicCacheManager.DynamicCacheClient;
+using DynamicCacheManager.Model;
 using DynamicCacheManager.ServiceCache;
 using ModbusServiceLibrary.CommandResult;
 
@@ -18,10 +19,10 @@ namespace DynamicCacheManager.ResultsProcessing
 		public void ProcessCommandResult(CommandResultBase commandResult)
 		{
 			ReadSingleDiscreteSignalResult commandData = (ReadSingleDiscreteSignalResult)commandResult;
-
 			ISignal signal = rtuCache.GetSignal(commandData.RtuId, commandData.SignalId);
 
 			dynamicCacheClient.ChangeSignalValue(signal, commandData.State);
+			dynamicCacheClient.PublishSignalChange(signal, commandData.State);
 		}
 	}
 }

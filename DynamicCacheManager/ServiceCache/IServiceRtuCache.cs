@@ -5,7 +5,7 @@ namespace DynamicCacheManager.ServiceCache
 {
 	public interface IServiceRtuCache
 	{
-		List<Rtu> RtuList { get; set; }
+		List<Rtu> RtuList { get; }
 		ISignal GetSignal(int rtuId, int signalId);
 	}
 }

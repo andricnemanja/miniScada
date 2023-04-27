@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DynamicCacheManager.DynamicCacheClient;
 using DynamicCacheManager.ServiceCache;
 using ModbusServiceLibrary.CommandResult;
 
@@ -11,7 +12,7 @@ namespace DynamicCacheManager.ResultsProcessing
 
 		public CommandResultReceiver(IServiceRtuCache rtuCache, IDynamicCacheClient dynamicCacheClient)
 		{
-			this.commandResultProcessors = new Dictionary<Type, ICommandResultProcessor>()
+			commandResultProcessors = new Dictionary<Type, ICommandResultProcessor>()
 			{
 				{typeof(ReadSingleAnalogSignalResult), new ReadSingleAnalogSignalResultProcessor(rtuCache, dynamicCacheClient) },
 				{typeof(ReadSingleDiscreteSignalResult), new ReadSingleDiscreteSignalResultProcessor(rtuCache, dynamicCacheClient) }

@@ -6,7 +6,18 @@ namespace DynamicCacheManager.ServiceCache
 {
 	public class ServiceRtuCache : IServiceRtuCache
 	{
-		public List<Rtu> RtuList { get; set; }
+		private readonly IStaticDataLoader staticDataLoader;
+		public ServiceRtuCache(IStaticDataLoader staticDataLoader) 
+		{
+			this.staticDataLoader = staticDataLoader;
+		}
+
+		public List<Rtu> RtuList { get; private set; }
+
+		public void InitializeData()
+		{
+			RtuList = staticDataLoader.InitializeData();
+		}
 
 		public ISignal GetSignal(int rtuId, int signalId)
 		{

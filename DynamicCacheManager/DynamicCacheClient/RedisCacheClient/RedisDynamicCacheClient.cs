@@ -1,7 +1,7 @@
 ﻿using DynamicCacheManager.Model;
 using StackExchange.Redis;
 
-namespace DynamicCacheManager
+namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 {
 	public sealed class RedisDynamicCacheClient : IDynamicCacheClient
 	{
@@ -21,10 +21,9 @@ namespace DynamicCacheManager
 			publisher = muxer.GetSubscriber();
 		}
 
-		public void AddFlagToSignal(ISignal signal, string flag)
+		public void AddSignalFlag(ISignal signal, string flag)
 		{
 			redisDatabase.ListRightPush(redisStringBuilder.GenerateSignaFlagListName(signal.Id), flag);
-			publisher.Publish(redisStringBuilder.GenerateFlagChannelName(signal.RtuId, signal.GetType().Name, signal.Id), flag);
 		}
 
 		public void SaveSignalToCache(ISignal signal)
@@ -40,18 +39,27 @@ namespace DynamicCacheManager
 			}
 		}
 
-		public void ChangeSignalValue(ISignal signal, double newValue)
-		{
-			ChangeSignalValue(signal, newValue.ToString());
-		}
-
 		public void ChangeSignalValue(ISignal signal, string newValue)
 		{
 			redisDatabase.HashSet(redisStringBuilder.GenerateSignalKeyName(signal.Id), new HashEntry[]
 			{
 				new HashEntry("value", newValue)
 			});
+		}
+
+		public void PublishSignalChange(ISignal signal, string newValue)
+		{
 			publisher.Publish(redisStringBuilder.GenerateChannelName(signal.RtuId, signal.GetType().Name, signal.Id), newValue);
+		}
+
+		public void PublishNewSignalFlag(ISignal signal, string flag)
+		{
+			publisher.Publish(redisStringBuilder.GenerateFlagChannelName(signal.RtuId, signal.GetType().Name, signal.Id), flag);
+		}
+
+		public string GetSignalValue(ISignal signal)
+		{
+			return redisDatabase.HashGet(redisStringBuilder.GenerateSignalKeyName(signal.Id), "value");
 		}
 	}
 }

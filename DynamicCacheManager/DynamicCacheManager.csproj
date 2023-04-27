@@ -103,29 +103,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ISignalNameStringBuilder.cs" />
-    <Compile Include="ModbusCallback\ModbusServiceCallback.cs" />
+    <Compile Include="DynamicCacheClient\RedisCacheClient\ISignalNameStringBuilder.cs" />
     <Compile Include="Model\ISignal.cs" />
     <Compile Include="ResultsProcessing\CommandResultQueue.cs" />
     <Compile Include="ResultsProcessing\CommandResultReceiver.cs" />
-    <Compile Include="ResultsProcessing\ICommandResultProcessor.cs" />
+    <Compile Include="ResultsProcessing\Processors\ICommandResultProcessor.cs" />
     <Compile Include="ResultsProcessing\ICommandResultQueue.cs" />
     <Compile Include="ResultsProcessing\ICommandResultReceiver.cs" />
-    <Compile Include="ResultsProcessing\ReadSingleAnalogSignalResultProcessor.cs" />
-    <Compile Include="ResultsProcessing\ReadSingleDiscreteSignalResultProcessor.cs" />
-    <Compile Include="RedisDynamicCacheClient.cs" />
-    <Compile Include="IDynamicCacheClient.cs" />
+    <Compile Include="ResultsProcessing\Processors\ReadSingleAnalogSignalResultProcessor.cs" />
+    <Compile Include="ResultsProcessing\Processors\ReadSingleDiscreteSignalResultProcessor.cs" />
+    <Compile Include="DynamicCacheClient\RedisCacheClient\RedisDynamicCacheClient.cs" />
+    <Compile Include="DynamicCacheClient\IDynamicCacheClient.cs" />
     <Compile Include="IDynamicCacheManagerService.cs" />
-    <Compile Include="IStaticDataLoader.cs" />
+    <Compile Include="ServiceCache\IStaticDataLoader.cs" />
     <Compile Include="Model\AnalogSignal.cs" />
     <Compile Include="Model\DiscreteSignal.cs" />
     <Compile Include="Model\Rtu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DynamicCacheManagerService.cs" />
-    <Compile Include="RedisStringBuilder.cs" />
+    <Compile Include="DynamicCacheClient\RedisCacheClient\RedisStringBuilder.cs" />
     <Compile Include="ServiceCache\IServiceRtuCache.cs" />
     <Compile Include="ServiceCache\ServiceRtuCache.cs" />
-    <Compile Include="StaticDataLoader.cs" />
+    <Compile Include="ServiceCache\StaticDataLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

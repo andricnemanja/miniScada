@@ -1,19 +1,15 @@
-﻿using System;
-
-namespace DynamicCacheManager.Model
+﻿namespace DynamicCacheManager.Model
 {
 	public class DiscreteSignal : ISignal
 	{
-		public DiscreteSignal(int id, int rtuId, TimeSpan staleTime)
+		public DiscreteSignal(int id, int rtuId)
 		{
 			Id = id;
 			RtuId = rtuId;
-			StaleTime = staleTime;
 		}
 
 		public int Id { get; }
 		public int RtuId { get; }
-		public TimeSpan StaleTime { get; }
 
 	}
 }

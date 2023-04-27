@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DynamicCacheManager.Model;
 
-namespace DynamicCacheManager
+namespace DynamicCacheManager.ServiceCache
 {
 	public interface IStaticDataLoader
 	{

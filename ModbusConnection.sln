@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCacheManager", "Dyna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCacheManagerHost", "DynamicCacheManagerServiceHost\DynamicCacheManagerHost.csproj", "{35324D35-52EF-4B0F-8B5D-8414B96AB93F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCacheManager.Tests", "DynamicCacheManager.Tests\DynamicCacheManager.Tests.csproj", "{F11FB3FB-8378-4C50-8BB0-36457EEB9C08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{35324D35-52EF-4B0F-8B5D-8414B96AB93F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35324D35-52EF-4B0F-8B5D-8414B96AB93F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35324D35-52EF-4B0F-8B5D-8414B96AB93F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +97,7 @@ Global
 		{F70022AE-FD4C-4095-ADE3-96D8C909BD77} = {BDDBB1AE-4E05-43EF-90D7-EAEA15DDD81F}
 		{5CF4BA8D-4386-4ACB-BEAF-3A0D7A823649} = {11F52189-9CA2-4F2B-B5D3-21C4C77EB796}
 		{35324D35-52EF-4B0F-8B5D-8414B96AB93F} = {11F52189-9CA2-4F2B-B5D3-21C4C77EB796}
+		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08} = {11F52189-9CA2-4F2B-B5D3-21C4C77EB796}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04FAD949-D920-4455-847F-59A5B4BAFF56}

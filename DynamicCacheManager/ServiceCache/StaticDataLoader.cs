@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using DynamicCacheManager.DynamicCacheClient;
 using DynamicCacheManager.Model;
 using DynamicCacheManager.ModelServiceReference;
 
-namespace DynamicCacheManager
+namespace DynamicCacheManager.ServiceCache
 {
 	public sealed class StaticDataLoader : IStaticDataLoader
 	{
@@ -26,7 +27,7 @@ namespace DynamicCacheManager
 				List<AnalogSignal> analogSignals = new List<AnalogSignal>();
 				foreach (var analogSignal in rtu.AnalogSignals)
 				{
-					AnalogSignal newAnalogSignal = new AnalogSignal(analogSignal.ID, rtu.RTUData.ID, analogSignal.Deadband, analogSignal.StaleTime);
+					AnalogSignal newAnalogSignal = new AnalogSignal(analogSignal.ID, rtu.RTUData.ID, analogSignal.Deadband);
 					dynamicCacheClient.SaveSignalToCache(newAnalogSignal);
 					analogSignals.Add(newAnalogSignal);
 				}
@@ -34,7 +35,7 @@ namespace DynamicCacheManager
 				List<DiscreteSignal> discreteSignals = new List<DiscreteSignal>();
 				foreach (var discreteSignal in rtu.DiscreteSignals)
 				{
-					DiscreteSignal newDiscreteSignal = new DiscreteSignal(discreteSignal.ID, rtu.RTUData.ID, discreteSignal.StaleTime);
+					DiscreteSignal newDiscreteSignal = new DiscreteSignal(discreteSignal.ID, rtu.RTUData.ID);
 					dynamicCacheClient.SaveSignalToCache(newDiscreteSignal);
 					discreteSignals.Add(newDiscreteSignal);
 				}

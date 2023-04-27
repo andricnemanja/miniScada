@@ -16,7 +16,7 @@ namespace DynamicCacheManagerHost
 			builder.RegisterType<StaticDataLoader>().As<IStaticDataLoader>();
 			builder.RegisterType<DynamicCacheManager.ModelServiceReference.ModelServiceClient>().As<DynamicCacheManager.ModelServiceReference.IModelService>();
 			builder.RegisterType<RedisDynamicCacheClient>().As<IDynamicCacheClient>().SingleInstance();
-			builder.RegisterType<ServiceRtuCache>().As<IServiceRtuCache>().SingleInstance();
+			builder.RegisterType<ServiceRtuCache>().As<IServiceRtuCache>().OnActivated(c => c.Instance.InitializeData());
 			builder.RegisterType<CommandResultQueue>().As<ICommandResultQueue>();
 			builder.RegisterType<CommandResultReceiver>().As<ICommandResultReceiver>();
 			builder.RegisterType<RedisStringBuilder>().As<ISignalNameStringBuilder>();
