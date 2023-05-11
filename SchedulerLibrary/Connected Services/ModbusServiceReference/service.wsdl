@@ -58,6 +58,9 @@
   <wsdl:message name="IModbusDuplex_ConnectToRtu_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConnectToRtuResponse" />
   </wsdl:message>
+  <wsdl:message name="IModbusDuplex_ReceiveCommand_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveCommand" />
+  </wsdl:message>
   <wsdl:message name="IModbusDuplex_ReceiveCommandResult_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveCommandResult" />
   </wsdl:message>
@@ -77,6 +80,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ConnectToRtu">
       <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/ConnectToRtu" message="tns:IModbusDuplex_ConnectToRtu_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse" message="tns:IModbusDuplex_ConnectToRtu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveCommand">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/ReceiveCommand" message="tns:IModbusDuplex_ReceiveCommand_InputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveCommandResult">
       <wsdl:output wsaw:Action="http://tempuri.org/IModbusDuplex/ReceiveCommandResult" message="tns:IModbusDuplex_ReceiveCommandResult_OutputCallbackMessage" />
@@ -118,6 +124,12 @@
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveCommand">
+      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ReceiveCommand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="ReceiveCommandResult">
       <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ReceiveCommandResult" style="document" />

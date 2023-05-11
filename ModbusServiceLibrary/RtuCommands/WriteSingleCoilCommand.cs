@@ -1,5 +1,8 @@
 ﻿namespace ModbusServiceLibrary.RtuCommands
 {
+	/// <summary>
+	/// Command that is sent whenever the new state of the discrete signal is written.
+	/// </summary>
 	public class WriteDiscreteSignalCommand : IRtuCommand
 	{
 		public int RtuId { get; }

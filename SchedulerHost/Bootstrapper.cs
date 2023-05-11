@@ -16,6 +16,7 @@ namespace SchedulerHost
 		{
 			ContainerBuilder builder = new ContainerBuilder();
 			builder.RegisterType<SchedulerLibrary.ModelServiceReference.ModelServiceClient>().As<SchedulerLibrary.ModelServiceReference.IModelService>();
+			builder.RegisterType<SchedulerLibrary.ModbusServiceReference.ModbusDuplexClient>().As<SchedulerLibrary.ModbusServiceReference.IModbusDuplex>();
 			builder.RegisterType<RtuConfiguration>().As<IRtuConfiguration>().OnActivated(r => r.Instance.InitializeData());
 			builder.RegisterType<SchedulerService>().As<ISchedulerService>();
 			return builder;

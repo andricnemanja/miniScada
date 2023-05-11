@@ -112,7 +112,22 @@
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.SignalScanPeriodMapping.datasource">
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.AnalogSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.AnalogSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.DiscreteSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.DiscreteSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.RTU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.RTUData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\service.wsdl" />
@@ -124,14 +139,47 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignal.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignal1.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignal2.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignal3.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignal4.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignalMapping.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignalMapping1.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignalMapping2.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignalMapping3.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.AnalogSignalMapping4.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignal.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignal1.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignal2.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignal3.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignal4.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignalMapping1.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignalMapping2.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignalMapping3.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignalMapping4.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTU.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTU1.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTU2.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTU3.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTU4.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTUData.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTUData1.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTUData2.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTUData3.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTUData4.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping1.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping2.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SchedulerLibrary\SchedulerLibrary.csproj">
+      <Project>{AEC9FF0B-1411-4EBF-BC24-89104A7F5867}</Project>
+      <Name>SchedulerLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ModelServiceReference\" />
@@ -147,12 +195,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SchedulerLibrary\SchedulerLibrary.csproj">
-      <Project>{AEC9FF0B-1411-4EBF-BC24-89104A7F5867}</Project>
-      <Name>SchedulerLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

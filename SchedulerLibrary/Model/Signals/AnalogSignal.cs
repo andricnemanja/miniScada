@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SchedulerLibrary.Model.Signals
 {
 	public class AnalogSignal : ISignal

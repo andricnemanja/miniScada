@@ -74,9 +74,15 @@ namespace ModbusServiceLibrary
 			return rtuCommandInvoker.ConnectToRtu(rtuId);
 		}
 
-		public void ReceiveCommand(CommandResultBase commandResult)
+		/// <summary>
+		/// Method that recieves command sent from the Scheduler library.
+		/// </summary>
+		/// <param name="command">Commmand sent from Scheduler service.</param>
+		public void ReceiveCommand(IRtuCommand command)
 		{
-
+			//izmeniti invoker da ne prima komandu, vec da samo prosledjuje dalje onima koji obradjuju
+			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
+			callback.ReceiveCommandResult(rtuCommandInvoker.ReadSingleSignalScheduler(command));
 		}
 
 	}

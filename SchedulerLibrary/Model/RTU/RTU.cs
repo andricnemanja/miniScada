@@ -32,7 +32,7 @@ namespace SchedulerLibrary.Model.RTU
 		/// </summary>
 		/// <param name="rtuStaticData">An instance of the <see cref="ModelServiceReference.RTU rtuStaticData"/>.
 		/// Allows converting Model Service static data to Modbus Service model class</param>
-		public RTU(ModelServiceReference.RTU rtuStaticData)
+		public RTU(ModbusServiceLibrary.ModelServiceReference.RTU rtuStaticData)
 		{
 			Name = rtuStaticData.RTUData.Name;
 			ID = rtuStaticData.RTUData.ID;

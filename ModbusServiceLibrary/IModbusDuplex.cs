@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using ModbusServiceLibrary.CommandResult;
+using ModbusServiceLibrary.RtuCommands;
 
 namespace ModbusServiceLibrary
 {
@@ -50,5 +51,10 @@ namespace ModbusServiceLibrary
 		/// <returns>True if the connection is made, false otherwise.</returns>
 		[OperationContract(IsOneWay = false)]
 		CommandResultBase ConnectToRtu(int rtuId);
+
+
+		[OperationContract(IsOneWay = true)]
+		void ReceiveCommand(IRtuCommand commandResult);
+
 	}
 }

@@ -1,12 +1,7 @@
-﻿using SchedulerLibrary.Model.RTU;
-using SchedulerLibrary.Model.Signals;
+﻿using SchedulerLibrary.Model.Signals;
 using SchedulerLibrary.ModelServiceReference;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
 using RTU = SchedulerLibrary.Model.RTU.RTU;
 
 namespace SchedulerLibrary.RtuConfiguration
