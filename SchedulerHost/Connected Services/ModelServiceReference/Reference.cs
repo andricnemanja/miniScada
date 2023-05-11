@@ -15,21 +15,21 @@ namespace SchedulerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RTU", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelRTU", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU")]
     [System.SerializableAttribute()]
-    public partial class RTU : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelRTU : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchedulerHost.ModelServiceReference.AnalogSignal[] AnalogSignalsField;
+        private SchedulerHost.ModelServiceReference.ModelAnalogSignal[] AnalogSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchedulerHost.ModelServiceReference.DiscreteSignal[] DiscreteSignalsField;
+        private SchedulerHost.ModelServiceReference.ModelDiscreteSignal[] DiscreteSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchedulerHost.ModelServiceReference.RTUData RTUDataField;
+        private SchedulerHost.ModelServiceReference.ModelRTUData RTUDataField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -42,7 +42,7 @@ namespace SchedulerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchedulerHost.ModelServiceReference.AnalogSignal[] AnalogSignals {
+        public SchedulerHost.ModelServiceReference.ModelAnalogSignal[] AnalogSignals {
             get {
                 return this.AnalogSignalsField;
             }
@@ -55,7 +55,7 @@ namespace SchedulerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchedulerHost.ModelServiceReference.DiscreteSignal[] DiscreteSignals {
+        public SchedulerHost.ModelServiceReference.ModelDiscreteSignal[] DiscreteSignals {
             get {
                 return this.DiscreteSignalsField;
             }
@@ -68,7 +68,7 @@ namespace SchedulerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchedulerHost.ModelServiceReference.RTUData RTUData {
+        public SchedulerHost.ModelServiceReference.ModelRTUData RTUData {
             get {
                 return this.RTUDataField;
             }
@@ -92,9 +92,9 @@ namespace SchedulerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RTUData", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelRTUData", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
     [System.SerializableAttribute()]
-    public partial class RTUData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelRTUData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -185,15 +185,15 @@ namespace SchedulerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AnalogSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelAnalogSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
     [System.SerializableAttribute()]
-    public partial class AnalogSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelAnalogSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchedulerHost.ModelServiceReference.SignalAccessType AccessTypeField;
+        private SchedulerHost.ModelServiceReference.ModelSignalAccessType AccessTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AddressField;
@@ -218,7 +218,7 @@ namespace SchedulerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchedulerHost.ModelServiceReference.SignalAccessType AccessType {
+        public SchedulerHost.ModelServiceReference.ModelSignalAccessType AccessType {
             get {
                 return this.AccessTypeField;
             }
@@ -294,15 +294,15 @@ namespace SchedulerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelDiscreteSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
     [System.SerializableAttribute()]
-    public partial class DiscreteSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelDiscreteSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchedulerHost.ModelServiceReference.SignalAccessType AccessTypeField;
+        private SchedulerHost.ModelServiceReference.ModelSignalAccessType AccessTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AddressField;
@@ -330,7 +330,7 @@ namespace SchedulerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchedulerHost.ModelServiceReference.SignalAccessType AccessType {
+        public SchedulerHost.ModelServiceReference.ModelSignalAccessType AccessType {
             get {
                 return this.AccessTypeField;
             }
@@ -418,8 +418,8 @@ namespace SchedulerHost.ModelServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SignalAccessType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
-    public enum SignalAccessType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelSignalAccessType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    public enum ModelSignalAccessType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Input = 0,
@@ -494,10 +494,10 @@ namespace SchedulerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AnalogSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelAnalogSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
         "g")]
     [System.SerializableAttribute()]
-    public partial class AnalogSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelAnalogSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -588,10 +588,10 @@ namespace SchedulerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelDiscreteSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
         "g")]
     [System.SerializableAttribute()]
-    public partial class DiscreteSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelDiscreteSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -664,52 +664,130 @@ namespace SchedulerHost.ModelServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SignalScanPeriodMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMa" +
+        "pping")]
+    [System.SerializableAttribute()]
+    public partial class SignalScanPeriodMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan TimeStampField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
     public interface IModelService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        SchedulerHost.ModelServiceReference.RTU[] GetAllRTUs();
+        SchedulerHost.ModelServiceReference.ModelRTU[] GetAllRTUs();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.RTU[]> GetAllRTUsAsync();
+        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelRTU[]> GetAllRTUsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(SchedulerHost.ModelServiceReference.ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
-        SchedulerHost.ModelServiceReference.RTU GetRTU(int id);
+        SchedulerHost.ModelServiceReference.ModelRTU GetRTU(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
-        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.RTU> GetRTUAsync(int id);
+        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelRTU> GetRTUAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        SchedulerHost.ModelServiceReference.DiscreteSignal[] GetDiscreteSignalsForRtu(int id);
+        SchedulerHost.ModelServiceReference.ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.DiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        SchedulerHost.ModelServiceReference.AnalogSignal[] GetAnalogSignalsForRtu(int id);
+        SchedulerHost.ModelServiceReference.ModelAnalogSignal[] GetAnalogSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.AnalogSignal[]> GetAnalogSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        SchedulerHost.ModelServiceReference.RTUData[] GetRTUsEssentialData();
+        SchedulerHost.ModelServiceReference.ModelRTUData[] GetRTUsEssentialData();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.RTUData[]> GetRTUsEssentialDataAsync();
+        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelRTUData[]> GetRTUsEssentialDataAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        SchedulerHost.ModelServiceReference.AnalogSignalMapping[] GetAnalogSignalMappings();
+        SchedulerHost.ModelServiceReference.ModelAnalogSignalMapping[] GetAnalogSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.AnalogSignalMapping[]> GetAnalogSignalMappingsAsync();
+        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        SchedulerHost.ModelServiceReference.DiscreteSignalMapping[] GetDiscreteSignalMappings();
+        SchedulerHost.ModelServiceReference.ModelDiscreteSignalMapping[] GetDiscreteSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.DiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync();
+        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
         string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
@@ -718,10 +796,10 @@ namespace SchedulerHost.ModelServiceReference {
         System.Threading.Tasks.Task<string[]> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
-        SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings();
+        SchedulerHost.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
-        System.Threading.Tasks.Task<SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync();
+        System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -751,59 +829,59 @@ namespace SchedulerHost.ModelServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public SchedulerHost.ModelServiceReference.RTU[] GetAllRTUs() {
+        public SchedulerHost.ModelServiceReference.ModelRTU[] GetAllRTUs() {
             return base.Channel.GetAllRTUs();
         }
         
-        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.RTU[]> GetAllRTUsAsync() {
+        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelRTU[]> GetAllRTUsAsync() {
             return base.Channel.GetAllRTUsAsync();
         }
         
-        public SchedulerHost.ModelServiceReference.RTU GetRTU(int id) {
+        public SchedulerHost.ModelServiceReference.ModelRTU GetRTU(int id) {
             return base.Channel.GetRTU(id);
         }
         
-        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.RTU> GetRTUAsync(int id) {
+        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelRTU> GetRTUAsync(int id) {
             return base.Channel.GetRTUAsync(id);
         }
         
-        public SchedulerHost.ModelServiceReference.DiscreteSignal[] GetDiscreteSignalsForRtu(int id) {
+        public SchedulerHost.ModelServiceReference.ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id) {
             return base.Channel.GetDiscreteSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.DiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id) {
             return base.Channel.GetDiscreteSignalsForRtuAsync(id);
         }
         
-        public SchedulerHost.ModelServiceReference.AnalogSignal[] GetAnalogSignalsForRtu(int id) {
+        public SchedulerHost.ModelServiceReference.ModelAnalogSignal[] GetAnalogSignalsForRtu(int id) {
             return base.Channel.GetAnalogSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.AnalogSignal[]> GetAnalogSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id) {
             return base.Channel.GetAnalogSignalsForRtuAsync(id);
         }
         
-        public SchedulerHost.ModelServiceReference.RTUData[] GetRTUsEssentialData() {
+        public SchedulerHost.ModelServiceReference.ModelRTUData[] GetRTUsEssentialData() {
             return base.Channel.GetRTUsEssentialData();
         }
         
-        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.RTUData[]> GetRTUsEssentialDataAsync() {
+        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelRTUData[]> GetRTUsEssentialDataAsync() {
             return base.Channel.GetRTUsEssentialDataAsync();
         }
         
-        public SchedulerHost.ModelServiceReference.AnalogSignalMapping[] GetAnalogSignalMappings() {
+        public SchedulerHost.ModelServiceReference.ModelAnalogSignalMapping[] GetAnalogSignalMappings() {
             return base.Channel.GetAnalogSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.AnalogSignalMapping[]> GetAnalogSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync() {
             return base.Channel.GetAnalogSignalMappingsAsync();
         }
         
-        public SchedulerHost.ModelServiceReference.DiscreteSignalMapping[] GetDiscreteSignalMappings() {
+        public SchedulerHost.ModelServiceReference.ModelDiscreteSignalMapping[] GetDiscreteSignalMappings() {
             return base.Channel.GetDiscreteSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.DiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync() {
             return base.Channel.GetDiscreteSignalMappingsAsync();
         }
         
@@ -815,11 +893,11 @@ namespace SchedulerHost.ModelServiceReference {
             return base.Channel.GetDiscreteSignalPossibleStatesAsync(rtuId, signalAddress);
         }
         
-        public SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings() {
+        public SchedulerHost.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings() {
             return base.Channel.GetSignalScanPeriodMappings();
         }
         
-        public System.Threading.Tasks.Task<SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync() {
+        public System.Threading.Tasks.Task<SchedulerHost.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync() {
             return base.Channel.GetSignalScanPeriodMappingsAsync();
         }
     }

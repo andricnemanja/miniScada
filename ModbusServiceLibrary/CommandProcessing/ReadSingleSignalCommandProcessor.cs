@@ -10,34 +10,34 @@ namespace ModbusServiceLibrary.CommandProcessing
 {
 	public class ReadSingleSignalCommandProcessor : ICommandProcessor
 	{
-		private readonly IRtuConfiguration rtuConfiguration;
+		private readonly IModbusRtuConfiguration rtuConfiguration;
 		private readonly IProtocolDriver protocolDriver;
-		private readonly Dictionary<Type, Func<ISignal, int, CommandResultBase>> SignalReaders;
+		private readonly Dictionary<Type, Func<IModbusSignal, int, CommandResultBase>> SignalReaders;
 
-		public ReadSingleSignalCommandProcessor(IProtocolDriver protocolDriver, IRtuConfiguration rtuConfiguration)
+		public ReadSingleSignalCommandProcessor(IProtocolDriver protocolDriver, IModbusRtuConfiguration rtuConfiguration)
 		{
 			this.protocolDriver = protocolDriver;
 			this.rtuConfiguration = rtuConfiguration;
-			this.SignalReaders = new Dictionary<Type, Func<ISignal, int, CommandResultBase>>
+			this.SignalReaders = new Dictionary<Type, Func<IModbusSignal, int, CommandResultBase>>
 			{
-				{ typeof(AnalogSignal), ReadAnalogSignalValue },
-				{ typeof(DiscreteSignal), ReadDiscreteSignalValue },
+				{ typeof(ModbusAnalogSignal), ReadAnalogSignalValue },
+				{ typeof(ModbusDiscreteSignal), ReadDiscreteSignalValue },
 			};
 		}
 
 		public CommandResultBase ProcessCommand(IRtuCommand command)
 		{
 			ReadSingleSignalCommand readSingleSignalCommand = (ReadSingleSignalCommand)command;
-			ISignal signal = rtuConfiguration.GetSignal(readSingleSignalCommand.RtuId, readSingleSignalCommand.SignalId);
+			IModbusSignal signal = rtuConfiguration.GetSignal(readSingleSignalCommand.RtuId, readSingleSignalCommand.SignalId);
 
-			if(SignalReaders.TryGetValue(signal.GetType(), out Func<ISignal, int, CommandResultBase> readFunction))
+			if(SignalReaders.TryGetValue(signal.GetType(), out Func<IModbusSignal, int, CommandResultBase> readFunction))
 			{
 				return readFunction(signal, readSingleSignalCommand.RtuId);
 			}
 			return null;
 		}
 
-		private CommandResultBase ReadDiscreteSignalValue(ISignal signal, int rtuId)
+		private CommandResultBase ReadDiscreteSignalValue(IModbusSignal signal, int rtuId)
 		{
 			if (protocolDriver.TryReadDiscreteSignal(signal.ID, out string signalState))
 			{
@@ -46,7 +46,7 @@ namespace ModbusServiceLibrary.CommandProcessing
 			return new ReadSingleDiscreteSignalFailedResult(rtuId, signal.ID);
 		}
 
-		private CommandResultBase ReadAnalogSignalValue(ISignal signal, int rtuId)
+		private CommandResultBase ReadAnalogSignalValue(IModbusSignal signal, int rtuId)
 		{
 			if(protocolDriver.TryReadAnalogSignal(signal.ID, out double signalValue))
 			{

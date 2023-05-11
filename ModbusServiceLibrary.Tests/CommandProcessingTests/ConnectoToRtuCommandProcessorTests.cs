@@ -17,12 +17,12 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 {
 	public class ConnectoToRtuCommandProcessorTests
 	{
-		private Mock<IRtuConfiguration> rtuConfigurationMock;
+		private Mock<IModbusRtuConfiguration> rtuConfigurationMock;
 		private Mock<IProtocolDriver> protocolDriverMock;
 
 		public ConnectoToRtuCommandProcessorTests()
 		{
-			rtuConfigurationMock = new Mock<IRtuConfiguration>();
+			rtuConfigurationMock = new Mock<IModbusRtuConfiguration>();
 			protocolDriverMock = new Mock<IProtocolDriver>();
 		}
 

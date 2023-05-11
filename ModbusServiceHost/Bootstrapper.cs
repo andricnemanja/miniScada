@@ -21,7 +21,7 @@ namespace ModbusServiceHost
 			ContainerBuilder builder = new ContainerBuilder();
 
 			builder.RegisterType<ModbusServiceLibrary.ModelServiceReference.ModelServiceClient>().As<ModbusServiceLibrary.ModelServiceReference.IModelService>();
-			builder.RegisterType<RtuConfiguration>().As<IRtuConfiguration>()
+			builder.RegisterType<ModbusRtuConfiguration>().As<IModbusRtuConfiguration>()
 				.OnActivated(c => c.Instance.InitializeData()).SingleInstance();
 			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
 			builder.RegisterType<RtuCommandInvoker>().As<IRtuCommandInvoker>();

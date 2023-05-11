@@ -20,14 +20,14 @@ namespace SchedulerLibrary.PeriodicalScan.SignalTypeScan
 		/// <returns></returns>
 		public Task Execute(IJobExecutionContext context)
 		{
-			var rtuConfiguration = (IRtuConfiguration)context.JobDetail.JobDataMap["RtuConfiguration"];
+			var rtuConfiguration = (ISchedulerRtuConfiguration)context.JobDetail.JobDataMap["RtuConfiguration"];
 			var modbusDuplex = (IModbusDuplex)context.JobDetail.JobDataMap["IModbusDuplex"];
 
 			foreach (var rtu in rtuConfiguration.ReadAllRTUs())
 			{
 				foreach (var signal in rtu.Signals)
 				{
-					if (signal is AnalogSignal && signal.AccessType == SignalAccessType.Output)
+					if (signal is SchedulerAnalogSignal && signal.AccessType == SchedulerSignalAccessType.Output)
 					{
 						IRtuCommand command = new ReadSingleSignalCommand(rtu.ID, signal.ID);
 						modbusDuplex.ReceiveCommand(command);

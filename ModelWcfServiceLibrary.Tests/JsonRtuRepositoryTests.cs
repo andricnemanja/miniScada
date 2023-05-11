@@ -19,7 +19,7 @@ namespace ModelWcfServiceLibrary.Tests
 		[Fact]
 		public void GetRTUByID_IdThatExists()
 		{
-			RTU rtuByID = repository.GetRTUByID(102);
+			ModelRTU rtuByID = repository.GetRTUByID(102);
 
 			Assert.Equal("RTU2", rtuByID.RTUData.Name);
 		}
@@ -28,7 +28,7 @@ namespace ModelWcfServiceLibrary.Tests
 		[Fact]
 		public void GetRTUByID_IdThatDoesNotExist()
 		{
-			RTU rtuByID = repository.GetRTUByID(100);
+			ModelRTU rtuByID = repository.GetRTUByID(100);
 
 			Assert.Null(rtuByID);
 		}

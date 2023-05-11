@@ -11,7 +11,7 @@ namespace SchedulerLibrary.Tests.PeriodicalScan.SignalTypeScan
 		public void Execute_ShouldScanAllAnalogInputTypeSignals()
 		{
 			// Arrange
-			var rtuConfigurationMock = new Mock<IRtuConfiguration>();
+			var rtuConfigurationMock = new Mock<ISchedulerRtuConfiguration>();
 			var modbusDuplexMock = new Mock<IModbusDuplex>();
 
 		}

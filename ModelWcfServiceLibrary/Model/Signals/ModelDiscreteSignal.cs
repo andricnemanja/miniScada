@@ -1,0 +1,42 @@
+﻿using System.Runtime.Serialization;
+
+namespace ModelWcfServiceLibrary.Model.Signals
+{
+	/// <summary>
+	/// Class models discrete signal of the RTU.
+	/// </summary>
+	[DataContract]
+	public class ModelDiscreteSignal
+	{
+		/// <summary>
+		/// Unique identification number for digital signal
+		/// </summary>
+		[DataMember]
+		public int ID { get; set; }
+		/// <summary>
+		/// Name of the discrete signal
+		/// </summary>
+		[DataMember]
+		public string Name { get; set; }
+		/// <summary>
+		/// Digital signal address
+		/// </summary>
+		[DataMember]
+		public int Address { get; set; }
+		/// <summary>
+		/// Discrete signal mapping ID
+		/// </summary>
+		[DataMember]
+		public int MappingId { get; set; }
+		/// <summary>
+		/// Signal type, one bit or two bit signal
+		/// </summary>
+		[DataMember]
+		public ModelDiscreteSignalType SignalType { get; set; }
+		/// <summary>
+		/// Indicates whether the signal is read only or read-write
+		/// </summary>
+		[DataMember]
+		public ModelSignalAccessType AccessType { get; set; }
+	}
+}

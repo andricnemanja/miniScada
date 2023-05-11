@@ -9,9 +9,9 @@ namespace ModbusServiceLibrary.CommandProcessing
 	public class ConnectoToRtuCommandProcessor : ICommandProcessor
 	{
 		private readonly IProtocolDriver protocolDriver;
-		private readonly IRtuConfiguration rtuConfiguration;
+		private readonly IModbusRtuConfiguration rtuConfiguration;
 
-		public ConnectoToRtuCommandProcessor(IProtocolDriver protocolDriver, IRtuConfiguration rtuConfiguration)
+		public ConnectoToRtuCommandProcessor(IProtocolDriver protocolDriver, IModbusRtuConfiguration rtuConfiguration)
 		{
 			this.protocolDriver = protocolDriver;
 			this.rtuConfiguration = rtuConfiguration;

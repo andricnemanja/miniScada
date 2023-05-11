@@ -12,7 +12,7 @@ namespace ModbusServiceLibrary
 	{
 		private readonly Dictionary<Type, ICommandProcessor> commandProcessors;
 
-		public CommandReceiver(IRtuConfiguration rtuConfiguration, IProtocolDriver protocolDriver)
+		public CommandReceiver(IModbusRtuConfiguration rtuConfiguration, IProtocolDriver protocolDriver)
 		{
 			this.commandProcessors = new Dictionary<Type, ICommandProcessor>()
 			{

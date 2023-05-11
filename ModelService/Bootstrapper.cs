@@ -23,11 +23,11 @@ namespace ModelServiceHost
 
 			builder.RegisterType<FileAccess>().As<IFileAccess>();
 
-			builder.RegisterType<JsonListSerializer<RTU>>().As<IListSerializer<RTU>>()
+			builder.RegisterType<JsonListSerializer<ModelRTU>>().As<IListSerializer<ModelRTU>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\RTUs.json"));
-			builder.RegisterType<JsonListSerializer<AnalogSignalMapping>>().As<IListSerializer<AnalogSignalMapping>>()
+			builder.RegisterType<JsonListSerializer<ModelAnalogSignalMapping>>().As<IListSerializer<ModelAnalogSignalMapping>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\AnalogSignalMappings.json"));
-			builder.RegisterType<JsonListSerializer<DiscreteSignalMapping>>().As<IListSerializer<DiscreteSignalMapping>>()
+			builder.RegisterType<JsonListSerializer<ModelDiscreteSignalMapping>>().As<IListSerializer<ModelDiscreteSignalMapping>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\DiscreteSignalMappings.json"));
 			builder.RegisterType<JsonListSerializer<SignalScanPeriodMapping>>().As<IListSerializer<SignalScanPeriodMapping>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\ScanPeriodMappings.json"));

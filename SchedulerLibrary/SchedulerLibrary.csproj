@@ -115,12 +115,12 @@
     </Compile>
     <Compile Include="ISchedulerCallback.cs" />
     <Compile Include="ISchedulerService.cs" />
-    <Compile Include="Model\RTU\RTU.cs" />
+    <Compile Include="Model\RTU\SchedulerRTU.cs" />
     <Compile Include="Model\SignalPeriod\SignalPeriod.cs" />
-    <Compile Include="Model\Signals\AnalogSignal.cs" />
-    <Compile Include="Model\Signals\DiscreteSignal.cs" />
-    <Compile Include="Model\Signals\ISignal.cs" />
-    <Compile Include="Model\Signals\SignalAccessType.cs" />
+    <Compile Include="Model\Signals\SchedulerAnalogSignal.cs" />
+    <Compile Include="Model\Signals\SchedulerDiscreteSignal.cs" />
+    <Compile Include="Model\Signals\ISchedulerSignal.cs" />
+    <Compile Include="Model\Signals\SchedulerSignalAccessType.cs" />
     <Compile Include="PeriodicalScan\SignalTypeScan\IScheduler.cs" />
     <Compile Include="PeriodMapper\IPeriodMapper.cs" />
     <Compile Include="PeriodMapper\PeriodMapper.cs" />
@@ -130,8 +130,8 @@
     <Compile Include="PeriodicalScan\SignalTypeScan\DiscreteOutputPeriodicalScanJob.cs" />
     <Compile Include="PeriodicalScan\SignalTypeScan\Scheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RtuConfiguration\IRtuConfiguration.cs" />
-    <Compile Include="RtuConfiguration\RtuConfiguration.cs" />
+    <Compile Include="RtuConfiguration\ISchedulerRtuConfiguration.cs" />
+    <Compile Include="RtuConfiguration\SchedulerRtuConfiguration.cs" />
     <Compile Include="SchedulerService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +163,24 @@
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.ModelAnalogSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.ModelAnalogSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.ModelDiscreteSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.ModelRTU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.ModelRTUData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\SchedulerLibrary.ModelServiceReference.SignalScanPeriodMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

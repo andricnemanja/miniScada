@@ -5,11 +5,11 @@ namespace ModelWcfServiceLibrary.Repository
 {
 	public interface IDiscreteSignalMappingRepository
 	{
-		List<DiscreteSignalMapping> DiscreteSignalMappingList { get; }
+		List<ModelDiscreteSignalMapping> DiscreteSignalMappingList { get; }
 
 		void Deserialize();
 		void Serialize();
-		DiscreteSignalMapping GetByID(int id);
+		ModelDiscreteSignalMapping GetByID(int id);
 		string[] GetDiscreteSignalPossibleStates(int mappingId);
 	}
 }

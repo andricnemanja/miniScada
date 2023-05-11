@@ -33,10 +33,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulerLibrary", "Schedul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler.Tests", "Scheduler.Tests\Scheduler.Tests.csproj", "{F2E7B325-6A89-4126-9AAC-2E0CACACC687}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scheduler Service", "Scheduler Service", "{7D29F59A-9C40-41F0-AC31-1556F9D636DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulerServiceLibrary", "SchedulerServiceLibrary\SchedulerServiceLibrary.csproj", "{452F7106-B178-4FAC-A099-5F2052925B9D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,10 +83,6 @@ Global
 		{F2E7B325-6A89-4126-9AAC-2E0CACACC687}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2E7B325-6A89-4126-9AAC-2E0CACACC687}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2E7B325-6A89-4126-9AAC-2E0CACACC687}.Release|Any CPU.Build.0 = Release|Any CPU
-		{452F7106-B178-4FAC-A099-5F2052925B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{452F7106-B178-4FAC-A099-5F2052925B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{452F7106-B178-4FAC-A099-5F2052925B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{452F7106-B178-4FAC-A099-5F2052925B9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,7 +98,6 @@ Global
 		{036B2513-14A5-4AF2-86B3-AE3777D9673D} = {B3FF9E4B-62DA-4B48-8B5A-E6117BA765D7}
 		{AEC9FF0B-1411-4EBF-BC24-89104A7F5867} = {B3FF9E4B-62DA-4B48-8B5A-E6117BA765D7}
 		{F2E7B325-6A89-4126-9AAC-2E0CACACC687} = {B3FF9E4B-62DA-4B48-8B5A-E6117BA765D7}
-		{452F7106-B178-4FAC-A099-5F2052925B9D} = {7D29F59A-9C40-41F0-AC31-1556F9D636DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04FAD949-D920-4455-847F-59A5B4BAFF56}

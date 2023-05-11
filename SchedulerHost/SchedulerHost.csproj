@@ -112,22 +112,25 @@
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.AnalogSignal.datasource">
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelAnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.AnalogSignalMapping.datasource">
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelAnalogSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.DiscreteSignal.datasource">
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelDiscreteSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.DiscreteSignalMapping.datasource">
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.RTU.datasource">
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelRTU.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.RTUData.datasource">
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelRTUData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.SignalScanPeriodMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\service.wsdl" />

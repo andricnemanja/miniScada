@@ -7,6 +7,6 @@ namespace SchedulerLibrary.PeriodicalScan.SignalTypeScan
 {
 	public interface IScheduler
 	{
-		void RegisterSchedulerJob<T>(TimeSpan time, IRtuConfiguration rtuConfiguration, IModbusDuplex modbus) where T : IJob;
+		void RegisterSchedulerJob<T>(TimeSpan time, ISchedulerRtuConfiguration rtuConfiguration, IModbusDuplex modbus) where T : IJob;
 	}
 }

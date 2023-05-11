@@ -141,11 +141,11 @@
     <Compile Include="Modbus\ModbusDataTypes\ModbusTypesTestData.cs" />
     <Compile Include="Modbus\ModbusDriver.cs" />
     <Compile Include="Modbus\ModbusDataStaticCache.cs" />
-    <Compile Include="Model\SignalMapping\DiscreteSignalMapping.cs" />
-    <Compile Include="Model\SignalMapping\AnalogSignalMapping.cs" />
-    <Compile Include="Model\Signals\DiscreteSignalType.cs" />
-    <Compile Include="Model\Signals\ISignal.cs" />
-    <Compile Include="Model\Signals\SignalAccessType.cs" />
+    <Compile Include="Model\SignalMapping\ModbusDiscreteSignalMapping.cs" />
+    <Compile Include="Model\SignalMapping\ModbusAnalogSignalMapping.cs" />
+    <Compile Include="Model\Signals\ModbusDiscreteSignalType.cs" />
+    <Compile Include="Model\Signals\IModbusSignal.cs" />
+    <Compile Include="Model\Signals\ModbusSignalAccessType.cs" />
     <Compile Include="RtuCommands\ConnectToRtuCommand.cs" />
     <Compile Include="RtuCommands\IRtuCommand.cs" />
     <Compile Include="RtuCommands\IRtuCommandInvoker.cs" />
@@ -153,14 +153,14 @@
     <Compile Include="RtuCommands\ReadSingleSignalCommand.cs" />
     <Compile Include="RtuCommands\RtuCommandInvoker.cs" />
     <Compile Include="RtuCommands\WriteSingleCoilCommand.cs" />
-    <Compile Include="RtuConfiguration\IRtuConfiguration.cs" />
+    <Compile Include="RtuConfiguration\IModbusRtuConfiguration.cs" />
     <Compile Include="SignalConverter\ISignalMapper.cs" />
     <Compile Include="SignalConverter\SignalMapper.cs" />
-    <Compile Include="RtuConfiguration\RtuConfiguration.cs" />
-    <Compile Include="Model\RTU\RTU.cs" />
+    <Compile Include="RtuConfiguration\ModbusRtuConfiguration.cs" />
+    <Compile Include="Model\RTU\ModbusRTU.cs" />
     <Compile Include="Model\RTU\RTUConnectionParameters.cs" />
-    <Compile Include="Model\Signals\AnalogSignal.cs" />
-    <Compile Include="Model\Signals\DiscreteSignal.cs" />
+    <Compile Include="Model\Signals\ModbusAnalogSignal.cs" />
+    <Compile Include="Model\Signals\ModbusDiscreteSignal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModbusService.cs" />
   </ItemGroup>

@@ -15,14 +15,14 @@ namespace SchedulerLibrary
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
 	public class SchedulerService
 	{
-		private IRtuConfiguration rtuConfiguration;
+		private ISchedulerRtuConfiguration rtuConfiguration;
 		private IModelService modelService;
 		private IModbusDuplex modbus;
 
 		public IPeriodMapper periodMapper;
 		public IScheduler scheduler;
 
-		public SchedulerService(IRtuConfiguration rtuConfiguration, IModelService modelService, IModbusDuplex modbus)
+		public SchedulerService(ISchedulerRtuConfiguration rtuConfiguration, IModelService modelService, IModbusDuplex modbus)
 		{
 			this.rtuConfiguration = rtuConfiguration;
 			this.modelService = modelService;

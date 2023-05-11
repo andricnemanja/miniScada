@@ -5,19 +5,19 @@ using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.RtuConfiguration;
 using Moq;
 using Xunit;
-using AnalogSignal = ModbusServiceLibrary.Model.Signals.AnalogSignal;
-using DiscreteSignal = ModbusServiceLibrary.Model.Signals.DiscreteSignal;
+using AnalogSignal = ModbusServiceLibrary.Model.Signals.ModbusAnalogSignal;
+using DiscreteSignal = ModbusServiceLibrary.Model.Signals.ModbusDiscreteSignal;
 
 namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 {
 	public class ReadSingleSignalCommandProcessorTests
 	{
-		private Mock<IRtuConfiguration> rtuConfigurationMock;
+		private Mock<IModbusRtuConfiguration> rtuConfigurationMock;
 		private Mock<IProtocolDriver> protocolDriverMock;
 
 		public ReadSingleSignalCommandProcessorTests()
 		{
-			rtuConfigurationMock = new Mock<IRtuConfiguration>();
+			rtuConfigurationMock = new Mock<IModbusRtuConfiguration>();
 			protocolDriverMock = new Mock<IProtocolDriver>();
 		}
 

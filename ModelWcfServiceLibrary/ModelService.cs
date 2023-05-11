@@ -37,7 +37,7 @@ namespace ModelWcfServiceLibrary
 		/// Get static data for all RTUs
 		/// </summary>
 		/// <returns>List of RTUs</returns>
-		public List<RTU> GetAllRTUs()
+		public List<ModelRTU> GetAllRTUs()
 		{
 			return rtuRepository.RtuList;
 		}
@@ -46,9 +46,9 @@ namespace ModelWcfServiceLibrary
 		/// </summary>
 		/// <param name="id">Unique identifier for RTU</param>
 		/// <returns>RTU with given ID</returns>
-		public RTU GetRTU(int id)
+		public ModelRTU GetRTU(int id)
 		{
-			RTU rtu = rtuRepository.GetRTUByID(id);
+			ModelRTU rtu = rtuRepository.GetRTUByID(id);
 			if (rtu == null)
 			{
 				ModelServiceException ex = new ModelServiceException(FaultCodes.IdDoesNotExist);
@@ -62,7 +62,7 @@ namespace ModelWcfServiceLibrary
 		/// </summary>
 		/// <param name="id">Unique identifier for RTU</param>
 		/// <returns>List of discrete signals</returns>
-		public IEnumerable<DiscreteSignal> GetDiscreteSignalsForRtu(int id)
+		public IEnumerable<ModelDiscreteSignal> GetDiscreteSignalsForRtu(int id)
 		{
 			return rtuRepository.GetDiscreteSignalsForRtu(id).ToList();
 		}
@@ -71,7 +71,7 @@ namespace ModelWcfServiceLibrary
 		/// </summary>
 		/// <param name="id">Unique identifier for RTU</param>
 		/// <returns>List of analog signals</returns>
-		public IEnumerable<AnalogSignal> GetAnalogSignalsForRtu(int id)
+		public IEnumerable<ModelAnalogSignal> GetAnalogSignalsForRtu(int id)
 		{
 			return rtuRepository.GetAnalogSignalsForRtu(id);
 		}
@@ -79,7 +79,7 @@ namespace ModelWcfServiceLibrary
 		/// Get RTUs essential data
 		/// </summary>
 		/// <returns>List of essential data for all RTUs</returns>
-		public IEnumerable<RTUData> GetRTUsEssentialData()
+		public IEnumerable<ModelRTUData> GetRTUsEssentialData()
 		{
 			return rtuRepository.GetRTUsEssentialData();
 		}
@@ -88,7 +88,7 @@ namespace ModelWcfServiceLibrary
 		/// Get all analog signal mappings
 		/// </summary>
 		/// <returns>List of analog signal mappings</returns>
-		public IEnumerable<AnalogSignalMapping> GetAnalogSignalMappings()
+		public IEnumerable<ModelAnalogSignalMapping> GetAnalogSignalMappings()
 		{
 			return analogSignalMappingRepository.AnalogSignalMappingList;
 		}
@@ -97,7 +97,7 @@ namespace ModelWcfServiceLibrary
 		/// Get all discrete signal mappings
 		/// </summary>
 		/// <returns>List of discrete signal mappings</returns>
-		public IEnumerable<DiscreteSignalMapping> GetDiscreteSignalMappings()
+		public IEnumerable<ModelDiscreteSignalMapping> GetDiscreteSignalMappings()
 		{
 			return discreteSignalMappingRepository.DiscreteSignalMappingList;
 		}
@@ -108,8 +108,8 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of discrete signal mappings</returns>
 		public string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress)
 		{
-			RTU rtu = rtuRepository.GetRTUByID(rtuId);
-			DiscreteSignal signal = rtu.DiscreteSignals.FirstOrDefault(s => s.Address == signalAddress);
+			ModelRTU rtu = rtuRepository.GetRTUByID(rtuId);
+			ModelDiscreteSignal signal = rtu.DiscreteSignals.FirstOrDefault(s => s.Address == signalAddress);
 			return discreteSignalMappingRepository.GetDiscreteSignalPossibleStates(signal.MappingId);
 		}
 

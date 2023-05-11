@@ -5,10 +5,10 @@ namespace ModelWcfServiceLibrary.Repository
 {
 	public interface IAnalogSignalMappingRepository
 	{
-		List<AnalogSignalMapping> AnalogSignalMappingList { get; }
+		List<ModelAnalogSignalMapping> AnalogSignalMappingList { get; }
 
 		void Deserialize();
-		AnalogSignalMapping GetByID(int id);
+		ModelAnalogSignalMapping GetByID(int id);
 		void Serialize();
 	}
 }
