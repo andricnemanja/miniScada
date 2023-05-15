@@ -1,11 +1,9 @@
-﻿using Microsoft.Extensions.Hosting;
-using ModbusServiceLibrary;
+﻿using SchedulerLibrary.ModbusServiceReference;
 using SchedulerLibrary.ModelServiceReference;
 using SchedulerLibrary.Period_Mapper;
 using SchedulerLibrary.PeriodicalScan.SignalTypeScan;
 using SchedulerLibrary.RtuConfiguration;
 using System;
-using System.ComponentModel;
 using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +11,7 @@ using System.Threading.Tasks;
 namespace SchedulerLibrary
 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
-	public class SchedulerService
+	public class SchedulerService : ISchedulerService
 	{
 		private ISchedulerRtuConfiguration rtuConfiguration;
 		private IModelService modelService;
@@ -22,11 +20,14 @@ namespace SchedulerLibrary
 		public IPeriodMapper periodMapper;
 		public IScheduler scheduler;
 
-		public SchedulerService(ISchedulerRtuConfiguration rtuConfiguration, IModelService modelService, IModbusDuplex modbus)
+		public SchedulerService(ISchedulerRtuConfiguration rtuConfiguration, IModelService modelService)
 		{
 			this.rtuConfiguration = rtuConfiguration;
 			this.modelService = modelService;
-			this.modbus = modbus;
+
+			Callback modbusServiceCallback = new Callback();
+			InstanceContext instanceContext = new InstanceContext(modbusServiceCallback);
+			modbus = new ModbusDuplexClient(instanceContext);
 
 			periodMapper = new PeriodMapper(modelService);
 			scheduler = new Scheduler();
@@ -46,6 +47,11 @@ namespace SchedulerLibrary
 			{
 				await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
 			}
+		}
+
+		public int UselessMethod()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

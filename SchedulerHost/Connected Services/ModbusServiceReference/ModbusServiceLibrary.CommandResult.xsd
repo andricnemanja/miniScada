@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CommandResultBase">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="CommandResultBase" nillable="true" type="tns:CommandResultBase" />
+  <xs:complexType name="ConnectToRtuResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ConnectToRtuResult" nillable="true" type="tns:ConnectToRtuResult" />
+  <xs:complexType name="ConnectToRtuFailedResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ConnectToRtuFailedResult" nillable="true" type="tns:ConnectToRtuFailedResult" />
+  <xs:complexType name="ReadSingleDiscreteSignalResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuId" type="xs:int" />
+          <xs:element minOccurs="0" name="SignalId" type="xs:int" />
+          <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadSingleDiscreteSignalResult" nillable="true" type="tns:ReadSingleDiscreteSignalResult" />
+  <xs:complexType name="ReadSingleDiscreteSignalFailedResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuId" type="xs:int" />
+          <xs:element minOccurs="0" name="SignalId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadSingleDiscreteSignalFailedResult" nillable="true" type="tns:ReadSingleDiscreteSignalFailedResult" />
+  <xs:complexType name="ReadSingleAnalogSignalResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuId" type="xs:int" />
+          <xs:element minOccurs="0" name="SignalId" type="xs:int" />
+          <xs:element minOccurs="0" name="SignalValue" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadSingleAnalogSignalResult" nillable="true" type="tns:ReadSingleAnalogSignalResult" />
+  <xs:complexType name="ReadSingleAnalogSignalFailedResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuId" type="xs:int" />
+          <xs:element minOccurs="0" name="SignalId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadSingleAnalogSignalFailedResult" nillable="true" type="tns:ReadSingleAnalogSignalFailedResult" />
+  <xs:complexType name="WriteDiscreteSignalCommandResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WriteDiscreteSignalCommandResult" nillable="true" type="tns:WriteDiscreteSignalCommandResult" />
+  <xs:complexType name="WriteAnalogSignalCommandResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WriteAnalogSignalCommandResult" nillable="true" type="tns:WriteAnalogSignalCommandResult" />
+  <xs:complexType name="CommandProcessorNotFoundResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommandResultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuCommand" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CommandProcessorNotFoundResult" nillable="true" type="tns:CommandProcessorNotFoundResult" />
+</xs:schema>

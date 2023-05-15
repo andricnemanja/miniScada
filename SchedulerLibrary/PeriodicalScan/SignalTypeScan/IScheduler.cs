@@ -1,5 +1,5 @@
-﻿using ModbusServiceLibrary;
-using Quartz;
+﻿using Quartz;
+using SchedulerLibrary.ModbusServiceReference;
 using SchedulerLibrary.RtuConfiguration;
 using System;
 

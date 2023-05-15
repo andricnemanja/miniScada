@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using SchedulerLibrary;
+using SchedulerLibrary.ModbusServiceReference;
 using SchedulerLibrary.RtuConfiguration;
+using System.ServiceModel;
 
 namespace SchedulerHost
 {
@@ -16,7 +18,6 @@ namespace SchedulerHost
 		{
 			ContainerBuilder builder = new ContainerBuilder();
 			builder.RegisterType<SchedulerLibrary.ModelServiceReference.ModelServiceClient>().As<SchedulerLibrary.ModelServiceReference.IModelService>();
-			builder.RegisterType<SchedulerLibrary.ModbusServiceReference.ModbusDuplexClient>().As<SchedulerLibrary.ModbusServiceReference.IModbusDuplex>();
 			builder.RegisterType<SchedulerRtuConfiguration>().As<ISchedulerRtuConfiguration>().OnActivated(r => r.Instance.InitializeData());
 			builder.RegisterType<SchedulerService>().As<ISchedulerService>();
 			return builder;

@@ -3,10 +3,6 @@ using Quartz;
 using SchedulerLibrary.ModbusServiceReference;
 using SchedulerLibrary.Model.Signals;
 using SchedulerLibrary.RtuConfiguration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SchedulerLibrary.PeriodicalScan.SignalTypeScan
@@ -32,6 +28,7 @@ namespace SchedulerLibrary.PeriodicalScan.SignalTypeScan
 				{
 					if (signal is SchedulerAnalogSignal && signal.AccessType == SchedulerSignalAccessType.Input)
 					{
+						System.Console.WriteLine("Scan Job");
 						IRtuCommand command = new ReadSingleSignalCommand(rtu.ID, signal.ID);
 						modbusDuplex.ReceiveCommand(command);
 					}

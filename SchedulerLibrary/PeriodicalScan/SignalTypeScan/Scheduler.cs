@@ -1,5 +1,6 @@
 ﻿using Quartz;
 using Quartz.Impl;
+using SchedulerLibrary.ModbusServiceReference;
 using SchedulerLibrary.RtuConfiguration;
 using System;
 
@@ -34,7 +35,7 @@ namespace SchedulerLibrary.PeriodicalScan.SignalTypeScan
 		/// <param name="time">Time of the periodical scan of the signal.</param>
 		/// <param name="rtuConfiguration">Instance of class that carries crutial information about Rtus and it's signals.</param>
 		/// <param name="modbus">Instace that enables us to communicate with Modbus service.</param>
-		public async void RegisterSchedulerJob<T>(TimeSpan time, ISchedulerRtuConfiguration rtuConfiguration, ModbusServiceLibrary.IModbusDuplex modbus) where T : IJob
+		public async void RegisterSchedulerJob<T>(TimeSpan time, ISchedulerRtuConfiguration rtuConfiguration, IModbusDuplex modbus) where T : IJob
 		{
 			var schedulerJob = JobBuilder.Create<T>()
 				.WithIdentity(typeof(T).FullName)

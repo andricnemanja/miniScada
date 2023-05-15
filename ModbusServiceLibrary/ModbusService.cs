@@ -16,6 +16,7 @@ namespace ModbusServiceLibrary
 		public ModbusService(IRtuCommandInvoker rtuCommandInvoker)
 		{
 			this.rtuCommandInvoker = rtuCommandInvoker;
+			System.Console.WriteLine("Hello");
 		}
 
 		/// <summary>
@@ -80,9 +81,8 @@ namespace ModbusServiceLibrary
 		/// <param name="command">Commmand sent from Scheduler service.</param>
 		public void ReceiveCommand(IRtuCommand command)
 		{
-			//izmeniti invoker da ne prima komandu, vec da samo prosledjuje dalje onima koji obradjuju
-			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.ReceiveCommandResult(rtuCommandInvoker.ReadSingleSignalScheduler(command));
+			System.Console.WriteLine(((ReadSingleSignalCommand)command).RtuId);
+			rtuCommandInvoker.ReadSingleSignalScheduler(command);
 		}
 
 	}
