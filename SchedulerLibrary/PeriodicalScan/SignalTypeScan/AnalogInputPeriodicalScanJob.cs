@@ -28,7 +28,6 @@ namespace SchedulerLibrary.PeriodicalScan.SignalTypeScan
 				{
 					if (signal is SchedulerAnalogSignal && signal.AccessType == SchedulerSignalAccessType.Input)
 					{
-						System.Console.WriteLine("Scan Job");
 						RtuCommandBase command = new ReadSingleSignalCommand(rtu.ID, signal.ID);
 						modbusDuplex.ReceiveCommand(command);
 					}

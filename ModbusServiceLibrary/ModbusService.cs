@@ -17,7 +17,6 @@ namespace ModbusServiceLibrary
 		public ModbusService(IRtuCommandInvoker rtuCommandInvoker)
 		{
 			this.rtuCommandInvoker = rtuCommandInvoker;
-			System.Console.WriteLine("Hello");
 		}
 
 		/// <summary>
@@ -84,7 +83,8 @@ namespace ModbusServiceLibrary
 		{
 			try
 			{
-				System.Console.WriteLine(((ReadSingleSignalCommand)command).RtuId);
+				Console.WriteLine(((ReadSingleSignalCommand)command).RtuId);
+				Console.WriteLine(((ReadSingleSignalCommand)command).SignalId);
 				rtuCommandInvoker.ReadSingleSignalScheduler(command);
 			}
 			catch (Exception ex)
