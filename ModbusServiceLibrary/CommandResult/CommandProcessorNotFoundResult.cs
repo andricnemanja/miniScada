@@ -6,11 +6,11 @@ namespace ModbusServiceLibrary.CommandResult
 	[DataContract]
 	public class CommandProcessorNotFoundResult : CommandResultBase
 	{
-		public CommandProcessorNotFoundResult(IRtuCommand rtuCommand) 
+		public CommandProcessorNotFoundResult(RtuCommandBase rtuCommand) 
 		{
 			RtuCommand = rtuCommand;
 		}
 		[DataMember]
-		public IRtuCommand RtuCommand { get; set; }
+		public RtuCommandBase RtuCommand { get; set; }
 	}
 }

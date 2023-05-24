@@ -15,21 +15,21 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RTU", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelRTU", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU")]
     [System.SerializableAttribute()]
-    public partial class RTU : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelRTU : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignal> AnalogSignalsField;
+        private System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal> AnalogSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignal> DiscreteSignalsField;
+        private System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal> DiscreteSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ModbusServiceLibrary.ModelServiceReference.RTUData RTUDataField;
+        private ModbusServiceLibrary.ModelServiceReference.ModelRTUData RTUDataField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -42,7 +42,7 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignal> AnalogSignals {
+        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal> AnalogSignals {
             get {
                 return this.AnalogSignalsField;
             }
@@ -55,7 +55,7 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignal> DiscreteSignals {
+        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal> DiscreteSignals {
             get {
                 return this.DiscreteSignalsField;
             }
@@ -68,7 +68,7 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ModbusServiceLibrary.ModelServiceReference.RTUData RTUData {
+        public ModbusServiceLibrary.ModelServiceReference.ModelRTUData RTUData {
             get {
                 return this.RTUDataField;
             }
@@ -92,9 +92,9 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RTUData", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelRTUData", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
     [System.SerializableAttribute()]
-    public partial class RTUData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelRTUData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -185,15 +185,15 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AnalogSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelAnalogSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
     [System.SerializableAttribute()]
-    public partial class AnalogSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelAnalogSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ModbusServiceLibrary.ModelServiceReference.SignalAccessType AccessTypeField;
+        private ModbusServiceLibrary.ModelServiceReference.ModelSignalAccessType AccessTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AddressField;
@@ -218,7 +218,7 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ModbusServiceLibrary.ModelServiceReference.SignalAccessType AccessType {
+        public ModbusServiceLibrary.ModelServiceReference.ModelSignalAccessType AccessType {
             get {
                 return this.AccessTypeField;
             }
@@ -294,15 +294,15 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelDiscreteSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
     [System.SerializableAttribute()]
-    public partial class DiscreteSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelDiscreteSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ModbusServiceLibrary.ModelServiceReference.SignalAccessType AccessTypeField;
+        private ModbusServiceLibrary.ModelServiceReference.ModelSignalAccessType AccessTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AddressField;
@@ -330,7 +330,7 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ModbusServiceLibrary.ModelServiceReference.SignalAccessType AccessType {
+        public ModbusServiceLibrary.ModelServiceReference.ModelSignalAccessType AccessType {
             get {
                 return this.AccessTypeField;
             }
@@ -418,8 +418,8 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SignalAccessType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
-    public enum SignalAccessType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelSignalAccessType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    public enum ModelSignalAccessType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Input = 0,
@@ -494,10 +494,10 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AnalogSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelAnalogSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
         "g")]
     [System.SerializableAttribute()]
-    public partial class AnalogSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelAnalogSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -588,10 +588,10 @@ namespace ModbusServiceLibrary.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelDiscreteSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
         "g")]
     [System.SerializableAttribute()]
-    public partial class DiscreteSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelDiscreteSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -664,58 +664,142 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SignalScanPeriodMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMa" +
+        "pping")]
+    [System.SerializableAttribute()]
+    public partial class SignalScanPeriodMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan TimeStampField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
     public interface IModelService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.RTU> GetAllRTUs();
+        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelRTU> GetAllRTUs();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.RTU>> GetAllRTUsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelRTU>> GetAllRTUsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(ModbusServiceLibrary.ModelServiceReference.ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
-        ModbusServiceLibrary.ModelServiceReference.RTU GetRTU(int id);
+        ModbusServiceLibrary.ModelServiceReference.ModelRTU GetRTU(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.RTU> GetRTUAsync(int id);
+        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelRTU> GetRTUAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignal> GetDiscreteSignalsForRtu(int id);
+        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal> GetDiscreteSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignal>> GetDiscreteSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal>> GetDiscreteSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignal> GetAnalogSignalsForRtu(int id);
+        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal> GetAnalogSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignal>> GetAnalogSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal>> GetAnalogSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.RTUData> GetRTUsEssentialData();
+        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelRTUData> GetRTUsEssentialData();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.RTUData>> GetRTUsEssentialDataAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelRTUData>> GetRTUsEssentialDataAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping> GetAnalogSignalMappings();
+        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping> GetAnalogSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping>> GetAnalogSignalMappingsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping>> GetAnalogSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping> GetDiscreteSignalMappings();
+        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping> GetDiscreteSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping>> GetDiscreteSignalMappingsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping>> GetDiscreteSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
         System.Collections.Generic.List<string> GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
+        System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping> GetSignalScanPeriodMappings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping>> GetSignalScanPeriodMappingsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -745,59 +829,59 @@ namespace ModbusServiceLibrary.ModelServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.RTU> GetAllRTUs() {
+        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelRTU> GetAllRTUs() {
             return base.Channel.GetAllRTUs();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.RTU>> GetAllRTUsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelRTU>> GetAllRTUsAsync() {
             return base.Channel.GetAllRTUsAsync();
         }
         
-        public ModbusServiceLibrary.ModelServiceReference.RTU GetRTU(int id) {
+        public ModbusServiceLibrary.ModelServiceReference.ModelRTU GetRTU(int id) {
             return base.Channel.GetRTU(id);
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.RTU> GetRTUAsync(int id) {
+        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelRTU> GetRTUAsync(int id) {
             return base.Channel.GetRTUAsync(id);
         }
         
-        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignal> GetDiscreteSignalsForRtu(int id) {
+        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal> GetDiscreteSignalsForRtu(int id) {
             return base.Channel.GetDiscreteSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignal>> GetDiscreteSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal>> GetDiscreteSignalsForRtuAsync(int id) {
             return base.Channel.GetDiscreteSignalsForRtuAsync(id);
         }
         
-        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignal> GetAnalogSignalsForRtu(int id) {
+        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal> GetAnalogSignalsForRtu(int id) {
             return base.Channel.GetAnalogSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignal>> GetAnalogSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal>> GetAnalogSignalsForRtuAsync(int id) {
             return base.Channel.GetAnalogSignalsForRtuAsync(id);
         }
         
-        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.RTUData> GetRTUsEssentialData() {
+        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelRTUData> GetRTUsEssentialData() {
             return base.Channel.GetRTUsEssentialData();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.RTUData>> GetRTUsEssentialDataAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelRTUData>> GetRTUsEssentialDataAsync() {
             return base.Channel.GetRTUsEssentialDataAsync();
         }
         
-        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping> GetAnalogSignalMappings() {
+        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping> GetAnalogSignalMappings() {
             return base.Channel.GetAnalogSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping>> GetAnalogSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping>> GetAnalogSignalMappingsAsync() {
             return base.Channel.GetAnalogSignalMappingsAsync();
         }
         
-        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping> GetDiscreteSignalMappings() {
+        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping> GetDiscreteSignalMappings() {
             return base.Channel.GetDiscreteSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping>> GetDiscreteSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping>> GetDiscreteSignalMappingsAsync() {
             return base.Channel.GetDiscreteSignalMappingsAsync();
         }
         
@@ -807,6 +891,14 @@ namespace ModbusServiceLibrary.ModelServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress) {
             return base.Channel.GetDiscreteSignalPossibleStatesAsync(rtuId, signalAddress);
+        }
+        
+        public System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping> GetSignalScanPeriodMappings() {
+            return base.Channel.GetSignalScanPeriodMappings();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping>> GetSignalScanPeriodMappingsAsync() {
+            return base.Channel.GetSignalScanPeriodMappingsAsync();
         }
     }
 }

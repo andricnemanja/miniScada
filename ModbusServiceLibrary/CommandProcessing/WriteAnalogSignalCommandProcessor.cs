@@ -15,7 +15,7 @@ namespace ModbusServiceLibrary.CommandProcessing
 			this.protocolDriver = protocolDriver;
 		}
 
-		public CommandResultBase ProcessCommand(IRtuCommand command)
+		public CommandResultBase ProcessCommand(RtuCommandBase command)
 		{
 			WriteAnalogSignalCommand writeAnalogSignalCommand = (WriteAnalogSignalCommand)command;
 

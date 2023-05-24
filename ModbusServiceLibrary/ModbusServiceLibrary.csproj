@@ -147,12 +147,12 @@
     <Compile Include="Model\Signals\IModbusSignal.cs" />
     <Compile Include="Model\Signals\ModbusSignalAccessType.cs" />
     <Compile Include="RtuCommands\ConnectToRtuCommand.cs" />
-    <Compile Include="RtuCommands\IRtuCommand.cs" />
+    <Compile Include="RtuCommands\RtuCommandBase.cs" />
     <Compile Include="RtuCommands\IRtuCommandInvoker.cs" />
     <Compile Include="RtuCommands\WriteAnalogSignalCommand.cs" />
     <Compile Include="RtuCommands\ReadSingleSignalCommand.cs" />
     <Compile Include="RtuCommands\RtuCommandInvoker.cs" />
-    <Compile Include="RtuCommands\WriteSingleCoilCommand.cs" />
+    <Compile Include="RtuCommands\WriteDiscreteSignalCommand.cs" />
     <Compile Include="RtuConfiguration\IModbusRtuConfiguration.cs" />
     <Compile Include="SignalConverter\ISignalMapper.cs" />
     <Compile Include="SignalConverter\SignalMapper.cs" />
@@ -169,25 +169,31 @@
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.AnalogSignal.datasource">
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping.datasource">
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.DiscreteSignal.datasource">
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping.datasource">
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.RTU.datasource">
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelRTU.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.RTUData.datasource">
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelRTUData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.ScanPeriodMapping.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.SignalMapping.xsd">

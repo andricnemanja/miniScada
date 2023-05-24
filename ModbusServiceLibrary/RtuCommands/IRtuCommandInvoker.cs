@@ -8,6 +8,6 @@ namespace ModbusServiceLibrary.RtuCommands
 		CommandResultBase ReadSingleSignalCommand(int rtuId, int singalAddress);
 		CommandResultBase WriteAnalogSignalCommand(int rtuId, int signalId, double valueToWrite);
 		CommandResultBase WriteDiscreteSignalCommand(int rtuId, int singalId, string state);
-		CommandResultBase ReadSingleSignalScheduler(IRtuCommand command);
+		CommandResultBase ReadSingleSignalScheduler(RtuCommandBase command);
 	}
 }

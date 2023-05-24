@@ -5,6 +5,6 @@ namespace ModbusServiceLibrary.CommandProcessing
 {
 	public interface ICommandProcessor
 	{
-		CommandResultBase ProcessCommand(IRtuCommand command);
+		CommandResultBase ProcessCommand(RtuCommandBase command);
 	}
 }

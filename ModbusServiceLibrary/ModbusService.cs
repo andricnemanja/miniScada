@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
 using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.RtuCommands;
 
@@ -79,10 +80,18 @@ namespace ModbusServiceLibrary
 		/// Method that recieves command sent from the Scheduler library.
 		/// </summary>
 		/// <param name="command">Commmand sent from Scheduler service.</param>
-		public void ReceiveCommand(IRtuCommand command)
+		public void ReceiveCommand(RtuCommandBase command)
 		{
-			System.Console.WriteLine(((ReadSingleSignalCommand)command).RtuId);
-			rtuCommandInvoker.ReadSingleSignalScheduler(command);
+			try
+			{
+				System.Console.WriteLine(((ReadSingleSignalCommand)command).RtuId);
+				rtuCommandInvoker.ReadSingleSignalScheduler(command);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+
 		}
 
 	}

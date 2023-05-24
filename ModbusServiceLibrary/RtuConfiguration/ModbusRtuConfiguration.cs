@@ -42,8 +42,9 @@ namespace ModbusServiceLibrary.RtuConfiguration
 		public List<ModbusRTU> ReadAllRTUs()
 		{
 			List<ModbusRTU> rtus = new List<ModbusRTU>();
+			var list = modelService.GetAllRTUs();
 
-			foreach (var rtu in modelService.GetAllRTUs())
+			foreach (var rtu in list)
 			{
 				ModbusRTU newRTU = new ModbusRTU(rtu);
 				rtus.Add(newRTU);

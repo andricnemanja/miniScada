@@ -23,7 +23,7 @@ namespace ModbusServiceLibrary
 			};
 		}
 
-		public CommandResultBase ReceiveCommand(IRtuCommand command)
+		public CommandResultBase ReceiveCommand(RtuCommandBase command)
 		{
 			if (commandProcessors.TryGetValue(command.GetType(), out ICommandProcessor commandProcessor))
 			{

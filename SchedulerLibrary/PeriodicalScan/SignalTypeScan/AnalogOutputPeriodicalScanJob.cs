@@ -29,7 +29,7 @@ namespace SchedulerLibrary.PeriodicalScan.SignalTypeScan
 				{
 					if (signal is SchedulerAnalogSignal && signal.AccessType == SchedulerSignalAccessType.Output)
 					{
-						IRtuCommand command = new ReadSingleSignalCommand(rtu.ID, signal.ID);
+						RtuCommandBase command = new ReadSingleSignalCommand(rtu.ID, signal.ID);
 						modbusDuplex.ReceiveCommand(command);
 					}
 				}

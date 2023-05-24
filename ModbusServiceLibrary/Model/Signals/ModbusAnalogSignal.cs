@@ -33,7 +33,7 @@
 		/// Initializes a new instance of the <see cref="ModbusAnalogSignal"/> class.
 		/// </summary>
 		/// <param name="analogSignalStaticData">Analog signal static data. Data from the <see cref="ModelServiceReference"/> namespace.</param>
-		public ModbusAnalogSignal(ModelServiceReference.AnalogSignal analogSignalStaticData)
+		public ModbusAnalogSignal(ModelServiceReference.ModelAnalogSignal analogSignalStaticData)
 		{
 			ID = analogSignalStaticData.ID;
 			Name = analogSignalStaticData.Name;

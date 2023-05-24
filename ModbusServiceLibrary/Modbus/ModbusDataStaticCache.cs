@@ -22,7 +22,7 @@ namespace ModbusServiceLibrary.Modbus
 			{
 				foreach (var analogSignal in rtu.AnalogSignals)
 				{
-					if (analogSignal.AccessType == SignalAccessType.Output)
+					if (analogSignal.AccessType == ModelSignalAccessType.Output)
 					{
 						HoldingRegister newAnalogPoint = new HoldingRegister(0, analogSignal.ID, analogSignal.Address, analogSignal.MappingId, rtu.RTUData.ID);
 						analogPoints.Add(newAnalogPoint);
@@ -36,7 +36,7 @@ namespace ModbusServiceLibrary.Modbus
 
 				foreach (var discreteSignal in rtu.DiscreteSignals)
 				{
-					if (discreteSignal.AccessType == SignalAccessType.Output)
+					if (discreteSignal.AccessType == ModelSignalAccessType.Output)
 					{
 						Coil newDiscretePoint = new Coil(0, discreteSignal.ID, discreteSignal.Address, discreteSignal.MappingId, discreteSignal.SignalType == DiscreteSignalType.OneBit ? (byte)1 : (byte)2, rtu.RTUData.ID);
 						digitalPoints.Add(newDiscretePoint);

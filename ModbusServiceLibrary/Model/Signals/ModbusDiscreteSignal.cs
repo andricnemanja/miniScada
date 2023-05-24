@@ -33,7 +33,7 @@
 		/// Initializes a new instance of the <see cref="ModbusDiscreteSignal"/> class.
 		/// </summary>
 		/// <param name="discreteSignalStaticData">Discrete signal static data. Data from the <see cref="ModelServiceReference"/> namespace.</param>
-		public ModbusDiscreteSignal(ModelServiceReference.DiscreteSignal discreteSignalStaticData)
+		public ModbusDiscreteSignal(ModelServiceReference.ModelDiscreteSignal discreteSignalStaticData)
 		{
 			ID = discreteSignalStaticData.ID;
 			Name = discreteSignalStaticData.Name;

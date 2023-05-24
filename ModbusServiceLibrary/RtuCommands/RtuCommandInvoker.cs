@@ -68,7 +68,7 @@ namespace ModbusServiceLibrary.RtuCommands
 		/// </summary>
 		/// <param name="command">Command sent from the Scheduler service.</param>
 		/// <returns>Result of the command.</returns>
-		public CommandResultBase ReadSingleSignalScheduler(IRtuCommand command)
+		public CommandResultBase ReadSingleSignalScheduler(RtuCommandBase command)
 		{
 			return commandReceiver.ReceiveCommand(command);
 		}

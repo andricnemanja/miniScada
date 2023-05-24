@@ -102,6 +102,9 @@
     <None Include="Connected Services\ModbusServiceReference\ModbusServiceLibrary.CommandResult.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ModbusServiceReference\ModbusServiceLibrary.RtuCommands.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModbusServiceReference\SchedulerHost.ModbusServiceReference.CommandResultBase.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -129,27 +132,6 @@
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelAnalogSignal.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelAnalogSignalMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelDiscreteSignal.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelRTU.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.ModelRTUData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerHost.ModelServiceReference.SignalScanPeriodMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\service.wsdl" />
     <None Include="Connected Services\ModelServiceReference\service.xsd">
@@ -179,6 +161,12 @@
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignalMapping2.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignalMapping3.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.DiscreteSignalMapping4.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.ModelAnalogSignal.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.ModelAnalogSignalMapping.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.ModelDiscreteSignal.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.ModelDiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.ModelRTU.datasource" />
+    <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.ModelRTUData.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTU.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTU1.datasource" />
     <None Include="Properties\DataSources\SchedulerLibrary.ModelServiceReference.RTU2.datasource" />

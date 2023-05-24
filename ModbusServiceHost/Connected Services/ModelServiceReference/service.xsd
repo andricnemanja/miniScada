@@ -4,6 +4,8 @@
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMapping" />
   <xs:element name="GetAllRTUs">
     <xs:complexType>
       <xs:sequence />
@@ -12,7 +14,7 @@
   <xs:element name="GetAllRTUsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" minOccurs="0" name="GetAllRTUsResult" nillable="true" type="q1:ArrayOfRTU" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" minOccurs="0" name="GetAllRTUsResult" nillable="true" type="q1:ArrayOfModelRTU" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -26,7 +28,7 @@
   <xs:element name="GetRTUResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" minOccurs="0" name="GetRTUResult" nillable="true" type="q2:RTU" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU" minOccurs="0" name="GetRTUResult" nillable="true" type="q2:ModelRTU" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -40,7 +42,7 @@
   <xs:element name="GetDiscreteSignalsForRtuResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" minOccurs="0" name="GetDiscreteSignalsForRtuResult" nillable="true" type="q3:ArrayOfDiscreteSignal" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" minOccurs="0" name="GetDiscreteSignalsForRtuResult" nillable="true" type="q3:ArrayOfModelDiscreteSignal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -54,7 +56,7 @@
   <xs:element name="GetAnalogSignalsForRtuResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" minOccurs="0" name="GetAnalogSignalsForRtuResult" nillable="true" type="q4:ArrayOfAnalogSignal" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals" minOccurs="0" name="GetAnalogSignalsForRtuResult" nillable="true" type="q4:ArrayOfModelAnalogSignal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -66,7 +68,7 @@
   <xs:element name="GetRTUsEssentialDataResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" minOccurs="0" name="GetRTUsEssentialDataResult" nillable="true" type="q5:ArrayOfRTUData" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary" minOccurs="0" name="GetRTUsEssentialDataResult" nillable="true" type="q5:ArrayOfModelRTUData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -78,7 +80,7 @@
   <xs:element name="GetAnalogSignalMappingsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" minOccurs="0" name="GetAnalogSignalMappingsResult" nillable="true" type="q6:ArrayOfAnalogSignalMapping" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" minOccurs="0" name="GetAnalogSignalMappingsResult" nillable="true" type="q6:ArrayOfModelAnalogSignalMapping" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -90,7 +92,34 @@
   <xs:element name="GetDiscreteSignalMappingsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" minOccurs="0" name="GetDiscreteSignalMappingsResult" nillable="true" type="q7:ArrayOfDiscreteSignalMapping" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" minOccurs="0" name="GetDiscreteSignalMappingsResult" nillable="true" type="q7:ArrayOfModelDiscreteSignalMapping" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscreteSignalPossibleStates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="rtuId" type="xs:int" />
+        <xs:element minOccurs="0" name="signalAddress" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscreteSignalPossibleStatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDiscreteSignalPossibleStatesResult" nillable="true" type="q8:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSignalScanPeriodMappings">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSignalScanPeriodMappingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMapping" minOccurs="0" name="GetSignalScanPeriodMappingsResult" nillable="true" type="q9:ArrayOfSignalScanPeriodMapping" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

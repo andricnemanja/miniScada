@@ -32,7 +32,7 @@ namespace ModbusServiceLibrary.Model.RTU
 		/// </summary>
 		/// <param name="rtuStaticData">An instance of the <see cref="ModelServiceReference.RTU rtuStaticData"/>.
 		/// Allows converting Model Service static data to Modbus Service model class</param>
-		public ModbusRTU(ModelServiceReference.RTU rtuStaticData)
+		public ModbusRTU(ModelServiceReference.ModelRTU rtuStaticData)
 		{
 			Name = rtuStaticData.RTUData.Name;
 			ID = rtuStaticData.RTUData.ID;

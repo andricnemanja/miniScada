@@ -55,20 +55,14 @@ namespace SchedulerLibrary.ModbusServiceReference {
         System.Threading.Tasks.Task<ModbusServiceLibrary.CommandResult.CommandResultBase> ConnectToRtuAsync(int rtuId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReceiveCommand")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandResultBase))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteDiscreteSignalCommandResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteAnalogSignalCommandResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandProcessorNotFoundResult))]
-        void ReceiveCommand(object commandResult);
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.RtuCommands.ConnectToRtuCommand))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.RtuCommands.ReadSingleSignalCommand))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.RtuCommands.WriteAnalogSignalCommand))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.RtuCommands.WriteDiscreteSignalCommand))]
+        void ReceiveCommand(ModbusServiceLibrary.RtuCommands.RtuCommandBase commandResult);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReceiveCommand")]
-        System.Threading.Tasks.Task ReceiveCommandAsync(object commandResult);
+        System.Threading.Tasks.Task ReceiveCommandAsync(ModbusServiceLibrary.RtuCommands.RtuCommandBase commandResult);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -155,11 +149,11 @@ namespace SchedulerLibrary.ModbusServiceReference {
             return base.Channel.ConnectToRtuAsync(rtuId);
         }
         
-        public void ReceiveCommand(object commandResult) {
+        public void ReceiveCommand(ModbusServiceLibrary.RtuCommands.RtuCommandBase commandResult) {
             base.Channel.ReceiveCommand(commandResult);
         }
         
-        public System.Threading.Tasks.Task ReceiveCommandAsync(object commandResult) {
+        public System.Threading.Tasks.Task ReceiveCommandAsync(ModbusServiceLibrary.RtuCommands.RtuCommandBase commandResult) {
             return base.Channel.ReceiveCommandAsync(commandResult);
         }
     }

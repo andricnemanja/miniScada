@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Runtime.Serialization;
+using System.ServiceModel;
 using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.RtuCommands;
 
@@ -54,7 +55,7 @@ namespace ModbusServiceLibrary
 
 
 		[OperationContract(IsOneWay = true)]
-		void ReceiveCommand(IRtuCommand commandResult);
+		void ReceiveCommand(RtuCommandBase commandResult);
 
 	}
 }

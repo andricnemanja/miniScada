@@ -25,7 +25,7 @@ namespace ModbusServiceLibrary.CommandProcessing
 			};
 		}
 
-		public CommandResultBase ProcessCommand(IRtuCommand command)
+		public CommandResultBase ProcessCommand(RtuCommandBase command)
 		{
 			ReadSingleSignalCommand readSingleSignalCommand = (ReadSingleSignalCommand)command;
 			IModbusSignal signal = rtuConfiguration.GetSignal(readSingleSignalCommand.RtuId, readSingleSignalCommand.SignalId);

@@ -11,8 +11,8 @@ namespace ModbusServiceLibrary.SignalConverter
 	public class SignalMapper : ISignalMapper
 	{
 		private readonly ModelServiceReference.IModelService modelService;
-		private List<AnalogSignalMapping> analogSignalMappings;
-		private List<DiscreteSignalMapping> discreteSignalMappings;
+		private List<ModelAnalogSignalMapping> analogSignalMappings;
+		private List<ModelDiscreteSignalMapping> discreteSignalMappings;
 
 		public SignalMapper(IModelService modelService)
 		{
@@ -41,7 +41,7 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <returns>Value with it's phyisical connotation.</returns>
 		public double ConvertAnalogSignalToRealValue(int mappingId, double signalValue)
 		{
-			AnalogSignalMapping analogSignalMapping = FindAnalogSignalMapping(mappingId);
+			ModelAnalogSignalMapping analogSignalMapping = FindAnalogSignalMapping(mappingId);
 			return signalValue * analogSignalMapping.K + analogSignalMapping.N;
 		}
 
@@ -53,7 +53,7 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// <returns></returns>
 		public int ConvertRealValueToAnalogSignalValue(int mappingId, double signalValue)
 		{
-			AnalogSignalMapping analogSignalMapping = FindAnalogSignalMapping(mappingId);
+			ModelAnalogSignalMapping analogSignalMapping = FindAnalogSignalMapping(mappingId);
 			return (int)Math.Round((signalValue - analogSignalMapping.N) / analogSignalMapping.K);
 		}
 		
@@ -73,7 +73,7 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// </summary>
 		/// <param name="mappingId">ID of the mapping.</param>
 		/// <returns>Discrete signal mapping.</returns>
-		private DiscreteSignalMapping FindDiscreteSingalMapping(int mappingId)
+		private ModelDiscreteSignalMapping FindDiscreteSingalMapping(int mappingId)
 		{
 			return discreteSignalMappings.SingleOrDefault(m => m.Id == mappingId);
 		}
@@ -83,7 +83,7 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// </summary>
 		/// <param name="rtuId">ID of the RTU.</param>
 		/// <returns>Discrete signal mapping for signal with given address.</returns>
-		private AnalogSignalMapping FindAnalogSignalMapping(int mappingId)	
+		private ModelAnalogSignalMapping FindAnalogSignalMapping(int mappingId)	
 		{
 			return analogSignalMappings.SingleOrDefault(m => m.Id == mappingId);
 		}
@@ -92,13 +92,13 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// Reads all the mappings from the Model service.
 		/// </summary>
 		/// <returns>List of mapping for analog signals.</returns>
-		private List<AnalogSignalMapping> ReadAnalogSignalMappings()
+		private List<ModelAnalogSignalMapping> ReadAnalogSignalMappings()
 		{
-			List<AnalogSignalMapping> analogSignalMappings = new List<AnalogSignalMapping>();
+			List<ModelAnalogSignalMapping> analogSignalMappings = new List<ModelAnalogSignalMapping>();
 
 			foreach (var mapping in modelService.GetAnalogSignalMappings())
 			{
-				AnalogSignalMapping newMapping = new AnalogSignalMapping()
+				ModelAnalogSignalMapping newMapping = new ModelAnalogSignalMapping()
 				{
 					Id = mapping.Id,
 					Name = mapping.Name,
@@ -114,13 +114,13 @@ namespace ModbusServiceLibrary.SignalConverter
 		/// Reads all discrete signal mappings from model service
 		/// </summary>
 		/// <returns>List of discrete signal mappings</returns>
-		private List<DiscreteSignalMapping> ReadDiscreteSignalMappings()
+		private List<ModelDiscreteSignalMapping> ReadDiscreteSignalMappings()
 		{
-			List<DiscreteSignalMapping> discreteSignalMappings = new List<DiscreteSignalMapping>();
+			List<ModelDiscreteSignalMapping> discreteSignalMappings = new List<ModelDiscreteSignalMapping>();
 
 			foreach (var mapping in modelService.GetDiscreteSignalMappings())
 			{
-				DiscreteSignalMapping newMapping = new DiscreteSignalMapping()
+				ModelDiscreteSignalMapping newMapping = new ModelDiscreteSignalMapping()
 				{
 					Id = mapping.Id,
 					Name = mapping.Name,

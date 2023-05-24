@@ -20,7 +20,7 @@
 		/// </summary>
 		/// <param name="rtuData">An instance of the <see cref="ModelServiceReference.RTUData"/>.
 		/// Allows converting Model Service static data to Modbus Service model class</param>
-		public RTUConnectionParameters(ModelServiceReference.RTUData rtuData)
+		public RTUConnectionParameters(ModelServiceReference.ModelRTUData rtuData)
 		{
 			IpAddress = rtuData.IpAddress;
 			Port = rtuData.Port;
