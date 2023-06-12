@@ -70,6 +70,7 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
@@ -115,6 +116,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Cache\DynamicCache.cs" />
     <Compile Include="Circuit Breaker\CircuitBreaker.cs" />
     <Compile Include="Circuit Breaker\CircuitBreakerOpenException.cs" />
     <Compile Include="Circuit Breaker\CircuitBreakerStateEnum.cs" />
@@ -165,7 +167,6 @@
     <Compile Include="ServiceClients\ModbusServiceClient.cs" />
     <Compile Include="ServiceClients\ModelServiceConverter.cs" />
     <Compile Include="ServiceClients\RtuConnection.cs" />
-    <Compile Include="ViewModel\ChangedSignalData.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
