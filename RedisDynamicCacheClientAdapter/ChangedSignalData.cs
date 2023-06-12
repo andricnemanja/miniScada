@@ -1,5 +1,8 @@
 ﻿namespace RedisDynamicCacheClientAdapter
 {
+	/// <summary>
+	/// Holds data parsed from Redis subscription channel
+	/// </summary>
 	public class ChangedSignalData
 	{
 		public int RtuId { get; set; }

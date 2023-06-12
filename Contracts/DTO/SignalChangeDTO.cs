@@ -1,5 +1,8 @@
 ﻿namespace Contracts.DTO
 {
+	/// <summary>
+	/// DTO class that holds changed signal data
+	/// </summary>
 	public class SignalChangeDTO
 	{
 		public int RtuId { get; set; }
