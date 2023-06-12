@@ -9,15 +9,17 @@ namespace ModbusServiceLibrary
 	public sealed class ModbusService : IModbusDuplex
 	{
 		private readonly IRtuCommandInvoker rtuCommandInvoker;
+		private readonly DynamicCacheManagerReference.IDynamicCacheManagerService dynamicCacheService;
 		private readonly List<IModbusDuplexCallback> subscribers = new List<IModbusDuplexCallback>();
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModbusService"/>
 		/// </summary>
 		/// <param name="rtuCommandInvoker">Instance of the <see cref="IRtuCommandInvoker"/> class</param>
 
-		public ModbusService(IRtuCommandInvoker rtuCommandInvoker)
+		public ModbusService(IRtuCommandInvoker rtuCommandInvoker, DynamicCacheManagerReference.IDynamicCacheManagerService dynamicCacheManagerService)
 		{
 			this.rtuCommandInvoker = rtuCommandInvoker;
+			this.dynamicCacheService = dynamicCacheManagerService;
 		}
 
 		public void Subscribe()
@@ -32,10 +34,15 @@ namespace ModbusServiceLibrary
 		/// </summary>
 		/// <param name="rtuId">RTU identification number.</param>
 		/// <param name="signalAddress">Address of the signal.</param>
-		public void ReadAnalogSignal(int rtuId, int signalAddress)
+		public void ReadAnalogSignal(int rtuId, int signalId)
 		{
-			CommandResultBase result = rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress);
-			subscribers.ForEach(s => s.ReceiveCommandResult(result));
+			ReadSingleAnalogSignalResult result = (ReadSingleAnalogSignalResult)rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
+			dynamicCacheService.ProcessCommandResult(new DynamicCacheManagerReference.ReadSingleAnalogSignalResult()
+			{
+				RtuId = result.RtuId,
+				SignalId = result.SignalId,
+				SignalValue = result.SignalValue
+			});
 		}
 
 		/// <summary>
@@ -43,10 +50,16 @@ namespace ModbusServiceLibrary
 		/// </summary>
 		/// <param name="rtuId">RTU identification number.</param>
 		/// <param name="signalAddress">Address of the signal.</param>
-		public void ReadDiscreteSignal(int rtuId, int signalAddress)
+		public void ReadDiscreteSignal(int rtuId, int signalId)
 		{
-			CommandResultBase result = rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress);
-			subscribers.ForEach(s => s.ReceiveCommandResult(result));
+			ReadSingleDiscreteSignalResult result = (ReadSingleDiscreteSignalResult)rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
+
+			dynamicCacheService.ProcessCommandResult(new DynamicCacheManagerReference.ReadSingleDiscreteSignalResult()
+			{
+				RtuId = result.RtuId,
+				SignalId = result.SignalId,
+				State = result.State
+			});
 		}
 
 		/// <summary>
@@ -58,7 +71,6 @@ namespace ModbusServiceLibrary
 		public void WriteAnalogSignal(int rtuId, int signalAddress, double newValue)
 		{
 			CommandResultBase result = rtuCommandInvoker.WriteAnalogSignalCommand(rtuId, signalAddress, newValue);
-			subscribers.ForEach(s => s.ReceiveCommandResult(result));
 		}
 
 		/// <summary>
@@ -70,7 +82,6 @@ namespace ModbusServiceLibrary
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue)
 		{
 			CommandResultBase result = rtuCommandInvoker.WriteDiscreteSignalCommand(rtuId, signalAddress, newValue);
-			subscribers.ForEach(s => s.ReceiveCommandResult(result));
 		}
 
 		/// <summary>

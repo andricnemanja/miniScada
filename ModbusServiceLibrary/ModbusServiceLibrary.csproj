@@ -108,6 +108,11 @@
     <Compile Include="CommandResult\WriteAnalogSignalFailedCommandResult.cs" />
     <Compile Include="CommandResult\WriteAnalogSignalCommandResult.cs" />
     <Compile Include="CommandResult\WriteDiscreteSignalCommandResult.cs" />
+    <Compile Include="Connected Services\DynamicCacheManagerReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -155,6 +160,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\DynamicCacheManagerReference\ModbusServiceLibrary.CommandResult.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DynamicCacheManagerReference\service.wsdl" />
+    <None Include="Connected Services\DynamicCacheManagerReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DynamicCacheManagerReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -207,6 +222,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DynamicCacheManagerReference\" />
     <WCFMetadataStorage Include="Connected Services\ModelServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -221,7 +237,18 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Connected Services\DynamicCacheManagerReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DynamicCacheManagerReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DynamicCacheManagerReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

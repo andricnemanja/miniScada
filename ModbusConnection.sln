@@ -26,12 +26,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModbusServiceLibrary.Tests", "ModbusServiceLibrary.Tests\ModbusServiceLibrary.Tests.csproj", "{F70022AE-FD4C-4095-ADE3-96D8C909BD77}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DynamicCacheManager", "DynamicCacheManager", "{11F52189-9CA2-4F2B-B5D3-21C4C77EB796}"
+	ProjectSection(SolutionItems) = preProject
+		DynamicCacheManager\CommandResult = DynamicCacheManager\CommandResult
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCacheManager", "DynamicCacheManager\DynamicCacheManager.csproj", "{5CF4BA8D-4386-4ACB-BEAF-3A0D7A823649}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCacheManagerHost", "DynamicCacheManagerServiceHost\DynamicCacheManagerHost.csproj", "{35324D35-52EF-4B0F-8B5D-8414B96AB93F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCacheManager.Tests", "DynamicCacheManager.Tests\DynamicCacheManager.Tests.csproj", "{F11FB3FB-8378-4C50-8BB0-36457EEB9C08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{842B3201-5B0A-49EF-B24B-0855BA9B432E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisDynamicCacheClientAdapter", "RedisDynamicCacheClientAdapter\RedisDynamicCacheClientAdapter.csproj", "{032D8801-BB08-4221-8FA7-F550AC513D3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +90,14 @@ Global
 		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{842B3201-5B0A-49EF-B24B-0855BA9B432E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{842B3201-5B0A-49EF-B24B-0855BA9B432E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{842B3201-5B0A-49EF-B24B-0855BA9B432E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{842B3201-5B0A-49EF-B24B-0855BA9B432E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032D8801-BB08-4221-8FA7-F550AC513D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032D8801-BB08-4221-8FA7-F550AC513D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032D8801-BB08-4221-8FA7-F550AC513D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032D8801-BB08-4221-8FA7-F550AC513D3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +113,8 @@ Global
 		{5CF4BA8D-4386-4ACB-BEAF-3A0D7A823649} = {11F52189-9CA2-4F2B-B5D3-21C4C77EB796}
 		{35324D35-52EF-4B0F-8B5D-8414B96AB93F} = {11F52189-9CA2-4F2B-B5D3-21C4C77EB796}
 		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08} = {11F52189-9CA2-4F2B-B5D3-21C4C77EB796}
+		{842B3201-5B0A-49EF-B24B-0855BA9B432E} = {7ABF4FA7-1C3D-4F15-93C0-0860B402030E}
+		{032D8801-BB08-4221-8FA7-F550AC513D3A} = {7ABF4FA7-1C3D-4F15-93C0-0860B402030E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04FAD949-D920-4455-847F-59A5B4BAFF56}

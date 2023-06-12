@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ClientWpfApp.Commands;
@@ -8,6 +8,8 @@ using ClientWpfApp.Model;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.SignalValues;
 using ClientWpfApp.ServiceClients;
+using Contracts;
+using Contracts.DTO;
 using StackExchange.Redis;
 
 namespace ClientWpfApp.ViewModel
@@ -19,6 +21,8 @@ namespace ClientWpfApp.ViewModel
 		private ModelServiceConverter modelServiceConverter;
 		private ModbusServiceReference.ModbusDuplexClient modbusDuplexClient;
 		private ISubscriber subscriber;
+		[Import(typeof(IDynamicCacheClient))]
+		IDynamicCacheClient dynamicCacheClient;
 		#endregion Fields
 
 		#region Commands
@@ -54,11 +58,17 @@ namespace ClientWpfApp.ViewModel
 			ReadRTUStaticData();
 			ConnectToModbusServices();
 			InitializeCommands();
+			var catalog = new DirectoryCatalog("..\\..\\DynamicCacheAdapter");
+			var container = new CompositionContainer(catalog);
+			container.ComposeParts(this);
 			Task.Run(GetMessages);
+
 		}
 
 		public async Task GetMessages()
 		{
+			dynamicCacheClient.Connect();
+
 			var muxer = ConnectionMultiplexer.Connect("localhost:6379");
 			var db = muxer.GetDatabase();
 			subscriber = muxer.GetSubscriber();
@@ -67,26 +77,35 @@ namespace ClientWpfApp.ViewModel
 			{
 				foreach (var signal in rtu.AnalogSignalValues)
 				{
-					db.HashGet("signal:" + signal.AnalogSignal.ID, "value").TryParse(out double signalValue);
-					signal.Value = signalValue;
+					SignalValueDTO dto = dynamicCacheClient.GetCurrentSignalValue(signal.AnalogSignal.ID);
+					double.TryParse(dto.Value, out double value);
+					signal.Value = value;
 				}
 				foreach (var signal in rtu.DiscreteSignalValues)
-				{ 
-					signal.State = db.HashGet("signal:" + signal.DiscreteSignal.ID, "value");
+				{
+					SignalValueDTO dto = dynamicCacheClient.GetCurrentSignalValue(signal.DiscreteSignal.ID);
+					signal.State = dto.Value;
 				}
 			}
 
 			List<Task> listOfSubscriptions = new List<Task>();
 			foreach(RTU rtu in RtuCache.RtuList)
 			{
+
+				listOfSubscriptions.Add(dynamicCacheClient.SubscribeToRtuChanges(rtu.RTUData.ID, (SignalChangeDTO signalChangeDTO) =>
+				{
+					RtuCache.UpdateSignalValue(signalChangeDTO.RtuId, signalChangeDTO.SignalId, signalChangeDTO.NewValue);
+				}));
+
+				/*
 				listOfSubscriptions.Add(subscriber.SubscribeAsync("rtu:" + rtu.RTUData.ID + ".*", (channel, value) =>
 				{
 					ChangedSignalData changedSignalData = ParseSubscriptionChannel(channel);
 					RtuCache.UpdateSignalValue(changedSignalData.RtuId, changedSignalData.SignalId, value);
-				}));
+				}));*/
 			}
-
 			
+			/*
 			listOfSubscriptions.Add(subscriber.SubscribeAsync("*:flags", (channel, value) =>
 			{
 				var signalId = Int32.Parse(channel.ToString().Split(':')[1]);
@@ -107,6 +126,7 @@ namespace ClientWpfApp.ViewModel
 					}
 				}
 			}));
+			*/
 			
 
 			await Task.WhenAll(listOfSubscriptions);

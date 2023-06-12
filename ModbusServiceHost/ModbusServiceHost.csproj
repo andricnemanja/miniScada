@@ -85,6 +85,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Connected Services\DynamicCacheServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ModelServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,6 +100,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\DynamicCacheServiceReference\ModbusServiceLibrary.CommandResult.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DynamicCacheServiceReference\service.wsdl" />
+    <None Include="Connected Services\DynamicCacheServiceReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DynamicCacheServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -141,6 +156,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DynamicCacheServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\ModelServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +167,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ModelServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DynamicCacheServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DynamicCacheServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DynamicCacheServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
