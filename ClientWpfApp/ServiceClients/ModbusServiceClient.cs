@@ -1,5 +1,4 @@
 ﻿using System.ServiceModel;
-using System.Threading;
 using System.Threading.Tasks;
 using ClientWpfApp.ModbusCallback;
 using ClientWpfApp.ModbusServiceReference;
@@ -32,6 +31,12 @@ namespace ClientWpfApp.ServiceClients
 
 		public void ReadValues()
 		{
+			Parallel.ForEach(rtuCache.RtuList, rtu =>
+			{
+				if (rtu.IsConnected)
+					ReadSingleRTU(rtu);
+			});
+			/*
 			Task.Run(() =>
 			{
 				while (true)
@@ -43,7 +48,7 @@ namespace ClientWpfApp.ServiceClients
 					});
 					Thread.Sleep(1000);
 				}
-			});
+			});*/
 		}
 
 		public void WriteAnalogSignalValue(int rtuId, int signalAddress, double value)

@@ -15,6 +15,15 @@ namespace Contracts
 		/// <returns>True if a connection is made, False if not</returns>
 		bool Connect();
 		/// <summary>
+		/// Disconnect from dynamic cache.
+		/// </summary>
+		void Disconnect();
+		/// <summary>
+		/// Check if dynamic cache is available
+		/// </summary>
+		/// <returns>True if a dynamic cache is available, False if not</returns>
+		bool IsAvailable();
+		/// <summary>
 		/// Get current signal value from dynamic cache for signal with provided ID
 		/// </summary>
 		/// <param name="signalId">ID of signal that you want to read</param>

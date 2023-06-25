@@ -1,20 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Configuration;
+using System.Threading;
 using System.Threading.Tasks;
 using ClientWpfApp.Model;
 using ClientWpfApp.Model.RTU;
 using Contracts;
 using Contracts.DTO;
+using Polly;
 
 namespace ClientWpfApp.Cache
 {
-	public sealed class DynamicCache
+	public sealed class DynamicCache : INotifyPropertyChanged
 	{
 		[Import(typeof(IDynamicCacheClient))]
 		private IDynamicCacheClient dynamicCacheClient;
 		private readonly IRtuCache rtuCache;
+		private readonly AsyncPolicy<bool> retryPolicy = Policy<bool>
+			.HandleResult(x => x.Equals(false))
+			.WaitAndRetryForeverAsync(retryAttemp => TimeSpan.FromSeconds(5));
 
 		public DynamicCache(IRtuCache rtuCache)
 		{
@@ -24,14 +31,51 @@ namespace ClientWpfApp.Cache
 			this.rtuCache = rtuCache;
 		}
 
+		private bool isCacheAvailable = false;
+
+		public bool IsCacheAvailable
+		{
+			get { return isCacheAvailable; }
+			set 
+			{
+				if (value != isCacheAvailable)
+				{
+					isCacheAvailable = value;
+					RaisePropertyChanged(nameof(IsCacheAvailable));
+				}
+			}
+		}
+
+
 		/// <summary>
 		/// Connect to dynamic cache. Needs to be called before trying to use any other method.
 		/// </summary>
 		/// <returns>True if a connection is made, False if not</returns>
-		public bool Connect()
+		public Task Connect()
 		{
-			return dynamicCacheClient.Connect();
+			Task.Run(() => retryPolicy.ExecuteAsync(async () => 
+			{
+				return dynamicCacheClient.Connect();
+			})).Wait();
+			IsCacheAvailable = true;
+			return Task.CompletedTask;
 		}
+
+		public Task CheckConnection(CancellationToken cancellationToken)
+		{
+			while(!cancellationToken.IsCancellationRequested)
+			{
+				if (!dynamicCacheClient.IsAvailable())
+				{
+					IsCacheAvailable = false;
+					Task connectionTask = Task.Run(Connect);
+					connectionTask.Wait();
+				}
+				Thread.Sleep(1000);
+			}
+			return Task.CompletedTask;
+		}
+
 
 		/// <summary>
 		/// Read data that is currently in dynamic cache
@@ -72,6 +116,12 @@ namespace ClientWpfApp.Cache
 			await Task.WhenAll(listOfSubscriptions);
 		}
 
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void RaisePropertyChanged(string property)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+		}
 
 	}
 }

@@ -78,7 +78,8 @@ namespace ClientWpfApp.ViewModel
 		private void ConnectToDynamicCache()
 		{
 			dynamicCache = new DynamicCache(RtuCache);
-			dynamicCache.Connect();
+			Task.Run(dynamicCache.Connect).Wait();
+			Task.Run(() => dynamicCache.CheckConnection(new System.Threading.CancellationToken())) ;
 			dynamicCache.InitalScan();
 			Task.Run(dynamicCache.ListenToSignalChanges);
 		}

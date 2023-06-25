@@ -1,4 +1,7 @@
-﻿using DynamicCacheManager.Model;
+﻿using System;
+using DynamicCacheManager.Model;
+using Polly;
+using Polly.Retry;
 using StackExchange.Redis;
 
 namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
@@ -8,6 +11,9 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 		private IDatabase redisDatabase;
 		private ISubscriber publisher;
 		private readonly ISignalNameStringBuilder redisStringBuilder;
+		private readonly RetryPolicy retryPolicy = Policy
+			.Handle<RedisConnectionException>()
+			.WaitAndRetryForever(retryAttemp => TimeSpan.FromSeconds(5));
 
 		public RedisDynamicCacheClient(ISignalNameStringBuilder redisStringBuilder)
 		{
@@ -16,7 +22,10 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 
 		public void ConnectToDynamicCache()
 		{
-			var muxer = ConnectionMultiplexer.Connect(System.Configuration.ConfigurationManager.AppSettings["DynamicCacheAddress"]);
+			var muxer = retryPolicy.Execute(() =>
+			{
+				return ConnectionMultiplexer.Connect(System.Configuration.ConfigurationManager.AppSettings["DynamicCacheAddress"]);
+			});
 			redisDatabase = muxer.GetDatabase();
 			publisher = muxer.GetSubscriber();
 		}

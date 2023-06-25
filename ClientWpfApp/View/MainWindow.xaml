@@ -29,10 +29,10 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
 
-                    <DataGridTemplateColumn Header="Status" Width ="Auto" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Status konekcije" Width ="Auto" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Width="70px" Content="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
+                                <Button Width="90px" Content="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
                                         Command="{Binding Path=DataContext.ConnectToRtuCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
                                         CommandParameter="{Binding}" 
                                         Background="{Binding IsConnected, Converter={StaticResource ConnectionButtonColorConverter}}"

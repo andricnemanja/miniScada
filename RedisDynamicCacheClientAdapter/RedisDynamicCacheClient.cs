@@ -16,6 +16,7 @@ namespace RedisDynamicCacheClientAdapter
 	{
 		private readonly RedisStringBuilder stringBuilder = new RedisStringBuilder();
 		private readonly RedisStringParser stringParser = new RedisStringParser();
+		private ConnectionMultiplexer multiplexer;
 		private IDatabase redisDatabase;
 		private ISubscriber subscriber;
 
@@ -27,15 +28,33 @@ namespace RedisDynamicCacheClientAdapter
 		{
 			try
 			{
-				var muxer = ConnectionMultiplexer.Connect("localhost:6379");
-				redisDatabase = muxer.GetDatabase();
-				subscriber = muxer.GetSubscriber();
+				multiplexer = ConnectionMultiplexer.Connect("localhost:6379");
+				redisDatabase = multiplexer.GetDatabase();
+				subscriber = multiplexer.GetSubscriber();
 				return true;
 			}
 			catch
 			{
 				return false;
 			}
+		}
+
+		/// <summary>
+		/// Disconnect from dynamic cache.
+		/// </summary>
+		public void Disconnect()
+		{
+			subscriber.UnsubscribeAll();
+			multiplexer.Close();
+		}
+
+		/// <summary>
+		/// Check if dynamic cache is available
+		/// </summary>
+		/// <returns>True if a dynamic cache is available, False if not</returns>
+		public bool IsAvailable()
+		{
+			return subscriber.IsConnected();
 		}
 
 		/// <summary>

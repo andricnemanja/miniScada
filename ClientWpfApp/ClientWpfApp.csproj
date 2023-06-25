@@ -62,6 +62,9 @@
     <Reference Include="Pipelines.Sockets.Unofficial, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42ea0a778e13fbe2, processorArchitecture=MSIL">
       <HintPath>..\packages\Pipelines.Sockets.Unofficial.2.2.2\lib\net472\Pipelines.Sockets.Unofficial.dll</HintPath>
     </Reference>
+    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.7.2.3\lib\net472\Polly.dll</HintPath>
+    </Reference>
     <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\packages\StackExchange.Redis.2.6.96\lib\net472\StackExchange.Redis.dll</HintPath>
     </Reference>
@@ -117,11 +120,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Cache\DynamicCache.cs" />
-    <Compile Include="Circuit Breaker\CircuitBreaker.cs" />
-    <Compile Include="Circuit Breaker\CircuitBreakerOpenException.cs" />
-    <Compile Include="Circuit Breaker\CircuitBreakerStateEnum.cs" />
-    <Compile Include="Circuit Breaker\CircuitBreakerStateStore.cs" />
-    <Compile Include="Circuit Breaker\ICircuitBreakerStateStore.cs" />
     <Compile Include="Commands\ChangeDiscreteSignalSecondStateCommand.cs" />
     <Compile Include="Commands\ConnectToRtuCommand.cs" />
     <Compile Include="Commands\ChangeDiscreteSignalFirstStateCommand.cs" />
