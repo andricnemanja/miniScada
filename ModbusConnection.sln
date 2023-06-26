@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulerLibrary", "Schedul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler.Tests", "Scheduler.Tests\Scheduler.Tests.csproj", "{F2E7B325-6A89-4126-9AAC-2E0CACACC687}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulerService", "SchedulerService\SchedulerService.csproj", "{62CF2F2C-7275-482E-B280-731342E9C266}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{F2E7B325-6A89-4126-9AAC-2E0CACACC687}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2E7B325-6A89-4126-9AAC-2E0CACACC687}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2E7B325-6A89-4126-9AAC-2E0CACACC687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62CF2F2C-7275-482E-B280-731342E9C266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62CF2F2C-7275-482E-B280-731342E9C266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62CF2F2C-7275-482E-B280-731342E9C266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62CF2F2C-7275-482E-B280-731342E9C266}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{036B2513-14A5-4AF2-86B3-AE3777D9673D} = {B3FF9E4B-62DA-4B48-8B5A-E6117BA765D7}
 		{AEC9FF0B-1411-4EBF-BC24-89104A7F5867} = {B3FF9E4B-62DA-4B48-8B5A-E6117BA765D7}
 		{F2E7B325-6A89-4126-9AAC-2E0CACACC687} = {B3FF9E4B-62DA-4B48-8B5A-E6117BA765D7}
+		{62CF2F2C-7275-482E-B280-731342E9C266} = {B3FF9E4B-62DA-4B48-8B5A-E6117BA765D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04FAD949-D920-4455-847F-59A5B4BAFF56}

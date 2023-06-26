@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using ModelWcfServiceLibrary.Model.CronJobPeriodMapping;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.ScanPeriodMapping;
 using ModelWcfServiceLibrary.Model.SignalMapping;
@@ -25,12 +26,14 @@ namespace ModelWcfServiceLibrary
 		/// <param name="rtuRepository">Instance of the <see cref="IRtuRepository"/> class</param>
 		/// <param name="analogSignalMappingRepository"></param>
 		/// <param name="discreteSignalMappingRepository"></param>
-		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, IDiscreteSignalMappingRepository discreteSignalMappingRepository, ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository)
+		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, 
+			IDiscreteSignalMappingRepository discreteSignalMappingRepository, ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository)
 		{
 			this.rtuRepository = rtuRepository;
 			this.analogSignalMappingRepository = analogSignalMappingRepository;
 			this.discreteSignalMappingRepository = discreteSignalMappingRepository;
 			this.signalScanPeriodMappingRepository = signalScanPeriodMappingRepository;
+
 		}
 
 		/// <summary>

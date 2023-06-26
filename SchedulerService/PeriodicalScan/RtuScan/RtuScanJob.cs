@@ -1,15 +1,9 @@
-﻿using ModbusServiceLibrary.RtuCommands;
-using Quartz;
-using SchedulerLibrary.ModbusServiceReference;
-using SchedulerLibrary.Model.Signals;
-using SchedulerLibrary.RtuConfiguration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Quartz;
+using SchedulerService.ModbusServiceReference;
+using SchedulerService.RtuConfiguration;
 using System.Threading.Tasks;
 
-namespace SchedulerLibrary.PeriodicalScan.RtuScan
+namespace SchedulerService.PeriodicalScan.RtuScan
 {
 	public class RtuScanJob : IJob
 	{
@@ -26,7 +20,7 @@ namespace SchedulerLibrary.PeriodicalScan.RtuScan
 				{
 					foreach (var signal in rtu.Signals)
 					{
-						RtuCommandBase command = new ReadSingleSignalCommand(rtu.ID, signal.ID);
+						RtuCommandBase command = new ReadSingleSignalCommand { RtuId = rtu.ID, SignalId = signal.ID };
 						modbusDuplex.ReceiveCommand(command);
 					}
 				}

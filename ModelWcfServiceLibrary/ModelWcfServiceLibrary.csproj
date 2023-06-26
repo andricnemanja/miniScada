@@ -89,6 +89,7 @@
     <Compile Include="FileAccessing\FileAccess.cs" />
     <Compile Include="IModelService.cs" />
     <Compile Include="ModelServiceException.cs" />
+    <Compile Include="Model\CronJobPeriodMapping\ModelCronJobPeriodMapping.cs" />
     <Compile Include="Model\RTU\ModelRTU.cs" />
     <Compile Include="Model\RTU\ModelRTUData.cs" />
     <Compile Include="Model\ScanPeriodMapping\SignalScanPeriodMapping.cs" />
@@ -101,8 +102,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelService.cs" />
     <Compile Include="FileAccessing\IFileAccess.cs" />
+    <Compile Include="Repository\CronJobScanPeriodRepository.cs" />
     <Compile Include="Repository\DiscreteSignalMappingRepository.cs" />
     <Compile Include="Repository\IAnalogSignalMappingRepository.cs" />
+    <Compile Include="Repository\ICronJobScanPeriodRepository.cs" />
     <Compile Include="Repository\IDiscreteSignalMappingRepository.cs" />
     <Compile Include="Repository\IRtuRepository.cs" />
     <Compile Include="Repository\AnalogSignalMappingRepository.cs" />

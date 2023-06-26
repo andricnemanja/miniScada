@@ -1,6 +1,7 @@
 ﻿using SchedulerLibrary.ModbusServiceReference;
 using SchedulerLibrary.ModelServiceReference;
 using SchedulerLibrary.Period_Mapper;
+using SchedulerLibrary.PeriodicalScan.RtuScan;
 using SchedulerLibrary.PeriodicalScan.SignalTypeScan;
 using SchedulerLibrary.RtuConfiguration;
 using System;
@@ -42,6 +43,7 @@ namespace SchedulerLibrary
 			scheduler.RegisterPeriodicalScanJob<AnalogOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(2), rtuConfiguration, modbus);
 			scheduler.RegisterPeriodicalScanJob<DiscreteInputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(3), rtuConfiguration, modbus);
 			scheduler.RegisterPeriodicalScanJob<DiscreteOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(4), rtuConfiguration, modbus);
+			scheduler.RegisterCronJob<RtuScanJob>("abc", rtuConfiguration, modbus, 1);
 
 			while (!stoppingToken.IsCancellationRequested)
 			{

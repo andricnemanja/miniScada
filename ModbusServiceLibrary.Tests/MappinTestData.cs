@@ -6,35 +6,35 @@ namespace ModbusServiceLibrary.Tests
 {
 	public static class MappinTestData
 	{
-		public static List<AnalogSignalMapping> GetAnalogSignalMappingsTestList()
+		public static List<ModelAnalogSignalMapping> GetAnalogSignalMappingsTestList()
 		{
-			return new List<AnalogSignalMapping>()
+			return new List<ModelAnalogSignalMapping>()
 			{
-				new AnalogSignalMapping()
+				new ModelAnalogSignalMapping()
 				{
 					Id = 1,
 					K = 0.008,
 					N = -40
 				},
-				new AnalogSignalMapping()
+				new ModelAnalogSignalMapping()
 				{
 					Id = 2,
 					K = 0.1,
 					N = -300
 				},
-				new AnalogSignalMapping()
+				new ModelAnalogSignalMapping()
 				{
 					Id = 3,
 					K = 0.02,
 					N = -100
 				},
-				new AnalogSignalMapping()
+				new ModelAnalogSignalMapping()
 				{
 					Id = 4,
 					K = 0.01,
 					N = -100
 				},
-				new AnalogSignalMapping()
+				new ModelAnalogSignalMapping()
 				{
 					Id = 5,
 					K = 0.008,
@@ -44,11 +44,11 @@ namespace ModbusServiceLibrary.Tests
 			};
 		}
 
-		public static List<DiscreteSignalMapping> GetDiscreteSignalMappingsTestList()
+		public static List<ModelDiscreteSignalMapping> GetDiscreteSignalMappingsTestList()
 		{
-			return new List<DiscreteSignalMapping>()
+			return new List<ModelDiscreteSignalMapping>()
 			{
-				new DiscreteSignalMapping()
+				new ModelDiscreteSignalMapping()
 				{
 					Id = 1,
 					Name = "test",
@@ -60,7 +60,7 @@ namespace ModbusServiceLibrary.Tests
 						{ 3, "Transit" }
 					}
 				},
-				new DiscreteSignalMapping()
+				new ModelDiscreteSignalMapping()
 				{
 					Id = 2,
 					Name = "test2",
@@ -72,7 +72,7 @@ namespace ModbusServiceLibrary.Tests
 						{ 3, "Transit" }
 					}
 				},
-				new DiscreteSignalMapping()
+				new ModelDiscreteSignalMapping()
 				{
 					Id = 3,
 					Name = "test",

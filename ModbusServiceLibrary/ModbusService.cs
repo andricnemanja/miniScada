@@ -83,8 +83,7 @@ namespace ModbusServiceLibrary
 		{
 			try
 			{
-				Console.WriteLine(((ReadSingleSignalCommand)command).RtuId);
-				Console.WriteLine(((ReadSingleSignalCommand)command).SignalId);
+				Console.WriteLine("RTU ID: " + ((ReadSingleSignalCommand)command).RtuId + " Signal ID: " + ((ReadSingleSignalCommand)command).SignalId); 
 				rtuCommandInvoker.ReadSingleSignalScheduler(command);
 			}
 			catch (Exception ex)

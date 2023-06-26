@@ -1,10 +1,10 @@
 ﻿using Quartz;
 using Quartz.Impl;
-using SchedulerLibrary.ModbusServiceReference;
-using SchedulerLibrary.RtuConfiguration;
+using SchedulerService.ModbusServiceReference;
+using SchedulerService.RtuConfiguration;
 using System;
 
-namespace SchedulerLibrary.PeriodicalScan.SignalTypeScan
+namespace SchedulerService.PeriodicalScan
 {
 	/// <summary>
 	/// Class that schedules different tasks.

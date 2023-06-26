@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="2628e086-29e7-48f6-94c5-31aa4fe38319" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://localhost:65002/GettingStarted/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="da27bd3a-58b5-4be1-a79e-cf67ea7465a7" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="64c348ca-2392-4784-8792-ffc47a566205" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="6e7d8fa3-ff3c-401d-a5f4-c1cd98413a46" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+    <MetadataFile FileName="ModbusServiceLibrary.CommandResult.xsd" MetadataType="Schema" ID="579096b4-7054-4c7f-9d77-7eb52aab0594" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+    <MetadataFile FileName="ModbusServiceLibrary.RtuCommands.xsd" MetadataType="Schema" ID="f5ff60e3-7c6b-41ff-afbc-39d18fd38db2" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
