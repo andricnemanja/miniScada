@@ -4,5 +4,6 @@
 	{
 		int Id { get; }
 		int RtuId { get; }
+		string Value { get; }
 	}
 }

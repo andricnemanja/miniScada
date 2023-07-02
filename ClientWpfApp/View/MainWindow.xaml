@@ -28,6 +28,15 @@
             <DataGrid ItemsSource="{Binding RtuCache.RtuList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="940px" x:Name="DevicesDataGrid">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
+                    
+                    <DataGridTemplateColumn Header="Flags" Width ="Auto" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding Flags}">
+                                </ListBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
                     <DataGridTemplateColumn Header="Status konekcije" Width ="Auto" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>

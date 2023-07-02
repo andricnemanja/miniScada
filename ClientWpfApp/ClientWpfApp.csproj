@@ -165,6 +165,7 @@
     <Compile Include="ServiceClients\ModbusServiceClient.cs" />
     <Compile Include="ServiceClients\ModelServiceConverter.cs" />
     <Compile Include="ServiceClients\RtuConnection.cs" />
+    <Compile Include="Util\AsyncObservableCollection.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

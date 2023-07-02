@@ -45,7 +45,7 @@ namespace Contracts
 		/// </summary>
 		/// <param name="rtuId">ID of rtu from which you want to receive changes</param>
 		/// <param name="handleSignalChange">Handler to perform when signal change is received</param>
-		Task SubscribeToRtuChangesAsync(int rtuId, Action<SignalChangeDTO> handleSignalChange);
+		Task SubscribeToRtuChangesAsync(int rtuId, Action<SignalChangeDTO> handleSignalChange, Action<RtuFlagDTO> handleNewFlag);
 		/// <summary>
 		/// Subscribe to signal changes
 		/// </summary>

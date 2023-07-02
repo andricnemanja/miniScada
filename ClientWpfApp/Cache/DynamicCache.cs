@@ -110,6 +110,10 @@ namespace ClientWpfApp.Cache
 				listOfSubscriptions.Add(dynamicCacheClient.SubscribeToRtuChangesAsync(rtu.RTUData.ID, (SignalChangeDTO signalChangeDTO) =>
 				{
 					rtuCache.UpdateSignalValue(signalChangeDTO.RtuId, signalChangeDTO.SignalId, signalChangeDTO.NewValue);
+				},
+				(RtuFlagDTO rtuFlagDTO) =>
+				{
+					rtuCache.AddFlagToRtu(rtuFlagDTO.RtuId, rtuFlagDTO.FlagName);
 				}));
 			}
 

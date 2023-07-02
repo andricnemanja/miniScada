@@ -1,4 +1,5 @@
-﻿using ModbusServiceLibrary.CommandResult;
+﻿
+using ModbusServiceLibrary.CommandResult;
 
 namespace DynamicCacheManager.ResultsProcessing
 {

@@ -18,5 +18,13 @@
 
 			return new ChangedSignalData(rtuId, signalId);
 		}
+
+		public int ParseRtuFlagChannel(string channelName)
+		{
+			string[] channelNameArr = channelName.Split('.');
+			int rtuId = int.Parse(channelNameArr[1].Split(':')[1]);
+
+			return rtuId;
+		}
 	}
 }

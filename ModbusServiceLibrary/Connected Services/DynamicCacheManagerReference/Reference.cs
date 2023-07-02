@@ -368,10 +368,10 @@ namespace ModbusServiceLibrary.DynamicCacheManagerReference {
     public interface IDynamicCacheManagerService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDynamicCacheManagerService/ProcessCommandResult")]
-        void ProcessCommandResult(ModbusServiceLibrary.DynamicCacheManagerReference.CommandResultBase commandResult);
+        void ProcessCommandResult(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDynamicCacheManagerService/ProcessCommandResult")]
-        System.Threading.Tasks.Task ProcessCommandResultAsync(ModbusServiceLibrary.DynamicCacheManagerReference.CommandResultBase commandResult);
+        System.Threading.Tasks.Task ProcessCommandResultAsync(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -401,11 +401,11 @@ namespace ModbusServiceLibrary.DynamicCacheManagerReference {
                 base(binding, remoteAddress) {
         }
         
-        public void ProcessCommandResult(ModbusServiceLibrary.DynamicCacheManagerReference.CommandResultBase commandResult) {
+        public void ProcessCommandResult(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult) {
             base.Channel.ProcessCommandResult(commandResult);
         }
         
-        public System.Threading.Tasks.Task ProcessCommandResultAsync(ModbusServiceLibrary.DynamicCacheManagerReference.CommandResultBase commandResult) {
+        public System.Threading.Tasks.Task ProcessCommandResultAsync(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult) {
             return base.Channel.ProcessCommandResultAsync(commandResult);
         }
     }

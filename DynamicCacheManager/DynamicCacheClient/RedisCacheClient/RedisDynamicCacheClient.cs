@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using DynamicCacheManager.Model;
 using Polly;
 using Polly.Retry;
+using Redis.OM;
+using Redis.OM.Searching;
 using StackExchange.Redis;
 
 namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
@@ -10,6 +13,8 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 	{
 		private IDatabase redisDatabase;
 		private ISubscriber publisher;
+		private RedisConnectionProvider connectionProvider;
+		private IRedisCollection<Rtu> rtuRedisCollection;
 		private readonly ISignalNameStringBuilder redisStringBuilder;
 		private readonly RetryPolicy retryPolicy = Policy
 			.Handle<RedisConnectionException>()
@@ -22,17 +27,33 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 
 		public void ConnectToDynamicCache()
 		{
+
 			var muxer = retryPolicy.Execute(() =>
 			{
 				return ConnectionMultiplexer.Connect(System.Configuration.ConfigurationManager.AppSettings["DynamicCacheAddress"]);
 			});
 			redisDatabase = muxer.GetDatabase();
 			publisher = muxer.GetSubscriber();
+
+			connectionProvider = new RedisConnectionProvider("redis://localhost:6379");
+			//var listOfIndexes = connectionProvider.Connection.Execute("FT._LIST").ToArray();
+			//if (!listOfIndexes.Any(x => x == "rtu-idx"))
+			//{
+			connectionProvider.Connection.DropIndex(typeof(Rtu));
+			connectionProvider.Connection.CreateIndex(typeof(Rtu));
+			//}
 		}
 
 		public void AddSignalFlag(ISignal signal, string flag)
 		{
 			redisDatabase.ListRightPush(redisStringBuilder.GenerateSignaFlagListName(signal.Id), flag);
+		}
+
+		public void SaveRtuToCache(Rtu rtu)
+		{
+			rtuRedisCollection = connectionProvider.RedisCollection<Rtu>();
+			rtuRedisCollection.Insert(rtu);
+			//connectionProvider.Connection.Set(rtu);
 		}
 
 		public void SaveSignalToCache(ISignal signal)
@@ -50,10 +71,19 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 
 		public void ChangeSignalValue(ISignal signal, string newValue)
 		{
-			redisDatabase.HashSet(redisStringBuilder.GenerateSignalKeyName(signal.Id), new HashEntry[]
+			Rtu rtu = FindRtu(signal.RtuId);
+
+			if (signal.GetType() == typeof(AnalogSignal))
 			{
-				new HashEntry("value", newValue)
-			});
+				AnalogSignal analogSignal = rtu.AnalogSignals.SingleOrDefault(s => s.Id == signal.Id);
+				analogSignal.Value = newValue;
+				rtuRedisCollection.Update(rtu);
+				return;
+			}
+
+			DiscreteSignal discreteSignal = rtu.DiscreteSignals.SingleOrDefault(s => s.Id == signal.Id);
+			discreteSignal.Value = newValue;
+			rtuRedisCollection.Update(rtu);
 		}
 
 		public void PublishSignalChange(ISignal signal, string newValue)
@@ -68,11 +98,25 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 
 		public string GetSignalValue(ISignal signal)
 		{
-			if (!redisDatabase.KeyExists(redisStringBuilder.GenerateSignalKeyName(signal.Id)))
+			Rtu rtu = FindRtu(signal.RtuId);
+			ISignal selectedSignal;
+			if (signal.GetType() == typeof(AnalogSignal))
 			{
-				return string.Empty;
+				selectedSignal = rtu.AnalogSignals.SingleOrDefault(s => s.Id == signal.Id);
 			}
-			return redisDatabase.HashGet(redisStringBuilder.GenerateSignalKeyName(signal.Id), "value");
+			else
+			{
+				selectedSignal = rtu.DiscreteSignals.SingleOrDefault(s => s.Id == signal.Id);
+			}
+			return selectedSignal.Value;
+		}
+
+
+
+		private Rtu FindRtu(int rtuId)
+		{
+			var test = rtuRedisCollection.ToList();
+			return rtuRedisCollection.SingleOrDefault(r => r.Id == rtuId);
 		}
 	}
 }

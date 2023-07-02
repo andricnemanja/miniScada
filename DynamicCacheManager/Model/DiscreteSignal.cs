@@ -6,10 +6,12 @@
 		{
 			Id = id;
 			RtuId = rtuId;
+			Value = string.Empty;
 		}
 
 		public int Id { get; }
 		public int RtuId { get; }
+		public string Value { get; set; }
 
 	}
 }

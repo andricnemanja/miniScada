@@ -27,7 +27,7 @@ namespace DynamicCacheManager.ServiceCache
 				foreach (var analogSignal in rtu.AnalogSignals)
 				{
 					AnalogSignal newAnalogSignal = new AnalogSignal(analogSignal.ID, rtu.RTUData.ID, analogSignal.Deadband);
-					dynamicCacheClient.SaveSignalToCache(newAnalogSignal);
+					//dynamicCacheClient.SaveSignalToCache(newAnalogSignal);
 					analogSignals.Add(newAnalogSignal);
 				}
 
@@ -35,11 +35,13 @@ namespace DynamicCacheManager.ServiceCache
 				foreach (var discreteSignal in rtu.DiscreteSignals)
 				{
 					DiscreteSignal newDiscreteSignal = new DiscreteSignal(discreteSignal.ID, rtu.RTUData.ID);
-					dynamicCacheClient.SaveSignalToCache(newDiscreteSignal);
+					//dynamicCacheClient.SaveSignalToCache(newDiscreteSignal);
 					discreteSignals.Add(newDiscreteSignal);
 				}
 
-				rtus.Add(new Rtu(rtu.RTUData.ID, analogSignals, discreteSignals));
+				var newRtu = new Rtu(rtu.RTUData.ID, analogSignals, discreteSignals);
+				dynamicCacheClient.SaveRtuToCache(newRtu);
+				rtus.Add(newRtu);
 			}
 
 			return rtus;

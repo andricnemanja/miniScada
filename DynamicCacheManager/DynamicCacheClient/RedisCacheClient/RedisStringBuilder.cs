@@ -19,7 +19,13 @@
 
 		public string GenerateFlagChannelName(int rtuId, string signalType, int signalId)
 		{
-			return GenerateChannelName(rtuId, signalType, signalId) + ":flags";
+			return "flags." + GenerateChannelName(rtuId, signalType, signalId);
 		}
+
+		public string GenerateFlagChannelName(int rtuId)
+		{
+			return "flags." + "rtu:" + rtuId;
+		}
+
 	}
 }

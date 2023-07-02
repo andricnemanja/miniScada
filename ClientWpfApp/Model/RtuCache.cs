@@ -50,6 +50,10 @@ namespace ClientWpfApp.Model
 			analogSignal.Value = convertedValue;
 		}
 
+		public void AddFlagToRtu(int rtuId, string flag)
+		{
+			FindRtu(rtuId).Flags.Add(flag);
+		}
 
 		private RTU.RTU FindRtu(int rtuId)
 		{

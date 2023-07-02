@@ -36,13 +36,8 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal.</param>
 		public void ReadAnalogSignal(int rtuId, int signalId)
 		{
-			ReadSingleAnalogSignalResult result = (ReadSingleAnalogSignalResult)rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
-			dynamicCacheService.ProcessCommandResult(new DynamicCacheManagerReference.ReadSingleAnalogSignalResult()
-			{
-				RtuId = result.RtuId,
-				SignalId = result.SignalId,
-				SignalValue = result.SignalValue
-			});
+			CommandResultBase result = rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
+			dynamicCacheService.ProcessCommandResult(result);
 		}
 
 		/// <summary>
@@ -52,14 +47,9 @@ namespace ModbusServiceLibrary
 		/// <param name="signalAddress">Address of the signal.</param>
 		public void ReadDiscreteSignal(int rtuId, int signalId)
 		{
-			ReadSingleDiscreteSignalResult result = (ReadSingleDiscreteSignalResult)rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
-
-			dynamicCacheService.ProcessCommandResult(new DynamicCacheManagerReference.ReadSingleDiscreteSignalResult()
-			{
-				RtuId = result.RtuId,
-				SignalId = result.SignalId,
-				State = result.State
-			});
+			CommandResultBase result = rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
+			
+			dynamicCacheService.ProcessCommandResult(result);
 		}
 
 		/// <summary>
