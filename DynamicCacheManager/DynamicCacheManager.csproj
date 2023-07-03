@@ -126,6 +126,7 @@
     <Compile Include="ResultsProcessing\Processors\ICommandResultProcessor.cs" />
     <Compile Include="ResultsProcessing\ICommandResultQueue.cs" />
     <Compile Include="ResultsProcessing\ICommandResultReceiver.cs" />
+    <Compile Include="ResultsProcessing\Processors\ReadSingleAnalogSignalFailedResultProcessor.cs" />
     <Compile Include="ResultsProcessing\Processors\ReadSingleAnalogSignalResultProcessor.cs" />
     <Compile Include="ResultsProcessing\Processors\ReadSingleDiscreteSignalResultProcessor.cs" />
     <Compile Include="DynamicCacheClient\RedisCacheClient\RedisDynamicCacheClient.cs" />

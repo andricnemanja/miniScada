@@ -6,12 +6,12 @@ namespace DynamicCacheManager.Model
 	[Document(StorageType = StorageType.Json, Prefixes = new []{"Rtu"})]
 	public class Rtu
 	{
-		public Rtu(int id, List<AnalogSignal> analogSignals, List<DiscreteSignal> discreteSignals)
+		public Rtu(int id, List<AnalogSignal> analogSignals, List<DiscreteSignal> discreteSignals, List<string> flags)
 		{
 			Id = id;
 			AnalogSignals = analogSignals;
 			DiscreteSignals = discreteSignals;
-			Flags = new List<string>();
+			Flags = flags;
 		}
 		[RedisIdField]
 		[Indexed]

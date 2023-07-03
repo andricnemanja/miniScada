@@ -15,6 +15,7 @@ namespace DynamicCacheManager.ResultsProcessing
 			commandResultProcessors = new Dictionary<Type, ICommandResultProcessor>()
 			{
 				{typeof(ReadSingleAnalogSignalResult), new ReadSingleAnalogSignalResultProcessor(rtuCache, dynamicCacheClient) },
+				{typeof(ReadSingleAnalogSignalFailedResult), new ReadSingleAnalogSignalFailedResultProcessor(rtuCache, dynamicCacheClient) },
 				{typeof(ReadSingleDiscreteSignalResult), new ReadSingleDiscreteSignalResultProcessor(rtuCache, dynamicCacheClient) }
 			};
 		}

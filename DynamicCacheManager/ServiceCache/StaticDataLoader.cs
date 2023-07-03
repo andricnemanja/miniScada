@@ -39,7 +39,7 @@ namespace DynamicCacheManager.ServiceCache
 					discreteSignals.Add(newDiscreteSignal);
 				}
 
-				var newRtu = new Rtu(rtu.RTUData.ID, analogSignals, discreteSignals);
+				var newRtu = new Rtu(rtu.RTUData.ID, analogSignals, discreteSignals, new List<string>());
 				dynamicCacheClient.SaveRtuToCache(newRtu);
 				rtus.Add(newRtu);
 			}
