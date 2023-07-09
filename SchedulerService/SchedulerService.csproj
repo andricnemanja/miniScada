@@ -117,9 +117,6 @@
     <None Include="Connected Services\ModbusServiceReference\ModbusServiceLibrary.RtuCommands.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModbusServiceReference\SchedulerService.ModbusServiceReference.CommandResultBase.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\ModbusServiceReference\service.wsdl" />
     <None Include="Connected Services\ModbusServiceReference\service.xsd">
       <SubType>Designer</SubType>
@@ -145,27 +142,6 @@
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelAnalogSignal.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelAnalogSignalMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelDiscreteSignal.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelRTU.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelRTUData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.SignalScanPeriodMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\ModelServiceReference\service.wsdl" />
     <None Include="Connected Services\ModelServiceReference\service.xsd">
       <SubType>Designer</SubType>
@@ -173,6 +149,14 @@
     <None Include="Connected Services\ModelServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ModbusServiceLibrary.CommandResult.CommandResultBase.datasource" />
+    <None Include="ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal.datasource" />
+    <None Include="ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping.datasource" />
+    <None Include="ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal.datasource" />
+    <None Include="ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping.datasource" />
+    <None Include="ModbusServiceLibrary.ModelServiceReference.ModelRTU.datasource" />
+    <None Include="ModbusServiceLibrary.ModelServiceReference.ModelRTUData.datasource" />
+    <None Include="ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping.datasource" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
