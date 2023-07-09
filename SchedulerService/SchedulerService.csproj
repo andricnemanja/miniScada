@@ -89,6 +89,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ModbusServiceCallback.cs" />
     <Compile Include="Model\RTU\SchedulerRTU.cs" />
     <Compile Include="Model\SignalPeriod\SignalPeriod.cs" />
     <Compile Include="Model\Signals\ISchedulerSignal.cs" />
@@ -117,6 +118,9 @@
     <None Include="Connected Services\ModbusServiceReference\ModbusServiceLibrary.RtuCommands.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ModbusServiceReference\SchedulerService.ModbusServiceReference.CommandResultBase.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ModbusServiceReference\service.wsdl" />
     <None Include="Connected Services\ModbusServiceReference\service.xsd">
       <SubType>Designer</SubType>
@@ -141,6 +145,27 @@
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelAnalogSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelAnalogSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelDiscreteSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelRTU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelRTUData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.SignalScanPeriodMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\service.wsdl" />
     <None Include="Connected Services\ModelServiceReference\service.xsd">
@@ -189,12 +214,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">
-      <Project>{E7FDB680-6D8C-41BB-B54E-F250BF051C5E}</Project>
-      <Name>ModbusServiceLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

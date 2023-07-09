@@ -9,54 +9,785 @@
 //------------------------------------------------------------------------------
 
 namespace SchedulerService.ModelServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelRTU", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU")]
+    [System.SerializableAttribute()]
+    public partial class ModelRTU : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ModelAnalogSignal[] AnalogSignalsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ModelDiscreteSignal[] DiscreteSignalsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ModelRTUData RTUDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModelAnalogSignal[] AnalogSignals {
+            get {
+                return this.AnalogSignalsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnalogSignalsField, value) != true)) {
+                    this.AnalogSignalsField = value;
+                    this.RaisePropertyChanged("AnalogSignals");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModelDiscreteSignal[] DiscreteSignals {
+            get {
+                return this.DiscreteSignalsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DiscreteSignalsField, value) != true)) {
+                    this.DiscreteSignalsField = value;
+                    this.RaisePropertyChanged("DiscreteSignals");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModelRTUData RTUData {
+            get {
+                return this.RTUDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RTUDataField, value) != true)) {
+                    this.RTUDataField = value;
+                    this.RaisePropertyChanged("RTUData");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelRTUData", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class ModelRTUData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IpAddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PortField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IpAddress {
+            get {
+                return this.IpAddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IpAddressField, value) != true)) {
+                    this.IpAddressField = value;
+                    this.RaisePropertyChanged("IpAddress");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Port {
+            get {
+                return this.PortField;
+            }
+            set {
+                if ((this.PortField.Equals(value) != true)) {
+                    this.PortField = value;
+                    this.RaisePropertyChanged("Port");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelAnalogSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    [System.SerializableAttribute()]
+    public partial class ModelAnalogSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ModelSignalAccessType AccessTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MappingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModelSignalAccessType AccessType {
+            get {
+                return this.AccessTypeField;
+            }
+            set {
+                if ((this.AccessTypeField.Equals(value) != true)) {
+                    this.AccessTypeField = value;
+                    this.RaisePropertyChanged("AccessType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((this.AddressField.Equals(value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MappingId {
+            get {
+                return this.MappingIdField;
+            }
+            set {
+                if ((this.MappingIdField.Equals(value) != true)) {
+                    this.MappingIdField = value;
+                    this.RaisePropertyChanged("MappingId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelDiscreteSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    [System.SerializableAttribute()]
+    public partial class ModelDiscreteSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ModelSignalAccessType AccessTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MappingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DiscreteSignalType SignalTypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModelSignalAccessType AccessType {
+            get {
+                return this.AccessTypeField;
+            }
+            set {
+                if ((this.AccessTypeField.Equals(value) != true)) {
+                    this.AccessTypeField = value;
+                    this.RaisePropertyChanged("AccessType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((this.AddressField.Equals(value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MappingId {
+            get {
+                return this.MappingIdField;
+            }
+            set {
+                if ((this.MappingIdField.Equals(value) != true)) {
+                    this.MappingIdField = value;
+                    this.RaisePropertyChanged("MappingId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DiscreteSignalType SignalType {
+            get {
+                return this.SignalTypeField;
+            }
+            set {
+                if ((this.SignalTypeField.Equals(value) != true)) {
+                    this.SignalTypeField = value;
+                    this.RaisePropertyChanged("SignalType");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelSignalAccessType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    public enum ModelSignalAccessType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Input = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Output = 1,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignalType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    public enum DiscreteSignalType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        OneBit = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwoBit = 1,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class ModelServiceException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FaultCodes FaultCodeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FaultCodes FaultCode {
+            get {
+                return this.FaultCodeField;
+            }
+            set {
+                if ((this.FaultCodeField.Equals(value) != true)) {
+                    this.FaultCodeField = value;
+                    this.RaisePropertyChanged("FaultCode");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FaultCodes", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    public enum FaultCodes : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        IdDoesNotExist = 0,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelAnalogSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+        "g")]
+    [System.SerializableAttribute()]
+    public partial class ModelAnalogSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double KField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double NField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double K {
+            get {
+                return this.KField;
+            }
+            set {
+                if ((this.KField.Equals(value) != true)) {
+                    this.KField = value;
+                    this.RaisePropertyChanged("K");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double N {
+            get {
+                return this.NField;
+            }
+            set {
+                if ((this.NField.Equals(value) != true)) {
+                    this.NField = value;
+                    this.RaisePropertyChanged("N");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelDiscreteSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+        "g")]
+    [System.SerializableAttribute()]
+    public partial class ModelDiscreteSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<byte, string> DiscreteValueToStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<byte, string> DiscreteValueToState {
+            get {
+                return this.DiscreteValueToStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DiscreteValueToStateField, value) != true)) {
+                    this.DiscreteValueToStateField = value;
+                    this.RaisePropertyChanged("DiscreteValueToState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SignalScanPeriodMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMa" +
+        "pping")]
+    [System.SerializableAttribute()]
+    public partial class SignalScanPeriodMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan TimeStampField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
     public interface IModelService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        ModbusServiceLibrary.ModelServiceReference.ModelRTU[] GetAllRTUs();
+        ModelRTU[] GetAllRTUs();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelRTU[]> GetAllRTUsAsync();
+        System.Threading.Tasks.Task<ModelRTU[]> GetAllRTUsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(ModbusServiceLibrary.ModelServiceReference.ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
-        ModbusServiceLibrary.ModelServiceReference.ModelRTU GetRTU(int id);
+        [System.ServiceModel.FaultContractAttribute(typeof(ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+        ModelRTU GetRTU(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelRTU> GetRTUAsync(int id);
+        System.Threading.Tasks.Task<ModelRTU> GetRTUAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id);
+        ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal[] GetAnalogSignalsForRtu(int id);
+        ModelAnalogSignal[] GetAnalogSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        ModbusServiceLibrary.ModelServiceReference.ModelRTUData[] GetRTUsEssentialData();
+        ModelRTUData[] GetRTUsEssentialData();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelRTUData[]> GetRTUsEssentialDataAsync();
+        System.Threading.Tasks.Task<ModelRTUData[]> GetRTUsEssentialDataAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping[] GetAnalogSignalMappings();
+        ModelAnalogSignalMapping[] GetAnalogSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync();
+        System.Threading.Tasks.Task<ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping[] GetDiscreteSignalMappings();
+        ModelDiscreteSignalMapping[] GetDiscreteSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync();
+        System.Threading.Tasks.Task<ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
         string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
@@ -65,19 +796,19 @@ namespace SchedulerService.ModelServiceReference {
         System.Threading.Tasks.Task<string[]> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
-        ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings();
+        SignalScanPeriodMapping[] GetSignalScanPeriodMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync();
+        System.Threading.Tasks.Task<SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IModelServiceChannel : SchedulerService.ModelServiceReference.IModelService, System.ServiceModel.IClientChannel {
+    public interface IModelServiceChannel : IModelService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ModelServiceClient : System.ServiceModel.ClientBase<SchedulerService.ModelServiceReference.IModelService>, SchedulerService.ModelServiceReference.IModelService {
+    public partial class ModelServiceClient : System.ServiceModel.ClientBase<IModelService>, IModelService {
         
         public ModelServiceClient() {
         }
@@ -98,59 +829,59 @@ namespace SchedulerService.ModelServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public ModbusServiceLibrary.ModelServiceReference.ModelRTU[] GetAllRTUs() {
+        public ModelRTU[] GetAllRTUs() {
             return base.Channel.GetAllRTUs();
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelRTU[]> GetAllRTUsAsync() {
+        public System.Threading.Tasks.Task<ModelRTU[]> GetAllRTUsAsync() {
             return base.Channel.GetAllRTUsAsync();
         }
         
-        public ModbusServiceLibrary.ModelServiceReference.ModelRTU GetRTU(int id) {
+        public ModelRTU GetRTU(int id) {
             return base.Channel.GetRTU(id);
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelRTU> GetRTUAsync(int id) {
+        public System.Threading.Tasks.Task<ModelRTU> GetRTUAsync(int id) {
             return base.Channel.GetRTUAsync(id);
         }
         
-        public ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id) {
+        public ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id) {
             return base.Channel.GetDiscreteSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id) {
             return base.Channel.GetDiscreteSignalsForRtuAsync(id);
         }
         
-        public ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal[] GetAnalogSignalsForRtu(int id) {
+        public ModelAnalogSignal[] GetAnalogSignalsForRtu(int id) {
             return base.Channel.GetAnalogSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id) {
             return base.Channel.GetAnalogSignalsForRtuAsync(id);
         }
         
-        public ModbusServiceLibrary.ModelServiceReference.ModelRTUData[] GetRTUsEssentialData() {
+        public ModelRTUData[] GetRTUsEssentialData() {
             return base.Channel.GetRTUsEssentialData();
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelRTUData[]> GetRTUsEssentialDataAsync() {
+        public System.Threading.Tasks.Task<ModelRTUData[]> GetRTUsEssentialDataAsync() {
             return base.Channel.GetRTUsEssentialDataAsync();
         }
         
-        public ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping[] GetAnalogSignalMappings() {
+        public ModelAnalogSignalMapping[] GetAnalogSignalMappings() {
             return base.Channel.GetAnalogSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync() {
             return base.Channel.GetAnalogSignalMappingsAsync();
         }
         
-        public ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping[] GetDiscreteSignalMappings() {
+        public ModelDiscreteSignalMapping[] GetDiscreteSignalMappings() {
             return base.Channel.GetDiscreteSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync() {
             return base.Channel.GetDiscreteSignalMappingsAsync();
         }
         
@@ -162,11 +893,11 @@ namespace SchedulerService.ModelServiceReference {
             return base.Channel.GetDiscreteSignalPossibleStatesAsync(rtuId, signalAddress);
         }
         
-        public ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings() {
+        public SignalScanPeriodMapping[] GetSignalScanPeriodMappings() {
             return base.Channel.GetSignalScanPeriodMappings();
         }
         
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync() {
+        public System.Threading.Tasks.Task<SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync() {
             return base.Channel.GetSignalScanPeriodMappingsAsync();
         }
     }

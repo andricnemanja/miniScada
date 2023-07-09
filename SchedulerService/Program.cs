@@ -1,44 +1,81 @@
-﻿using SchedulerService.ModbusServiceReference;
+﻿using System.ServiceModel;
+using System.Threading;
+using System.Threading.Tasks;
+using Autofac;
+using SchedulerService.ModbusServiceReference;
 using SchedulerService.ModelServiceReference;
 using SchedulerService.Period_Mapper;
 using SchedulerService.PeriodicalScan;
+using SchedulerService.PeriodicalScan.RtuScan;
+using SchedulerService.PeriodicalScan.SignalTypeScan;
 using SchedulerService.RtuConfiguration;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+using IContainer = Autofac.IContainer;
 
 namespace SchedulerService
 {
-	class Program
+	public static class Program
+	{
+		private static IContainer CompositionRoot()
+		{
+			var builder = new ContainerBuilder();
+
+			builder.RegisterType<SchedulerService>();
+			builder.RegisterType<ModelServiceClient>().As<IModelService>();
+			builder.RegisterType<SchedulerRtuConfiguration>().As<ISchedulerRtuConfiguration>();
+			//builder.RegisterType<ModbusDuplexClient>().As<IModbusDuplex>();
+
+			return builder.Build();
+		}
+
+
+		public static void Main()
+		{
+			var container = CompositionRoot();
+			var application = container.Resolve<SchedulerService>();
+
+			application.Run();
+		}
+	}
+
+	public class SchedulerService
 	{
 		private ISchedulerRtuConfiguration rtuConfiguration;
 		private IModelService modelService;
 		private IModbusDuplex modbus;
 
 		public IPeriodMapper periodMapper;
-		public IScheduler scheduler;
+		public PeriodicalScan.IScheduler scheduler;
 
-
-		static void Main(string[] args)
+		public SchedulerService(ISchedulerRtuConfiguration rtuConfiguration, IModelService modelService)
 		{
-			CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-			Console.WriteLine("Press ENTER to terminate the application...");
-			Task backgroundTask = Task.Run(() => DoWork(cancellationTokenSource.Token)).ContinueWith(_ => Console.WriteLine("Operation cancelled."), TaskContinuationOptions.OnlyOnCanceled);
+			this.rtuConfiguration = rtuConfiguration;
+			this.modelService = modelService;
 
+			periodMapper = new PeriodMapper(modelService);
+			scheduler = new Scheduler();
 
-			Console.ReadLine();
+			ModbusServiceCallback modbusServiceCallback = new ModbusServiceCallback();
+			InstanceContext instanceContext = new InstanceContext(modbusServiceCallback);
+			modbus = new ModbusDuplexClient(instanceContext);
 
-			cancellationTokenSource.Cancel();
-			backgroundTask.Wait();
+			CancellationToken cancellationToken = new CancellationToken();
 
-			Console.WriteLine("Background task has stopped.");
+			Task.Run(() => Run());
 		}
 
-		static async Task DoWork(CancellationToken token)
+		public async void Run()
 		{
+			scheduler.RegisterPeriodicalScanJob<AnalogInputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(1), rtuConfiguration, modbus);
+			scheduler.RegisterPeriodicalScanJob<AnalogOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(2), rtuConfiguration, modbus);
+			scheduler.RegisterPeriodicalScanJob<DiscreteInputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(3), rtuConfiguration, modbus);
+			scheduler.RegisterPeriodicalScanJob<DiscreteOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(4), rtuConfiguration, modbus);
 
+			scheduler.RegisterCronJob<RtuScanJob>("abc", rtuConfiguration, modbus, 1);
+
+			//while (!cancellationToken.IsCancellationRequested)
+			//{
+			//	await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+			//}
 		}
 	}
 }
-
-
