@@ -1,7 +1,7 @@
 ﻿using ModelWcfServiceLibrary.FileAccessing;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Repository;
-using Moq;
+using Autofac.Extras.Moq;
 using Xunit;
 
 namespace ModelWcfServiceLibrary.Tests

@@ -66,7 +66,6 @@ namespace SchedulerService.PeriodicalScan
 		public async void RegisterCronJob<T>(string cronExpression, ISchedulerRtuConfiguration rtuConfiguration, IModbusDuplex modbus, int rtuId = 0) where T : IJob
 		{
 			var schedulerJob = JobBuilder.Create<T>()
-				.WithIdentity(typeof(T).FullName)
 				.Build();
 
 			schedulerJob.JobDataMap["RtuConfiguration"] = rtuConfiguration;
@@ -74,7 +73,6 @@ namespace SchedulerService.PeriodicalScan
 			schedulerJob.JobDataMap["RtuId"] = rtuId;
 
 			var trigger = TriggerBuilder.Create()
-				.WithIdentity(typeof(T).FullName)
 				.WithCronSchedule("0/2 * * ? * * *")
 				.Build();
 

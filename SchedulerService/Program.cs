@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -21,7 +22,7 @@ namespace SchedulerService
 
 			builder.RegisterType<SchedulerService>();
 			builder.RegisterType<ModelServiceClient>().As<IModelService>();
-			builder.RegisterType<SchedulerRtuConfiguration>().As<ISchedulerRtuConfiguration>();
+			builder.RegisterType<SchedulerRtuConfiguration>().As<ISchedulerRtuConfiguration>().OnActivated(r => r.Instance.InitializeData());
 			//builder.RegisterType<ModbusDuplexClient>().As<IModbusDuplex>();
 
 			return builder.Build();
@@ -71,6 +72,9 @@ namespace SchedulerService
 			scheduler.RegisterPeriodicalScanJob<DiscreteOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(4), rtuConfiguration, modbus);
 
 			scheduler.RegisterCronJob<RtuScanJob>("abc", rtuConfiguration, modbus, 1);
+
+
+			Console.ReadKey();
 
 			//while (!cancellationToken.IsCancellationRequested)
 			//{
