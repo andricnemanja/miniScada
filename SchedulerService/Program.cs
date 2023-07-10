@@ -23,7 +23,6 @@ namespace SchedulerService
 			builder.RegisterType<SchedulerService>();
 			builder.RegisterType<ModelServiceClient>().As<IModelService>();
 			builder.RegisterType<SchedulerRtuConfiguration>().As<ISchedulerRtuConfiguration>().OnActivated(r => r.Instance.InitializeData());
-			//builder.RegisterType<ModbusDuplexClient>().As<IModbusDuplex>();
 
 			return builder.Build();
 		}
@@ -50,6 +49,7 @@ namespace SchedulerService
 		public SchedulerService(ISchedulerRtuConfiguration rtuConfiguration, IModelService modelService)
 		{
 			this.rtuConfiguration = rtuConfiguration;
+			this.rtuConfiguration.InitializeData();
 			this.modelService = modelService;
 
 			periodMapper = new PeriodMapper(modelService);
@@ -62,6 +62,8 @@ namespace SchedulerService
 			CancellationToken cancellationToken = new CancellationToken();
 
 			Task.Run(() => Run());
+
+			Console.ReadKey();
 		}
 
 		public async void Run()
@@ -72,9 +74,6 @@ namespace SchedulerService
 			scheduler.RegisterPeriodicalScanJob<DiscreteOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(4), rtuConfiguration, modbus);
 
 			scheduler.RegisterCronJob<RtuScanJob>("abc", rtuConfiguration, modbus, 1);
-
-
-			Console.ReadKey();
 
 			//while (!cancellationToken.IsCancellationRequested)
 			//{
