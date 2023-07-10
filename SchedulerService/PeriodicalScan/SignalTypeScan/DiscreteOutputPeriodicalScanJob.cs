@@ -21,7 +21,7 @@ namespace SchedulerService.PeriodicalScan.SignalTypeScan
 			var rtuConfiguration = (ISchedulerRtuConfiguration)context.JobDetail.JobDataMap["RtuConfiguration"];
 			var modbusDuplex = (IModbusDuplex)context.JobDetail.JobDataMap["IModbusDuplex"];
 
-			foreach (var rtu in rtuConfiguration.ReadAllRTUs())
+			foreach (var rtu in rtuConfiguration.RtuList)
 			{
 				foreach (var signal in rtu.Signals)
 				{
