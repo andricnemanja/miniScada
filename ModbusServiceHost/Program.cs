@@ -11,7 +11,6 @@ namespace ModbusServiceHost
 	{
 		static void Main(string[] args)
 		{
-
 			IContainer container = Bootstrapper.RegisterContainerBuilder().Build();
 
 			var modbusService = container.Resolve<IModbusDuplex>();

@@ -34,6 +34,26 @@ namespace ClientWpfApp.Model
 			discreteSignalValue.State = newState;
 		}
 
+		public void UpdateSignalValue(int rtuId, int signalId, string newValue)
+		{
+			RTU.RTU rtu = FindRtu(rtuId);
+
+			DiscreteSignalValue discreteSignalValue = FindDiscreteSignalValue(rtu, signalId);
+			var analogSignal = FindAnalogSignalValue(rtu, signalId);
+			if(analogSignal == null)
+			{
+				var discreteSignal = FindDiscreteSignalValue(rtu, signalId);
+				discreteSignal.State = newValue;
+				return;
+			}
+			double.TryParse(newValue, out double convertedValue);
+			analogSignal.Value = convertedValue;
+		}
+
+		public void AddFlagToRtu(int rtuId, string flag)
+		{
+			FindRtu(rtuId).Flags.Add(flag);
+		}
 
 		private RTU.RTU FindRtu(int rtuId)
 		{
@@ -42,11 +62,11 @@ namespace ClientWpfApp.Model
 
 		private AnalogSignalValue FindAnalogSignalValue(RTU.RTU rtu, int signalId)
 		{
-			return rtu.AnalogSignalValues.Where(s => s.AnalogSignal.ID == signalId).FirstOrDefault();
+			return rtu.AnalogSignalValues.FirstOrDefault(s => s.AnalogSignal.ID == signalId);
 		}
 		private DiscreteSignalValue FindDiscreteSignalValue(RTU.RTU rtu, int signalId)
 		{
-			return rtu.DiscreteSignalValues.Where(s => s.DiscreteSignal.ID == signalId).FirstOrDefault();
+			return rtu.DiscreteSignalValues.FirstOrDefault(s => s.DiscreteSignal.ID == signalId);
 		}
 	}
 }

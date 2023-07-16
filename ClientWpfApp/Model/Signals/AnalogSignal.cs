@@ -1,4 +1,7 @@
-﻿namespace ClientWpfApp.Model.Signals
+﻿using System.Collections.ObjectModel;
+using ClientWpfApp.Model.Flags;
+
+namespace ClientWpfApp.Model.Signals
 {
 	public class AnalogSignal
 	{
@@ -18,5 +21,7 @@
 		/// Indicates whether the signal is read only or read-write
 		/// </summary>
 		public SignalAccessType AccessType { get; set; }
+
+		public ObservableCollection<Flag> SignalFlags { get; set; } = new ObservableCollection<Flag>();
 	}
 }

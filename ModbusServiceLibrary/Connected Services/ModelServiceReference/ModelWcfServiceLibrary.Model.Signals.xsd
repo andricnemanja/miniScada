@@ -10,9 +10,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="AccessType" type="tns:ModelSignalAccessType" />
       <xs:element minOccurs="0" name="Address" type="xs:int" />
+      <xs:element minOccurs="0" name="Deadband" type="xs:double" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="MappingId" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaleTime" type="ser:duration" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ModelAnalogSignal" nillable="true" type="tns:ModelAnalogSignal" />
@@ -33,10 +35,12 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="AccessType" type="tns:ModelSignalAccessType" />
       <xs:element minOccurs="0" name="Address" type="xs:int" />
+      <xs:element minOccurs="0" name="Deadband" type="xs:double" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="MappingId" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SignalType" type="tns:DiscreteSignalType" />
+      <xs:element minOccurs="0" name="StaleTime" type="ser:duration" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ModelDiscreteSignal" nillable="true" type="tns:ModelDiscreteSignal" />

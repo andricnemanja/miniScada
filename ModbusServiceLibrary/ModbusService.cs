@@ -1,33 +1,44 @@
 ﻿using System;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
 using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.RtuCommands;
 
 namespace ModbusServiceLibrary
 {
-	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
+	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
 	public sealed class ModbusService : IModbusDuplex
 	{
 		private readonly IRtuCommandInvoker rtuCommandInvoker;
+		private readonly DynamicCacheManagerReference.IDynamicCacheManagerService dynamicCacheService;
+		private readonly List<IModbusDuplexCallback> subscribers = new List<IModbusDuplexCallback>();
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModbusService"/>
 		/// </summary>
 		/// <param name="rtuCommandInvoker">Instance of the <see cref="IRtuCommandInvoker"/> class</param>
 
-		public ModbusService(IRtuCommandInvoker rtuCommandInvoker)
+		public ModbusService(IRtuCommandInvoker rtuCommandInvoker, DynamicCacheManagerReference.IDynamicCacheManagerService dynamicCacheManagerService)
 		{
 			this.rtuCommandInvoker = rtuCommandInvoker;
+			this.dynamicCacheService = dynamicCacheManagerService;
 		}
+
+		public void Subscribe()
+		{
+			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
+			subscribers.Add(callback);
+		}
+
 
 		/// <summary>
 		/// Read value of the analog signal from the RTU and update it through callback channel.
 		/// </summary>
 		/// <param name="rtuId">RTU identification number.</param>
 		/// <param name="signalAddress">Address of the signal.</param>
-		public void ReadAnalogSignal(int rtuId, int signalAddress)
+		public void ReadAnalogSignal(int rtuId, int signalId)
 		{
-			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.ReceiveCommandResult(rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress));
+			CommandResultBase result = rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
+			dynamicCacheService.ProcessCommandResult(result);
 		}
 
 		/// <summary>
@@ -35,10 +46,11 @@ namespace ModbusServiceLibrary
 		/// </summary>
 		/// <param name="rtuId">RTU identification number.</param>
 		/// <param name="signalAddress">Address of the signal.</param>
-		public void ReadDiscreteSignal(int rtuId, int signalAddress)
+		public void ReadDiscreteSignal(int rtuId, int signalId)
 		{
-			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.ReceiveCommandResult(rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalAddress));
+			CommandResultBase result = rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
+			
+			dynamicCacheService.ProcessCommandResult(result);
 		}
 
 		/// <summary>
@@ -49,8 +61,7 @@ namespace ModbusServiceLibrary
 		/// <param name="newValue">New value of the analog signal.</param>
 		public void WriteAnalogSignal(int rtuId, int signalAddress, double newValue)
 		{
-			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.ReceiveCommandResult(rtuCommandInvoker.WriteAnalogSignalCommand(rtuId, signalAddress, newValue));
+			CommandResultBase result = rtuCommandInvoker.WriteAnalogSignalCommand(rtuId, signalAddress, newValue);
 		}
 
 		/// <summary>
@@ -61,8 +72,7 @@ namespace ModbusServiceLibrary
 		/// <param name="newValue">New value of the discrete signal.</param>
 		public void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue)
 		{
-			IModbusDuplexCallback callback = OperationContext.Current.GetCallbackChannel<IModbusDuplexCallback>();
-			callback.ReceiveCommandResult(rtuCommandInvoker.WriteDiscreteSignalCommand(rtuId, signalAddress, newValue));
+			CommandResultBase result = rtuCommandInvoker.WriteDiscreteSignalCommand(rtuId, signalAddress, newValue);
 		}
 
 		/// <summary>

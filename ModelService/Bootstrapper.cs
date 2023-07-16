@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ModelWcfServiceLibrary;
 using ModelWcfServiceLibrary.FileAccessing;
+using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.ScanPeriodMapping;
 using ModelWcfServiceLibrary.Model.SignalMapping;
@@ -31,6 +32,8 @@ namespace ModelServiceHost
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\DiscreteSignalMappings.json"));
 			builder.RegisterType<JsonListSerializer<SignalScanPeriodMapping>>().As<IListSerializer<SignalScanPeriodMapping>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\ScanPeriodMappings.json"));
+			builder.RegisterType<JsonListSerializer<Flag>>().As<IListSerializer<Flag>>()
+				.WithParameter(new TypedParameter(typeof(string), @"\Resources\Flags.json"));
 
 			builder.RegisterType<AnalogSignalMappingRepository>().As<IAnalogSignalMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
@@ -39,6 +42,7 @@ namespace ModelServiceHost
 			builder.RegisterType<RtuRepository>().As<IRtuRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<SignalScanPeriodMappingRepository>().As<ISignalScanPeriodMappingRepository>()
+			builder.RegisterType<FlagRepository>().As<IFlagRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 
 			builder.RegisterType<ModelService>().As<IModelService>();

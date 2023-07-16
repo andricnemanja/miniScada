@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
+using ClientWpfApp.Cache;
 using ClientWpfApp.Commands;
 using ClientWpfApp.Model;
 using ClientWpfApp.Model.RTU;
@@ -13,6 +15,7 @@ namespace ClientWpfApp.ViewModel
 		private ModbusServiceClient modbusServiceClient;
 		private ModelServiceConverter modelServiceConverter;
 		private ModbusServiceReference.ModbusDuplexClient modbusDuplexClient;
+		private DynamicCache dynamicCache;
 		#endregion Fields
 
 		#region Commands
@@ -48,6 +51,8 @@ namespace ClientWpfApp.ViewModel
 			ReadRTUStaticData();
 			ConnectToModbusServices();
 			InitializeCommands();
+			ConnectToDynamicCache();
+
 		}
 
 		private void ReadRTUStaticData()
@@ -68,6 +73,15 @@ namespace ClientWpfApp.ViewModel
 			SavaAnalogSignalCommand = new SavaAnalogSignalCommand(modbusServiceClient);
 			ChangeDiscreteSignalFirstStateCommand = new ChangeDiscreteSignalFirstStateCommand(modbusServiceClient);
 			ChangeDiscreteSignalSecondStateCommand = new ChangeDiscreteSignalSecondStateCommand(modbusServiceClient);
+		}
+
+		private void ConnectToDynamicCache()
+		{
+			dynamicCache = new DynamicCache(RtuCache);
+			Task.Run(dynamicCache.Connect).Wait();
+			Task.Run(() => dynamicCache.CheckConnection(new System.Threading.CancellationToken())) ;
+			dynamicCache.InitalScan();
+			Task.Run(dynamicCache.ListenToSignalChanges);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.ScanPeriodMapping;
 using ModelWcfServiceLibrary.Model.SignalMapping;
@@ -70,5 +71,7 @@ namespace ModelWcfServiceLibrary
 		[OperationContract]
 		IEnumerable<SignalScanPeriodMapping> GetSignalScanPeriodMappings();
 
+		[OperationContract]
+		IEnumerable<Flag> GetAllFlags();
 	}
 }

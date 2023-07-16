@@ -1,6 +1,5 @@
-﻿using ModelWcfServiceLibrary.Model.Signals;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using ModelWcfServiceLibrary.Model.Signals;
 
 namespace ModelWcfServiceLibrary.Model.RTU
 {

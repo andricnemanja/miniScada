@@ -15,6 +15,12 @@ namespace ClientWpfApp.ModbusServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModbusServiceReference.IModbusDuplex", CallbackContract=typeof(ClientWpfApp.ModbusServiceReference.IModbusDuplexCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IModbusDuplex {
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/Subscribe")]
+        void Subscribe();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/Subscribe")]
+        System.Threading.Tasks.Task SubscribeAsync();
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal")]
         void ReadAnalogSignal(int rtuId, int signalAddress);
         
@@ -40,8 +46,12 @@ namespace ClientWpfApp.ModbusServiceReference {
         System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, string newValue);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuFailedResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalFailedResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalFailedResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteDiscreteSignalCommandResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteAnalogSignalCommandResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandProcessorNotFoundResult))]
@@ -55,8 +65,12 @@ namespace ClientWpfApp.ModbusServiceReference {
     public interface IModbusDuplexCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReceiveCommandResult")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuFailedResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalFailedResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalResult))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalFailedResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteDiscreteSignalCommandResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteAnalogSignalCommandResult))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandProcessorNotFoundResult))]
@@ -89,6 +103,14 @@ namespace ClientWpfApp.ModbusServiceReference {
         
         public ModbusDuplexClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void Subscribe() {
+            base.Channel.Subscribe();
+        }
+        
+        public System.Threading.Tasks.Task SubscribeAsync() {
+            return base.Channel.SubscribeAsync();
         }
         
         public void ReadAnalogSignal(int rtuId, int signalAddress) {

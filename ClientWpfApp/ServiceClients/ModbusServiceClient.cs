@@ -36,6 +36,19 @@ namespace ClientWpfApp.ServiceClients
 				if (rtu.IsConnected)
 					ReadSingleRTU(rtu);
 			});
+			/*
+			Task.Run(() =>
+			{
+				while (true)
+				{
+					Parallel.ForEach(rtuCache.RtuList, rtu =>
+					{
+						if (rtu.IsConnected)
+							ReadSingleRTU(rtu);
+					});
+					Thread.Sleep(1000);
+				}
+			});*/
 		}
 
 		public void WriteAnalogSignalValue(int rtuId, int signalAddress, double value)

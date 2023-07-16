@@ -32,6 +32,7 @@ namespace ModbusServiceHost
 			builder.RegisterType<ModbusDriver>().As<IProtocolDriver>();
 			builder.RegisterType<ModbusDataStaticCache>().As<IModbusDataStaticCache>()
 				.OnActivated(c => c.Instance.Initialize());
+			builder.RegisterType<ModbusServiceLibrary.DynamicCacheManagerReference.DynamicCacheManagerServiceClient>().As<ModbusServiceLibrary.DynamicCacheManagerReference.IDynamicCacheManagerService>();
 			return builder;
 		}
 	}

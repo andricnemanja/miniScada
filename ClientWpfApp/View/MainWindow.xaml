@@ -13,6 +13,7 @@
         <converters:ConnectionStatusConverter x:Key="ConnectionStatusConverter" />
         <converters:DiscreteSignalButtonStatusConverter x:Key="DiscreteSignalButtonStatusConverter" />
         <converters:SignalChangeButtonVisibiltyConverter x:Key="SignalChangeButtonVisibiltyConverter" />
+        <converters:SignalFlagToColorConverter x:Key="SignalFlagToColorConverter" />
     </Window.Resources>
 
 
@@ -27,11 +28,20 @@
             <DataGrid ItemsSource="{Binding RtuCache.RtuList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="940px" x:Name="DevicesDataGrid">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
-
-                    <DataGridTemplateColumn Header="Status" Width ="Auto" IsReadOnly="True">
+                    
+                    <DataGridTemplateColumn Header="Flags" Width ="Auto" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Width="70px" Content="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
+                                <ListBox ItemsSource="{Binding Flags}">
+                                </ListBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Status konekcije" Width ="Auto" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="90px" Content="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
                                         Command="{Binding Path=DataContext.ConnectToRtuCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
                                         CommandParameter="{Binding}" 
                                         Background="{Binding IsConnected, Converter={StaticResource ConnectionButtonColorConverter}}"
@@ -63,7 +73,7 @@
                                           SelectedItem="{Binding Path=DataContext.SelectedDiscreteSignal, RelativeSource = {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Background="{Binding DiscreteSignal.SignalFlags, Converter={StaticResource SignalFlagToColorConverter}}">
                                                 <!--<CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding DiscreteSignal.Name}" 
                                                           Command="{Binding Path=DataContext.DiscreteSignalCheckboxCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
                                                           CommandParameter="{Binding}" />-->
@@ -107,7 +117,7 @@
                                 <ListBox VerticalAlignment="Top" ItemsSource="{Binding AnalogSignalValues}" IsEnabled="{Binding IsConnected}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Background="{Binding AnalogSignal.SignalFlags, Converter={StaticResource SignalFlagToColorConverter}}">
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
                                                 <TextBlock VerticalAlignment="Center" Text=": " />
                                                 <TextBox VerticalAlignment="Center" Text="{Binding Value}" FontWeight="Bold"/>
@@ -123,9 +133,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
                 </DataGrid.Columns>
-
             </DataGrid>
         </StackPanel>
     </Grid>
