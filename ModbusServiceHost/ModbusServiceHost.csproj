@@ -131,8 +131,9 @@
     <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.ModelRTUData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.SignalScanPeriodMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+	  <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.SignalScanPeriodMapping.datasource">
+		  <DependentUpon>Reference.svcmap</DependentUpon>
+	  </None>	
     <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.Flag.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

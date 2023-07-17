@@ -15,21 +15,21 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RTU", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelRTU", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.RTU")]
     [System.SerializableAttribute()]
-    public partial class RTU : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelRTU : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DynamicCacheManagerHost.ModelServiceReference.AnalogSignal[] AnalogSignalsField;
+        private DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignal[] AnalogSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DynamicCacheManagerHost.ModelServiceReference.DiscreteSignal[] DiscreteSignalsField;
+        private DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignal[] DiscreteSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DynamicCacheManagerHost.ModelServiceReference.RTUData RTUDataField;
+        private DynamicCacheManagerHost.ModelServiceReference.ModelRTUData RTUDataField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -42,7 +42,7 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DynamicCacheManagerHost.ModelServiceReference.AnalogSignal[] AnalogSignals {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignal[] AnalogSignals {
             get {
                 return this.AnalogSignalsField;
             }
@@ -55,7 +55,7 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DynamicCacheManagerHost.ModelServiceReference.DiscreteSignal[] DiscreteSignals {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignal[] DiscreteSignals {
             get {
                 return this.DiscreteSignalsField;
             }
@@ -68,7 +68,7 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DynamicCacheManagerHost.ModelServiceReference.RTUData RTUData {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelRTUData RTUData {
             get {
                 return this.RTUDataField;
             }
@@ -92,9 +92,9 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RTUData", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelRTUData", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
     [System.SerializableAttribute()]
-    public partial class RTUData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelRTUData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -185,15 +185,15 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AnalogSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelAnalogSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
     [System.SerializableAttribute()]
-    public partial class AnalogSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelAnalogSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DynamicCacheManagerHost.ModelServiceReference.SignalAccessType AccessTypeField;
+        private DynamicCacheManagerHost.ModelServiceReference.ModelSignalAccessType AccessTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AddressField;
@@ -224,7 +224,7 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DynamicCacheManagerHost.ModelServiceReference.SignalAccessType AccessType {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelSignalAccessType AccessType {
             get {
                 return this.AccessTypeField;
             }
@@ -326,15 +326,15 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelDiscreteSignal", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
     [System.SerializableAttribute()]
-    public partial class DiscreteSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelDiscreteSignal : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DynamicCacheManagerHost.ModelServiceReference.SignalAccessType AccessTypeField;
+        private DynamicCacheManagerHost.ModelServiceReference.ModelSignalAccessType AccessTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AddressField;
@@ -368,7 +368,7 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DynamicCacheManagerHost.ModelServiceReference.SignalAccessType AccessType {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelSignalAccessType AccessType {
             get {
                 return this.AccessTypeField;
             }
@@ -482,8 +482,8 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SignalAccessType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
-    public enum SignalAccessType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelSignalAccessType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Signals")]
+    public enum ModelSignalAccessType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Input = 0,
@@ -558,10 +558,10 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AnalogSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelAnalogSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
         "g")]
     [System.SerializableAttribute()]
-    public partial class AnalogSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelAnalogSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -652,10 +652,10 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DiscreteSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelDiscreteSignalMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMappin" +
         "g")]
     [System.SerializableAttribute()]
-    public partial class DiscreteSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelDiscreteSignalMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -728,52 +728,272 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SignalScanPeriodMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMa" +
+        "pping")]
+    [System.SerializableAttribute()]
+    public partial class SignalScanPeriodMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan TimeStampField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Flag", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags")]
+    [System.SerializableAttribute()]
+    public partial class Flag : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CommandAllowedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ReadAllowedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DynamicCacheManagerHost.ModelServiceReference.FlagType TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool UserAssignableField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CommandAllowed {
+            get {
+                return this.CommandAllowedField;
+            }
+            set {
+                if ((this.CommandAllowedField.Equals(value) != true)) {
+                    this.CommandAllowedField = value;
+                    this.RaisePropertyChanged("CommandAllowed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ReadAllowed {
+            get {
+                return this.ReadAllowedField;
+            }
+            set {
+                if ((this.ReadAllowedField.Equals(value) != true)) {
+                    this.ReadAllowedField = value;
+                    this.RaisePropertyChanged("ReadAllowed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DynamicCacheManagerHost.ModelServiceReference.FlagType Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool UserAssignable {
+            get {
+                return this.UserAssignableField;
+            }
+            set {
+                if ((this.UserAssignableField.Equals(value) != true)) {
+                    this.UserAssignableField = value;
+                    this.RaisePropertyChanged("UserAssignable");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FlagType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags")]
+    public enum FlagType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Info = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Warn = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Error = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Fatal = 3,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
     public interface IModelService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        DynamicCacheManagerHost.ModelServiceReference.RTU[] GetAllRTUs();
+        DynamicCacheManagerHost.ModelServiceReference.ModelRTU[] GetAllRTUs();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.RTU[]> GetAllRTUsAsync();
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelRTU[]> GetAllRTUsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(DynamicCacheManagerHost.ModelServiceReference.ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
-        DynamicCacheManagerHost.ModelServiceReference.RTU GetRTU(int id);
+        DynamicCacheManagerHost.ModelServiceReference.ModelRTU GetRTU(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.RTU> GetRTUAsync(int id);
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelRTU> GetRTUAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        DynamicCacheManagerHost.ModelServiceReference.DiscreteSignal[] GetDiscreteSignalsForRtu(int id);
+        DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.DiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        DynamicCacheManagerHost.ModelServiceReference.AnalogSignal[] GetAnalogSignalsForRtu(int id);
+        DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignal[] GetAnalogSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.AnalogSignal[]> GetAnalogSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        DynamicCacheManagerHost.ModelServiceReference.RTUData[] GetRTUsEssentialData();
+        DynamicCacheManagerHost.ModelServiceReference.ModelRTUData[] GetRTUsEssentialData();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.RTUData[]> GetRTUsEssentialDataAsync();
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelRTUData[]> GetRTUsEssentialDataAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        DynamicCacheManagerHost.ModelServiceReference.AnalogSignalMapping[] GetAnalogSignalMappings();
+        DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignalMapping[] GetAnalogSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.AnalogSignalMapping[]> GetAnalogSignalMappingsAsync();
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        DynamicCacheManagerHost.ModelServiceReference.DiscreteSignalMapping[] GetDiscreteSignalMappings();
+        DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignalMapping[] GetDiscreteSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.DiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync();
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
         string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
@@ -781,11 +1001,17 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
         System.Threading.Tasks.Task<string[]> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
-        DynamicCacheManager.ModelServiceReference.Flag[] GetAllFlags();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
+        DynamicCacheManagerHost.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.Flag[]> GetAllFlagsAsync();
+        DynamicCacheManagerHost.ModelServiceReference.Flag[] GetAllFlags();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.Flag[]> GetAllFlagsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -815,59 +1041,59 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public DynamicCacheManagerHost.ModelServiceReference.RTU[] GetAllRTUs() {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelRTU[] GetAllRTUs() {
             return base.Channel.GetAllRTUs();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.RTU[]> GetAllRTUsAsync() {
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelRTU[]> GetAllRTUsAsync() {
             return base.Channel.GetAllRTUsAsync();
         }
         
-        public DynamicCacheManagerHost.ModelServiceReference.RTU GetRTU(int id) {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelRTU GetRTU(int id) {
             return base.Channel.GetRTU(id);
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.RTU> GetRTUAsync(int id) {
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelRTU> GetRTUAsync(int id) {
             return base.Channel.GetRTUAsync(id);
         }
         
-        public DynamicCacheManagerHost.ModelServiceReference.DiscreteSignal[] GetDiscreteSignalsForRtu(int id) {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id) {
             return base.Channel.GetDiscreteSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.DiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id) {
             return base.Channel.GetDiscreteSignalsForRtuAsync(id);
         }
         
-        public DynamicCacheManagerHost.ModelServiceReference.AnalogSignal[] GetAnalogSignalsForRtu(int id) {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignal[] GetAnalogSignalsForRtu(int id) {
             return base.Channel.GetAnalogSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.AnalogSignal[]> GetAnalogSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id) {
             return base.Channel.GetAnalogSignalsForRtuAsync(id);
         }
         
-        public DynamicCacheManagerHost.ModelServiceReference.RTUData[] GetRTUsEssentialData() {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelRTUData[] GetRTUsEssentialData() {
             return base.Channel.GetRTUsEssentialData();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.RTUData[]> GetRTUsEssentialDataAsync() {
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelRTUData[]> GetRTUsEssentialDataAsync() {
             return base.Channel.GetRTUsEssentialDataAsync();
         }
         
-        public DynamicCacheManagerHost.ModelServiceReference.AnalogSignalMapping[] GetAnalogSignalMappings() {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignalMapping[] GetAnalogSignalMappings() {
             return base.Channel.GetAnalogSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.AnalogSignalMapping[]> GetAnalogSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync() {
             return base.Channel.GetAnalogSignalMappingsAsync();
         }
         
-        public DynamicCacheManagerHost.ModelServiceReference.DiscreteSignalMapping[] GetDiscreteSignalMappings() {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignalMapping[] GetDiscreteSignalMappings() {
             return base.Channel.GetDiscreteSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.DiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync() {
             return base.Channel.GetDiscreteSignalMappingsAsync();
         }
         
@@ -879,11 +1105,19 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
             return base.Channel.GetDiscreteSignalPossibleStatesAsync(rtuId, signalAddress);
         }
         
-        public DynamicCacheManager.ModelServiceReference.Flag[] GetAllFlags() {
+        public DynamicCacheManagerHost.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings() {
+            return base.Channel.GetSignalScanPeriodMappings();
+        }
+        
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync() {
+            return base.Channel.GetSignalScanPeriodMappingsAsync();
+        }
+        
+        public DynamicCacheManagerHost.ModelServiceReference.Flag[] GetAllFlags() {
             return base.Channel.GetAllFlags();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.Flag[]> GetAllFlagsAsync() {
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.Flag[]> GetAllFlagsAsync() {
             return base.Channel.GetAllFlagsAsync();
         }
     }

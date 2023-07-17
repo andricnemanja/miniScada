@@ -37,6 +37,7 @@ namespace ModelWcfServiceLibrary.Model.Signals
 		
 		[DataMember]
 		public double Deadband { get; set; }
+
 		[DataMember]
 		public TimeSpan StaleTime { get; set; }
 	}

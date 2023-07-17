@@ -42,6 +42,7 @@ namespace ModelServiceHost
 			builder.RegisterType<RtuRepository>().As<IRtuRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<SignalScanPeriodMappingRepository>().As<ISignalScanPeriodMappingRepository>()
+				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<FlagRepository>().As<IFlagRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 

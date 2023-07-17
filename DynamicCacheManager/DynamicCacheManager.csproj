@@ -151,10 +151,34 @@
     <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.Flag.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelAnalogSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelRTU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelRTUData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.ScanPeriodMapping.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.SignalMapping.xsd">
@@ -179,14 +203,15 @@
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.DiscreteSignal.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelRTU.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelRTUData.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.RTU.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.RTUData.datasource" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">
-      <Project>{E7FDB680-6D8C-41BB-B54E-F250BF051C5E}</Project>
-      <Name>ModbusServiceLibrary</Name>
-    </ProjectReference>
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -205,6 +230,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">
+      <Project>{E7FDB680-6D8C-41BB-B54E-F250BF051C5E}</Project>
+      <Name>ModbusServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -197,7 +197,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelRTU.datasource">
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.Flag.datasource">
+		<DependentUpon>Reference.svcmap</DependentUpon>
+	</None>
+	<None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.Flag.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.RTU.datasource">

@@ -104,28 +104,37 @@
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.AnalogSignal.datasource">
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.Flag.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.AnalogSignalMapping.datasource">
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.DiscreteSignal.datasource">
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.DiscreteSignalMapping.datasource">
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.RTU.datasource">
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.RTUData.datasource">
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.ModelRTU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.ModelRTUData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.SignalScanPeriodMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.ScanPeriodMapping.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.SignalMapping.xsd">
