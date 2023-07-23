@@ -2,7 +2,6 @@
 using System.Linq;
 using System.ServiceModel;
 using ModelWcfServiceLibrary.Model.CronExpressionMappings;
-using ModelWcfServiceLibrary.Model.CronJobPeriodMapping;
 using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.ScanPeriodMapping;

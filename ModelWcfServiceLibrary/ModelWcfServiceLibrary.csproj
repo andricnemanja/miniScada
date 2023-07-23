@@ -91,7 +91,6 @@
     <Compile Include="ModelServiceException.cs" />
     <Compile Include="Model\CronExpressionMappings\CronExpressionMapping.cs" />
     <Compile Include="Model\CronExpressionMappings\ModelCronExpressionRecurrenceType.cs" />
-    <Compile Include="Model\CronJobPeriodMapping\ModelCronJobPeriodMapping.cs" />
     <Compile Include="Model\Flags\Flag.cs" />
     <Compile Include="Model\Flags\FlagType.cs" />
     <Compile Include="Model\RTU\ModelRTU.cs" />
@@ -107,11 +106,9 @@
     <Compile Include="ModelService.cs" />
     <Compile Include="FileAccessing\IFileAccess.cs" />
     <Compile Include="Repository\CronExpressionMappingRepository.cs" />
-    <Compile Include="Repository\CronJobScanPeriodRepository.cs" />
     <Compile Include="Repository\DiscreteSignalMappingRepository.cs" />
     <Compile Include="Repository\IAnalogSignalMappingRepository.cs" />
     <Compile Include="Repository\ICronExpressionMappingRepository.cs" />
-    <Compile Include="Repository\ICronJobScanPeriodRepository.cs" />
     <Compile Include="Repository\IDiscreteSignalMappingRepository.cs" />
     <Compile Include="Repository\IFlagRepository.cs" />
     <Compile Include="Repository\IRtuRepository.cs" />
