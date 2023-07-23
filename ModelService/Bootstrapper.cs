@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ModelWcfServiceLibrary;
 using ModelWcfServiceLibrary.FileAccessing;
+using ModelWcfServiceLibrary.Model.CronExpressionMappings;
 using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.ScanPeriodMapping;
@@ -34,6 +35,8 @@ namespace ModelServiceHost
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\ScanPeriodMappings.json"));
 			builder.RegisterType<JsonListSerializer<Flag>>().As<IListSerializer<Flag>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\Flags.json"));
+			builder.RegisterType<JsonListSerializer<CronExpressionMapping>>().As<IListSerializer<CronExpressionMapping>>()
+				.WithParameter(new TypedParameter(typeof(string), @"\Resources\CronExpressionMappings.json"));
 
 			builder.RegisterType<AnalogSignalMappingRepository>().As<IAnalogSignalMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
@@ -44,6 +47,8 @@ namespace ModelServiceHost
 			builder.RegisterType<SignalScanPeriodMappingRepository>().As<ISignalScanPeriodMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<FlagRepository>().As<IFlagRepository>()
+				.OnActivated(c => c.Instance.Deserialize());
+			builder.RegisterType<CronExpressionMappingRepository>().As<ICronExpressionMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
 
 			builder.RegisterType<ModelService>().As<IModelService>();

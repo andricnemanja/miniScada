@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using ModelWcfServiceLibrary.Model.CronExpressionMappings;
 using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.ScanPeriodMapping;
@@ -67,11 +68,24 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of discrete signal mappings</returns>
 		[OperationContract]
 		string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
-
+		/// <summary>
+		/// Gets all signal scan periods.
+		/// </summary>
+		/// <returns>List of signal scan periods.</returns>
 		[OperationContract]
 		IEnumerable<SignalScanPeriodMapping> GetSignalScanPeriodMappings();
-
+		/// <summary>
+		/// Gets all flags.
+		/// </summary>
+		/// <returns>List of signal scan periods.</returns>
 		[OperationContract]
 		IEnumerable<Flag> GetAllFlags();
+		/// <summary>
+		/// Gets all cron expressions
+		/// </summary>
+		/// <returns></returns>
+		[OperationContract]
+		IEnumerable<CronExpressionMapping> GetCronExpressionMappings();
+
 	}
 }

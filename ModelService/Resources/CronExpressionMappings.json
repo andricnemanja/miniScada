@@ -2,22 +2,25 @@
   {
     "Id": 1,
     "Name": "Cron expression 1",
-    "StartAt": "17/7/2023 13:30",
-    "Recurrence pattern": "",
-    "End": "20/7/2023"
+    "Start": "2023-07-17T13:30:00",
+    "RecurrenceType": "minutes",
+    "RecurrencePeriod": 1,
+    "End": "2023-07-20"
   },
   {
     "Id": 2,
     "Name": "Cron expression 2",
-    "StartAt": "17/7/2023 12:00",
-    "Recurrence pattern": "",
+    "Start": "2023-07-17T12:00:00",
+    "RecurrenceType": "seconds",
+    "RecurrencePeriod": 2,
     "End": null
   },
   {
     "Id": 3,
     "Name": "Cron expression 3",
-    "StartAt": "17/7/2023 05:00",
-    "Recurrence pattern": "",
+    "Start": "2023-07-17T05:00:00",
+    "RecurrenceType": "seconds",
+    "RecurrencePeriod": 3,
     "End": null
   }
 ]

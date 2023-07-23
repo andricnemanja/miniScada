@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using ModelWcfServiceLibrary.Model.CronExpressionMappings;
 using ModelWcfServiceLibrary.Model.CronJobPeriodMapping;
 using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
@@ -21,6 +22,7 @@ namespace ModelWcfServiceLibrary
 		private readonly IAnalogSignalMappingRepository analogSignalMappingRepository;
 		private readonly ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository;
 		private readonly IFlagRepository flagRepository;
+		private readonly ICronExpressionMappingRepository cronExpressionMappingRepository;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModelService"/>
@@ -28,15 +30,17 @@ namespace ModelWcfServiceLibrary
 		/// <param name="rtuRepository">Instance of the <see cref="IRtuRepository"/> class</param>
 		/// <param name="analogSignalMappingRepository"></param>
 		/// <param name="discreteSignalMappingRepository"></param>
+		/// <param name="cronExpressionMappingRepository"></param>
 		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, 
-			IDiscreteSignalMappingRepository discreteSignalMappingRepository, ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository, IFlagRepository flagRepository)
+			IDiscreteSignalMappingRepository discreteSignalMappingRepository, ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository, 
+			IFlagRepository flagRepository, ICronExpressionMappingRepository cronExpressionMappingRepository)
 		{
 			this.rtuRepository = rtuRepository;
 			this.analogSignalMappingRepository = analogSignalMappingRepository;
 			this.discreteSignalMappingRepository = discreteSignalMappingRepository;
 			this.signalScanPeriodMappingRepository = signalScanPeriodMappingRepository;
-
 			this.flagRepository = flagRepository;
+			this.cronExpressionMappingRepository = cronExpressionMappingRepository;
 		}
 
 		/// <summary>
@@ -119,14 +123,27 @@ namespace ModelWcfServiceLibrary
 			return discreteSignalMappingRepository.GetDiscreteSignalPossibleStates(signal.MappingId);
 		}
 
+		/// <summary>
+		/// Gets signal scan period mappings.
+		/// </summary>
+		/// <returns>List of the SignalScanPeriodMappings.</returns>
 		public IEnumerable<SignalScanPeriodMapping> GetSignalScanPeriodMappings()
 		{
 			return signalScanPeriodMappingRepository.SignalScanPeriodMappingList;
 		}
 		
+		/// <summary>
+		/// Gets all the flags.
+		/// </summary>
+		/// <returns>List of flags.</returns>
 		public IEnumerable<Flag> GetAllFlags()
 		{
 			return flagRepository.FlagList;
+		}
+
+		public IEnumerable<CronExpressionMapping> GetCronExpressionMappings()
+		{
+			return cronExpressionMappingRepository.CronExpressionMappingList;
 		}
 	}
 }
