@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ModbusService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="NetTcpBinding_IModbusDuplex_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_IModbusService_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
@@ -37,110 +37,30 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IModbusDuplex_ReadAnalogSignal_InputMessage">
-    <wsdl:part name="parameters" element="tns:ReadAnalogSignal" />
-  </wsdl:message>
-  <wsdl:message name="IModbusDuplex_ReadDiscreteSignal_InputMessage">
-    <wsdl:part name="parameters" element="tns:ReadDiscreteSignal" />
-  </wsdl:message>
-  <wsdl:message name="IModbusDuplex_WriteAnalogSignal_InputMessage">
-    <wsdl:part name="parameters" element="tns:WriteAnalogSignal" />
-  </wsdl:message>
-  <wsdl:message name="IModbusDuplex_WriteDiscreteSignal_InputMessage">
-    <wsdl:part name="parameters" element="tns:WriteDiscreteSignal" />
-  </wsdl:message>
-  <wsdl:message name="IModbusDuplex_ConnectToRtu_InputMessage">
-    <wsdl:part name="parameters" element="tns:ConnectToRtu" />
-  </wsdl:message>
-  <wsdl:message name="IModbusDuplex_ConnectToRtu_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ConnectToRtuResponse" />
-  </wsdl:message>
-  <wsdl:message name="IModbusDuplex_ReceiveCommand_InputMessage">
+  <wsdl:message name="IModbusService_ReceiveCommand_InputMessage">
     <wsdl:part name="parameters" element="tns:ReceiveCommand" />
   </wsdl:message>
-  <wsdl:message name="IModbusDuplex_ReceiveCommandResult_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReceiveCommandResult" />
-  </wsdl:message>
-  <wsdl:portType msc:usingSession="true" name="IModbusDuplex">
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReadAnalogSignal">
-      <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal" message="tns:IModbusDuplex_ReadAnalogSignal_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReadDiscreteSignal">
-      <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal" message="tns:IModbusDuplex_ReadDiscreteSignal_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="WriteAnalogSignal">
-      <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal" message="tns:IModbusDuplex_WriteAnalogSignal_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="WriteDiscreteSignal">
-      <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal" message="tns:IModbusDuplex_WriteDiscreteSignal_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ConnectToRtu">
-      <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/ConnectToRtu" message="tns:IModbusDuplex_ConnectToRtu_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse" message="tns:IModbusDuplex_ConnectToRtu_OutputMessage" />
-    </wsdl:operation>
+  <wsdl:portType msc:usingSession="true" name="IModbusService">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveCommand">
-      <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/ReceiveCommand" message="tns:IModbusDuplex_ReceiveCommand_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveCommandResult">
-      <wsdl:output wsaw:Action="http://tempuri.org/IModbusDuplex/ReceiveCommandResult" message="tns:IModbusDuplex_ReceiveCommandResult_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IModbusService/ReceiveCommand" message="tns:IModbusService_ReceiveCommand_InputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="NetTcpBinding_IModbusDuplex" type="tns:IModbusDuplex">
-    <wsp:PolicyReference URI="#NetTcpBinding_IModbusDuplex_policy">
+  <wsdl:binding name="NetTcpBinding_IModbusService" type="tns:IModbusService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IModbusService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="ReadAnalogSignal">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ReadAnalogSignal" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="ReadDiscreteSignal">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="WriteAnalogSignal">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/WriteAnalogSignal" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="WriteDiscreteSignal">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="ConnectToRtu">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ConnectToRtu" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="ReceiveCommand">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ReceiveCommand" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IModbusService/ReceiveCommand" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="ReceiveCommandResult">
-      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ReceiveCommandResult" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ModbusService">
-    <wsdl:port name="NetTcpBinding_IModbusDuplex" binding="tns:NetTcpBinding_IModbusDuplex">
+    <wsdl:port name="NetTcpBinding_IModbusService" binding="tns:NetTcpBinding_IModbusService">
       <soap12:address location="net.tcp://localhost:65002/GettingStarted" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:65002/GettingStarted</wsa10:Address>

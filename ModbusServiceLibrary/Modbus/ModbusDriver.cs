@@ -52,7 +52,8 @@ namespace ModbusServiceLibrary.Modbus
 		}
 		public bool TryConnectToRtu(int rtuId, string rtuAddress, int port)
 		{
-			return modbusClient.TryConnect(rtuId, rtuAddress, port);
+			modbusClient.TryConnect(rtuId, rtuAddress, port);
+			return true;
 		}
 	}
 }

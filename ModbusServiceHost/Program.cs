@@ -13,12 +13,12 @@ namespace ModbusServiceHost
 		{
 			IContainer container = Bootstrapper.RegisterContainerBuilder().Build();
 
-			var modbusService = container.Resolve<IModbusDuplex>();
+			var modbusService = container.Resolve<IModbusService>();
 			ServiceHost selfHost = new ServiceHost(modbusService);
-			selfHost.AddDependencyInjectionBehavior<IModbusDuplex>(container);
+			selfHost.AddDependencyInjectionBehavior<IModbusService>(container);
 
 			IComponentRegistration registration;
-			if (!container.ComponentRegistry.TryGetRegistration(new TypedService(typeof(IModbusDuplex)), out registration))
+			if (!container.ComponentRegistry.TryGetRegistration(new TypedService(typeof(IModbusService)), out registration))
 			{
 				Console.WriteLine("The service contract has not been registered in the container.");
 				Console.ReadLine();

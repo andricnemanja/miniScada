@@ -12,9 +12,9 @@ namespace ClientWpfApp.ViewModel
 	public sealed class MainViewModel
 	{
 		#region Fields
-		private ModbusServiceClient modbusServiceClient;
+		private ModbusServiceWpfClient modbusServiceWpfClient;
 		private ModelServiceConverter modelServiceConverter;
-		private ModbusServiceReference.ModbusDuplexClient modbusDuplexClient;
+		private ModbusServiceReference.ModbusServiceClient modbusServiceClient;
 		private DynamicCache dynamicCache;
 		#endregion Fields
 
@@ -62,17 +62,17 @@ namespace ClientWpfApp.ViewModel
 
 		private void ConnectToModbusServices()
 		{
-			modbusServiceClient = new ModbusServiceClient(modbusDuplexClient, RtuCache);
-			modbusDuplexClient = modbusServiceClient.ConnectToModbusService();
+			modbusServiceWpfClient = new ModbusServiceWpfClient(modbusServiceClient, RtuCache);
+			modbusServiceClient = modbusServiceWpfClient.ConnectToModbusService();
 		}
 
 		private void InitializeCommands()
 		{
-			ReadRtuValuesCommand = new ReadRtuValuesCommand(modbusServiceClient);
-			ConnectToRtuCommand = new ConnectToRtuCommand(new RtuConnection(modbusDuplexClient));
-			SavaAnalogSignalCommand = new SavaAnalogSignalCommand(modbusServiceClient);
-			ChangeDiscreteSignalFirstStateCommand = new ChangeDiscreteSignalFirstStateCommand(modbusServiceClient);
-			ChangeDiscreteSignalSecondStateCommand = new ChangeDiscreteSignalSecondStateCommand(modbusServiceClient);
+			ReadRtuValuesCommand = new ReadRtuValuesCommand(modbusServiceWpfClient);
+			ConnectToRtuCommand = new ConnectToRtuCommand(new RtuConnection(modbusServiceWpfClient));
+			SavaAnalogSignalCommand = new SavaAnalogSignalCommand(modbusServiceWpfClient);
+			ChangeDiscreteSignalFirstStateCommand = new ChangeDiscreteSignalFirstStateCommand(modbusServiceWpfClient);
+			ChangeDiscreteSignalSecondStateCommand = new ChangeDiscreteSignalSecondStateCommand(modbusServiceWpfClient);
 		}
 
 		private void ConnectToDynamicCache()

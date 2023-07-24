@@ -1,6 +1,4 @@
-﻿using System.ServiceModel;
-using System.Threading.Tasks;
-using ClientWpfApp.ModbusCallback;
+﻿using System.Threading.Tasks;
 using ClientWpfApp.ModbusServiceReference;
 using ClientWpfApp.Model;
 using ClientWpfApp.Model.RTU;
@@ -8,24 +6,20 @@ using ClientWpfApp.Model.SignalValues;
 
 namespace ClientWpfApp.ServiceClients
 {
-	public sealed class ModbusServiceClient
+	public sealed class ModbusServiceWpfClient
 	{
 		private readonly IRtuCache rtuCache;
-		private ModbusDuplexClient modbusDuplexClient;
+		private ModbusServiceClient modbusDuplexClient;
 
-		public ModbusServiceClient(ModbusDuplexClient modbusDuplexClient, IRtuCache rtuCache)
+		public ModbusServiceWpfClient(ModbusServiceClient modbusDuplexClient, IRtuCache rtuCache)
 		{
 			this.modbusDuplexClient = modbusDuplexClient;
 			this.rtuCache = rtuCache;
 		}
 
-		public ModbusDuplexClient ConnectToModbusService()
+		public ModbusServiceClient ConnectToModbusService()
 		{
-			ICommandResultReceiver commandResultReceiver = new CommandResultReceiver(rtuCache);
-			CommandResultQueue commandResultQueue = new CommandResultQueue(commandResultReceiver);
-			ModbusServiceCallback modbusServiceCallback = new ModbusServiceCallback(commandResultQueue);
-			InstanceContext instanceContext = new InstanceContext(modbusServiceCallback);
-			modbusDuplexClient = new ModbusDuplexClient(instanceContext);
+			modbusDuplexClient = new ModbusServiceClient();
 			return modbusDuplexClient;
 		}
 
@@ -51,26 +45,52 @@ namespace ClientWpfApp.ServiceClients
 			});*/
 		}
 
+		public void RtuOnScan(int rtuId)
+		{
+			modbusDuplexClient.ReceiveCommand(new ConnectToRtuCommand()
+			{
+				RtuId = rtuId
+			});
+		}
+
 		public void WriteAnalogSignalValue(int rtuId, int signalAddress, double value)
 		{
-			modbusDuplexClient.WriteAnalogSignal(rtuId, signalAddress, value);
+			modbusDuplexClient.ReceiveCommand(new WriteAnalogSignalCommand()
+			{
+				RtuId = rtuId,
+				SignalId = signalAddress,
+				ValueToWrite = value
+			});
 		}
 
 		public void WriteDiscreteSignalValue(int rtuId, int signalAddress, string value)
 		{
-			modbusDuplexClient.WriteDiscreteSignal(rtuId, signalAddress, value);
+			modbusDuplexClient.ReceiveCommand(new WriteDiscreteSignalCommand()
+			{
+				RtuId = rtuId,
+				SignalId = signalAddress,
+				State = value
+			});
 		}
 
 		private void ReadSingleRTU(RTU rtu)
 		{
 			foreach (DiscreteSignalValue signalValue in rtu.DiscreteSignalValues)
 			{
-				modbusDuplexClient.ReadDiscreteSignal(rtu.RTUData.ID, signalValue.DiscreteSignal.ID);
+				modbusDuplexClient.ReceiveCommand(new ReadSingleSignalCommand()
+				{
+					RtuId = rtu.RTUData.ID,
+					SignalId = signalValue.DiscreteSignal.ID
+				});
 			}
 			
 			foreach (AnalogSignalValue signalValue in rtu.AnalogSignalValues)
 			{
-				modbusDuplexClient.ReadAnalogSignal(rtu.RTUData.ID, signalValue.AnalogSignal.ID);
+				modbusDuplexClient.ReceiveCommand(new ReadSingleSignalCommand()
+				{
+					RtuId = rtu.RTUData.ID,
+					SignalId = signalValue.AnalogSignal.ID
+				});
 			}
 		}
 

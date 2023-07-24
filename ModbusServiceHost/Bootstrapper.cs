@@ -23,11 +23,12 @@ namespace ModbusServiceHost
 			builder.RegisterType<ModbusServiceLibrary.ModelServiceReference.ModelServiceClient>().As<ModbusServiceLibrary.ModelServiceReference.IModelService>();
 			builder.RegisterType<ModbusRtuConfiguration>().As<IModbusRtuConfiguration>()
 				.OnActivated(c => c.Instance.InitializeData()).SingleInstance();
-			builder.RegisterType<ModbusService>().As<IModbusDuplex>();
+			builder.RegisterType<ModbusService>().As<IModbusService>();
 			builder.RegisterType<RtuCommandInvoker>().As<IRtuCommandInvoker>();
 			builder.RegisterType<CommandReceiver>().As<ICommandReceiver>();
 			builder.RegisterType<NModbusClient>().As<IModbusClient>()
 				.SingleInstance();
+			builder.RegisterType<ModbusConnectionManager>().As<IModbusConnectionManager>();
 			builder.RegisterType<SignalMapper>().As<ISignalMapper>();
 			builder.RegisterType<ModbusDriver>().As<IProtocolDriver>();
 			builder.RegisterType<ModbusDataStaticCache>().As<IModbusDataStaticCache>()

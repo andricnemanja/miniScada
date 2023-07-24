@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -7,7 +6,6 @@ using SchedulerService.ModbusServiceReference;
 using SchedulerService.ModelServiceReference;
 using SchedulerService.Period_Mapper;
 using SchedulerService.PeriodicalScan;
-using SchedulerService.PeriodicalScan.RtuScan;
 using SchedulerService.PeriodicalScan.SignalTypeScan;
 using SchedulerService.RtuConfiguration;
 using IContainer = Autofac.IContainer;
@@ -41,7 +39,7 @@ namespace SchedulerService
 	{
 		private ISchedulerRtuConfiguration rtuConfiguration;
 		private IModelService modelService;
-		private IModbusDuplex modbus;
+		private IModbusService modbus;
 
 		public IPeriodMapper periodMapper;
 		public PeriodicalScan.IScheduler scheduler;
@@ -55,9 +53,7 @@ namespace SchedulerService
 			periodMapper = new PeriodMapper(modelService);
 			scheduler = new Scheduler();
 
-			ModbusServiceCallback modbusServiceCallback = new ModbusServiceCallback();
-			InstanceContext instanceContext = new InstanceContext(modbusServiceCallback);
-			modbus = new ModbusDuplexClient(instanceContext);
+			modbus = new ModbusServiceClient();
 
 			CancellationToken cancellationToken = new CancellationToken();
 

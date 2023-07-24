@@ -9,9 +9,9 @@ namespace ClientWpfApp.Commands
 {
 	public sealed class ChangeDiscreteSignalFirstStateCommand : ICommand
 	{
-		private readonly ModbusServiceClient modbusServiceClient;
+		private readonly ModbusServiceWpfClient modbusServiceClient;
 
-		public ChangeDiscreteSignalFirstStateCommand(ModbusServiceClient modbusServiceClient)
+		public ChangeDiscreteSignalFirstStateCommand(ModbusServiceWpfClient modbusServiceClient)
 		{
 			this.modbusServiceClient = modbusServiceClient;
 		}

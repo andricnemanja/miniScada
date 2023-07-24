@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using NModbus;
+﻿using ModbusServiceLibrary.ModbusConnection;
 
 namespace ModbusServiceLibrary.ModbusClient
 {
@@ -11,23 +8,12 @@ namespace ModbusServiceLibrary.ModbusClient
 	/// </summary>
 	public sealed class NModbusClient : IModbusClient
 	{
-		private List<RtuConnection> rtuConnections = new List<RtuConnection>();
-		private ModbusFactory modbusFactory = new ModbusFactory();
-		public bool TryConnect(int rtuId, string IpAdrress, int port)
-		{
-			try
-			{
-				TcpClient client = new TcpClient(IpAdrress, port);
-				IModbusMaster master = modbusFactory.CreateMaster(client);
-				rtuConnections.Add(new RtuConnection() { RtuId = rtuId, modbusMaster = master });
-			}
-			catch
-			{
-				return false;
-			}
-			return true;
-		}
+		private readonly IModbusConnectionManager modbusConnectionManager;
 
+		public NModbusClient(IModbusConnectionManager modbusConnectionManager)
+		{
+			this.modbusConnectionManager = modbusConnectionManager;
+		}
 
 		/// <summary>
 		/// Try to read holding registers from the RTU.
@@ -37,16 +23,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if signal is successfully read, false if error occured during reading.</returns>
 		public bool TryReadHoldingRegisters(int rtuId, int startingAddress, int numberOfRegisters, out ushort[] value)
 		{
-			try
-			{
-				value = GetRtuConnection(rtuId).modbusMaster.ReadHoldingRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
-				return true;
-			}
-			catch
-			{
-				value = null;
-				return false;
-			}
+			return modbusConnectionManager.GetRtuConnection(rtuId).ReadHoldingRegisters(startingAddress, numberOfRegisters, out value) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>
@@ -57,16 +34,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if signal is successfully read, false if error occured during reading.</returns>
 		public bool TryReadInputRegisters(int rtuId, int startingAddress, int numberOfRegisters, out ushort[] value)
 		{
-			try
-			{
-				value = GetRtuConnection(rtuId).modbusMaster.ReadInputRegisters(1, (ushort)startingAddress, (ushort)numberOfRegisters);
-				return true;
-			}
-			catch
-			{
-				value = null;
-				return false;
-			}
+			return modbusConnectionManager.GetRtuConnection(rtuId).ReadInputRegisters(startingAddress, numberOfRegisters, out value) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>
@@ -77,16 +45,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if signal is successfully written, false if error occured during writing.</returns>
 		public bool TryWriteSingleHoldingRegister(int rtuId, int startingAddress, int value)
 		{
-			try
-			{
-				GetRtuConnection(rtuId).modbusMaster.WriteSingleRegister(1, (ushort)startingAddress, (ushort)value);
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-
+			return modbusConnectionManager.GetRtuConnection(rtuId).WriteSingleHoldingRegister(startingAddress, value) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>
@@ -98,16 +57,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if coils are successfully read, false if error occured during reading.</returns>
 		public bool TryReadCoils(int rtuId, int startingAddress, int numberOfCoils, out bool[] signalValue)
 		{
-			try
-			{
-				signalValue = GetRtuConnection(rtuId).modbusMaster.ReadCoils(1, (ushort)startingAddress, (ushort)numberOfCoils);
-			}
-			catch
-			{
-				signalValue = null;
-				return false;
-			}
-			return true;
+			return modbusConnectionManager.GetRtuConnection(rtuId).ReadCoils(startingAddress, numberOfCoils, out signalValue) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>
@@ -119,16 +69,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if coils are successfully read, false if error occured during reading.</returns>
 		public bool TryReadInputs(int rtuId, int startingAddress, int numberOfCoils, out bool[] signalValue)
 		{
-			try
-			{
-				signalValue = GetRtuConnection(rtuId).modbusMaster.ReadInputs(1, (ushort)startingAddress, (ushort)numberOfCoils);
-			}
-			catch
-			{
-				signalValue = null;
-				return false;
-			}
-			return true;
+			return modbusConnectionManager.GetRtuConnection(rtuId).ReadInputs(startingAddress, numberOfCoils, out signalValue) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>
@@ -140,16 +81,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if coils are successfully written, false if error occured during writing.</returns>
 		public bool TryWriteCoils(int rtuId, int coilAddress, bool[] valueToWrite)
 		{
-			try
-			{
-				GetRtuConnection(rtuId).modbusMaster.WriteMultipleCoils(1, (ushort)coilAddress, valueToWrite);
-				// master.WriteMultipleCoils(1, (ushort)coilAddress, ByteToBoolArray(discreteSignalType, valueToWrite));
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
+			return modbusConnectionManager.GetRtuConnection(rtuId).WriteCoils(coilAddress, valueToWrite) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>
@@ -157,41 +89,12 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// </summary>
 		public void Disconnect(int rtuId)
 		{
-			GetRtuConnection(rtuId).modbusMaster.Dispose();
+			modbusConnectionManager.GetRtuConnection(rtuId).Disconnect();
 		}
 
-		/// <summary>
-		/// Converts array of bools that is read from RTU device to numerical representation.
-		/// </summary>
-		/// <param name="readValues">Bool values that are read from RTU device.</param>
-		/// <returns>Signal value converted from array of bools to number.</returns>
-		private byte BoolArrayToByte(bool[] readValues)
+		public void TryConnect(int rtuId, string ipAddress, int port)
 		{
-			if (readValues.Length == 1)
-				return (byte)(readValues[0] ? 1 : 0);
-
-			return (byte)((readValues[0] ? 2 : 0) + (readValues[1] ? 1 : 0));
-		}
-
-		///// <summary>
-		///// Converts numerical representation of discrete signal to array of bools that is needed for changing signal value.
-		///// </summary>
-		///// <param name="discreteSignalType">Type of discrete signal, 1 or 2 bit.</param>
-		///// <param name="value">Numerical representation of discrete signal value.</param>
-		///// <returns>Array of bools needed for changing discrete signal value.</returns>
-		//private bool[] ByteToBoolArray(DiscreteSignalType discreteSignalType, byte value)
-		//{
-		//	if (discreteSignalType == DiscreteSignalType.OneBit)
-		//	{
-		//		return new bool[1] { value == 1 };
-		//	}
-
-		//	return new bool[2] { (value & 2) == 2, (value & 1) == 1 };
-		//}
-
-		private RtuConnection GetRtuConnection(int rtuId)
-		{
-			return rtuConnections.SingleOrDefault(r => r.RtuId == rtuId);
+			modbusConnectionManager.GetRtuConnection(rtuId).Connect(ipAddress, port);
 		}
 	}
 }

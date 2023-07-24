@@ -6,9 +6,9 @@ namespace ClientWpfApp.Commands
 {
 	public sealed class ReadRtuValuesCommand : ICommand
 	{
-		private readonly ModbusServiceClient modbusServiceClient;
+		private readonly ModbusServiceWpfClient modbusServiceClient;
 
-		public ReadRtuValuesCommand(ModbusServiceClient modbusServiceClient)
+		public ReadRtuValuesCommand(ModbusServiceWpfClient modbusServiceClient)
 		{
 			this.modbusServiceClient = modbusServiceClient;
 		}

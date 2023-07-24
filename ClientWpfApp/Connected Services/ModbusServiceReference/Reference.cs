@@ -9,148 +9,259 @@
 //------------------------------------------------------------------------------
 
 namespace ClientWpfApp.ModbusServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModbusServiceReference.IModbusDuplex", CallbackContract=typeof(ClientWpfApp.ModbusServiceReference.IModbusDuplexCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
-    public interface IModbusDuplex {
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RtuCommandBase", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.ConnectToRtuCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.ReadSingleSignalCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.WriteAnalogSignalCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.WriteDiscreteSignalCommand))]
+    public partial class RtuCommandBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/Subscribe")]
-        void Subscribe();
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/Subscribe")]
-        System.Threading.Tasks.Task SubscribeAsync();
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal")]
-        void ReadAnalogSignal(int rtuId, int signalAddress);
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal")]
-        System.Threading.Tasks.Task ReadAnalogSignalAsync(int rtuId, int signalAddress);
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConnectToRtuCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    public partial class ConnectToRtuCommand : ClientWpfApp.ModbusServiceReference.RtuCommandBase {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal")]
-        void ReadDiscreteSignal(int rtuId, int signalAddress);
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadDiscreteSignal")]
-        System.Threading.Tasks.Task ReadDiscreteSignalAsync(int rtuId, int signalAddress);
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReadSingleSignalCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    public partial class ReadSingleSignalCommand : ClientWpfApp.ModbusServiceReference.RtuCommandBase {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal")]
-        void WriteAnalogSignal(int rtuId, int signalAddress, double newValue);
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteAnalogSignal")]
-        System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, double newValue);
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal")]
-        void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue);
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/WriteDiscreteSignal")]
-        System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, string newValue);
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WriteAnalogSignalCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    public partial class WriteAnalogSignalCommand : ClientWpfApp.ModbusServiceReference.RtuCommandBase {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteDiscreteSignalCommandResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteAnalogSignalCommandResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandProcessorNotFoundResult))]
-        ModbusServiceLibrary.CommandResult.CommandResultBase ConnectToRtu(int rtuId);
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModbusDuplex/ConnectToRtu", ReplyAction="http://tempuri.org/IModbusDuplex/ConnectToRtuResponse")]
-        System.Threading.Tasks.Task<ModbusServiceLibrary.CommandResult.CommandResultBase> ConnectToRtuAsync(int rtuId);
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ValueToWriteField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ValueToWrite {
+            get {
+                return this.ValueToWriteField;
+            }
+            set {
+                if ((this.ValueToWriteField.Equals(value) != true)) {
+                    this.ValueToWriteField = value;
+                    this.RaisePropertyChanged("ValueToWrite");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WriteDiscreteSignalCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    public partial class WriteDiscreteSignalCommand : ClientWpfApp.ModbusServiceReference.RtuCommandBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StateField, value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IModbusDuplexCallback {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModbusServiceReference.IModbusService", SessionMode=System.ServiceModel.SessionMode.Required)]
+    public interface IModbusService {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReceiveCommandResult")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteDiscreteSignalCommandResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteAnalogSignalCommandResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandProcessorNotFoundResult))]
-        void ReceiveCommandResult(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusService/ReceiveCommand")]
+        void ReceiveCommand(ClientWpfApp.ModbusServiceReference.RtuCommandBase commandResult);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusService/ReceiveCommand")]
+        System.Threading.Tasks.Task ReceiveCommandAsync(ClientWpfApp.ModbusServiceReference.RtuCommandBase commandResult);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IModbusDuplexChannel : ClientWpfApp.ModbusServiceReference.IModbusDuplex, System.ServiceModel.IClientChannel {
+    public interface IModbusServiceChannel : ClientWpfApp.ModbusServiceReference.IModbusService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ModbusDuplexClient : System.ServiceModel.DuplexClientBase<ClientWpfApp.ModbusServiceReference.IModbusDuplex>, ClientWpfApp.ModbusServiceReference.IModbusDuplex {
+    public partial class ModbusServiceClient : System.ServiceModel.ClientBase<ClientWpfApp.ModbusServiceReference.IModbusService>, ClientWpfApp.ModbusServiceReference.IModbusService {
         
-        public ModbusDuplexClient(System.ServiceModel.InstanceContext callbackInstance) : 
-                base(callbackInstance) {
+        public ModbusServiceClient() {
         }
         
-        public ModbusDuplexClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
-                base(callbackInstance, endpointConfigurationName) {
+        public ModbusServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
         }
         
-        public ModbusDuplexClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public ModbusServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ModbusDuplexClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public ModbusServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ModbusDuplexClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, binding, remoteAddress) {
+        public ModbusServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
         }
         
-        public void Subscribe() {
-            base.Channel.Subscribe();
+        public void ReceiveCommand(ClientWpfApp.ModbusServiceReference.RtuCommandBase commandResult) {
+            base.Channel.ReceiveCommand(commandResult);
         }
         
-        public System.Threading.Tasks.Task SubscribeAsync() {
-            return base.Channel.SubscribeAsync();
-        }
-        
-        public void ReadAnalogSignal(int rtuId, int signalAddress) {
-            base.Channel.ReadAnalogSignal(rtuId, signalAddress);
-        }
-        
-        public System.Threading.Tasks.Task ReadAnalogSignalAsync(int rtuId, int signalAddress) {
-            return base.Channel.ReadAnalogSignalAsync(rtuId, signalAddress);
-        }
-        
-        public void ReadDiscreteSignal(int rtuId, int signalAddress) {
-            base.Channel.ReadDiscreteSignal(rtuId, signalAddress);
-        }
-        
-        public System.Threading.Tasks.Task ReadDiscreteSignalAsync(int rtuId, int signalAddress) {
-            return base.Channel.ReadDiscreteSignalAsync(rtuId, signalAddress);
-        }
-        
-        public void WriteAnalogSignal(int rtuId, int signalAddress, double newValue) {
-            base.Channel.WriteAnalogSignal(rtuId, signalAddress, newValue);
-        }
-        
-        public System.Threading.Tasks.Task WriteAnalogSignalAsync(int rtuId, int signalAddress, double newValue) {
-            return base.Channel.WriteAnalogSignalAsync(rtuId, signalAddress, newValue);
-        }
-        
-        public void WriteDiscreteSignal(int rtuId, int signalAddress, string newValue) {
-            base.Channel.WriteDiscreteSignal(rtuId, signalAddress, newValue);
-        }
-        
-        public System.Threading.Tasks.Task WriteDiscreteSignalAsync(int rtuId, int signalAddress, string newValue) {
-            return base.Channel.WriteDiscreteSignalAsync(rtuId, signalAddress, newValue);
-        }
-        
-        public ModbusServiceLibrary.CommandResult.CommandResultBase ConnectToRtu(int rtuId) {
-            return base.Channel.ConnectToRtu(rtuId);
-        }
-        
-        public System.Threading.Tasks.Task<ModbusServiceLibrary.CommandResult.CommandResultBase> ConnectToRtuAsync(int rtuId) {
-            return base.Channel.ConnectToRtuAsync(rtuId);
+        public System.Threading.Tasks.Task ReceiveCommandAsync(ClientWpfApp.ModbusServiceReference.RtuCommandBase commandResult) {
+            return base.Channel.ReceiveCommandAsync(commandResult);
         }
     }
 }

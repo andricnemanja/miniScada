@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="vhcwAbI5Z5WbJNBRMgh3MEI9VKzFXSQ3SvMKT1+Orug=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="wL06+hFbgla3GZZhpE1C/tbQSnAbey4SULcy/wgJ/zc=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IModbusDuplex">
+    <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IModbusService">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>NetTcpBinding_IModbusDuplex</serializedValue>
+          <serializedValue>NetTcpBinding_IModbusService</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -121,7 +121,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IModbusDuplex" contract="ModbusServiceReference.IModbusDuplex" bindingType="netTcpBinding" address="net.tcp://localhost:65002/GettingStarted" bindingConfiguration="NetTcpBinding_IModbusDuplex">
+    <endpoint name="NetTcpBinding_IModbusService" contract="ModbusServiceReference.IModbusService" bindingType="netTcpBinding" address="net.tcp://localhost:65002/GettingStarted" bindingConfiguration="NetTcpBinding_IModbusService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>net.tcp://localhost:65002/GettingStarted</serializedValue>
@@ -133,10 +133,10 @@
           <serializedValue>netTcpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>NetTcpBinding_IModbusDuplex</serializedValue>
+          <serializedValue>NetTcpBinding_IModbusService</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ModbusServiceReference.IModbusDuplex</serializedValue>
+          <serializedValue>ModbusServiceReference.IModbusService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -196,7 +196,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>NetTcpBinding_IModbusDuplex</serializedValue>
+          <serializedValue>NetTcpBinding_IModbusService</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

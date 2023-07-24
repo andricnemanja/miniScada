@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.ServiceClients;
-using ModbusServiceLibrary.CommandResult;
 
 namespace ClientWpfApp.Commands
 {
@@ -24,16 +21,10 @@ namespace ClientWpfApp.Commands
 			return true;
 		}
 
-		public async void Execute(object parameter)
+		public void Execute(object parameter)
 		{
-			await Task.Run(() =>
-			{
-				RTU rtu = (RTU)parameter;
-				if (rtuConnection.TryConnectToRtu(rtu.RTUData.ID).GetType() == typeof(ConnectToRtuResult))
-					rtu.IsConnected = true;
-				else
-					MessageBox.Show("Ne moze se ostvariti veza sa " + rtu.RTUData.Name);
-			});
+			RTU rtu = (RTU)parameter;
+			rtuConnection.RtuOnScan(rtu.RTUData.ID);
 		}
 	}
 }

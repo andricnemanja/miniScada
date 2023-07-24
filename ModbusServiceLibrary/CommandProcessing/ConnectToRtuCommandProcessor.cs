@@ -6,12 +6,12 @@ using ModbusServiceLibrary.RtuConfiguration;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {
-	public class ConnectoToRtuCommandProcessor : ICommandProcessor
+	public class ConnectToRtuCommandProcessor : ICommandProcessor
 	{
 		private readonly IProtocolDriver protocolDriver;
 		private readonly IModbusRtuConfiguration rtuConfiguration;
 
-		public ConnectoToRtuCommandProcessor(IProtocolDriver protocolDriver, IModbusRtuConfiguration rtuConfiguration)
+		public ConnectToRtuCommandProcessor(IProtocolDriver protocolDriver, IModbusRtuConfiguration rtuConfiguration)
 		{
 			this.protocolDriver = protocolDriver;
 			this.rtuConfiguration = rtuConfiguration;

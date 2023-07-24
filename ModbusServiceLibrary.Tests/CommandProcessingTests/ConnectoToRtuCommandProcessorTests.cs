@@ -40,7 +40,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 			protocolDriverMock.Setup(x => x.TryConnectToRtu(1, connectionParameters.IpAddress, connectionParameters.Port)).Returns(true);
 
 			var connectToRtuCommand = new ConnectToRtuCommand(1);
-			var commandProcessor = new ConnectoToRtuCommandProcessor(protocolDriverMock.Object, rtuConfigurationMock.Object);
+			var commandProcessor = new ConnectToRtuCommandProcessor(protocolDriverMock.Object, rtuConfigurationMock.Object);
 
 			//Act
 			var result = commandProcessor.ProcessCommand(connectToRtuCommand) as ConnectToRtuResult;
@@ -65,7 +65,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 			rtuConfigurationMock.Setup(x => x.GetRtuConnectionParameters(connectToRtuCommand.RtuId)).Returns(connectionParameters);
 			protocolDriverMock.Setup(x => x.TryConnectToRtu(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port)).Returns(false);
 
-			var commandProcessor = new ConnectoToRtuCommandProcessor(protocolDriverMock.Object, rtuConfigurationMock.Object);
+			var commandProcessor = new ConnectToRtuCommandProcessor(protocolDriverMock.Object, rtuConfigurationMock.Object);
 
 			//Act
 			var result = commandProcessor.ProcessCommand(connectToRtuCommand) as ConnectToRtuFailedResult;

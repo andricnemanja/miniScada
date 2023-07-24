@@ -28,7 +28,7 @@ namespace DynamicCacheManagerHost
 			selfHost.Open();
 
 			string listenUri = selfHost.Description.Endpoints[0].ListenUri.AbsoluteUri;
-			Console.WriteLine("Modbus service listening on: {0}", listenUri);
+			Console.WriteLine("Dynamic Cache Manager service listening on: {0}", listenUri);
 			Console.WriteLine("Press <Enter> to terminate the service");
 			Console.ReadLine();
 		}

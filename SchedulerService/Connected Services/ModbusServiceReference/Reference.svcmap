@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="3ecac6d3-ed37-4ed4-8f67-c33ce160eed9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="9a6a97be-0f38-4a36-8d27-527bc001147e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,10 @@
     <MetadataSource Address="net.tcp://localhost:65002/GettingStarted/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="57393e3e-8ba6-440a-9bd0-4324118395f3" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d657bf54-e71c-4d36-80e5-a54a250f2f84" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="8493db54-ddec-45e3-8a81-b0f2858841ac" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
-    <MetadataFile FileName="ModbusServiceLibrary.CommandResult.xsd" MetadataType="Schema" ID="081da9bc-8d66-40fc-a881-34d13fc8a57c" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
-    <MetadataFile FileName="ModbusServiceLibrary.RtuCommands.xsd" MetadataType="Schema" ID="5c9c8040-20d3-4a56-8887-d4b3b0447999" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="f2673b53-3105-4bac-9b65-6ff2c9134779" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="83ca493e-00a6-425d-b538-162c9776df7b" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="d5ad08f2-c18d-44c1-b851-ddb8c1c0c674" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
+    <MetadataFile FileName="ModbusServiceLibrary.RtuCommands.xsd" MetadataType="Schema" ID="ffb97c5a-548b-43cd-95c0-c4ab0cfc56a9" SourceId="1" SourceUrl="net.tcp://localhost:65002/GettingStarted/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

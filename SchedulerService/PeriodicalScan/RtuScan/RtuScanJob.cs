@@ -1,7 +1,7 @@
-﻿using Quartz;
+﻿using System.Threading.Tasks;
+using Quartz;
 using SchedulerService.ModbusServiceReference;
 using SchedulerService.RtuConfiguration;
-using System.Threading.Tasks;
 
 namespace SchedulerService.PeriodicalScan.RtuScan
 {
@@ -10,7 +10,7 @@ namespace SchedulerService.PeriodicalScan.RtuScan
 		public Task Execute(IJobExecutionContext context)
 		{
 			var rtuConfiguration = (ISchedulerRtuConfiguration)context.JobDetail.JobDataMap["RtuConfiguration"];
-			var modbusDuplex = (IModbusDuplex)context.JobDetail.JobDataMap["IModbusDuplex"];
+			var modbusDuplex = (IModbusService)context.JobDetail.JobDataMap["IModbusDuplex"];
 			int rtuId = (int)context.JobDetail.JobDataMap["RtuId"];
 
 

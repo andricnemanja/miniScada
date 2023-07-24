@@ -1,27 +1,17 @@
-﻿using ClientWpfApp.ModbusServiceReference;
-using ModbusServiceLibrary.CommandResult;
-
-namespace ClientWpfApp.ServiceClients
+﻿namespace ClientWpfApp.ServiceClients
 {
 	public sealed class RtuConnection
 	{
-		private readonly ModbusDuplexClient modbusDuplexClient;
+		private readonly ModbusServiceWpfClient modbusServiceClient;
 
-		public RtuConnection(ModbusDuplexClient modbusDuplexClient)
+		public RtuConnection(ModbusServiceWpfClient modbusServiceClient)
 		{
-			this.modbusDuplexClient = modbusDuplexClient;
+			this.modbusServiceClient = modbusServiceClient;
 		}
 
-		public CommandResultBase TryConnectToRtu(int rtuId)
+		public void RtuOnScan(int rtuId)
 		{
-			try
-			{
-				return modbusDuplexClient.ConnectToRtu(rtuId);
-			}
-			catch
-			{
-				return new ConnectToRtuFailedResult(rtuId);
-			}
+			modbusServiceClient.RtuOnScan(rtuId);
 		}
 	}
 }

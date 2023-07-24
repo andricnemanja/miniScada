@@ -9,9 +9,9 @@ namespace ClientWpfApp.Commands
 {
 	public sealed class SavaAnalogSignalCommand : ICommand
 	{
-		private readonly ModbusServiceClient modbusServiceClient;
+		private readonly ModbusServiceWpfClient modbusServiceClient;
 
-		public SavaAnalogSignalCommand(ModbusServiceClient modbusServiceClient)
+		public SavaAnalogSignalCommand(ModbusServiceWpfClient modbusServiceClient)
 		{
 			this.modbusServiceClient = modbusServiceClient;
 		}
