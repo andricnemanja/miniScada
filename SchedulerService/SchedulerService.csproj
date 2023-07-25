@@ -88,7 +88,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="CronExpressionMapper\SchedulerCronExpressionMapper.cs" />
+    <Compile Include="CronExpressionMapper\ISchedulerCronExpressionMapper.cs" />
     <Compile Include="ModbusServiceCallback.cs" />
+    <Compile Include="Model\CronExpression\SchedulerCronExpression.cs" />
+    <Compile Include="Model\CronExpression\SchedulerCronExpressionRecurrenceType.cs" />
     <Compile Include="Model\RTU\SchedulerRTU.cs" />
     <Compile Include="Model\SignalPeriod\SignalPeriod.cs" />
     <Compile Include="Model\Signals\ISchedulerSignal.cs" />
@@ -130,6 +134,12 @@
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.CronExpressionMappings.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -145,10 +155,16 @@
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.Flag.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelAnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelAnalogSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelCronExpressionMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\SchedulerService.ModelServiceReference.ModelDiscreteSignal.datasource">

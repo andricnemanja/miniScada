@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="E2uuRNHXcHDGpNICVPlxfB+qyLxOyl4vsBlA1m5oYwA=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="/KvD7NLBpQ43klPT8xRdvvPCeiKd/O+emOdM+mMikxM=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IDynamicCacheManagerService">
       <properties>
@@ -121,7 +121,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IDynamicCacheManagerService" contract="DynamicCacheManagerReference.IDynamicCacheManagerService" bindingType="netTcpBinding" address="net.tcp://localhost:65003/" bindingConfiguration="NetTcpBinding_IDynamicCacheManagerService">
+    <endpoint name="NetTcpBinding_IDynamicCacheManagerService" contract="DynamicCacheServiceReference.IDynamicCacheManagerService" bindingType="netTcpBinding" address="net.tcp://localhost:65003/" bindingConfiguration="NetTcpBinding_IDynamicCacheManagerService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>net.tcp://localhost:65003/</serializedValue>
@@ -136,7 +136,7 @@
           <serializedValue>NetTcpBinding_IDynamicCacheManagerService</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>DynamicCacheManagerReference.IDynamicCacheManagerService</serializedValue>
+          <serializedValue>DynamicCacheServiceReference.IDynamicCacheManagerService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

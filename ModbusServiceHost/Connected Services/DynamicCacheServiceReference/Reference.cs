@@ -9,26 +9,565 @@
 //------------------------------------------------------------------------------
 
 namespace ModbusServiceHost.DynamicCacheServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CommandResultBase", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.ConnectToRtuResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.ConnectToRtuFailedResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.ReadSingleDiscreteSignalResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.ReadSingleDiscreteSignalFailedResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.ReadSingleAnalogSignalResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.ReadSingleAnalogSignalFailedResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.WriteDiscreteSignalCommandResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.WriteAnalogSignalCommandResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.CommandProcessorNotFoundResult))]
+    public partial class CommandResultBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConnectToRtuResult", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    public partial class ConnectToRtuResult : ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConnectToRtuFailedResult", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    public partial class ConnectToRtuFailedResult : ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReadSingleDiscreteSignalResult", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    public partial class ReadSingleDiscreteSignalResult : ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StateField, value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReadSingleDiscreteSignalFailedResult", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    public partial class ReadSingleDiscreteSignalFailedResult : ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReadSingleAnalogSignalResult", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    public partial class ReadSingleAnalogSignalResult : ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SignalValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SignalValue {
+            get {
+                return this.SignalValueField;
+            }
+            set {
+                if ((this.SignalValueField.Equals(value) != true)) {
+                    this.SignalValueField = value;
+                    this.RaisePropertyChanged("SignalValue");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReadSingleAnalogSignalFailedResult", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    public partial class ReadSingleAnalogSignalFailedResult : ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WriteDiscreteSignalCommandResult", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    public partial class WriteDiscreteSignalCommandResult : ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WriteAnalogSignalCommandResult", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    public partial class WriteAnalogSignalCommandResult : ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CommandProcessorNotFoundResult", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.CommandResult")]
+    [System.SerializableAttribute()]
+    public partial class CommandProcessorNotFoundResult : ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ModbusServiceHost.DynamicCacheServiceReference.RtuCommandBase RtuCommandField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ModbusServiceHost.DynamicCacheServiceReference.RtuCommandBase RtuCommand {
+            get {
+                return this.RtuCommandField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RtuCommandField, value) != true)) {
+                    this.RtuCommandField = value;
+                    this.RaisePropertyChanged("RtuCommand");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RtuCommandBase", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.ConnectToRtuCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.ReadSingleSignalCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.WriteAnalogSignalCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ModbusServiceHost.DynamicCacheServiceReference.WriteDiscreteSignalCommand))]
+    public partial class RtuCommandBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConnectToRtuCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    public partial class ConnectToRtuCommand : ModbusServiceHost.DynamicCacheServiceReference.RtuCommandBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReadSingleSignalCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    public partial class ReadSingleSignalCommand : ModbusServiceHost.DynamicCacheServiceReference.RtuCommandBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WriteAnalogSignalCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    public partial class WriteAnalogSignalCommand : ModbusServiceHost.DynamicCacheServiceReference.RtuCommandBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ValueToWriteField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double ValueToWrite {
+            get {
+                return this.ValueToWriteField;
+            }
+            set {
+                if ((this.ValueToWriteField.Equals(value) != true)) {
+                    this.ValueToWriteField = value;
+                    this.RaisePropertyChanged("ValueToWrite");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WriteDiscreteSignalCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    public partial class WriteDiscreteSignalCommand : ModbusServiceHost.DynamicCacheServiceReference.RtuCommandBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SignalIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SignalId {
+            get {
+                return this.SignalIdField;
+            }
+            set {
+                if ((this.SignalIdField.Equals(value) != true)) {
+                    this.SignalIdField = value;
+                    this.RaisePropertyChanged("SignalId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StateField, value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DynamicCacheServiceReference.IDynamicCacheManagerService", SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IDynamicCacheManagerService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDynamicCacheManagerService/ProcessCommandResult")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ConnectToRtuFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleDiscreteSignalFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.ReadSingleAnalogSignalFailedResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteDiscreteSignalCommandResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.WriteAnalogSignalCommandResult))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ModbusServiceLibrary.CommandResult.CommandProcessorNotFoundResult))]
-        void ProcessCommandResult(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult);
+        void ProcessCommandResult(ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase commandResult);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDynamicCacheManagerService/ProcessCommandResult")]
-        System.Threading.Tasks.Task ProcessCommandResultAsync(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult);
+        System.Threading.Tasks.Task ProcessCommandResultAsync(ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase commandResult);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -58,11 +597,11 @@ namespace ModbusServiceHost.DynamicCacheServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public void ProcessCommandResult(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult) {
+        public void ProcessCommandResult(ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase commandResult) {
             base.Channel.ProcessCommandResult(commandResult);
         }
         
-        public System.Threading.Tasks.Task ProcessCommandResultAsync(ModbusServiceLibrary.CommandResult.CommandResultBase commandResult) {
+        public System.Threading.Tasks.Task ProcessCommandResultAsync(ModbusServiceHost.DynamicCacheServiceReference.CommandResultBase commandResult) {
             return base.Channel.ProcessCommandResultAsync(commandResult);
         }
     }

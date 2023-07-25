@@ -44,6 +44,7 @@
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMapping" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.CronExpressionMappings" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IModelService_GetAllRTUs_InputMessage">
@@ -109,6 +110,12 @@
   <wsdl:message name="IModelService_GetAllFlags_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllFlagsResponse" />
   </wsdl:message>
+  <wsdl:message name="IModelService_GetCronExpressionMappings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCronExpressionMappings" />
+  </wsdl:message>
+  <wsdl:message name="IModelService_GetCronExpressionMappings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCronExpressionMappingsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IModelService">
     <wsdl:operation name="GetAllRTUs">
       <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetAllRTUs" message="tns:IModelService_GetAllRTUs_InputMessage" />
@@ -150,6 +157,10 @@
     <wsdl:operation name="GetAllFlags">
       <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetAllFlags" message="tns:IModelService_GetAllFlags_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetAllFlagsResponse" message="tns:IModelService_GetAllFlags_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCronExpressionMappings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModelService/GetCronExpressionMappings" message="tns:IModelService_GetCronExpressionMappings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IModelService/GetCronExpressionMappingsResponse" message="tns:IModelService_GetCronExpressionMappings_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IModelService" type="tns:IModelService">
@@ -242,6 +253,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllFlags">
       <soap12:operation soapAction="http://tempuri.org/IModelService/GetAllFlags" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCronExpressionMappings">
+      <soap12:operation soapAction="http://tempuri.org/IModelService/GetCronExpressionMappings" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

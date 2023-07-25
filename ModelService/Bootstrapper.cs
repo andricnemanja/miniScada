@@ -35,7 +35,7 @@ namespace ModelServiceHost
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\ScanPeriodMappings.json"));
 			builder.RegisterType<JsonListSerializer<Flag>>().As<IListSerializer<Flag>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\Flags.json"));
-			builder.RegisterType<JsonListSerializer<CronExpressionMapping>>().As<IListSerializer<CronExpressionMapping>>()
+			builder.RegisterType<JsonListSerializer<ModelCronExpressionMapping>>().As<IListSerializer<ModelCronExpressionMapping>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\CronExpressionMappings.json"));
 
 			builder.RegisterType<AnalogSignalMappingRepository>().As<IAnalogSignalMappingRepository>()

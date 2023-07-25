@@ -104,9 +104,6 @@
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.Flag.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.ModelAnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -127,6 +124,9 @@
     </None>
     <None Include="Connected Services\ModelServiceReference\DynamicCacheManagerHost.ModelServiceReference.SignalScanPeriodMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.CronExpressionMappings.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
       <SubType>Designer</SubType>
@@ -155,6 +155,14 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.Flag.datasource" />
+    <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.ModelAnalogSignal.datasource" />
+    <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping.datasource" />
+    <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.ModelCronExpressionMapping.datasource" />
+    <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal.datasource" />
+    <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.ModelRTU.datasource" />
+    <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.ModelRTUData.datasource" />
+    <None Include="Properties\DataSources\DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping.datasource" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

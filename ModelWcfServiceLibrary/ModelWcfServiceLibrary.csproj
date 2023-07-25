@@ -89,8 +89,8 @@
     <Compile Include="FileAccessing\FileAccess.cs" />
     <Compile Include="IModelService.cs" />
     <Compile Include="ModelServiceException.cs" />
-    <Compile Include="Model\CronExpressionMappings\CronExpressionMapping.cs" />
-    <Compile Include="Model\CronExpressionMappings\ModelCronExpressionRecurrenceType.cs" />
+    <Compile Include="Model\CronExpressionMapping\ModelCronExpressionMapping.cs" />
+    <Compile Include="Model\CronExpressionMapping\ModelCronExpressionRecurrenceType.cs" />
     <Compile Include="Model\Flags\Flag.cs" />
     <Compile Include="Model\Flags\FlagType.cs" />
     <Compile Include="Model\RTU\ModelRTU.cs" />

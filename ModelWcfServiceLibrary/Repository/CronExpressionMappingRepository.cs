@@ -11,19 +11,19 @@ namespace ModelWcfServiceLibrary.Repository
 	public class CronExpressionMappingRepository : ICronExpressionMappingRepository
 	{
 		/// <summary>
-		/// Provides functionality to serialize and deserialize <see cref="CronExpressionMapping"/> list to JSON file.
+		/// Provides functionality to serialize and deserialize <see cref="ModelCronExpressionMapping"/> list to JSON file.
 		/// </summary>
-		private readonly IListSerializer<CronExpressionMapping> serializer;
+		private readonly IListSerializer<ModelCronExpressionMapping> serializer;
 
 		/// <summary>
 		/// List of the CronExpressionMappings.
 		/// </summary>
-		public List<CronExpressionMapping> CronExpressionMappingList { get; private set; }
+		public List<ModelCronExpressionMapping> CronExpressionMappingList { get; private set; }
 
-		public CronExpressionMappingRepository(IListSerializer<CronExpressionMapping> serializer)
+		public CronExpressionMappingRepository(IListSerializer<ModelCronExpressionMapping> serializer)
 		{
 			this.serializer = serializer;
-			CronExpressionMappingList = new List<CronExpressionMapping>();
+			CronExpressionMappingList = new List<ModelCronExpressionMapping>();
 		}
 
 		/// <summary>
@@ -47,7 +47,7 @@ namespace ModelWcfServiceLibrary.Repository
 		/// </summary>
 		/// <param name="id">ID of the cron expression mapping.</param>
 		/// <returns>Cron expression mapping.</returns>
-		public CronExpressionMapping GetByID(int id)
+		public ModelCronExpressionMapping GetByID(int id)
 		{
 			return CronExpressionMappingList.SingleOrDefault(m => m.Id == id);
 		}

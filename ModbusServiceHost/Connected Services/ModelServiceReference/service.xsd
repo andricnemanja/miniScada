@@ -6,6 +6,8 @@
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.SignalMapping" />
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMapping" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.CronExpressionMappings" />
   <xs:element name="GetAllRTUs">
     <xs:complexType>
       <xs:sequence />
@@ -120,6 +122,30 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.ScanPeriodMapping" minOccurs="0" name="GetSignalScanPeriodMappingsResult" nillable="true" type="q9:ArrayOfSignalScanPeriodMapping" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllFlags">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllFlagsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags" minOccurs="0" name="GetAllFlagsResult" nillable="true" type="q10:ArrayOfFlag" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCronExpressionMappings">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCronExpressionMappingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.CronExpressionMappings" minOccurs="0" name="GetCronExpressionMappingsResult" nillable="true" type="q11:ArrayOfModelCronExpressionMapping" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

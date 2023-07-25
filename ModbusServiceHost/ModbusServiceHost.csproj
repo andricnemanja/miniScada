@@ -103,6 +103,9 @@
     <None Include="Connected Services\DynamicCacheServiceReference\ModbusServiceLibrary.CommandResult.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\DynamicCacheServiceReference\ModbusServiceLibrary.RtuCommands.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\DynamicCacheServiceReference\service.wsdl" />
     <None Include="Connected Services\DynamicCacheServiceReference\service.xsd">
       <SubType>Designer</SubType>
@@ -113,31 +116,13 @@
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.ModelAnalogSignal.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.ModelAnalogSignalMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.ModelDiscreteSignal.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.ModelRTU.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.ModelRTUData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-	  <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.SignalScanPeriodMapping.datasource">
-		  <DependentUpon>Reference.svcmap</DependentUpon>
-	  </None>	
-    <None Include="Connected Services\ModelServiceReference\ModbusServiceHost.ModelServiceReference.Flag.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.CronExpressionMappings.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
@@ -149,7 +134,7 @@
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.SignalMapping.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Signals.xsd">
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Signals1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.xsd">
@@ -167,8 +152,17 @@
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.DiscreteSignal.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.Flag.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelCronExpressionMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelRTU.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelRTUData.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.RTU.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.RTUData.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">

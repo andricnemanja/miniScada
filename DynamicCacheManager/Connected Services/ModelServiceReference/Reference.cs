@@ -948,6 +948,156 @@ namespace DynamicCacheManager.ModelServiceReference {
         Fatal = 3,
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelCronExpressionMapping", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.CronExpressi" +
+        "onMappings")]
+    [System.SerializableAttribute()]
+    public partial class ModelCronExpressionMapping : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime EndField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RecurrencePeriodField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DynamicCacheManager.ModelServiceReference.ModelCronExpressionRecurrenceType RecurrenceTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime StartField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime End {
+            get {
+                return this.EndField;
+            }
+            set {
+                if ((this.EndField.Equals(value) != true)) {
+                    this.EndField = value;
+                    this.RaisePropertyChanged("End");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RecurrencePeriod {
+            get {
+                return this.RecurrencePeriodField;
+            }
+            set {
+                if ((this.RecurrencePeriodField.Equals(value) != true)) {
+                    this.RecurrencePeriodField = value;
+                    this.RaisePropertyChanged("RecurrencePeriod");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DynamicCacheManager.ModelServiceReference.ModelCronExpressionRecurrenceType RecurrenceType {
+            get {
+                return this.RecurrenceTypeField;
+            }
+            set {
+                if ((this.RecurrenceTypeField.Equals(value) != true)) {
+                    this.RecurrenceTypeField = value;
+                    this.RaisePropertyChanged("RecurrenceType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Start {
+            get {
+                return this.StartField;
+            }
+            set {
+                if ((this.StartField.Equals(value) != true)) {
+                    this.StartField = value;
+                    this.RaisePropertyChanged("Start");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelCronExpressionRecurrenceType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.CronExpressi" +
+        "onMappings")]
+    public enum ModelCronExpressionRecurrenceType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Seconds = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Minutes = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Hours = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Daily = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Weekly = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Monthly = 5,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
     public interface IModelService {
@@ -1012,6 +1162,12 @@ namespace DynamicCacheManager.ModelServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
         System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.Flag[]> GetAllFlagsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetCronExpressionMappings", ReplyAction="http://tempuri.org/IModelService/GetCronExpressionMappingsResponse")]
+        DynamicCacheManager.ModelServiceReference.ModelCronExpressionMapping[] GetCronExpressionMappings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetCronExpressionMappings", ReplyAction="http://tempuri.org/IModelService/GetCronExpressionMappingsResponse")]
+        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelCronExpressionMapping[]> GetCronExpressionMappingsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1119,6 +1275,14 @@ namespace DynamicCacheManager.ModelServiceReference {
         
         public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.Flag[]> GetAllFlagsAsync() {
             return base.Channel.GetAllFlagsAsync();
+        }
+        
+        public DynamicCacheManager.ModelServiceReference.ModelCronExpressionMapping[] GetCronExpressionMappings() {
+            return base.Channel.GetCronExpressionMappings();
+        }
+        
+        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelCronExpressionMapping[]> GetCronExpressionMappingsAsync() {
+            return base.Channel.GetCronExpressionMappingsAsync();
         }
     }
 }

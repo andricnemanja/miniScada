@@ -31,6 +31,8 @@
     <MetadataFile FileName="ModelWcfServiceLibrary.Model.SignalMapping.xsd" MetadataType="Schema" ID="9ee9c79a-8ce8-4a23-80c4-f524fdf7b032" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
     <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="78fdccd1-8d09-4c9d-ae29-91f37ecd8e26" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
     <MetadataFile FileName="ModelWcfServiceLibrary.Model.ScanPeriodMapping.xsd" MetadataType="Schema" ID="4e2c5e88-599e-4d35-bda1-67e5376ddcbf" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="ModelWcfServiceLibrary.Model.Flags.xsd" MetadataType="Schema" ID="fb9d98cc-43fe-48bf-ae03-58ce3e3ce430" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
+    <MetadataFile FileName="ModelWcfServiceLibrary.Model.CronExpressionMappings.xsd" MetadataType="Schema" ID="695d4b43-1c7e-42a3-9988-55e9c4c2d134" SourceId="1" SourceUrl="net.tcp://localhost:65001/GettingStarted/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -57,6 +57,11 @@ namespace SchedulerService.Period_Mapper
 			return signalPeriods.SingleOrDefault(m => m.Id == mappingId);
 		}
 
+		/// <summary>
+		/// Finds TimeStamp for certain signal.
+		/// </summary>
+		/// <param name="mappingId">Id of the mapping of the signal.</param>
+		/// <returns>Scan period for signal.</returns>
 		public TimeSpan FindTimeSpanForSignal(int mappingId)
 		{
 			return FindSignalPeriod(mappingId).TimeStamp;

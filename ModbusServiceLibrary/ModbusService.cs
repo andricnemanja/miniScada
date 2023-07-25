@@ -10,17 +10,17 @@ namespace ModbusServiceLibrary
 	public sealed class ModbusService : IModbusDuplex
 	{
 		private readonly IRtuCommandInvoker rtuCommandInvoker;
-		private readonly DynamicCacheManagerReference.IDynamicCacheManagerService dynamicCacheService;
+		//private readonly DynamicCacheManagerReference.IDynamicCacheManagerService dynamicCacheService;
 		private readonly List<IModbusDuplexCallback> subscribers = new List<IModbusDuplexCallback>();
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModbusService"/>
 		/// </summary>
 		/// <param name="rtuCommandInvoker">Instance of the <see cref="IRtuCommandInvoker"/> class</param>
 
-		public ModbusService(IRtuCommandInvoker rtuCommandInvoker, DynamicCacheManagerReference.IDynamicCacheManagerService dynamicCacheManagerService)
+		public ModbusService(IRtuCommandInvoker rtuCommandInvoker)
 		{
 			this.rtuCommandInvoker = rtuCommandInvoker;
-			this.dynamicCacheService = dynamicCacheManagerService;
+			//this.dynamicCacheService = dynamicCacheManagerService;
 		}
 
 		public void Subscribe()
@@ -38,7 +38,7 @@ namespace ModbusServiceLibrary
 		public void ReadAnalogSignal(int rtuId, int signalId)
 		{
 			CommandResultBase result = rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
-			dynamicCacheService.ProcessCommandResult(result);
+			//dynamicCacheService.ProcessCommandResult(result);
 		}
 
 		/// <summary>
@@ -50,7 +50,7 @@ namespace ModbusServiceLibrary
 		{
 			CommandResultBase result = rtuCommandInvoker.ReadSingleSignalCommand(rtuId, signalId);
 			
-			dynamicCacheService.ProcessCommandResult(result);
+			//dynamicCacheService.ProcessCommandResult(result);
 		}
 
 		/// <summary>
@@ -96,7 +96,7 @@ namespace ModbusServiceLibrary
 				Console.WriteLine("RTU ID: " + ((ReadSingleSignalCommand)command).RtuId + " Signal ID: " + ((ReadSingleSignalCommand)command).SignalId); 
 				rtuCommandInvoker.ReadSingleSignalScheduler(command);
 				var result = rtuCommandInvoker.ReadSingleSignalScheduler(command);
-				dynamicCacheService.ProcessCommandResult(result);
+				//dynamicCacheService.ProcessCommandResult(result);
 
 			}
 			catch (Exception ex)

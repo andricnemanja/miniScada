@@ -5,10 +5,10 @@ namespace ModelWcfServiceLibrary.Repository
 {
 	public interface ICronExpressionMappingRepository
 	{
-		List<CronExpressionMapping> CronExpressionMappingList { get; }
+		List<ModelCronExpressionMapping> CronExpressionMappingList { get; }
 
 		void Deserialize();
-		CronExpressionMapping GetByID(int id);
+		ModelCronExpressionMapping GetByID(int id);
 		void Serialize();
 	}
 }

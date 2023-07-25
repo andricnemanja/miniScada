@@ -85,7 +85,7 @@ namespace ModelWcfServiceLibrary
 		/// </summary>
 		/// <returns></returns>
 		[OperationContract]
-		IEnumerable<CronExpressionMapping> GetCronExpressionMappings();
+		IEnumerable<ModelCronExpressionMapping> GetCronExpressionMappings();
 
 	}
 }

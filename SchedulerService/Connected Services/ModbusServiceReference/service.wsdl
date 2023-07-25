@@ -41,6 +41,9 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IModbusDuplex_Subscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:Subscribe" />
+  </wsdl:message>
   <wsdl:message name="IModbusDuplex_ReadAnalogSignal_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadAnalogSignal" />
   </wsdl:message>
@@ -66,6 +69,9 @@
     <wsdl:part name="parameters" element="tns:ReceiveCommandResult" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IModbusDuplex">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Subscribe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/Subscribe" message="tns:IModbusDuplex_Subscribe_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReadAnalogSignal">
       <wsdl:input wsaw:Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal" message="tns:IModbusDuplex_ReadAnalogSignal_InputMessage" />
     </wsdl:operation>
@@ -93,6 +99,12 @@
     <wsp:PolicyReference URI="#NetTcpBinding_IModbusDuplex_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Subscribe">
+      <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/Subscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="ReadAnalogSignal">
       <soap12:operation soapAction="http://tempuri.org/IModbusDuplex/ReadAnalogSignal" style="document" />
       <wsdl:input>

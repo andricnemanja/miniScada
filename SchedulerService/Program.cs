@@ -3,6 +3,7 @@ using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
+using SchedulerService.CronExpressionMapper;
 using SchedulerService.ModbusServiceReference;
 using SchedulerService.ModelServiceReference;
 using SchedulerService.Period_Mapper;
@@ -46,6 +47,8 @@ namespace SchedulerService
 		public IPeriodMapper periodMapper;
 		public PeriodicalScan.IScheduler scheduler;
 
+		public ISchedulerCronExpressionMapper cronExpressionMapper;
+
 		public SchedulerService(ISchedulerRtuConfiguration rtuConfiguration, IModelService modelService)
 		{
 			this.rtuConfiguration = rtuConfiguration;
@@ -54,6 +57,8 @@ namespace SchedulerService
 
 			periodMapper = new PeriodMapper(modelService);
 			scheduler = new Scheduler();
+
+			cronExpressionMapper = new SchedulerCronExpressionMapper(modelService);
 
 			ModbusServiceCallback modbusServiceCallback = new ModbusServiceCallback();
 			InstanceContext instanceContext = new InstanceContext(modbusServiceCallback);

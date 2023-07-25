@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModelWcfServiceLibrary.Model.CronExpressionMappings
+namespace SchedulerService.Model.CronExpression
 {
-	public class CronExpressionMapping
+	public class SchedulerCronExpression
 	{
 		/// <summary>
 		/// Identification number of a cron expression mapping.
@@ -26,7 +26,7 @@ namespace ModelWcfServiceLibrary.Model.CronExpressionMappings
 		/// <summary>
 		/// Field that represents type of recurrence of the cron job.
 		/// </summary>
-		public ModelCronExpressionRecurrenceType RecurrenceType { get; set; }
+		public SchedulerCronExpressionRecurrenceType RecurrenceType { get; set; }
 
 		/// <summary>
 		/// Field that represents period of recurrence of the cron job.

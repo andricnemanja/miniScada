@@ -563,6 +563,12 @@ namespace SchedulerService.ModbusServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModbusServiceReference.IModbusDuplex", CallbackContract=typeof(IModbusDuplexCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IModbusDuplex {
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/Subscribe")]
+        void Subscribe();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/Subscribe")]
+        System.Threading.Tasks.Task SubscribeAsync();
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IModbusDuplex/ReadAnalogSignal")]
         void ReadAnalogSignal(int rtuId, int signalAddress);
         
@@ -633,6 +639,14 @@ namespace SchedulerService.ModbusServiceReference {
         
         public ModbusDuplexClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void Subscribe() {
+            base.Channel.Subscribe();
+        }
+        
+        public System.Threading.Tasks.Task SubscribeAsync() {
+            return base.Channel.SubscribeAsync();
         }
         
         public void ReadAnalogSignal(int rtuId, int signalAddress) {

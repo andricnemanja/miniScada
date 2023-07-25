@@ -119,7 +119,7 @@
     <Compile Include="CommandResult\WriteAnalogSignalFailedCommandResult.cs" />
     <Compile Include="CommandResult\WriteAnalogSignalCommandResult.cs" />
     <Compile Include="CommandResult\WriteDiscreteSignalCommandResult.cs" />
-    <Compile Include="Connected Services\DynamicCacheManagerReference\Reference.cs">
+    <Compile Include="Connected Services\DynamicCacheServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -171,14 +171,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\DynamicCacheManagerReference\ModbusServiceLibrary.CommandResult.xsd">
+    <None Include="Connected Services\DynamicCacheServiceReference\ModbusServiceLibrary.CommandResult.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DynamicCacheManagerReference\service.wsdl" />
-    <None Include="Connected Services\DynamicCacheManagerReference\service.xsd">
+    <None Include="Connected Services\DynamicCacheServiceReference\ModbusServiceLibrary.RtuCommands.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DynamicCacheManagerReference\service1.xsd">
+    <None Include="Connected Services\DynamicCacheServiceReference\service.wsdl" />
+    <None Include="Connected Services\DynamicCacheServiceReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DynamicCacheServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
@@ -190,6 +193,9 @@
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelCronExpressionMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -197,9 +203,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.ModelRTU.datasource">
-		<DependentUpon>Reference.svcmap</DependentUpon>
-	</None>
-	<None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.Flag.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.Flag.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.RTU.datasource">
@@ -211,7 +217,13 @@
     <None Include="Connected Services\ModelServiceReference\ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.CronExpressionMappings.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
@@ -242,7 +254,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\DynamicCacheManagerReference\" />
+    <WCFMetadataStorage Include="Connected Services\DynamicCacheServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\ModelServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -258,13 +270,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\DynamicCacheManagerReference\configuration91.svcinfo" />
+    <None Include="Connected Services\DynamicCacheServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\DynamicCacheManagerReference\configuration.svcinfo" />
+    <None Include="Connected Services\DynamicCacheServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\DynamicCacheManagerReference\Reference.svcmap">
+    <None Include="Connected Services\DynamicCacheServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
