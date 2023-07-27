@@ -2,6 +2,7 @@
 using Quartz;
 using Quartz.Impl;
 using SchedulerService.ModbusServiceReference;
+using SchedulerService.Model.CronExpression;
 using SchedulerService.RtuConfiguration;
 
 namespace SchedulerService.PeriodicalScan
@@ -63,7 +64,7 @@ namespace SchedulerService.PeriodicalScan
 		/// <param name="cronExpression">Expression that represents period that cron job should execute.</param>
 		/// <param name="rtuConfiguration">Instance of class that carries crutial information about Rtus and it's signals.</param>
 		/// <param name="modbus">Instace that enables us to communicate with Modbus service.</param>
-		public async void RegisterCronJob<T>(string cronExpression, ISchedulerRtuConfiguration rtuConfiguration, IModbusDuplex modbus, int rtuId = 0) where T : IJob
+		public async void RegisterCronJob<T>(SchedulerCronExpression cronExpression, ISchedulerRtuConfiguration rtuConfiguration, IModbusDuplex modbus, int rtuId = 0) where T : IJob
 		{
 			var schedulerJob = JobBuilder.Create<T>()
 				.Build();
@@ -73,7 +74,9 @@ namespace SchedulerService.PeriodicalScan
 			schedulerJob.JobDataMap["RtuId"] = rtuId;
 
 			var trigger = TriggerBuilder.Create()
-				.WithCronSchedule("0/2 * * ? * * *")
+				.StartAt(cronExpression.Start)
+				.WithCronSchedule(cronExpression.CronExpressionScheduler)
+				.EndAt(cronExpression.End)
 				.Build();
 
 			await scheduler.ScheduleJob(schedulerJob, trigger);

@@ -140,6 +140,10 @@ namespace ModelWcfServiceLibrary
 			return flagRepository.FlagList;
 		}
 
+		/// <summary>
+		/// Gets all the Cron expressions.
+		/// </summary>
+		/// <returns>List of cron expressions.</returns>
 		public IEnumerable<ModelCronExpressionMapping> GetCronExpressionMappings()
 		{
 			return cronExpressionMappingRepository.CronExpressionMappingList;

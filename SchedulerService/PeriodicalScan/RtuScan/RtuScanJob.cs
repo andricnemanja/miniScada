@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace SchedulerService.PeriodicalScan.RtuScan
 {
+	/// <summary>
+	/// Job that scans whole RTU with all its signals.
+	/// </summary>
 	public class RtuScanJob : IJob
 	{
 		public Task Execute(IJobExecutionContext context)

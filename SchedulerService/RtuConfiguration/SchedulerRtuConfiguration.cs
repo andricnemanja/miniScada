@@ -6,6 +6,9 @@ using SchedulerRTU = SchedulerService.Model.RTU.SchedulerRTU;
 
 namespace SchedulerService.RtuConfiguration
 {
+	/// <summary>
+	/// Class that represents configuration of the RTU.
+	/// </summary>
 	public class SchedulerRtuConfiguration : ISchedulerRtuConfiguration
 	{
 		private readonly IModelService modelService;

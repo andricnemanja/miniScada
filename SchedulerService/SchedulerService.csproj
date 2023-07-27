@@ -88,6 +88,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="CronExpressionMapper\CronExpressionConverter.cs" />
     <Compile Include="CronExpressionMapper\SchedulerCronExpressionMapper.cs" />
     <Compile Include="CronExpressionMapper\ISchedulerCronExpressionMapper.cs" />
     <Compile Include="ModbusServiceCallback.cs" />

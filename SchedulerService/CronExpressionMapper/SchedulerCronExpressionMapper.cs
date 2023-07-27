@@ -2,6 +2,7 @@
 using SchedulerService.ModelServiceReference;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace SchedulerService.CronExpressionMapper
 {
@@ -14,6 +15,10 @@ namespace SchedulerService.CronExpressionMapper
 		/// </summary>
 		public List<SchedulerCronExpression> cronExpressions = new List<SchedulerCronExpression>();
 
+		/// <summary>
+		/// Initializes instance of <see cref="SchedulerCronExpressionMapper"/> class.
+		/// </summary>
+		/// <param name="modelService">Model service.</param>
 		public SchedulerCronExpressionMapper(IModelService modelService)
 		{
 			this.modelService = modelService;
@@ -35,8 +40,7 @@ namespace SchedulerService.CronExpressionMapper
 					Id = expression.Id,
 					Name = expression.Name,
 					Start = expression.Start,
-					RecurrenceType = (SchedulerCronExpressionRecurrenceType)expression.RecurrenceType,
-					RecurrencePeriod = expression.RecurrencePeriod,
+					CronExpressionScheduler = CronExpressionConverter.CronConvert(expression.RecurrenceType, expression.RecurrencePeriod),
 					End = expression.End,
 				};
 

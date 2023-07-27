@@ -9,7 +9,6 @@ using SchedulerService.ModelServiceReference;
 using SchedulerService.Period_Mapper;
 using SchedulerService.PeriodicalScan;
 using SchedulerService.PeriodicalScan.RtuScan;
-using SchedulerService.PeriodicalScan.SignalTypeScan;
 using SchedulerService.RtuConfiguration;
 using IContainer = Autofac.IContainer;
 
@@ -17,6 +16,10 @@ namespace SchedulerService
 {
 	public static class Program
 	{
+		/// <summary>
+		/// Bootstrapper for the console application.
+		/// </summary>
+		/// <returns>IContainer from the Autofac.</returns>
 		private static IContainer CompositionRoot()
 		{
 			var builder = new ContainerBuilder();
@@ -38,6 +41,9 @@ namespace SchedulerService
 		}
 	}
 
+	/// <summary>
+	/// Class where we inject dependancies. 
+	/// </summary>
 	public class SchedulerService
 	{
 		private ISchedulerRtuConfiguration rtuConfiguration;
@@ -45,7 +51,7 @@ namespace SchedulerService
 		private IModbusDuplex modbus;
 
 		public IPeriodMapper periodMapper;
-		public PeriodicalScan.IScheduler scheduler;
+		public IScheduler scheduler;
 
 		public ISchedulerCronExpressionMapper cronExpressionMapper;
 
@@ -56,9 +62,9 @@ namespace SchedulerService
 			this.modelService = modelService;
 
 			periodMapper = new PeriodMapper(modelService);
-			scheduler = new Scheduler();
-
 			cronExpressionMapper = new SchedulerCronExpressionMapper(modelService);
+
+			scheduler = new Scheduler();
 
 			ModbusServiceCallback modbusServiceCallback = new ModbusServiceCallback();
 			InstanceContext instanceContext = new InstanceContext(modbusServiceCallback);
@@ -73,12 +79,12 @@ namespace SchedulerService
 
 		public async void Run()
 		{
-			scheduler.RegisterPeriodicalScanJob<AnalogInputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(1), rtuConfiguration, modbus);
-			scheduler.RegisterPeriodicalScanJob<AnalogOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(2), rtuConfiguration, modbus);
-			scheduler.RegisterPeriodicalScanJob<DiscreteInputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(3), rtuConfiguration, modbus);
-			scheduler.RegisterPeriodicalScanJob<DiscreteOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(4), rtuConfiguration, modbus);
-
-			//scheduler.RegisterCronJob<RtuScanJob>("abc", rtuConfiguration, modbus, 1);
+			//scheduler.RegisterPeriodicalScanJob<AnalogInputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(1), rtuConfiguration, modbus);
+			//scheduler.RegisterPeriodicalScanJob<AnalogOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(2), rtuConfiguration, modbus);
+			//scheduler.RegisterPeriodicalScanJob<DiscreteInputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(3), rtuConfiguration, modbus);
+			//scheduler.RegisterPeriodicalScanJob<DiscreteOutputPeriodicalScanJob>(periodMapper.FindTimeSpanForSignal(4), rtuConfiguration, modbus);
+			
+			scheduler.RegisterCronJob<RtuScanJob>(cronExpressionMapper.FindCronExpression(2), rtuConfiguration, modbus, 1);
 
 			//while (!cancellationToken.IsCancellationRequested)
 			//{

@@ -24,18 +24,14 @@ namespace SchedulerService.Model.CronExpression
 		public DateTime Start { get; set; }
 
 		/// <summary>
-		/// Field that represents type of recurrence of the cron job.
+		/// Input adapted for Quartz.NET Scheduler trigger.
 		/// </summary>
-		public SchedulerCronExpressionRecurrenceType RecurrenceType { get; set; }
-
-		/// <summary>
-		/// Field that represents period of recurrence of the cron job.
-		/// </summary>
-		public int RecurrencePeriod { get; set; }
+		public string CronExpressionScheduler { get; set; }
 
 		/// <summary>
 		/// Field that represents end date of the scheduled job.
 		/// </summary>
 		public DateTime End { get; set; }
+
 	}
 }
