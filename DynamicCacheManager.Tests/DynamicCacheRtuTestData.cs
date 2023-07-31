@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DynamicCacheManager.ContractTypes;
 using DynamicCacheManager.Model;
 
 namespace DynamicCacheManager.Tests
@@ -20,6 +21,10 @@ namespace DynamicCacheManager.Tests
 					{
 						new DiscreteSignal(4, 1),
 						new DiscreteSignal(5, 1)
+					},
+					new List<string>()
+					{
+
 					}
 				),
 				new Rtu(2,
@@ -32,6 +37,10 @@ namespace DynamicCacheManager.Tests
 					{
 						new DiscreteSignal(8, 2),
 						new DiscreteSignal(9, 2)
+					},
+					new List<string>()
+					{
+
 					}
 				)
 			};

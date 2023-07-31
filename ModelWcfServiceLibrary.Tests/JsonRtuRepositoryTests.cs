@@ -1,8 +1,9 @@
 ﻿using ModelWcfServiceLibrary.FileAccessing;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Repository;
-using Autofac.Extras.Moq;
 using Xunit;
+using Moq;
+using ModelWcfServiceLibrary.Serializer;
 
 namespace ModelWcfServiceLibrary.Tests
 {
@@ -36,7 +37,7 @@ namespace ModelWcfServiceLibrary.Tests
 		{
 			var fileAccessMock = new Mock<IFileAccess>();
 			fileAccessMock.Setup(x => x.ReadFile(It.IsAny<string>())).Returns(GetTestJsonString());
-			JsonListSerializer<RTU> jsonRtuSerializer = new JsonListSerializer<RTU>(fileAccessMock.Object, It.IsAny<string>());
+			JsonListSerializer<ModelRTU> jsonRtuSerializer = new JsonListSerializer<ModelRTU>(fileAccessMock.Object, It.IsAny<string>());
 			RtuRepository rtuRepository = new RtuRepository(jsonRtuSerializer);
 			rtuRepository.Deserialize();
 

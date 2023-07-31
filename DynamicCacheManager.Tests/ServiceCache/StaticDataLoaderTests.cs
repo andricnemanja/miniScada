@@ -24,7 +24,7 @@ namespace DynamicCacheManager.Tests.ResultProcessing
 		public void InitializeData()
 		{
 			//Arrange
-			modelServiceMock.Setup(m => m.GetAllRTUs()).Returns(ModelServiceRtuTestData.GetRtuTestList().ToArray);
+			modelServiceMock.Setup(m => m.GetAllRTUs()).Returns(ModelServiceRtuTestData.GetRtuTestList());
 
 			//Act
 			List<Rtu> rtuList = staticDataLoader.InitializeData();

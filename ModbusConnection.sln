@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Cont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisDynamicCacheClientAdapter", "RedisDynamicCacheClientAdapter\RedisDynamicCacheClientAdapter.csproj", "{032D8801-BB08-4221-8FA7-F550AC513D3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulerService.Tests", "SchedulerService.Tests\SchedulerService.Tests.csproj", "{33E5A029-5081-4F4C-9814-45B34A26C806}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,10 @@ Global
 		{032D8801-BB08-4221-8FA7-F550AC513D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{032D8801-BB08-4221-8FA7-F550AC513D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{032D8801-BB08-4221-8FA7-F550AC513D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E5A029-5081-4F4C-9814-45B34A26C806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E5A029-5081-4F4C-9814-45B34A26C806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E5A029-5081-4F4C-9814-45B34A26C806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E5A029-5081-4F4C-9814-45B34A26C806}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +130,7 @@ Global
 		{F11FB3FB-8378-4C50-8BB0-36457EEB9C08} = {11F52189-9CA2-4F2B-B5D3-21C4C77EB796}
 		{842B3201-5B0A-49EF-B24B-0855BA9B432E} = {7ABF4FA7-1C3D-4F15-93C0-0860B402030E}
 		{032D8801-BB08-4221-8FA7-F550AC513D3A} = {7ABF4FA7-1C3D-4F15-93C0-0860B402030E}
+		{33E5A029-5081-4F4C-9814-45B34A26C806} = {B3FF9E4B-62DA-4B48-8B5A-E6117BA765D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04FAD949-D920-4455-847F-59A5B4BAFF56}
