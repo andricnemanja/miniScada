@@ -1,4 +1,6 @@
-﻿namespace RedisDynamicCacheClientAdapter.StringManipulation
+﻿using Contracts.DTO;
+
+namespace RedisDynamicCacheClientAdapter.StringManipulation
 {
 	/// <summary>
 	/// Provides methods for parsing subscription channels used in Redis database
@@ -19,12 +21,18 @@
 			return new ChangedSignalData(rtuId, signalId);
 		}
 
-		public int ParseRtuFlagChannel(string channelName)
+		public RtuFlagChannelData ParseRtuFlagChannel(string channelName)
 		{
 			string[] channelNameArr = channelName.Split('.');
 			int rtuId = int.Parse(channelNameArr[1].Split(':')[1]);
 
-			return rtuId;
+			RtuFlagChannelData rtuFlagChannelData = new RtuFlagChannelData(rtuId);
+			if (channelNameArr[2] == "remove")
+			{
+				rtuFlagChannelData.Operation = RtuFlagOperation.Remove;
+			}
+
+			return rtuFlagChannelData;
 		}
 	}
 }

@@ -78,7 +78,7 @@ namespace ClientWpfApp.ServiceClients
 						AccessType = (SignalAccessType)discreteSignal.AccessType
 					},
 					State = "",
-					PossibleStates = modelService.GetDiscreteSignalPossibleStates(rtuID, discreteSignal.Address).ToArray()
+					PossibleStates = modelService.GetDiscreteSignalPossibleStates(rtuID, discreteSignal.ID).ToArray()
 				});
 			}
 

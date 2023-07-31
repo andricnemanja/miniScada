@@ -1,40 +1,82 @@
-﻿using NModbus;
+﻿using System;
+using ModbusServiceLibrary.DynamicCacheManagerReference;
+using ModbusServiceLibrary.ModbusConnection.States;
+using NModbus;
 
 namespace ModbusServiceLibrary.ModbusConnection
 {
-	public class RtuConnection
+	/// <summary>
+	/// Class <c>RtuConnection</c> represents the TCP connection to RTU device.
+	/// </summary>
+	public sealed class RtuConnection
 	{
-		public RtuConnection()
+		/// <summary>
+		/// Initializes a new instance of the <see cref="RtuConnection"./>
+		/// </summary>
+		/// <param name="rtuId">ID of RTU for which connection is created.</param>
+		/// <param name="dynamicCacheManagerServiceClient">Instance of the <see cref="IDynamicCacheManagerService"/> class.</param>
+		public RtuConnection(int rtuId, IDynamicCacheManagerService dynamicCacheManagerServiceClient)
 		{
+			RtuId = rtuId;
+			DynamicCacheManagerServiceClient = dynamicCacheManagerServiceClient;
 			ConnectionState = new DisconnectedRtuState(this);
 		}
-
+		/// <summary>
+		/// IP Address of RTU device.
+		/// </summary>
 		public string IpAddress { get; set; }
+		/// <summary>
+		/// Port number of RTU device.
+		/// </summary>
 		public int Port { get; set; }
+		/// <summary>
+		/// ID of the RTU.
+		/// </summary>
+		public int RtuId { get; set; }
+		/// <summary>
+		/// .
+		/// </summary>
 		public IModbusMaster ModbusMaster { get; set; }
+		/// <summary>
+		/// Current state of the RTU TCP connection.
+		/// </summary>
 		public IRtuConnectionState ConnectionState { get; set; }
-
-		public RtuConnectionResponse Connect(string ipAddress, int port) => ConnectionState.Connect(ipAddress, port);
-
-		public RtuConnectionResponse Disconnect() => ConnectionState.Disconnect();
-
-		public RtuConnectionResponse ReadCoils(int startingAddress, int numberOfCoils, out bool[] signalValue) => ConnectionState.ReadCoils(startingAddress, numberOfCoils, out signalValue);
-
-		public RtuConnectionResponse ReadInputs(int startingAddress, int numberOfCoils, out bool[] signalValue) => ConnectionState.ReadInputs(startingAddress, numberOfCoils, out signalValue);
-
-		public RtuConnectionResponse ReadHoldingRegisters(int startingAddress, int numberOfRegisters, out ushort[] value) => ConnectionState.ReadHoldingRegisters(startingAddress, numberOfRegisters, out value);
+		/// <summary>
+		/// DynamicCacheManager service client.
+		/// </summary>
+		public IDynamicCacheManagerService DynamicCacheManagerServiceClient { get; set; }
 
 		/// <summary>
-		/// Try to read input registers from the RTU.
+		/// Make TCP connection with RTU.
 		/// </summary>
-		/// <param name="startingAddress">Address of the signal.</param>
-		/// <param name="value">Output read value.</param>
-		/// <returns>True if signal is successfully read, false if error occured during reading.</returns>
-		public RtuConnectionResponse ReadInputRegisters(int startingAddress, int numberOfRegisters, out ushort[] value) =>
-			ConnectionState.ReadInputRegisters(startingAddress, numberOfRegisters, out value);
+		/// <param name="ipAddress">IP Address of the RTU.</param>
+		/// <param name="port">RTU port.</param>
+		/// <returns><see cref="RtuConnectionResponse"/></returns>
+		public RtuConnectionResponse Connect(string ipAddress, int port) => ConnectionState.Connect(ipAddress, port);
 
-		public RtuConnectionResponse WriteSingleHoldingRegister(int startingAddress, int value) => ConnectionState.WriteSingleHoldingRegister(startingAddress, value);
+		/// <summary>
+		/// Disconnect from the RTU.
+		/// </summary>
+		/// <returns><see cref="RtuConnectionResponse"/></returns>
+		public RtuConnectionResponse Disconnect() => ConnectionState.Disconnect();
 
-		public RtuConnectionResponse WriteCoils(int coilAddress, bool[] valueToWrite) => ConnectionState.WriteCoils(coilAddress, valueToWrite);
+		/// <summary>
+		/// Execute write command on the device.
+		/// </summary>
+		/// <param name="command">Read command that needs to be executed.</param>
+		/// <param name="signalAddress">Modbus address of the signal that needs to be changed.</param>
+		/// <param name="writeValue">New signal value.</param>
+		/// <returns><see cref="RtuConnectionResponse"/></returns>
+		public RtuConnectionResponse ExecuteWriteCommand<T>(Action<byte, ushort, T> command, ushort signalAddress, T writeValue) => ConnectionState.ExecuteWriteCommand(command, signalAddress, writeValue);
+
+		/// <summary>
+		/// Execute read command on the device.
+		/// </summary>
+		/// <param name="command">Read command that needs to be executed.</param>
+		/// <param name="signalAddress">Modbus address of the signal that needs to be read.</param>
+		/// <param name="numberOfPoints">Number of points occupied by the signal.</param>
+		/// <param name="readValue">Value that is read from the signal.</param>
+		/// <returns><see cref="RtuConnectionResponse"/></returns>
+		public RtuConnectionResponse ExecuteReadCommand<T>(Func<byte, ushort, ushort, T> command, ushort signalAddress, ushort numberOfPoints, out T readValue) => ConnectionState.ExecuteReadCommand(command, signalAddress, numberOfPoints, out readValue);
 	}
 }

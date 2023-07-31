@@ -28,5 +28,11 @@
     "Name": "Analog signal mapping 5",
     "K": 0.008,
     "N": -40
+  },
+  {
+    "Id": 6,
+    "Name": "DHT22 temperature sensor",
+    "K": 0.01,
+    "N": 0
   }
 ]

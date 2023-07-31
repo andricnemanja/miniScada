@@ -136,5 +136,56 @@
         "StaleTime": "00:00:01"
       }
     ]
+  },
+  {
+    "RTUData":{
+      "Name": "ESP8266",
+      "ID": 3,
+      "IpAddress": "192.168.13.78",
+      "Port": 502
+    },
+    "AnalogSignals": [
+      {
+        "ID": 14,
+        "Address": 100,
+        "Name": "Temperatura",
+        "MappingId": 6,
+        "AccessType": 0,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
+      }
+    ],
+    "DiscreteSignals": [
+      {
+        "ID": 15,
+        "Name": "Senzor pokreta",
+        "Address": 1,
+        "SignalType": 0,
+        "MappingId": 5,
+        "AccessType": 0,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
+      },
+      {
+        "ID": 16,
+        "Name": "Senzor temperature",
+        "Address": 2,
+        "SignalType": 0,
+        "MappingId": 6,
+        "AccessType": 0,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
+      },
+      {
+        "ID": 17,
+        "Name": "LED",
+        "Address": 1,
+        "SignalType": 0,
+        "MappingId": 3,
+        "AccessType": 1 ,
+        "Deadband" : 0.1,
+        "StaleTime": "00:00:01"
+      }
+    ]
   }
 ]

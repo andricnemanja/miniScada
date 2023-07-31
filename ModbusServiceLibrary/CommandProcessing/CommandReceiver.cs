@@ -16,7 +16,7 @@ namespace ModbusServiceLibrary
 		{
 			this.commandProcessors = new Dictionary<Type, ICommandProcessor>()
 			{
-				{typeof(ConnectToRtuCommand), new ConnectToRtuCommandProcessor(protocolDriver, rtuConfiguration) },
+				{typeof(RtuOnScanCommand), new RtuOnScanCommandProcessor(protocolDriver, rtuConfiguration) },
 				{typeof(ReadSingleSignalCommand), new ReadSingleSignalCommandProcessor(protocolDriver, rtuConfiguration) },
 				{typeof(WriteAnalogSignalCommand), new WriteAnalogSignalCommandProcessor(protocolDriver) },
 				{typeof(WriteDiscreteSignalCommand), new WriteDiscreteSignalCommandProcessor(protocolDriver) }

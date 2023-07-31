@@ -4,7 +4,8 @@ using ModbusServiceLibrary.CommandResult;
 
 namespace DynamicCacheManager
 {
-	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
+	// TODO Debug ConcurrencyMode.Multiple
+	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
 	public sealed class DynamicCacheManagerService : IDynamicCacheManagerService
 	{
 		private readonly ICommandResultQueue commandResultQueue;

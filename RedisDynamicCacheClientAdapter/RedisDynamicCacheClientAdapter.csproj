@@ -81,6 +81,7 @@
     <Compile Include="RedisDynamicCacheClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChangedSignalData.cs" />
+    <Compile Include="StringManipulation\RtuFlagChannelData.cs" />
     <Compile Include="StringManipulation\RedisStringBuilder.cs" />
     <Compile Include="StringManipulation\RedisStringParser.cs" />
   </ItemGroup>

@@ -6,12 +6,12 @@ using ModbusServiceLibrary.RtuConfiguration;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {
-	public class ConnectToRtuCommandProcessor : ICommandProcessor
+	public class RtuOnScanCommandProcessor : ICommandProcessor
 	{
 		private readonly IProtocolDriver protocolDriver;
 		private readonly IModbusRtuConfiguration rtuConfiguration;
 
-		public ConnectToRtuCommandProcessor(IProtocolDriver protocolDriver, IModbusRtuConfiguration rtuConfiguration)
+		public RtuOnScanCommandProcessor(IProtocolDriver protocolDriver, IModbusRtuConfiguration rtuConfiguration)
 		{
 			this.protocolDriver = protocolDriver;
 			this.rtuConfiguration = rtuConfiguration;
@@ -19,7 +19,7 @@ namespace ModbusServiceLibrary.CommandProcessing
 
 		public CommandResultBase ProcessCommand(RtuCommandBase command)
 		{
-			ConnectToRtuCommand connectToRtuCommand = (ConnectToRtuCommand)command;
+			RtuOnScanCommand connectToRtuCommand = (RtuOnScanCommand)command;
 			RTUConnectionParameters connectionParameters = rtuConfiguration.GetRtuConnectionParameters(connectToRtuCommand.RtuId);
 
 			if (protocolDriver.TryConnectToRtu(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port))

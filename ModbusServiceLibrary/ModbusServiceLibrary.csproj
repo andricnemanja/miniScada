@@ -139,12 +139,15 @@
     <Compile Include="Modbus\ModbusClient\ModbusConnectionManager.cs" />
     <Compile Include="Modbus\ModbusClient\NModbusClient.cs" />
     <Compile Include="Modbus\IProtocolDriver.cs" />
-    <Compile Include="Modbus\ModbusConnection\ConnectedRtuState.cs" />
-    <Compile Include="Modbus\ModbusConnection\ConnectingRtuState.cs" />
-    <Compile Include="Modbus\ModbusConnection\DisconnectedRtuState.cs" />
-    <Compile Include="Modbus\ModbusConnection\IRtuConnectionState.cs" />
+    <Compile Include="Modbus\ModbusConnection\States\ConnectedRtuState.cs" />
+    <Compile Include="Modbus\ModbusConnection\States\ConnectingRtuState.cs" />
+    <Compile Include="Modbus\ModbusConnection\States\DisconnectedRtuState.cs" />
+    <Compile Include="Modbus\ModbusConnection\States\IRtuConnectionState.cs" />
     <Compile Include="Modbus\ModbusConnection\RtuConnection.cs" />
     <Compile Include="Modbus\ModbusConnection\RtuConnectionCommandResponse.cs" />
+    <Compile Include="Modbus\ModbusConnection\States\IRtuConnectionStateFactory.cs" />
+    <Compile Include="Modbus\ModbusConnection\States\RtuConnectionFactory.cs" />
+    <Compile Include="Modbus\ModbusConnection\States\RtuConnectionState.cs" />
     <Compile Include="Modbus\ModbusDataTypes\AnalogInput.cs" />
     <Compile Include="Modbus\ModbusDataTypes\Coil.cs" />
     <Compile Include="Modbus\ModbusDataTypes\DigitalInput.cs" />
@@ -155,6 +158,7 @@
     <Compile Include="Modbus\ModbusDataTypes\ModbusTypesTestData.cs" />
     <Compile Include="Modbus\ModbusDriver.cs" />
     <Compile Include="Modbus\ModbusDataStaticCache.cs" />
+    <Compile Include="Modbus\ModbusMaster\NullModbusMaster.cs" />
     <Compile Include="Model\SignalMapping\ModbusDiscreteSignalMapping.cs" />
     <Compile Include="Model\SignalMapping\ModbusAnalogSignalMapping.cs" />
     <Compile Include="Model\Signals\ModbusDiscreteSignalType.cs" />

@@ -48,7 +48,7 @@ namespace ClientWpfApp.ModbusServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ConnectToRtuCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RtuOnScanCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
     [System.SerializableAttribute()]
     public partial class ConnectToRtuCommand : ClientWpfApp.ModbusServiceReference.RtuCommandBase {
         

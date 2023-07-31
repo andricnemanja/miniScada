@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\RtuFlagDTO.cs" />
+    <Compile Include="DTO\RtuFlagOperation.cs" />
     <Compile Include="DTO\SignalChangeDTO.cs" />
     <Compile Include="DTO\SignalValueDTO.cs" />
     <Compile Include="IDynamicCacheClient.cs" />

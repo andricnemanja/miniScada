@@ -48,7 +48,7 @@ namespace ModbusServiceLibrary.RtuCommands
 		/// <returns>Result of the command.</returns>
 		public CommandResultBase ConnectToRtu(int rtuId)
 		{
-			return commandReceiver.ReceiveCommand(new ConnectToRtuCommand(rtuId));
+			return commandReceiver.ReceiveCommand(new RtuOnScanCommand(rtuId));
 		}
 
 		/// <summary>

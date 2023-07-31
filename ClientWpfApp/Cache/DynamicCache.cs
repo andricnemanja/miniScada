@@ -113,7 +113,14 @@ namespace ClientWpfApp.Cache
 				},
 				(RtuFlagDTO rtuFlagDTO) =>
 				{
-					rtuCache.AddFlagToRtu(rtuFlagDTO.RtuId, rtuFlagDTO.FlagName);
+					if(rtuFlagDTO.Operation == RtuFlagOperation.Add)
+					{
+						rtuCache.AddFlagToRtu(rtuFlagDTO.RtuId, rtuFlagDTO.FlagName);
+					}
+					else
+					{
+						rtuCache.RemoveFlagFromRtu(rtuFlagDTO.RtuId, rtuFlagDTO.FlagName);
+					}
 				}));
 			}
 

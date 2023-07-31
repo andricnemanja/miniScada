@@ -10,5 +10,6 @@ namespace ClientWpfApp.Model
 		void UpdateDiscreteSignalValue(int rtuId, int signalId, string newState);
 		void UpdateSignalValue(int rtuId, int signalId, string newValue);
 		void AddFlagToRtu(int rtuId, string flag);
+		void RemoveFlagFromRtu(int rtuId, string flag);
 	}
 }

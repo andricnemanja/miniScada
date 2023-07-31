@@ -3,15 +3,15 @@
 namespace ModbusServiceLibrary.RtuCommands
 {
 	/// <summary>
-	/// Command that is sent whenever we need to establish the connection with the RTU.
+	/// Command that puts RTU in OnScan state
 	/// </summary>
 	[DataContract]
-	public class ConnectToRtuCommand : RtuCommandBase
+	public class RtuOnScanCommand : RtuCommandBase
 	{
 		[DataMember]
 		public int RtuId { get; set; }
 
-		public ConnectToRtuCommand(int rtuId)
+		public RtuOnScanCommand(int rtuId)
 		{
 			RtuId = rtuId;
 		}

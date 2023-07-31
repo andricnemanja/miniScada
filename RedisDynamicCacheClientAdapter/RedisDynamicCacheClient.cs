@@ -135,8 +135,8 @@ namespace RedisDynamicCacheClientAdapter
 		{
 			subscriber.SubscribeAsync(subscriptionChannel, (channel, newValue) =>
 			{
-				int rtuId = stringParser.ParseRtuFlagChannel(channel);
-				RtuFlagDTO rtuFlagDTO = new RtuFlagDTO(rtuId, newValue);
+				RtuFlagChannelData flagChannelData = stringParser.ParseRtuFlagChannel(channel);
+				RtuFlagDTO rtuFlagDTO = new RtuFlagDTO(flagChannelData.RtuId, newValue, flagChannelData.Operation);
 				handleSignalChange(rtuFlagDTO);
 			});
 			return Task.CompletedTask;

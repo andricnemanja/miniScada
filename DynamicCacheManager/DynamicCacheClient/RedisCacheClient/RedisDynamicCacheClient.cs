@@ -93,6 +93,13 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 			rtuRedisCollection.Update(rtu);
 		}
 
+		public void RemoveRtuFlag(int rtuId, string flag)
+		{
+			Rtu rtu = FindRtu(rtuId);
+			rtu.Flags.Remove(flag);
+			rtuRedisCollection.Update(rtu);
+		}
+
 		public void PublishSignalChange(ISignal signal, string newValue)
 		{
 			publisher.Publish(redisStringBuilder.GenerateChannelName(signal.RtuId, signal.GetType().Name, signal.Id), newValue);
@@ -106,6 +113,11 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 		public void PublishNewRtuFlag(int rtuId, string flag)
 		{
 			publisher.Publish(redisStringBuilder.GenerateFlagChannelName(rtuId), flag);
+		}
+
+		public void PublishRemovedRtuFlag(int rtuId, string flag)
+		{
+			publisher.Publish(redisStringBuilder.GenerateRemovedFlagChannelName(rtuId), flag);
 		}
 
 		public bool DoesRtuHaveFlag(int rtudId, string flag)

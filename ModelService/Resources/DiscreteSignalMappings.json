@@ -36,5 +36,21 @@
       "2": "Low",
       "3": "Transit"
     }
+  },
+  {
+    "Id": 5,
+    "Name": "Motion sensor",
+    "DiscreteValueToState": {
+      "0": "No motion",
+      "1": "Motion detected"
+    }
+  },
+  {
+    "Id": 6,
+    "Name": "Temperature sensor state",
+    "DiscreteValueToState": {
+      "0": "Error",
+      "1": "Online"
+    }
   }
 ]

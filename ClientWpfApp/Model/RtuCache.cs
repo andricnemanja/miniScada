@@ -55,6 +55,11 @@ namespace ClientWpfApp.Model
 			FindRtu(rtuId).Flags.Add(flag);
 		}
 
+		public void RemoveFlagFromRtu(int rtuId, string flag)
+		{
+			FindRtu(rtuId).Flags.Remove(flag);
+		}
+
 		private RTU.RTU FindRtu(int rtuId)
 		{
 			return RtuList.Where(r => r.RTUData.ID == rtuId).FirstOrDefault();

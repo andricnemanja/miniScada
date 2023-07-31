@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using ModelWcfServiceLibrary.Model.CronJobPeriodMapping;
 using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
 using ModelWcfServiceLibrary.Model.ScanPeriodMapping;
@@ -115,7 +114,7 @@ namespace ModelWcfServiceLibrary
 		public string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress)
 		{
 			ModelRTU rtu = rtuRepository.GetRTUByID(rtuId);
-			ModelDiscreteSignal signal = rtu.DiscreteSignals.FirstOrDefault(s => s.Address == signalAddress);
+			ModelDiscreteSignal signal = rtu.DiscreteSignals.FirstOrDefault(s => s.ID == signalAddress);
 			return discreteSignalMappingRepository.GetDiscreteSignalPossibleStates(signal.MappingId);
 		}
 

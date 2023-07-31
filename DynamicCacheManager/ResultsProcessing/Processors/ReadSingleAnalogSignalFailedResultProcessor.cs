@@ -23,6 +23,8 @@ namespace DynamicCacheManager.ResultsProcessing
 			{
 				dynamicCacheClient.AddRtuFlag(commandData.RtuId, "Connection Failure");
 				dynamicCacheClient.PublishNewRtuFlag(commandData.RtuId, "Connection Failure");
+				dynamicCacheClient.RemoveRtuFlag(commandData.RtuId, "Active Connection");
+				dynamicCacheClient.PublishRemovedRtuFlag(commandData.RtuId, "Active Connection");
 			}
 		}
 	}

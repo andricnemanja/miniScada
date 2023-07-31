@@ -23,7 +23,9 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if signal is successfully read, false if error occured during reading.</returns>
 		public bool TryReadHoldingRegisters(int rtuId, int startingAddress, int numberOfRegisters, out ushort[] value)
 		{
-			return modbusConnectionManager.GetRtuConnection(rtuId).ReadHoldingRegisters(startingAddress, numberOfRegisters, out value) == RtuConnectionResponse.CommandExecuted;
+			var connection = modbusConnectionManager.GetRtuConnection(rtuId);
+
+			return connection.ExecuteReadCommand(connection.ModbusMaster.ReadHoldingRegisters, (ushort)startingAddress, (ushort)numberOfRegisters, out value) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>
@@ -34,19 +36,11 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if signal is successfully read, false if error occured during reading.</returns>
 		public bool TryReadInputRegisters(int rtuId, int startingAddress, int numberOfRegisters, out ushort[] value)
 		{
-			return modbusConnectionManager.GetRtuConnection(rtuId).ReadInputRegisters(startingAddress, numberOfRegisters, out value) == RtuConnectionResponse.CommandExecuted;
+			var connection = modbusConnectionManager.GetRtuConnection(rtuId);
+
+			return connection.ExecuteReadCommand(connection.ModbusMaster.ReadInputRegisters, (ushort)startingAddress, (ushort)numberOfRegisters, out value) == RtuConnectionResponse.CommandExecuted;
 		}
 
-		/// <summary>
-		/// Try to write new value in the single holding register.
-		/// </summary>
-		/// <param name="startingAddress">Address of the signal.</param>
-		/// <param name="value">Value that needs to be written.</param>
-		/// <returns>True if signal is successfully written, false if error occured during writing.</returns>
-		public bool TryWriteSingleHoldingRegister(int rtuId, int startingAddress, int value)
-		{
-			return modbusConnectionManager.GetRtuConnection(rtuId).WriteSingleHoldingRegister(startingAddress, value) == RtuConnectionResponse.CommandExecuted;
-		}
 
 		/// <summary>
 		/// Try to read values of multiple coils.
@@ -57,7 +51,9 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if coils are successfully read, false if error occured during reading.</returns>
 		public bool TryReadCoils(int rtuId, int startingAddress, int numberOfCoils, out bool[] signalValue)
 		{
-			return modbusConnectionManager.GetRtuConnection(rtuId).ReadCoils(startingAddress, numberOfCoils, out signalValue) == RtuConnectionResponse.CommandExecuted;
+			var connection = modbusConnectionManager.GetRtuConnection(rtuId);
+
+			return connection.ExecuteReadCommand(connection.ModbusMaster.ReadCoils, (ushort)startingAddress, (ushort)numberOfCoils, out signalValue) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>
@@ -69,7 +65,22 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if coils are successfully read, false if error occured during reading.</returns>
 		public bool TryReadInputs(int rtuId, int startingAddress, int numberOfCoils, out bool[] signalValue)
 		{
-			return modbusConnectionManager.GetRtuConnection(rtuId).ReadInputs(startingAddress, numberOfCoils, out signalValue) == RtuConnectionResponse.CommandExecuted;
+			var connection = modbusConnectionManager.GetRtuConnection(rtuId);
+
+			return connection.ExecuteReadCommand(connection.ModbusMaster.ReadInputs, (ushort)startingAddress, (ushort)numberOfCoils, out signalValue) == RtuConnectionResponse.CommandExecuted;
+		}
+
+		/// <summary>
+		/// Try to write new value in the single holding register.
+		/// </summary>
+		/// <param name="startingAddress">Address of the signal.</param>
+		/// <param name="value">Value that needs to be written.</param>
+		/// <returns>True if signal is successfully written, false if error occured during writing.</returns>
+		public bool TryWriteSingleHoldingRegister(int rtuId, int startingAddress, int value)
+		{
+			var connection = modbusConnectionManager.GetRtuConnection(rtuId);
+
+			return connection.ExecuteWriteCommand(connection.ModbusMaster.WriteSingleRegister, (ushort)startingAddress, (ushort)value) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>
@@ -81,7 +92,9 @@ namespace ModbusServiceLibrary.ModbusClient
 		/// <returns>True if coils are successfully written, false if error occured during writing.</returns>
 		public bool TryWriteCoils(int rtuId, int coilAddress, bool[] valueToWrite)
 		{
-			return modbusConnectionManager.GetRtuConnection(rtuId).WriteCoils(coilAddress, valueToWrite) == RtuConnectionResponse.CommandExecuted;
+			var connection = modbusConnectionManager.GetRtuConnection(rtuId);
+
+			return connection.ExecuteWriteCommand(connection.ModbusMaster.WriteMultipleCoils, (ushort)coilAddress, valueToWrite) == RtuConnectionResponse.CommandExecuted;
 		}
 
 		/// <summary>

@@ -3,6 +3,7 @@ using ModbusServiceLibrary.RtuCommands;
 
 namespace ModbusServiceLibrary
 {
+	// TODO Debug ConcurrencyMode.Multiple
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
 	public sealed class ModbusService : IModbusService
 	{

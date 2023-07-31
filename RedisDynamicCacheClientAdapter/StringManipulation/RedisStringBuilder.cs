@@ -51,7 +51,7 @@
 
 		public string GenerateFlagChannelName(int rtuId)
 		{
-			return "flags." + "rtu:" + rtuId;
+			return "flags." + "rtu:" + rtuId + ".*";
 		}
 
 		/// <summary>

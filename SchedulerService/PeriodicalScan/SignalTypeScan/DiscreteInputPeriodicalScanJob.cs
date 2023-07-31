@@ -25,7 +25,7 @@ namespace SchedulerService.PeriodicalScan.SignalTypeScan
 			{
 				foreach (var signal in rtu.Signals)
 				{
-					if (signal is SchedulerDiscreteSignal && signal.AccessType == SchedulerSignalAccessType.Output)
+					if (signal is SchedulerDiscreteSignal && signal.AccessType == SchedulerSignalAccessType.Input)
 					{
 						RtuCommandBase command = new ReadSingleSignalCommand { RtuId = rtu.ID, SignalId = signal.ID };
 						modbusDuplex.ReceiveCommand(command);
