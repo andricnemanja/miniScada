@@ -1,4 +1,4 @@
-﻿namespace ModbusServiceLibrary.ModbusClient
+﻿namespace ModbusServiceLibrary.Modbus.ModbusClient
 {
 	public interface IModbusClient
 	{

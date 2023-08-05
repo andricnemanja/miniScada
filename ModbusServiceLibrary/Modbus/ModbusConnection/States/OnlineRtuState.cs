@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ModbusServiceLibrary.ModbusConnection.States
+namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 {
 	/// <summary>
 	/// Class <c>OnlineRtuState</c> represents connected TCP state.

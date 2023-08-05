@@ -1,4 +1,4 @@
-﻿namespace ModbusServiceLibrary.ModbusConnection
+﻿namespace ModbusServiceLibrary.Modbus.ModbusConnection
 {
 	public enum RtuConnectionResponse
 	{

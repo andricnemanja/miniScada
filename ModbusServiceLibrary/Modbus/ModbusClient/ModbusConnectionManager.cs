@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using ModbusServiceLibrary.DynamicCacheManagerReference;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.Modbus.ModbusConnection.States;
-using ModbusServiceLibrary.ModbusConnection;
 
-namespace ModbusServiceLibrary.ModbusClient
+namespace ModbusServiceLibrary.Modbus.ModbusClient
 {
 	/// <summary>
 	/// Class <c>ModbusConnectionManager</c> holds TCP connections for all RTUs.
@@ -13,6 +13,7 @@ namespace ModbusServiceLibrary.ModbusClient
 		private readonly Dictionary<int, RtuConnection> rtuConnectionById = new Dictionary<int, RtuConnection>();
 		private readonly IDynamicCacheManagerService dynamicCacheManagerServiceClient;
 		private readonly IRtuConnectionStateFactory rtuConnectionStateFactory;
+		private readonly IRtuConnectionFactory rtuConnectionFactory;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModbusConnectionManager"/>.

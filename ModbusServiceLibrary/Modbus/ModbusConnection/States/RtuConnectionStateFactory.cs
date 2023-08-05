@@ -1,7 +1,4 @@
-﻿using ModbusServiceLibrary.ModbusConnection;
-using ModbusServiceLibrary.ModbusConnection.States;
-
-namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
+﻿namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 {
 	public sealed class RtuConnectionStateFactory : IRtuConnectionStateFactory
 	{

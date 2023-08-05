@@ -1,7 +1,7 @@
 ﻿using System;
 using ModbusServiceLibrary.Modbus.ModbusMaster;
 
-namespace ModbusServiceLibrary.ModbusConnection.States
+namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 {
 	public sealed class DisconnectedRtuState : IRtuConnectionState
 	{

@@ -1,6 +1,6 @@
-﻿using ModbusServiceLibrary.ModbusConnection;
+﻿using ModbusServiceLibrary.Modbus.ModbusConnection;
 
-namespace ModbusServiceLibrary.ModbusClient
+namespace ModbusServiceLibrary.Modbus.ModbusClient
 {
 	public interface IModbusConnectionManager
 	{

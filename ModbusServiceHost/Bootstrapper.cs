@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using ModbusServiceLibrary;
 using ModbusServiceLibrary.Modbus;
+using ModbusServiceLibrary.Modbus.ModbusClient;
 using ModbusServiceLibrary.Modbus.ModbusConnection.States;
-using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.RtuConfiguration;
 using ModbusServiceLibrary.SignalConverter;

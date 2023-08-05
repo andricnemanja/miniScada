@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ModbusServiceLibrary.ModbusConnection.States
+namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 {
 	public interface IRtuConnectionState
 	{

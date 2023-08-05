@@ -1,15 +1,14 @@
 ﻿using System;
 using ModbusServiceLibrary.DynamicCacheManagerReference;
 using ModbusServiceLibrary.Modbus.ModbusConnection.States;
-using ModbusServiceLibrary.ModbusConnection.States;
 using NModbus;
 
-namespace ModbusServiceLibrary.ModbusConnection
+namespace ModbusServiceLibrary.Modbus.ModbusConnection
 {
 	/// <summary>
 	/// Class <c>RtuConnection</c> represents the TCP connection to RTU device.
 	/// </summary>
-	public sealed class RtuConnection
+	public sealed class RtuConnection : IRtuConnection
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RtuConnection"./>

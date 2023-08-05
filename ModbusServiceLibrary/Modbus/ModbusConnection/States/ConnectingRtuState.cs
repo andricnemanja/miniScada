@@ -3,12 +3,11 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using ModbusServiceLibrary.CommandResult;
-using ModbusServiceLibrary.Modbus.ModbusConnection.States;
 using NModbus;
 using Polly;
 using Polly.Retry;
 
-namespace ModbusServiceLibrary.ModbusConnection.States
+namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 {
 	/// <summary>
 	/// Class <c>ConnectingRtuState</c> represents connecting TCP state.

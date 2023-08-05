@@ -139,6 +139,8 @@
     <Compile Include="Modbus\ModbusClient\ModbusConnectionManager.cs" />
     <Compile Include="Modbus\ModbusClient\NModbusClient.cs" />
     <Compile Include="Modbus\IProtocolDriver.cs" />
+    <Compile Include="Modbus\ModbusConnection\IRtuConnection.cs" />
+    <Compile Include="Modbus\ModbusConnection\IRtuConnectionFactory.cs" />
     <Compile Include="Modbus\ModbusConnection\States\OnlineRtuState.cs" />
     <Compile Include="Modbus\ModbusConnection\States\ConnectingRtuState.cs" />
     <Compile Include="Modbus\ModbusConnection\States\DisconnectedRtuState.cs" />

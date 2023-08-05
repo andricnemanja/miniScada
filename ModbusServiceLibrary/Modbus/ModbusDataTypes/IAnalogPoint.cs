@@ -1,4 +1,4 @@
-﻿using ModbusServiceLibrary.ModbusClient;
+﻿using ModbusServiceLibrary.Modbus.ModbusClient;
 
 namespace ModbusServiceLibrary.Modbus.ModbusDataTypes
 {
