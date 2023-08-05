@@ -1,5 +1,6 @@
 ﻿using System;
 using ModbusServiceLibrary.DynamicCacheManagerReference;
+using ModbusServiceLibrary.Modbus.ModbusConnection.States;
 using ModbusServiceLibrary.ModbusConnection.States;
 using NModbus;
 
@@ -15,11 +16,12 @@ namespace ModbusServiceLibrary.ModbusConnection
 		/// </summary>
 		/// <param name="rtuId">ID of RTU for which connection is created.</param>
 		/// <param name="dynamicCacheManagerServiceClient">Instance of the <see cref="IDynamicCacheManagerService"/> class.</param>
-		public RtuConnection(int rtuId, IDynamicCacheManagerService dynamicCacheManagerServiceClient)
+		public RtuConnection(int rtuId, IDynamicCacheManagerService dynamicCacheManagerServiceClient, IRtuConnectionStateFactory rtuConnectionStateFactory)
 		{
 			RtuId = rtuId;
 			DynamicCacheManagerServiceClient = dynamicCacheManagerServiceClient;
-			ConnectionState = new DisconnectedRtuState(this);
+			ConnectionStateFactory = rtuConnectionStateFactory;
+			ConnectionState = ConnectionStateFactory.CreateConnection(RtuConnectionState.Disconnected, this);
 		}
 		/// <summary>
 		/// IP Address of RTU device.
@@ -45,6 +47,10 @@ namespace ModbusServiceLibrary.ModbusConnection
 		/// DynamicCacheManager service client.
 		/// </summary>
 		public IDynamicCacheManagerService DynamicCacheManagerServiceClient { get; set; }
+		/// <summary>
+		/// Factory for creating RTU connection states.
+		/// </summary>
+		public IRtuConnectionStateFactory ConnectionStateFactory { get; set; }
 
 		/// <summary>
 		/// Make TCP connection with RTU.

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ModbusServiceLibrary.DynamicCacheManagerReference;
+using ModbusServiceLibrary.Modbus.ModbusConnection.States;
 using ModbusServiceLibrary.ModbusConnection;
 
 namespace ModbusServiceLibrary.ModbusClient
@@ -11,14 +12,16 @@ namespace ModbusServiceLibrary.ModbusClient
 	{
 		private readonly Dictionary<int, RtuConnection> rtuConnectionById = new Dictionary<int, RtuConnection>();
 		private readonly IDynamicCacheManagerService dynamicCacheManagerServiceClient;
+		private readonly IRtuConnectionStateFactory rtuConnectionStateFactory;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModbusConnectionManager"/>.
 		/// </summary>
 		/// <param name="dynamicCacheManagerServiceClient">Instance of the <see cref="IDynamicCacheManagerService"/> class.</param>
-		public ModbusConnectionManager(IDynamicCacheManagerService dynamicCacheManagerServiceClient)
+		public ModbusConnectionManager(IDynamicCacheManagerService dynamicCacheManagerServiceClient, IRtuConnectionStateFactory rtuConnectionStateFactory)
 		{
 			this.dynamicCacheManagerServiceClient = dynamicCacheManagerServiceClient;
+			this.rtuConnectionStateFactory = rtuConnectionStateFactory;
 		}
 
 		/// <summary>
@@ -32,7 +35,7 @@ namespace ModbusServiceLibrary.ModbusClient
 				return connection;
 			}
 
-			RtuConnection newConnection = new RtuConnection(rtuId, dynamicCacheManagerServiceClient);
+			RtuConnection newConnection = new RtuConnection(rtuId, dynamicCacheManagerServiceClient, rtuConnectionStateFactory);
 			rtuConnectionById.Add(rtuId, newConnection);
 			return newConnection;
 		}

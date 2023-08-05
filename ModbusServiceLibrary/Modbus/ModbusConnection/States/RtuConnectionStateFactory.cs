@@ -12,7 +12,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 				case RtuConnectionState.Connecting:
 					return new ConnectingRtuState(rtuConnection);
 				case RtuConnectionState.Online:
-					return new ConnectedRtuState(rtuConnection);
+					return new OnlineRtuState(rtuConnection);
 				default:
 					return new DisconnectedRtuState(rtuConnection);
 			}

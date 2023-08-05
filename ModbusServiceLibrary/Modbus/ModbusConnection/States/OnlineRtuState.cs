@@ -3,17 +3,17 @@
 namespace ModbusServiceLibrary.ModbusConnection.States
 {
 	/// <summary>
-	/// Class <c>ConnectedRtuState</c> represents connected TCP state.
+	/// Class <c>OnlineRtuState</c> represents connected TCP state.
 	/// </summary>
-	public sealed class ConnectedRtuState : IRtuConnectionState
+	public sealed class OnlineRtuState : IRtuConnectionState
 	{
 		private readonly RtuConnection _rtuConnection;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ConnectedRtuState"./>
+		/// Initializes a new instance of the <see cref="OnlineRtuState"./>
 		/// </summary>
 		/// <param name="rtuConnection">Instance of the <see cref="RtuConnection"/> class.</param>
-		public ConnectedRtuState(RtuConnection rtuConnection)
+		public OnlineRtuState(RtuConnection rtuConnection)
 		{
 			Console.WriteLine("Connected");
 			_rtuConnection = rtuConnection;
@@ -50,8 +50,16 @@ namespace ModbusServiceLibrary.ModbusConnection.States
 		/// <returns><see cref="RtuConnectionResponse"/></returns>
 		public RtuConnectionResponse ExecuteWriteCommand<T>(Action<byte, ushort, T> command, ushort signalAddress, T writeValue)
 		{
-			command(1, signalAddress, writeValue);
-			return RtuConnectionResponse.CommandExecuted;
+			try
+			{
+				command(1, signalAddress, writeValue);
+				return RtuConnectionResponse.CommandExecuted;
+			}
+			catch 
+			{
+				_rtuConnection.ConnectionState = new ConnectingRtuState(_rtuConnection);
+				return RtuConnectionResponse.ConnectionFailure;
+			}
 		}
 
 		/// <summary>
@@ -64,8 +72,17 @@ namespace ModbusServiceLibrary.ModbusConnection.States
 		/// <returns><see cref="RtuConnectionResponse"/></returns>
 		public RtuConnectionResponse ExecuteReadCommand<T>(Func<byte, ushort, ushort, T> command, ushort signalAddress, ushort numberOfPoints, out T readValue)
 		{
-			readValue = command(1, signalAddress, numberOfPoints);
-			return RtuConnectionResponse.CommandExecuted;
+			try
+			{
+				readValue = command(1, signalAddress, numberOfPoints);
+				return RtuConnectionResponse.CommandExecuted;
+			}
+			catch
+			{
+				_rtuConnection.ConnectionState = new ConnectingRtuState(_rtuConnection);
+				readValue = default;
+				return RtuConnectionResponse.ConnectionFailure;
+			}
 		}
 	}
 }

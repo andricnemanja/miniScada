@@ -8,7 +8,7 @@ namespace ModbusServiceLibrary.ModbusConnection.States
 		private readonly RtuConnection _rtuConnection;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ConnectedRtuState"./>
+		/// Initializes a new instance of the <see cref="OnlineRtuState"./>
 		/// </summary>
 		/// <param name="rtuConnection">Instance of the <see cref="RtuConnection"/> class.</param>
 		public DisconnectedRtuState(RtuConnection rtuConnection)

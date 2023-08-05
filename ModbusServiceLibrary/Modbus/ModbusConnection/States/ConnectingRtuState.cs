@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using ModbusServiceLibrary.CommandResult;
+using ModbusServiceLibrary.Modbus.ModbusConnection.States;
 using NModbus;
 using Polly;
 using Polly.Retry;
@@ -39,7 +40,7 @@ namespace ModbusServiceLibrary.ModbusConnection.States
 				});
 
 				_rtuConnection.DynamicCacheManagerServiceClient.ProcessCommandResult(new ConnectToRtuResult(_rtuConnection.RtuId));
-				_rtuConnection.ConnectionState = new ConnectedRtuState(_rtuConnection);
+				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Online, _rtuConnection);
 			}, cancellationToken);
 		}
 
