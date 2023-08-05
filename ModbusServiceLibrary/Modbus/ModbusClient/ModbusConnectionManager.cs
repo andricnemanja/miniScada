@@ -10,7 +10,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusClient
 	/// </summary>
 	public sealed class ModbusConnectionManager : IModbusConnectionManager
 	{
-		private readonly Dictionary<int, RtuConnection> rtuConnectionById = new Dictionary<int, RtuConnection>();
+		private readonly Dictionary<int, IRtuConnection> rtuConnectionById = new Dictionary<int, IRtuConnection>();
 		private readonly IDynamicCacheManagerService dynamicCacheManagerServiceClient;
 		private readonly IRtuConnectionStateFactory rtuConnectionStateFactory;
 		private readonly IRtuConnectionFactory rtuConnectionFactory;
@@ -19,24 +19,25 @@ namespace ModbusServiceLibrary.Modbus.ModbusClient
 		/// Initializes a new instance of the <see cref="ModbusConnectionManager"/>.
 		/// </summary>
 		/// <param name="dynamicCacheManagerServiceClient">Instance of the <see cref="IDynamicCacheManagerService"/> class.</param>
-		public ModbusConnectionManager(IDynamicCacheManagerService dynamicCacheManagerServiceClient, IRtuConnectionStateFactory rtuConnectionStateFactory)
+		public ModbusConnectionManager(IDynamicCacheManagerService dynamicCacheManagerServiceClient, IRtuConnectionStateFactory rtuConnectionStateFactory, IRtuConnectionFactory rtuConnectionFactory)
 		{
 			this.dynamicCacheManagerServiceClient = dynamicCacheManagerServiceClient;
 			this.rtuConnectionStateFactory = rtuConnectionStateFactory;
+			this.rtuConnectionFactory = rtuConnectionFactory;
 		}
 
 		/// <summary>
 		/// Get connection for RTU.
 		/// </summary>
 		/// <param name="rtuId">ID of the RTU for which connection is requested.</param>
-		public RtuConnection GetRtuConnection(int rtuId)
+		public IRtuConnection GetRtuConnection(int rtuId)
 		{
-			if (rtuConnectionById.TryGetValue(rtuId, out RtuConnection connection))
+			if (rtuConnectionById.TryGetValue(rtuId, out IRtuConnection connection))
 			{
 				return connection;
 			}
 
-			RtuConnection newConnection = new RtuConnection(rtuId, dynamicCacheManagerServiceClient, rtuConnectionStateFactory);
+			IRtuConnection newConnection = rtuConnectionFactory.GetRtuConnection(rtuId, dynamicCacheManagerServiceClient, rtuConnectionStateFactory);
 			rtuConnectionById.Add(rtuId, newConnection);
 			return newConnection;
 		}

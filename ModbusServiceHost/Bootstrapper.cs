@@ -2,6 +2,7 @@
 using ModbusServiceLibrary;
 using ModbusServiceLibrary.Modbus;
 using ModbusServiceLibrary.Modbus.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.Modbus.ModbusConnection.States;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.RtuConfiguration;
@@ -36,6 +37,7 @@ namespace ModbusServiceHost
 				.OnActivated(c => c.Instance.Initialize());
 			builder.RegisterType<ModbusServiceLibrary.DynamicCacheManagerReference.DynamicCacheManagerServiceClient>().As<ModbusServiceLibrary.DynamicCacheManagerReference.IDynamicCacheManagerService>().SingleInstance();
 			builder.RegisterType<RtuConnectionStateFactory>().As<IRtuConnectionStateFactory>();
+			builder.RegisterType<RtuConnectionFactory>().As<IRtuConnectionFactory>();
 			return builder;
 		}
 	}

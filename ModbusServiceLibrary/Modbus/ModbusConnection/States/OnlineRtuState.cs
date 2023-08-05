@@ -7,13 +7,13 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 	/// </summary>
 	public sealed class OnlineRtuState : IRtuConnectionState
 	{
-		private readonly RtuConnection _rtuConnection;
+		private readonly IRtuConnection _rtuConnection;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="OnlineRtuState"./>
 		/// </summary>
 		/// <param name="rtuConnection">Instance of the <see cref="RtuConnection"/> class.</param>
-		public OnlineRtuState(RtuConnection rtuConnection)
+		public OnlineRtuState(IRtuConnection rtuConnection)
 		{
 			Console.WriteLine("Connected");
 			_rtuConnection = rtuConnection;
@@ -37,7 +37,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 		public RtuConnectionResponse Disconnect()
 		{
 			_rtuConnection.ModbusMaster.Dispose();
-			_rtuConnection.ConnectionState = new DisconnectedRtuState(_rtuConnection);
+			_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Disconnected, _rtuConnection);
 			return RtuConnectionResponse.Disconnected;
 		}
 
@@ -57,7 +57,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			}
 			catch 
 			{
-				_rtuConnection.ConnectionState = new ConnectingRtuState(_rtuConnection);
+				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection); ;
 				return RtuConnectionResponse.ConnectionFailure;
 			}
 		}
@@ -79,7 +79,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			}
 			catch
 			{
-				_rtuConnection.ConnectionState = new ConnectingRtuState(_rtuConnection);
+				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection); ;
 				readValue = default;
 				return RtuConnectionResponse.ConnectionFailure;
 			}

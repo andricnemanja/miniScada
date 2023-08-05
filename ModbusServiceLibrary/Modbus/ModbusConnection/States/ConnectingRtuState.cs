@@ -14,7 +14,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 	/// </summary>
 	public sealed class ConnectingRtuState : IRtuConnectionState
 	{
-		private readonly RtuConnection _rtuConnection;
+		private readonly IRtuConnection _rtuConnection;
 		private CancellationToken cancellationToken;
 		private readonly RetryPolicy retryPolicy = Policy
 			.Handle<System.Net.Sockets.SocketException>()
@@ -24,7 +24,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 		/// Initializes a new instance of the <see cref="ConnectingRtuState"/> and starts connecting to the RTU.
 		/// </summary>
 		/// <param name="rtuConnection">Instance of the <see cref="RtuConnection"/> class.</param>
-		public ConnectingRtuState(RtuConnection rtuConnection)
+		public ConnectingRtuState(IRtuConnection rtuConnection)
 		{
 			Console.WriteLine("Connecting");
 			_rtuConnection = rtuConnection;

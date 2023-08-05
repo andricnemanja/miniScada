@@ -5,13 +5,13 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 {
 	public sealed class DisconnectedRtuState : IRtuConnectionState
 	{
-		private readonly RtuConnection _rtuConnection;
+		private readonly IRtuConnection _rtuConnection;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="OnlineRtuState"./>
 		/// </summary>
 		/// <param name="rtuConnection">Instance of the <see cref="RtuConnection"/> class.</param>
-		public DisconnectedRtuState(RtuConnection rtuConnection)
+		public DisconnectedRtuState(IRtuConnection rtuConnection)
 		{
 			Console.WriteLine("Disconnected");
 			_rtuConnection = rtuConnection;
@@ -28,7 +28,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 		{
 			_rtuConnection.IpAddress = ipAddress;
 			_rtuConnection.Port = port;
-			_rtuConnection.ConnectionState = new ConnectingRtuState(_rtuConnection);
+			_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection);
 			return RtuConnectionResponse.CommandExecuted;
 		}
 
