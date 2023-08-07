@@ -39,7 +39,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 		public RtuConnectionResponse Disconnect()
 		{
 			_rtuConnection.ModbusMaster.Dispose();
-			_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Disconnected, _rtuConnection);
+			_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnectionState(RtuConnectionState.Disconnected, _rtuConnection);
 			return RtuConnectionResponse.Disconnected;
 		}
 
@@ -59,7 +59,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			}
 			catch (IOException ex) when (ex.InnerException is SocketException)
 			{
-				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection);
+				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnectionState(RtuConnectionState.Connecting, _rtuConnection);
 				_rtuConnection.Connect(_rtuConnection.IpAddress, _rtuConnection.Port);
 				return RtuConnectionResponse.ConnectionFailure;
 			}
@@ -86,7 +86,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			}
 			catch(IOException ex) when (ex.InnerException is SocketException)
 			{
-				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection);
+				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnectionState(RtuConnectionState.Connecting, _rtuConnection);
 				_rtuConnection.Connect(_rtuConnection.IpAddress, _rtuConnection.Port);
 				readValue = default;
 				return RtuConnectionResponse.ConnectionFailure;

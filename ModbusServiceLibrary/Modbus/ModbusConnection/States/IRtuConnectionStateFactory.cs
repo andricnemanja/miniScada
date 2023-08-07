@@ -11,6 +11,6 @@
 		/// <param name="rtuConnectionState">Current state of the connection.</param>
 		/// <param name="rtuConnection">RtuConnection to which the connection state belongs.</param>
 		/// <returns><see cref="IRtuConnectionState"/>New connection state.</returns>
-		IRtuConnectionState CreateConnection(RtuConnectionState rtuConnectionState, IRtuConnection rtuConnection);
+		IRtuConnectionState CreateConnectionState(RtuConnectionState rtuConnectionState, IRtuConnection rtuConnection);
 	}
 }

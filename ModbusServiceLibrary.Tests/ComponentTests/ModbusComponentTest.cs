@@ -1,5 +1,5 @@
 ﻿using ModbusServiceLibrary.Modbus;
-using ModbusServiceLibrary.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusClient;
 using ModbusServiceLibrary.ModelServiceReference;
 using ModbusServiceLibrary.SignalConverter;
 using Moq;
@@ -30,7 +30,7 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		[Fact]
 		public void ConnectToRtu_Succesful()
 		{
-			modbusClientMock.Setup(x => x.TryConnect(1, "192.168.0.1", 502)).Returns(true);
+			modbusClientMock.Setup(x => x.TryConnect(1, "192.168.0.1", 502));
 
 			bool isSuccesfull = modbusDriver.TryConnectToRtu(1, "192.168.0.1", 502);
 

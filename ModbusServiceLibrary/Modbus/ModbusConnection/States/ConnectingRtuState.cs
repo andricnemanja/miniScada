@@ -54,7 +54,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 					_rtuConnection.ModbusMaster = modbusFactory.CreateMaster(client);
 
 					_rtuConnection.DynamicCacheManagerServiceClient.ProcessCommandResult(new ConnectToRtuResult(_rtuConnection.RtuId));
-					_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Online, _rtuConnection);
+					_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnectionState(RtuConnectionState.Online, _rtuConnection);
 
 					return Task.CompletedTask;
 				}, cancellationToken);

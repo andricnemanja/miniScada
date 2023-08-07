@@ -44,7 +44,7 @@
                                 <Button Width="90px" Content="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
                                         Command="{Binding Path=DataContext.ConnectToRtuCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
                                         CommandParameter="{Binding}" 
-                                        Background="{Binding IsConnected, Converter={StaticResource ConnectionButtonColorConverter}}"
+                                        Background="{Binding Flags, Converter={StaticResource ConnectionButtonColorConverter}}"
                                         Foreground="White"
                                         FontWeight="SemiBold">
                                 </Button>

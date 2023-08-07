@@ -1,5 +1,5 @@
-﻿using ModbusServiceLibrary.Modbus.ModbusDataTypes;
-using ModbusServiceLibrary.ModbusClient;
+﻿using ModbusServiceLibrary.Modbus.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusDataTypes;
 using Moq;
 using Xunit;
 

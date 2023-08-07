@@ -20,7 +20,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection
 			RtuId = rtuId;
 			DynamicCacheManagerServiceClient = dynamicCacheManagerServiceClient;
 			ConnectionStateFactory = rtuConnectionStateFactory;
-			ConnectionState = ConnectionStateFactory.CreateConnection(RtuConnectionState.Disconnected, this);
+			ConnectionState = ConnectionStateFactory.CreateConnectionState(RtuConnectionState.Disconnected, this);
 		}
 		/// <summary>
 		/// IP Address of RTU device.

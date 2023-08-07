@@ -1,6 +1,6 @@
 ﻿using ModbusServiceLibrary.Modbus;
+using ModbusServiceLibrary.Modbus.ModbusClient;
 using ModbusServiceLibrary.Modbus.ModbusDataTypes;
-using ModbusServiceLibrary.ModbusClient;
 using ModbusServiceLibrary.SignalConverter;
 using Moq;
 using Xunit;

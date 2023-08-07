@@ -78,6 +78,11 @@
     <Compile Include="CommandProcessingTests\WriteAnalogSignalCommandProcessorTests.cs" />
     <Compile Include="CommandProcessingTests\WriteDiscreteSignalCommandProcessorTests.cs" />
     <Compile Include="MappinTestData.cs" />
+    <Compile Include="ModbusTests\ModbusConnection\RtuConnectionFactoryTests.cs" />
+    <Compile Include="ModbusTests\ModbusConnection\States\ConnectingRtuStateTests.cs" />
+    <Compile Include="ModbusTests\ModbusConnection\States\OnlineRtuStateTests.cs" />
+    <Compile Include="ModbusTests\ModbusConnection\States\DisconnectedRtuStateTests.cs" />
+    <Compile Include="ModbusTests\ModbusConnection\States\RtuConnectionStateFactoryTests.cs" />
     <Compile Include="ModbusTests\ModbusDataTypesTest\HoldingRegisterTests.cs" />
     <Compile Include="ModbusTests\ModbusDataTypesTest\DigitalInputTests.cs" />
     <Compile Include="ModbusTests\ModbusDataTypesTest\CoilTests.cs" />
