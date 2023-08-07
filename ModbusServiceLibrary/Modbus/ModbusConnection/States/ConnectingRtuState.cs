@@ -15,10 +15,12 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 	public sealed class ConnectingRtuState : IRtuConnectionState
 	{
 		private readonly IRtuConnection _rtuConnection;
+		private readonly CancellationTokenSource cancellationTokenSource;
 		private CancellationToken cancellationToken;
-		private readonly RetryPolicy retryPolicy = Policy
-			.Handle<System.Net.Sockets.SocketException>()
-			.WaitAndRetryForever(retryAttemp => TimeSpan.FromSeconds(5));
+		private bool connectingStarted = false;
+		private readonly AsyncRetryPolicy retryPolicy = Policy
+			.Handle<SocketException>()
+			.WaitAndRetryForeverAsync(retryAttemp => TimeSpan.FromSeconds(5));
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ConnectingRtuState"/> and starts connecting to the RTU.
@@ -29,18 +31,8 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			Console.WriteLine("Connecting");
 			_rtuConnection = rtuConnection;
 
-			Task.Run(() =>
-			{
-				retryPolicy.Execute(() =>
-				{
-					TcpClient client = new TcpClient(_rtuConnection.IpAddress, _rtuConnection.Port);
-					ModbusFactory modbusFactory = new ModbusFactory();
-					_rtuConnection.ModbusMaster = modbusFactory.CreateMaster(client);
-				});
-
-				_rtuConnection.DynamicCacheManagerServiceClient.ProcessCommandResult(new ConnectToRtuResult(_rtuConnection.RtuId));
-				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Online, _rtuConnection);
-			}, cancellationToken);
+			cancellationTokenSource = new CancellationTokenSource();
+			cancellationToken = cancellationTokenSource.Token;
 		}
 
 		/// <summary>
@@ -49,14 +41,40 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 		/// <param name="ipAddress">IP Address of the RTU.</param>
 		/// <param name="port">RTU port.</param>
 		/// <returns><see cref="RtuConnectionResponse"/></returns>
-		public RtuConnectionResponse Connect(string ipAddress, int port) => RtuConnectionResponse.Connecting;
+		public RtuConnectionResponse Connect(string ipAddress, int port)
+		{
+			//TODO thread synchronization
+			if (!connectingStarted)
+			{
+				connectingStarted = true;
+				retryPolicy.ExecuteAsync((cancellationToken) =>
+				{
+					TcpClient client = new TcpClient(_rtuConnection.IpAddress, _rtuConnection.Port);
+					ModbusFactory modbusFactory = new ModbusFactory();
+					_rtuConnection.ModbusMaster = modbusFactory.CreateMaster(client);
+
+					_rtuConnection.DynamicCacheManagerServiceClient.ProcessCommandResult(new ConnectToRtuResult(_rtuConnection.RtuId));
+					_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Online, _rtuConnection);
+
+					return Task.CompletedTask;
+				}, cancellationToken);
+			}
+
+			return RtuConnectionResponse.Connecting;
+		}
 
 		// TODO: Add cancelation token
 		/// <summary>
 		/// Disconnect from the RTU.
 		/// </summary>
 		/// <returns><see cref="RtuConnectionResponse"/></returns>
-		public RtuConnectionResponse Disconnect() => RtuConnectionResponse.Connecting;
+		public RtuConnectionResponse Disconnect()
+		{
+			cancellationTokenSource.Cancel();
+			cancellationTokenSource.Dispose();
+			Console.WriteLine("Disconnected");
+			return RtuConnectionResponse.Disconnected;
+		}
 
 		/// <summary>
 		/// Execute write command on the device.

@@ -57,7 +57,8 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			}
 			catch 
 			{
-				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection); ;
+				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection);
+				_rtuConnection.Connect(_rtuConnection.IpAddress, _rtuConnection.Port);
 				return RtuConnectionResponse.ConnectionFailure;
 			}
 		}
@@ -79,7 +80,8 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			}
 			catch
 			{
-				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection); ;
+				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection);
+				_rtuConnection.Connect(_rtuConnection.IpAddress, _rtuConnection.Port);
 				readValue = default;
 				return RtuConnectionResponse.ConnectionFailure;
 			}
