@@ -79,6 +79,7 @@
     <Compile Include="CommandProcessingTests\WriteDiscreteSignalCommandProcessorTests.cs" />
     <Compile Include="MappinTestData.cs" />
     <Compile Include="ModbusTests\ModbusConnection\RtuConnectionFactoryTests.cs" />
+    <Compile Include="ModbusTests\ModbusConnection\RtuConnectionTests.cs" />
     <Compile Include="ModbusTests\ModbusConnection\States\ConnectingRtuStateTests.cs" />
     <Compile Include="ModbusTests\ModbusConnection\States\OnlineRtuStateTests.cs" />
     <Compile Include="ModbusTests\ModbusConnection\States\DisconnectedRtuStateTests.cs" />
