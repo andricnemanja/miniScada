@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Net.Sockets;
 
 namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 {
@@ -55,11 +57,15 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 				command(1, signalAddress, writeValue);
 				return RtuConnectionResponse.CommandExecuted;
 			}
-			catch 
+			catch (IOException ex) when (ex.InnerException is SocketException)
 			{
 				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection);
 				_rtuConnection.Connect(_rtuConnection.IpAddress, _rtuConnection.Port);
 				return RtuConnectionResponse.ConnectionFailure;
+			}
+			catch
+			{
+				return RtuConnectionResponse.CommandFailed;
 			}
 		}
 
@@ -78,12 +84,17 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 				readValue = command(1, signalAddress, numberOfPoints);
 				return RtuConnectionResponse.CommandExecuted;
 			}
-			catch
+			catch(IOException ex) when (ex.InnerException is SocketException)
 			{
 				_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection);
 				_rtuConnection.Connect(_rtuConnection.IpAddress, _rtuConnection.Port);
 				readValue = default;
 				return RtuConnectionResponse.ConnectionFailure;
+			}
+			catch
+			{
+				readValue = default;
+				return RtuConnectionResponse.CommandFailed;
 			}
 		}
 	}
