@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -9,12 +8,10 @@ namespace ClientWpfApp.Converters
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			ObservableCollection<string> flags = (ObservableCollection<string>)value;
+			bool connectionStatus = (bool)value;
 
-			if (flags.Contains("Active Connection"))
-			{
+			if (connectionStatus)
 				return "Green";
-			}
 
 			return "Red";
 		}

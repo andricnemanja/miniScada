@@ -52,7 +52,17 @@ namespace ClientWpfApp.Model
 
 		public void AddFlagToRtu(int rtuId, string flag)
 		{
-			FindRtu(rtuId).Flags.Add(flag);
+			RTU.RTU rtu = FindRtu(rtuId);
+
+			if(flag == "Active Connection")
+			{
+				rtu.IsConnected = true;
+			}
+			else if(flag == "Connection Failure")
+			{
+				rtu.IsConnected = false;
+			}
+			rtu.Flags.Add(flag);
 		}
 
 		public void RemoveFlagFromRtu(int rtuId, string flag)
