@@ -63,7 +63,6 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			return RtuConnectionResponse.Connecting;
 		}
 
-		// TODO: Add cancelation token
 		/// <summary>
 		/// Disconnect from the RTU.
 		/// </summary>

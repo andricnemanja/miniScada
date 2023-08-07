@@ -29,8 +29,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			_rtuConnection.IpAddress = ipAddress;
 			_rtuConnection.Port = port;
 			_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnection(RtuConnectionState.Connecting, _rtuConnection);
-			_rtuConnection.Connect(_rtuConnection.IpAddress, _rtuConnection.Port);
-			return RtuConnectionResponse.CommandExecuted;
+			return _rtuConnection.Connect(_rtuConnection.IpAddress, _rtuConnection.Port);
 		}
 
 		/// <summary>
