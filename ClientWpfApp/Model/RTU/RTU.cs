@@ -9,11 +9,10 @@ namespace ClientWpfApp.Model.RTU
 	{
 		public RTUData RTUData { get; set; }
 		public ObservableCollection<string> Flags { get; set; } = new AsyncObservableCollection<string>();
-
 		public ObservableCollection<AnalogSignalValue> AnalogSignalValues { get; set; }
 		public ObservableCollection<DiscreteSignalValue> DiscreteSignalValues { get; set; }
-		private bool _isConnected;
 
+		private bool _isConnected;
 		public bool IsConnected
 		{
 			get { return _isConnected; }
@@ -27,14 +26,22 @@ namespace ClientWpfApp.Model.RTU
 			}
 		}
 
-
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void RaisePropertyChanged(string property)
+		private bool onScan;
+		public bool OnScan
 		{
-			if (PropertyChanged != null)
+			get { return onScan; }
+			set
 			{
-				PropertyChanged(this, new PropertyChangedEventArgs(property));
+				if (value != onScan)
+				{
+					onScan = value;
+					RaisePropertyChanged(nameof(OnScan));
+				}
 			}
 		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		private void RaisePropertyChanged(string property) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+		
 	}
 }

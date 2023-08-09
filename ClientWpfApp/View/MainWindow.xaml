@@ -11,6 +11,7 @@
     <Window.Resources>
         <converters:ConnectionButtonColorConverter x:Key="ConnectionButtonColorConverter" />
         <converters:ConnectionStatusConverter x:Key="ConnectionStatusConverter" />
+        <converters:RtuStatusConverter x:Key="RtuStatusConverter"/>
         <converters:DiscreteSignalButtonStatusConverter x:Key="DiscreteSignalButtonStatusConverter" />
         <converters:SignalChangeButtonVisibiltyConverter x:Key="SignalChangeButtonVisibiltyConverter" />
         <converters:SignalFlagToColorConverter x:Key="SignalFlagToColorConverter" />
@@ -25,8 +26,18 @@
                     Command="{Binding Path=ReadRtuValuesCommand}">
                 <TextBlock Margin="0, -6, 0, 0">⟲</TextBlock>
             </Button>
+            
             <DataGrid ItemsSource="{Binding RtuCache.RtuList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="1140px" x:Name="DevicesDataGrid">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="{Binding SelectedRtu.OnScan, Converter={StaticResource RtuStatusConverter}}"
+                                  Command="{Binding Path=ConnectToRtuCommand}"
+                                  CommandParameter="{Binding SelectedRtu}">
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
                 <DataGrid.Columns>
+
                     <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
                     
                     <DataGridTemplateColumn Header="Flags" Width ="Auto" IsReadOnly="True">
@@ -38,20 +49,37 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Status konekcije" Width ="Auto" IsReadOnly="True">
+                    <DataGridTextColumn Header="Status konekcije" 
+                                        Width ="Auto" 
+                                        Binding="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
+                                        IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="TextAlignment" Value="Center"/>
+                                <Setter Property="Background" Value="{Binding IsConnected, Converter={StaticResource ConnectionButtonColorConverter}}"></Setter>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <!--
+                    <DataGridTemplateColumn Header="Status konekcije" Width ="Auto" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Width="90px" Content="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
-                                        Command="{Binding Path=DataContext.ConnectToRtuCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
-                                        CommandParameter="{Binding}" 
+                                <TextBlock Width="90px"
+                                        Height="auto"
+                                        Text="{Binding IsConnected, Converter={StaticResource ConnectionStatusConverter}}"
                                         Background="{Binding IsConnected, Converter={StaticResource ConnectionButtonColorConverter}}"
                                         Foreground="White"
-                                        FontWeight="SemiBold">
-                                </Button>
+                                        FontWeight="SemiBold"
+                                        TextAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Center"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
+                    -->
 
                     <DataGridTemplateColumn Header="Adresa" Width ="Auto" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
@@ -69,7 +97,7 @@
                     <DataGridTemplateColumn Header="Diskretni signali" Width ="*" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding DiscreteSignalValues}" 
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding DiscreteSignalValues}" IsEnabled="{Binding IsConnected}"
                                           SelectedItem="{Binding Path=DataContext.SelectedDiscreteSignal, RelativeSource = {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
@@ -114,7 +142,7 @@
                     <DataGridTemplateColumn Header="Analogni signali" Width ="*" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding AnalogSignalValues}" BorderThickness="0px">
+                                <ListBox VerticalAlignment="Top" ItemsSource="{Binding AnalogSignalValues}" BorderThickness="0px" IsEnabled="{Binding IsConnected}">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" Background="{Binding AnalogSignal.SignalFlags, Converter={StaticResource SignalFlagToColorConverter}}">

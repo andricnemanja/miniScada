@@ -135,6 +135,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Converters\RtuStatusConverter.cs" />
     <Compile Include="Converters\SignalFlagToColorConverter.cs" />
     <Compile Include="Converters\ConnectionButtonColorConverter.cs" />
     <Compile Include="Converters\ConnectionStatusConverter.cs" />
