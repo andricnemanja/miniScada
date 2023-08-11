@@ -126,6 +126,8 @@
     <Compile Include="ResultsProcessing\CommandResultQueue.cs" />
     <Compile Include="ResultsProcessing\CommandResultReceiver.cs" />
     <Compile Include="ResultsProcessing\Processors\ConnectionFailureResultProcessor.cs" />
+    <Compile Include="ResultsProcessing\Processors\RtuOnScanResultProcessor.cs" />
+    <Compile Include="ResultsProcessing\Processors\RtuOffScanResultProcessor.cs" />
     <Compile Include="ResultsProcessing\Processors\ICommandResultProcessor.cs" />
     <Compile Include="ResultsProcessing\ICommandResultQueue.cs" />
     <Compile Include="ResultsProcessing\ICommandResultReceiver.cs" />

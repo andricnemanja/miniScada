@@ -7,13 +7,11 @@ namespace DynamicCacheManager.ResultsProcessing
 {
 	public sealed class ConnectionFailureResultProcessor : ICommandResultProcessor
 	{
-		private readonly IServiceRtuCache rtuCache;
 		private readonly IServiceFlagCache serviceFlagCache;
 		private readonly IDynamicCacheClient dynamicCacheClient;
 
-		public ConnectionFailureResultProcessor(IServiceRtuCache rtuCache, IServiceFlagCache serviceFlagCache, IDynamicCacheClient dynamicCacheClient)
+		public ConnectionFailureResultProcessor(IServiceFlagCache serviceFlagCache, IDynamicCacheClient dynamicCacheClient)
 		{
-			this.rtuCache = rtuCache;
 			this.serviceFlagCache = serviceFlagCache;
 			this.dynamicCacheClient = dynamicCacheClient;
 		}
@@ -22,9 +20,10 @@ namespace DynamicCacheManager.ResultsProcessing
 		{
 			ConnectionFailureResult commandData = (ConnectionFailureResult)commandResult;
 
+			Flag offScanFlag = serviceFlagCache.GetFlag("Off Scan");
 			Flag connectionFailuerFlag = serviceFlagCache.GetFlag("Connection Failure");
 
-			if (!dynamicCacheClient.DoesRtuHaveFlag(commandData.RtuId, connectionFailuerFlag))
+			if (!dynamicCacheClient.DoesRtuHaveFlag(commandData.RtuId, connectionFailuerFlag) && !dynamicCacheClient.DoesRtuHaveFlag(commandData.RtuId, offScanFlag))
 			{
 				dynamicCacheClient.AddRtuFlag(commandData.RtuId, connectionFailuerFlag);
 				dynamicCacheClient.PublishNewRtuFlag(commandData.RtuId, connectionFailuerFlag);

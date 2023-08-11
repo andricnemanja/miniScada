@@ -27,16 +27,16 @@ namespace ClientWpfApp.Model.RTU
 			}
 		}
 
-		private bool onScan;
-		public bool OnScan
+		private bool offScan = false;
+		public bool OffScan
 		{
-			get { return onScan; }
+			get { return offScan; }
 			set
 			{
-				if (value != onScan)
+				if (value != offScan)
 				{
-					onScan = value;
-					RaisePropertyChanged(nameof(OnScan));
+					offScan = value;
+					RaisePropertyChanged(nameof(OffScan));
 				}
 			}
 		}

@@ -141,7 +141,9 @@
     <Compile Include="Converters\ConnectionStatusConverter.cs" />
     <Compile Include="Converters\DiscreteSignalButtonStatusConverter.cs" />
     <Compile Include="Converters\SignalChangeButtonVisibiltyConverter.cs" />
-    <Compile Include="FlagProcessor\RemoveFlagProcessor\ConnectionFailureRemovedFlagProcessor .cs" />
+    <Compile Include="FlagProcessor\AddFlagProcessor\OffScanFlagProcessor.cs" />
+    <Compile Include="FlagProcessor\RemoveFlagProcessor\OffScanRemovedFlagProcessor.cs" />
+    <Compile Include="FlagProcessor\RemoveFlagProcessor\ConnectionFailureRemovedFlagProcessor.cs" />
     <Compile Include="FlagProcessor\RemoveFlagProcessor\RemoveFlagProcessor.cs" />
     <Compile Include="FlagProcessor\AddFlagProcessor\AddFlagProcessor.cs" />
     <Compile Include="FlagProcessor\AddFlagProcessor\ConnectionFailureFlagProcessor.cs" />
@@ -310,7 +312,7 @@
       <Name>Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">
-      <Project>{E7FDB680-6D8C-41BB-B54E-F250BF051C5E}</Project>
+      <Project>{e7fdb680-6d8c-41bb-b54e-f250bf051c5e}</Project>
       <Name>ModbusServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>

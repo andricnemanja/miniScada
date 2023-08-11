@@ -104,8 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandProcessing\CommandReceiver.cs" />
+    <Compile Include="CommandProcessing\RtuOffScanCommandProcessor.cs" />
     <Compile Include="CommandProcessing\WriteAnalogSignalCommandProcessor.cs" />
-    <Compile Include="CommandProcessing\ConnectToRtuCommandProcessor.cs" />
+    <Compile Include="CommandProcessing\RtuOnScanCommandProcessor.cs" />
     <Compile Include="CommandProcessing\ICommandProcessor.cs" />
     <Compile Include="CommandProcessing\ICommandReceiver.cs" />
     <Compile Include="CommandProcessing\ReadSingleSignalCommandProcessor.cs" />
@@ -114,6 +115,8 @@
     <Compile Include="CommandProcessing\WriteDiscreteSignalCommandProcessor.cs" />
     <Compile Include="CommandResult\ConnectionFailureResult.cs" />
     <Compile Include="CommandResult\ConnectToRtuFailedResult.cs" />
+    <Compile Include="CommandResult\RtuOnScanResult.cs" />
+    <Compile Include="CommandResult\RtuOffScanResult.cs" />
     <Compile Include="CommandResult\ConnectToRtuResult.cs" />
     <Compile Include="CommandResult\ReadSingleAnalogSignalFailedResult.cs" />
     <Compile Include="CommandResult\ReadSingleAnalogSignalResult.cs" />
@@ -168,7 +171,8 @@
     <Compile Include="Model\Signals\ModbusDiscreteSignalType.cs" />
     <Compile Include="Model\Signals\IModbusSignal.cs" />
     <Compile Include="Model\Signals\ModbusSignalAccessType.cs" />
-    <Compile Include="RtuCommands\ConnectToRtuCommand.cs" />
+    <Compile Include="RtuCommands\RtuOffScanCommand.cs" />
+    <Compile Include="RtuCommands\RtuOnScanCommand.cs" />
     <Compile Include="RtuCommands\RtuCommandBase.cs" />
     <Compile Include="RtuCommands\IRtuCommandInvoker.cs" />
     <Compile Include="RtuCommands\WriteAnalogSignalCommand.cs" />

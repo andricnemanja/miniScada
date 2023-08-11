@@ -55,5 +55,10 @@ namespace ModbusServiceLibrary.Modbus
 			modbusClient.TryConnect(rtuId, rtuAddress, port);
 			return true;
 		}
+
+		public void DisconnectFromRtu(int rtuId)
+		{
+			modbusClient.Disconnect(rtuId);
+		}
 	}
 }

@@ -8,9 +8,9 @@ namespace ClientWpfApp.Converters
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			bool connectionStatus = (bool)value;
+			bool offScan = (bool)value;
 
-			if (connectionStatus)
+			if (offScan)
 				return "On Scan";
 			return "Off Scan";
 		}

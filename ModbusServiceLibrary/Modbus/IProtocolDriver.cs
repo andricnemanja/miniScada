@@ -7,5 +7,6 @@
 		bool TryWriteAnalogSignal(int signalId, double newValue);
 		bool TryWriteDiscreteSignal(int signalId, string newState);
 		bool TryConnectToRtu(int rtuId, string rtuAddress, int port);
+		void DisconnectFromRtu(int rtuId);
 	}
 }

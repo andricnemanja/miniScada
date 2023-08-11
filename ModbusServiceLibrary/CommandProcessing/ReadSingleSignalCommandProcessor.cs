@@ -43,6 +43,7 @@ namespace ModbusServiceLibrary.CommandProcessing
 			{
 				return new ReadSingleDiscreteSignalResult(rtuId, signal.ID, signalState);
 			}
+			//TODO Change return value
 			//return new ReadSingleDiscreteSignalFailedResult(rtuId, signal.ID);
 			return new ConnectionFailureResult(rtuId);
 		}
@@ -53,6 +54,7 @@ namespace ModbusServiceLibrary.CommandProcessing
 			{
 				return new ReadSingleAnalogSignalResult(rtuId, signal.ID, signalValue);
 			}
+			//TODO Change return value
 			//return new ReadSingleAnalogSignalFailedResult(rtuId, signal.ID);
 			return new ConnectionFailureResult(rtuId);
 		}

@@ -17,7 +17,8 @@ namespace ClientWpfApp.ModbusServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RtuCommandBase", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.ConnectToRtuCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.RtuOnScanCommand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.RtuOffScanCommand))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.ReadSingleSignalCommand))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.WriteAnalogSignalCommand))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(ClientWpfApp.ModbusServiceReference.WriteDiscreteSignalCommand))]
@@ -50,7 +51,30 @@ namespace ClientWpfApp.ModbusServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RtuOnScanCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
     [System.SerializableAttribute()]
-    public partial class ConnectToRtuCommand : ClientWpfApp.ModbusServiceReference.RtuCommandBase {
+    public partial class RtuOnScanCommand : ClientWpfApp.ModbusServiceReference.RtuCommandBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RtuIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RtuId {
+            get {
+                return this.RtuIdField;
+            }
+            set {
+                if ((this.RtuIdField.Equals(value) != true)) {
+                    this.RtuIdField = value;
+                    this.RaisePropertyChanged("RtuId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RtuOffScanCommand", Namespace="http://schemas.datacontract.org/2004/07/ModbusServiceLibrary.RtuCommands")]
+    [System.SerializableAttribute()]
+    public partial class RtuOffScanCommand : ClientWpfApp.ModbusServiceReference.RtuCommandBase {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RtuIdField;

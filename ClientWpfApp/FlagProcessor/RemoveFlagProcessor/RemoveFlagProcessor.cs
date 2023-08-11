@@ -12,7 +12,8 @@ namespace ClientWpfApp.FlagProcessor.RemoveFlagProcessor
 		{
 			flagNameToFlagProcessor = new Dictionary<string, IFlagProcessor>()
 			{
-				{"Connection Failure", new ConnectionFailureRemovedFlagProcessor(rtuCache) }
+				{ "Connection Failure", new ConnectionFailureRemovedFlagProcessor(rtuCache) },
+				{ "Off Scan", new OffScanRemovedFlagProcessor(rtuCache) }
 			};
 		}
 

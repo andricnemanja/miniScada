@@ -138,7 +138,7 @@
     ]
   },
   {
-    "RTUData":{
+    "RTUData": {
       "Name": "ESP8266",
       "ID": 3,
       "IpAddress": "192.168.13.78",
@@ -151,7 +151,7 @@
         "Name": "Temperatura",
         "MappingId": 6,
         "AccessType": 0,
-        "Deadband" : 0.1,
+        "Deadband": 0.1,
         "StaleTime": "00:00:01"
       }
     ],
@@ -163,7 +163,7 @@
         "SignalType": 0,
         "MappingId": 5,
         "AccessType": 0,
-        "Deadband" : 0.1,
+        "Deadband": 0.1,
         "StaleTime": "00:00:01"
       },
       {
@@ -173,7 +173,7 @@
         "SignalType": 0,
         "MappingId": 6,
         "AccessType": 0,
-        "Deadband" : 0.1,
+        "Deadband": 0.1,
         "StaleTime": "00:00:01"
       },
       {
@@ -182,10 +182,40 @@
         "Address": 1,
         "SignalType": 0,
         "MappingId": 3,
-        "AccessType": 1 ,
-        "Deadband" : 0.1,
+        "AccessType": 1,
+        "Deadband": 0.1,
         "StaleTime": "00:00:01"
       }
+    ]
+  },
+  {
+    "RTUData": {
+      "Name": "RTU NewSimulator",
+      "ID": 4,
+      "IpAddress": "127.0.0.1",
+      "Port": 504
+    },
+    "AnalogSignals": [
+      {
+        "ID": 20,
+        "Address": 1,
+        "Name": "Napon 1",
+        "MappingId": 1,
+        "AccessType": 1,
+        "Deadband": 0.1,
+        "StaleTime": "00:00:01"
+      },
+      {
+        "ID": 21,
+        "Address": 2,
+        "Name": "Napon 2",
+        "MappingId": 2,
+        "AccessType": 1,
+        "Deadband": 0.1,
+        "StaleTime": "00:00:01"
+      }
+    ],
+    "DiscreteSignals": [
     ]
   }
 ]

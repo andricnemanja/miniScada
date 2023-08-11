@@ -19,8 +19,9 @@ namespace DynamicCacheManager.ResultsProcessing
 				{typeof(ReadSingleDiscreteSignalFailedResult), new ReadSingleDiscreteSignalFailedResultProcessor(rtuCache, serviceFlagCache, dynamicCacheClient) },
 				{typeof(ReadSingleDiscreteSignalResult), new ReadSingleDiscreteSignalResultProcessor(rtuCache, dynamicCacheClient) },
 				{ typeof(ConnectToRtuResult), new ConnectToRtuResultProcessor(rtuCache, serviceFlagCache, dynamicCacheClient) },
-				{ typeof(ConnectionFailureResult), new ConnectionFailureResultProcessor(rtuCache, serviceFlagCache, dynamicCacheClient) }
-
+				{ typeof(ConnectionFailureResult), new ConnectionFailureResultProcessor(serviceFlagCache, dynamicCacheClient) },
+				{ typeof(RtuOffScanResult), new RtuOffScanResultProcessor(serviceFlagCache, dynamicCacheClient) },
+				{ typeof(RtuOnScanResult), new RtuOnScanResultProcessor(serviceFlagCache, dynamicCacheClient) }
 			};
 		}
 

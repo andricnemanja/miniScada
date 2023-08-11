@@ -4,6 +4,7 @@ namespace ModbusServiceLibrary.RtuCommands
 {
 	[DataContract]
 	[KnownType(typeof(RtuOnScanCommand))]
+	[KnownType(typeof(RtuOffScanCommand))]
 	[KnownType(typeof(ReadSingleSignalCommand))]
 	[KnownType(typeof(WriteAnalogSignalCommand))]
 	[KnownType(typeof(WriteDiscreteSignalCommand))]

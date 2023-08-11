@@ -13,7 +13,7 @@ namespace ClientWpfApp.Converters
 
 			switch (flagType)
 			{
-				case FlagType.Info: return "Transparent";
+				case FlagType.Info: return "DarkGray";
 				case FlagType.Warn: return "Yellow";
 				case FlagType.Error: return "Orange";
 				case FlagType.Fatal: return "Red";

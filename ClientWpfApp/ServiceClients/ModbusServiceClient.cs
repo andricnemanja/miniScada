@@ -47,7 +47,15 @@ namespace ClientWpfApp.ServiceClients
 
 		public void RtuOnScan(int rtuId)
 		{
-			modbusDuplexClient.ReceiveCommand(new ConnectToRtuCommand()
+			modbusDuplexClient.ReceiveCommand(new RtuOnScanCommand()
+			{
+				RtuId = rtuId
+			});
+		}
+
+		public void RtuOffScan(int rtuId)
+		{
+			modbusDuplexClient.ReceiveCommand(new RtuOffScanCommand()
 			{
 				RtuId = rtuId
 			});
