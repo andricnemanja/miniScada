@@ -72,6 +72,6 @@ namespace ModelWcfServiceLibrary
 		IEnumerable<SignalScanPeriodMapping> GetSignalScanPeriodMappings();
 
 		[OperationContract]
-		IEnumerable<Flag> GetAllFlags();
+		IEnumerable<ModelFlag> GetAllFlags();
 	}
 }

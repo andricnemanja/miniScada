@@ -44,6 +44,15 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ListBox ItemsSource="{Binding Flags}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                                <TextBlock 
+                                                    Text="{Binding Name}"
+                                                    Padding="5, 2, 5, 2"
+                                                    Foreground="White"
+                                                    Background="{Binding Type, Converter={StaticResource SignalFlagToColorConverter}}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
                                 </ListBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -101,7 +110,7 @@
                                           SelectedItem="{Binding Path=DataContext.SelectedDiscreteSignal, RelativeSource = {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Background="{Binding DiscreteSignal.SignalFlags, Converter={StaticResource SignalFlagToColorConverter}}">
+                                            <StackPanel Orientation="Horizontal">
                                                 <!--<CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding DiscreteSignal.Name}" 
                                                           Command="{Binding Path=DataContext.DiscreteSignalCheckboxCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
                                                           CommandParameter="{Binding}" />-->
@@ -145,7 +154,7 @@
                                 <ListBox VerticalAlignment="Top" ItemsSource="{Binding AnalogSignalValues}" BorderThickness="0px" IsEnabled="{Binding IsConnected}">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Background="{Binding AnalogSignal.SignalFlags, Converter={StaticResource SignalFlagToColorConverter}}">
+                                            <StackPanel Orientation="Horizontal">
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
                                                 <TextBlock VerticalAlignment="Center" Text=": " />
                                                 <TextBox VerticalAlignment="Center" Text="{Binding Value}" FontWeight="Bold"/>

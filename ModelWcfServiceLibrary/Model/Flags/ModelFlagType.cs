@@ -1,6 +1,6 @@
 ﻿namespace ModelWcfServiceLibrary.Model.Flags
 {
-	public enum FlagType
+	public enum ModelFlagType
 	{
 		Info,
 		Warn,

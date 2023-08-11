@@ -112,6 +112,7 @@
     <Compile Include="CommandResult\CommandProcessorNotFoundResult.cs" />
     <Compile Include="CommandResult\CommandResultBase.cs" />
     <Compile Include="CommandProcessing\WriteDiscreteSignalCommandProcessor.cs" />
+    <Compile Include="CommandResult\ConnectionFailureResult.cs" />
     <Compile Include="CommandResult\ConnectToRtuFailedResult.cs" />
     <Compile Include="CommandResult\ConnectToRtuResult.cs" />
     <Compile Include="CommandResult\ReadSingleAnalogSignalFailedResult.cs" />

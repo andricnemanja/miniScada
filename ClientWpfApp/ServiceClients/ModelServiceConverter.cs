@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using ClientWpfApp.Model.Flags;
 using ClientWpfApp.Model.RTU;
 using ClientWpfApp.Model.Signals;
 using ClientWpfApp.Model.SignalValues;
@@ -31,6 +33,7 @@ namespace ClientWpfApp.ServiceClients
 						Port = rtu.Port
 					},
 					IsConnected = false,
+					OnScan = true,
 					AnalogSignalValues = GetAnalogSignalValuesForRTU(rtu.ID),
 					DiscreteSignalValues = GetDiscreteSignalValuesForRTU(rtu.ID)
 				};
@@ -38,6 +41,18 @@ namespace ClientWpfApp.ServiceClients
 			}
 
 			return rtus;
+		}
+		public List<Flag> ReadAllFlags()
+		{
+			List<Flag> flags = new List<Flag>();
+
+			foreach (var modelFlag in modelService.GetAllFlags())
+			{
+				Flag newFlag = new Flag(modelFlag);
+				flags.Add(newFlag);
+			}
+
+			return flags;
 		}
 
 		private ObservableCollection<AnalogSignalValue> GetAnalogSignalValuesForRTU(int rtuID)

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using ClientWpfApp.Model.Flags;
 using ClientWpfApp.Model.SignalValues;
 using ClientWpfApp.ServiceClients;
 
@@ -50,27 +51,18 @@ namespace ClientWpfApp.Model
 			analogSignal.Value = convertedValue;
 		}
 
-		public void AddFlagToRtu(int rtuId, string flag)
+		public void AddFlagToRtu(int rtuId, Flag flag)
 		{
 			RTU.RTU rtu = FindRtu(rtuId);
-
-			if(flag == "Active Connection")
-			{
-				rtu.IsConnected = true;
-			}
-			else if(flag == "Connection Failure")
-			{
-				rtu.IsConnected = false;
-			}
 			rtu.Flags.Add(flag);
 		}
 
-		public void RemoveFlagFromRtu(int rtuId, string flag)
+		public void RemoveFlagFromRtu(int rtuId, Flag flag)
 		{
 			FindRtu(rtuId).Flags.Remove(flag);
 		}
 
-		private RTU.RTU FindRtu(int rtuId)
+		public RTU.RTU FindRtu(int rtuId)
 		{
 			return RtuList.Where(r => r.RTUData.ID == rtuId).FirstOrDefault();
 		}

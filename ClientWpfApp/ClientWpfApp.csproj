@@ -141,6 +141,11 @@
     <Compile Include="Converters\ConnectionStatusConverter.cs" />
     <Compile Include="Converters\DiscreteSignalButtonStatusConverter.cs" />
     <Compile Include="Converters\SignalChangeButtonVisibiltyConverter.cs" />
+    <Compile Include="FlagProcessor\RemoveFlagProcessor\ConnectionFailureRemovedFlagProcessor .cs" />
+    <Compile Include="FlagProcessor\RemoveFlagProcessor\RemoveFlagProcessor.cs" />
+    <Compile Include="FlagProcessor\AddFlagProcessor\AddFlagProcessor.cs" />
+    <Compile Include="FlagProcessor\AddFlagProcessor\ConnectionFailureFlagProcessor.cs" />
+    <Compile Include="FlagProcessor\IFlagProcessor.cs" />
     <Compile Include="ModbusCallback\CommandResultReceiver.cs" />
     <Compile Include="ModbusCallback\CommandResultQueue.cs" />
     <Compile Include="ModbusCallback\ICommandResultProcessor.cs" />
@@ -151,8 +156,10 @@
     <Compile Include="ModbusClients\IModbusClient.cs" />
     <Compile Include="ModbusClients\NModbusClient.cs" />
     <Compile Include="ModbusErrors.cs" />
+    <Compile Include="Model\FlagCache.cs" />
     <Compile Include="Model\Flags\Flag.cs" />
     <Compile Include="Model\Flags\FlagType.cs" />
+    <Compile Include="Model\IFlagCache.cs" />
     <Compile Include="Model\IRtuCache.cs" />
     <Compile Include="Model\RtuCache.cs" />
     <Compile Include="Model\RTU\RTU.cs" />
@@ -210,7 +217,16 @@
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ModelServiceReference\ClientWpfApp.ModelServiceReference.ModelFlag.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.Flags.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.RTU.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.ScanPeriodMapping.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ModelServiceReference\ModelWcfServiceLibrary.Model.SignalMapping.xsd">
@@ -237,8 +253,15 @@
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.AnalogSignalMapping.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.DiscreteSignal.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.DiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignal.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelAnalogSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignal.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelDiscreteSignalMapping.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelRTU.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.ModelRTUData.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.RTU.datasource" />
     <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.RTUData.datasource" />
+    <None Include="Properties\DataSources\ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping.datasource" />
     <None Include="Properties\DataSources\SharedModel.Model.RTU.RTU.datasource" />
     <None Include="Properties\DataSources\SharedModel.Model.Signals.AnalogSignal.datasource" />
     <None Include="Properties\DataSources\SharedModel.Model.Signals.DiscreteSignal.datasource" />

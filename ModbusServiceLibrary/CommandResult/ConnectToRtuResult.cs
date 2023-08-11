@@ -8,7 +8,6 @@ namespace ModbusServiceLibrary.CommandResult
 		[DataMember]
 		public int RtuId { get; set; }
 
-
 		public ConnectToRtuResult(int rtuId)
 		{
 			RtuId = rtuId;

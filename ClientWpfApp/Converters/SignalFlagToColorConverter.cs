@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
 using ClientWpfApp.Model.Flags;
@@ -11,24 +9,14 @@ namespace ClientWpfApp.Converters
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			ObservableCollection<Flag> flags = (ObservableCollection<Flag>)value;
+			FlagType flagType = (FlagType)value;
 
-			int maxFlagLevel = 0;
-
-			foreach(var flag in flags)
+			switch (flagType)
 			{
-				if((int)flag.Type > maxFlagLevel)
-				{
-					maxFlagLevel = (int)flag.Type;
-				}
-			}
-
-			switch (maxFlagLevel)
-			{
-				case 0: return "Transparent";
-				case 1: return "LightGray";
-				case 2: return "Yellow";
-				case 3: return "Red";
+				case FlagType.Info: return "Transparent";
+				case FlagType.Warn: return "Yellow";
+				case FlagType.Error: return "Orange";
+				case FlagType.Fatal: return "Red";
 				default: return "";
 			}
 		}

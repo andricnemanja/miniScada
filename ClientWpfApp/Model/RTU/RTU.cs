@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using ClientWpfApp.Model.Flags;
 using ClientWpfApp.Model.SignalValues;
 using ClientWpfApp.Util;
 
@@ -8,7 +9,7 @@ namespace ClientWpfApp.Model.RTU
 	public class RTU : INotifyPropertyChanged
 	{
 		public RTUData RTUData { get; set; }
-		public ObservableCollection<string> Flags { get; set; } = new AsyncObservableCollection<string>();
+		public ObservableCollection<Flag> Flags { get; set; } = new AsyncObservableCollection<Flag>();
 		public ObservableCollection<AnalogSignalValue> AnalogSignalValues { get; set; }
 		public ObservableCollection<DiscreteSignalValue> DiscreteSignalValues { get; set; }
 

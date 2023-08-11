@@ -9,7 +9,167 @@
 //------------------------------------------------------------------------------
 
 namespace ClientWpfApp.ModelServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelFlag", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags")]
+    [System.SerializableAttribute()]
+    public partial class ModelFlag : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CommandAllowedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ReadAllowedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ClientWpfApp.ModelServiceReference.ModelFlagType TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool UserAssignableField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CommandAllowed {
+            get {
+                return this.CommandAllowedField;
+            }
+            set {
+                if ((this.CommandAllowedField.Equals(value) != true)) {
+                    this.CommandAllowedField = value;
+                    this.RaisePropertyChanged("CommandAllowed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ReadAllowed {
+            get {
+                return this.ReadAllowedField;
+            }
+            set {
+                if ((this.ReadAllowedField.Equals(value) != true)) {
+                    this.ReadAllowedField = value;
+                    this.RaisePropertyChanged("ReadAllowed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ClientWpfApp.ModelServiceReference.ModelFlagType Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool UserAssignable {
+            get {
+                return this.UserAssignableField;
+            }
+            set {
+                if ((this.UserAssignableField.Equals(value) != true)) {
+                    this.UserAssignableField = value;
+                    this.RaisePropertyChanged("UserAssignable");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelFlagType", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags")]
+    public enum ModelFlagType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Info = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Warn = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Error = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Fatal = 3,
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ModelServiceReference.IModelService")]
@@ -63,6 +223,18 @@ namespace ClientWpfApp.ModelServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<string>> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
+        System.Collections.ObjectModel.ObservableCollection<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping> GetSignalScanPeriodMappings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping>> GetSignalScanPeriodMappingsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
+        System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.ModelFlag> GetAllFlags();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.ModelFlag>> GetAllFlagsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -154,6 +326,22 @@ namespace ClientWpfApp.ModelServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<string>> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress) {
             return base.Channel.GetDiscreteSignalPossibleStatesAsync(rtuId, signalAddress);
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping> GetSignalScanPeriodMappings() {
+            return base.Channel.GetSignalScanPeriodMappings();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ModbusServiceLibrary.ModelServiceReference.SignalScanPeriodMapping>> GetSignalScanPeriodMappingsAsync() {
+            return base.Channel.GetSignalScanPeriodMappingsAsync();
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.ModelFlag> GetAllFlags() {
+            return base.Channel.GetAllFlags();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<ClientWpfApp.ModelServiceReference.ModelFlag>> GetAllFlagsAsync() {
+            return base.Channel.GetAllFlagsAsync();
         }
     }
 }

@@ -12,6 +12,7 @@ namespace ModbusServiceLibrary.CommandResult
 	[KnownType(typeof(WriteDiscreteSignalCommandResult))]
 	[KnownType(typeof(WriteAnalogSignalCommandResult))]
 	[KnownType(typeof(CommandProcessorNotFoundResult))]
+	[KnownType(typeof(ConnectionFailureResult))]
 	public class CommandResultBase
 	{
 	}

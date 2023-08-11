@@ -6,7 +6,7 @@ namespace DynamicCacheManager.Model
 	[Document(StorageType = StorageType.Json, Prefixes = new []{"Rtu"})]
 	public class Rtu
 	{
-		public Rtu(int id, List<AnalogSignal> analogSignals, List<DiscreteSignal> discreteSignals, List<string> flags)
+		public Rtu(int id, List<AnalogSignal> analogSignals, List<DiscreteSignal> discreteSignals, List<int> flags)
 		{
 			Id = id;
 			AnalogSignals = analogSignals;
@@ -21,6 +21,6 @@ namespace DynamicCacheManager.Model
 		[Indexed(CascadeDepth = 1)]
 		public List<DiscreteSignal> DiscreteSignals { get; }
 		[Indexed]
-		public List<string> Flags { get; }
+		public List<int> Flags { get; }
 	}
 }

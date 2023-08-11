@@ -16,7 +16,7 @@ namespace DynamicCacheManager.ServiceCache
 
 		public void InitializeData()
 		{
-			RtuList = staticDataLoader.InitializeData();
+			RtuList = staticDataLoader.InitializeRtuData();
 		}
 
 		public ISignal GetSignal(int rtuId, int signalId)
