@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 using ModbusServiceLibrary.DynamicCacheManagerReference;
 using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.Modbus.ModbusConnection.States;
@@ -10,7 +10,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusClient
 	/// </summary>
 	public sealed class ModbusConnectionManager : IModbusConnectionManager
 	{
-		private readonly Dictionary<int, IRtuConnection> rtuConnectionById = new Dictionary<int, IRtuConnection>();
+		private readonly ConcurrentDictionary<int, IRtuConnection> rtuConnectionById = new ConcurrentDictionary<int, IRtuConnection>();
 		private readonly IDynamicCacheManagerService dynamicCacheManagerServiceClient;
 		private readonly IRtuConnectionStateFactory rtuConnectionStateFactory;
 		private readonly IRtuConnectionFactory rtuConnectionFactory;
@@ -32,14 +32,11 @@ namespace ModbusServiceLibrary.Modbus.ModbusClient
 		/// <param name="rtuId">ID of the RTU for which connection is requested.</param>
 		public IRtuConnection GetRtuConnection(int rtuId)
 		{
-			if (rtuConnectionById.TryGetValue(rtuId, out IRtuConnection connection))
+			//GetOrAdd can run factory method multiple times but only first return value will be saved.
+			return rtuConnectionById.GetOrAdd(rtuId, key =>
 			{
-				return connection;
-			}
-
-			IRtuConnection newConnection = rtuConnectionFactory.GetRtuConnection(rtuId, dynamicCacheManagerServiceClient, rtuConnectionStateFactory);
-			rtuConnectionById.Add(rtuId, newConnection);
-			return newConnection;
+				return rtuConnectionFactory.GetRtuConnection(key, dynamicCacheManagerServiceClient, rtuConnectionStateFactory);
+			});
 		}
 	}
 }
