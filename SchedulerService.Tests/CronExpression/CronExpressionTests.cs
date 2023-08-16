@@ -1,11 +1,6 @@
 ﻿using Moq;
 using SchedulerService.CronExpressionMapper;
 using SchedulerService.ModelServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace SchedulerService.Tests.CronExpression
@@ -33,6 +28,8 @@ namespace SchedulerService.Tests.CronExpression
 			Assert.NotEmpty(result);
 			Assert.Equal(3, result.Count);
 		}
+		//Da nema ni jednog
+
 
 		[Fact]
 		public void FindCronExpression_ExistingMappingId_Should_ReturnCronExpression()
