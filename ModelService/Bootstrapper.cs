@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ModelWcfServiceLibrary;
+using ModelWcfServiceLibrary.DatabaseRepository;
 using ModelWcfServiceLibrary.FileAccessing;
 using ModelWcfServiceLibrary.Model.CronExpressionMappings;
 using ModelWcfServiceLibrary.Model.Flags;
@@ -50,6 +51,17 @@ namespace ModelServiceHost
 				.OnActivated(c => c.Instance.Deserialize());
 			builder.RegisterType<CronExpressionMappingRepository>().As<ICronExpressionMappingRepository>()
 				.OnActivated(c => c.Instance.Deserialize());
+			builder.RegisterType<DatabaseRtuRepository>().As<IDatabaseRtuRepository>()
+				.OnActivated(c => c.Instance.MapFromDatabase());
+			builder.RegisterType<DatabaseCronExpressionRepository>().As<IDatabaseCronExpressionRepository>()
+				.OnActivated(c => c.Instance.MapFromDatabase());
+			builder.RegisterType<DatabaseScanPeriodRepository>().As<IDatabaseScanPeriodRepository>()
+				.OnActivated(c => c.Instance.MapFromDatabase());
+			builder.RegisterType<DatabaseAnalogSignalMappingRepository>().As<IDatabaseAnalogSignalMappingRepository>()
+				.OnActivated(c => c.Instance.MapFromDatabase());
+			builder.RegisterType<DatabaseDiscreteSignalMappingRepository>().As<IDatabaseDiscreteSignalMappingRepository>()
+				.OnActivated(c => c.Instance.MapFromDatabase());
+
 
 			builder.RegisterType<ModelService>().As<IModelService>();
 

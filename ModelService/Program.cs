@@ -2,6 +2,8 @@
 using Autofac.Core;
 using Autofac.Integration.Wcf;
 using ModelWcfServiceLibrary;
+using ModelWcfServiceLibrary.DatabaseRepository;
+using ModelWcfServiceLibrary.Repository;
 using System;
 using System.ServiceModel;
 
@@ -29,6 +31,7 @@ namespace ModelServiceHost
             string listenUri = selfHost.Description.Endpoints[0].ListenUri.AbsoluteUri;
             Console.WriteLine("Model service listening on: {0}", listenUri);
             Console.WriteLine("Press <Enter> to terminate the service");
+
             Console.ReadLine();
         }
     }
