@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using ModelWcfServiceLibrary.DatabaseRepository;
 using ModelWcfServiceLibrary.Model.CronExpressionMappings;
 using ModelWcfServiceLibrary.Model.Flags;
 using ModelWcfServiceLibrary.Model.RTU;
@@ -22,6 +23,11 @@ namespace ModelWcfServiceLibrary
 		private readonly ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository;
 		private readonly IFlagRepository flagRepository;
 		private readonly ICronExpressionMappingRepository cronExpressionMappingRepository;
+		private readonly IDatabaseRtuRepository databaseRtuRepository;
+		private readonly IDatabaseAnalogSignalMappingRepository databaseAnalogSignalMappingRepository;
+		private readonly IDatabaseDiscreteSignalMappingRepository databaseDiscreteSignalMappingRepository;
+		private readonly IDatabaseScanPeriodRepository databaseScanPeriodRepository;
+		private readonly IDatabaseCronExpressionRepository databaseCronExpressionRepository;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ModelService"/>
@@ -32,7 +38,9 @@ namespace ModelWcfServiceLibrary
 		/// <param name="cronExpressionMappingRepository"></param>
 		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, 
 			IDiscreteSignalMappingRepository discreteSignalMappingRepository, ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository, 
-			IFlagRepository flagRepository, ICronExpressionMappingRepository cronExpressionMappingRepository)
+			IFlagRepository flagRepository, ICronExpressionMappingRepository cronExpressionMappingRepository, 
+			IDatabaseRtuRepository databaseRtuRepository, IDatabaseAnalogSignalMappingRepository databaseAnalogSignalMappingRepository, 
+			IDatabaseDiscreteSignalMappingRepository databaseDiscreteSignalMappingRepository, IDatabaseScanPeriodRepository databaseScanPeriodRepository, IDatabaseCronExpressionRepository databaseCronExpressionRepository)
 		{
 			this.rtuRepository = rtuRepository;
 			this.analogSignalMappingRepository = analogSignalMappingRepository;
@@ -40,6 +48,11 @@ namespace ModelWcfServiceLibrary
 			this.signalScanPeriodMappingRepository = signalScanPeriodMappingRepository;
 			this.flagRepository = flagRepository;
 			this.cronExpressionMappingRepository = cronExpressionMappingRepository;
+			this.databaseRtuRepository = databaseRtuRepository;
+			this.databaseAnalogSignalMappingRepository = databaseAnalogSignalMappingRepository;
+			this.databaseDiscreteSignalMappingRepository = databaseDiscreteSignalMappingRepository;
+			this.databaseScanPeriodRepository = databaseScanPeriodRepository;
+			this.databaseCronExpressionRepository = databaseCronExpressionRepository;
 		}
 
 		/// <summary>
@@ -48,7 +61,8 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of RTUs</returns>
 		public List<ModelRTU> GetAllRTUs()
 		{
-			return rtuRepository.RtuList;
+			// return rtuRepository.RtuList;
+			return databaseRtuRepository.RtuList;
 		}
 		/// <summary>
 		/// Get static data for RTU with given ID
@@ -57,6 +71,7 @@ namespace ModelWcfServiceLibrary
 		/// <returns>RTU with given ID</returns>
 		public ModelRTU GetRTU(int id)
 		{
+	
 			ModelRTU rtu = rtuRepository.GetRTUByID(id);
 			if (rtu == null)
 			{
@@ -99,7 +114,8 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of analog signal mappings</returns>
 		public IEnumerable<ModelAnalogSignalMapping> GetAnalogSignalMappings()
 		{
-			return analogSignalMappingRepository.AnalogSignalMappingList;
+			// return analogSignalMappingRepository.AnalogSignalMappingList;
+			return databaseAnalogSignalMappingRepository.AnalogMappingsList;
 		}
 
 		/// <summary>
@@ -108,7 +124,8 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of discrete signal mappings</returns>
 		public IEnumerable<ModelDiscreteSignalMapping> GetDiscreteSignalMappings()
 		{
-			return discreteSignalMappingRepository.DiscreteSignalMappingList;
+			// return discreteSignalMappingRepository.DiscreteSignalMappingList;
+			return databaseDiscreteSignalMappingRepository.DiscreteMappingsList;
 		}
 
 		/// <summary>
@@ -128,7 +145,8 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of the SignalScanPeriodMappings.</returns>
 		public IEnumerable<SignalScanPeriodMapping> GetSignalScanPeriodMappings()
 		{
-			return signalScanPeriodMappingRepository.SignalScanPeriodMappingList;
+			// return signalScanPeriodMappingRepository.SignalScanPeriodMappingList;
+			return databaseScanPeriodRepository.ScanPeriodList;
 		}
 		
 		/// <summary>
@@ -146,7 +164,8 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of cron expressions.</returns>
 		public IEnumerable<ModelCronExpressionMapping> GetCronExpressionMappings()
 		{
-			return cronExpressionMappingRepository.CronExpressionMappingList;
+			// return cronExpressionMappingRepository.CronExpressionMappingList;
+			return databaseCronExpressionRepository.CronExpressionList;
 		}
 	}
 }

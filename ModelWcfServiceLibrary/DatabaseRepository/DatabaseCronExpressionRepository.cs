@@ -12,7 +12,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 	{
 		MiniScadaDB miniScadaDB;
 
-		public List<ModelCronExpressionMapping> CronExpressionList;
+		public List<ModelCronExpressionMapping> CronExpressionList { get; private set; }
 
 		public DatabaseCronExpressionRepository()
 		{
@@ -22,7 +22,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 		public void MapFromDatabase()
 		{
-			List<CronExpressionDB> cronExpressionsDB = miniScadaDB.CronExpressions.ToList();
+			List<DbCronExpression> cronExpressionsDB = miniScadaDB.DbCronExpressions.ToList();
 
 			foreach (var cron in cronExpressionsDB)
 			{

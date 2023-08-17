@@ -9,7 +9,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 	{
 		MiniScadaDB miniScadaDB;
 
-		List<SignalScanPeriodMapping> ScanPeriodList;
+		public List<SignalScanPeriodMapping> ScanPeriodList { get; private set; }
 
 		public DatabaseScanPeriodRepository()
 		{
@@ -19,7 +19,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 		public void MapFromDatabase()
 		{
-			List<ScanPeriodDB> scanPeriodsDB = miniScadaDB.ScanPeriods.ToList();
+			List<DbScanPeriod> scanPeriodsDB = miniScadaDB.DbScanPeriods.ToList();
 
 			foreach (var periods in scanPeriodsDB)
 			{

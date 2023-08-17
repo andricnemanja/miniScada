@@ -1,12 +1,10 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ModelWcfServiceLibrary.EntityDataModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    public partial class CronExpressionDB
+    public partial class DbCronExpression
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

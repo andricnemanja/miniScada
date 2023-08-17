@@ -7,31 +7,46 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 {
 	public class DatabaseDiscreteSignalMappingRepository : IDatabaseDiscreteSignalMappingRepository
 	{
-		MiniScadaDB MiniScadaDB;
+		MiniScadaDB miniScadaDB;
 
-		public List<ModelDiscreteSignalMapping> DiscreteMappingsList;
+		public List<ModelDiscreteSignalMapping> DiscreteMappingsList { get; private set; }
 
 		public DatabaseDiscreteSignalMappingRepository()
 		{
-			MiniScadaDB = new MiniScadaDB();
+			miniScadaDB = new MiniScadaDB();
 
 			DiscreteMappingsList = new List<ModelDiscreteSignalMapping>();
 		}
 
 		public void MapFromDatabase()
 		{
-			List<DiscreteSignalMappingDB> discreteSignalMappingsDB = MiniScadaDB.DiscreteSignalMappings.ToList();
+			List<DbMapping> signalMappingsDB = miniScadaDB.DbMappings.ToList();
 
-			foreach (var discretemapping in discreteSignalMappingsDB)
+			foreach (var discretemapping in signalMappingsDB)
 			{
-				ModelDiscreteSignalMapping newDiscreteMapping = new ModelDiscreteSignalMapping()
+				if (discretemapping.mapping_type == 1)
 				{
-					Id = discretemapping.signal_id,
-					Name = discretemapping.mapping_name,
-					// DiscreteValueToState = discretemapping.DiscreteValueToStates
-				};
+					Dictionary<byte, string> newDiscreteValueToStateDict = new Dictionary<byte, string>();
 
-				DiscreteMappingsList.Add(newDiscreteMapping);
+					List<DbDiscreteValueToState> valueToStateQuery = miniScadaDB.DbDiscreteValueToStates
+						.Where(valueToState => valueToState.mapping_id == discretemapping.mapping_id)
+						.ToList();
+
+					foreach (var valueToState in valueToStateQuery)
+					{
+						newDiscreteValueToStateDict.Add(valueToState.discrete_value, valueToState.discrete_state);
+					}
+
+					ModelDiscreteSignalMapping newDiscreteMapping = new ModelDiscreteSignalMapping()
+					{
+						Id = discretemapping.mapping_id,
+						Name = discretemapping.mapping_name,
+						DiscreteValueToState = newDiscreteValueToStateDict
+					};
+
+					DiscreteMappingsList.Add(newDiscreteMapping);
+
+				}
 			}
 		}
 
