@@ -9,6 +9,7 @@ using StackExchange.Redis;
 
 namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 {
+	//TODO Refactor class
 	public sealed class RedisDynamicCacheClient : IDynamicCacheClient
 	{
 		private IDatabase redisDatabase;
@@ -86,17 +87,17 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 			rtuRedisCollection.Update(rtu);
 		}
 
-		public void AddRtuFlag(int rtuId, string flag)
+		public void AddRtuFlag(int rtuId, Flag flag)
 		{
 			Rtu rtu = FindRtu(rtuId);
-			rtu.Flags.Add(flag);
+			rtu.Flags.Add(flag.ID);
 			rtuRedisCollection.Update(rtu);
 		}
 
-		public void RemoveRtuFlag(int rtuId, string flag)
+		public void RemoveRtuFlag(int rtuId, Flag flag)
 		{
 			Rtu rtu = FindRtu(rtuId);
-			rtu.Flags.Remove(flag);
+			rtu.Flags.Remove(flag.ID);
 			rtuRedisCollection.Update(rtu);
 		}
 
@@ -110,20 +111,20 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 			publisher.Publish(redisStringBuilder.GenerateFlagChannelName(signal.RtuId, signal.GetType().Name, signal.Id), flag);
 		}
 
-		public void PublishNewRtuFlag(int rtuId, string flag)
+		public void PublishNewRtuFlag(int rtuId, Flag flag)
 		{
-			publisher.Publish(redisStringBuilder.GenerateFlagChannelName(rtuId), flag);
+			publisher.Publish(redisStringBuilder.GenerateFlagChannelName(rtuId), flag.ID);
 		}
 
-		public void PublishRemovedRtuFlag(int rtuId, string flag)
+		public void PublishRemovedRtuFlag(int rtuId, Flag flag)
 		{
-			publisher.Publish(redisStringBuilder.GenerateRemovedFlagChannelName(rtuId), flag);
+			publisher.Publish(redisStringBuilder.GenerateRemovedFlagChannelName(rtuId), flag.ID);
 		}
 
-		public bool DoesRtuHaveFlag(int rtudId, string flag)
+		public bool DoesRtuHaveFlag(int rtudId, Flag flag)
 		{
 			Rtu rtu = FindRtu(rtudId);
-			return rtu.Flags.Contains(flag);
+			return rtu.Flags.Contains(flag.ID);
 		}
 
 		public string GetSignalValue(ISignal signal)
@@ -140,8 +141,6 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 			}
 			return selectedSignal.Value;
 		}
-
-
 
 		private Rtu FindRtu(int rtuId)
 		{

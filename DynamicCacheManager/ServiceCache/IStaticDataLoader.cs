@@ -5,6 +5,7 @@ namespace DynamicCacheManager.ServiceCache
 {
 	public interface IStaticDataLoader
 	{
-		List<Rtu> InitializeData();
+		List<Rtu> InitializeRtuData();
+		Dictionary<string, Flag> InitializeFlagData();
 	}
 }

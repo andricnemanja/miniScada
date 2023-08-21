@@ -83,8 +83,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\AnalogSignalMappings.json" />
+    <None Include="Resources\CronExpressionMappings.json" />
+    <None Include="Resources\CronJobPeriodMapping.json" />
     <None Include="Resources\DiscreteSignalMappings.json" />
+    <None Include="Resources\Flags.json" />
     <None Include="Resources\RTUs.json" />
+    <None Include="Resources\ScanPeriodMappings.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelWcfServiceLibrary\ModelWcfServiceLibrary.csproj">

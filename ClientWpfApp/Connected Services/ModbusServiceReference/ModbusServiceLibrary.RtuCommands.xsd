@@ -4,7 +4,7 @@
     <xs:sequence />
   </xs:complexType>
   <xs:element name="RtuCommandBase" nillable="true" type="tns:RtuCommandBase" />
-  <xs:complexType name="ConnectToRtuCommand">
+  <xs:complexType name="RtuOnScanCommand">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:RtuCommandBase">
         <xs:sequence>
@@ -13,7 +13,17 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ConnectToRtuCommand" nillable="true" type="tns:ConnectToRtuCommand" />
+  <xs:element name="RtuOnScanCommand" nillable="true" type="tns:RtuOnScanCommand" />
+  <xs:complexType name="RtuOffScanCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RtuCommandBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RtuId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RtuOffScanCommand" nillable="true" type="tns:RtuOffScanCommand" />
   <xs:complexType name="ReadSingleSignalCommand">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:RtuCommandBase">

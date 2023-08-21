@@ -2,15 +2,15 @@
 {
 	public class RtuFlagDTO
 	{
-		public RtuFlagDTO(int rtuId, string flagName, RtuFlagOperation operation)
+		public RtuFlagDTO(int rtuId, int flagId, RtuFlagOperation operation)
 		{
 			RtuId = rtuId;
-			FlagName = flagName;
+			FlagId = flagId;
 			Operation = operation;
 		}
 
 		public int RtuId { get; }
-		public string FlagName { get; }
+		public int FlagId { get; }
 		public RtuFlagOperation Operation { get; set; }
 	}
 }

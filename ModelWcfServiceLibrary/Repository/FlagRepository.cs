@@ -9,22 +9,22 @@ namespace ModelWcfServiceLibrary.Repository
 	/// </summary>
 	public sealed class FlagRepository : IFlagRepository
 	{
-		private readonly IListSerializer<Flag> serializer;
+		private readonly IListSerializer<ModelFlag> serializer;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="FlagRepository"/>
 		/// </summary>
 		/// <param name="serializer">Instance of the <see cref="IListSerializer"/> class</param>
-		public FlagRepository(IListSerializer<Flag> serializer)
+		public FlagRepository(IListSerializer<ModelFlag> serializer)
 		{
 			this.serializer = serializer;
-			FlagList = new List<Flag>();
+			FlagList = new List<ModelFlag>();
 		}
 
 		/// <summary>
 		/// List of Flags read from a file. If <c>Deserialize()</c> method isn't called after instantiating the class, the list is going to be empty.
 		/// </summary>
-		public List<Flag> FlagList { get; private set; }
+		public List<ModelFlag> FlagList { get; private set; }
 
 		/// <summary>
 		/// Saves the current state of the Flags to a file

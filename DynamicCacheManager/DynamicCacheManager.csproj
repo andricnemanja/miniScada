@@ -120,19 +120,26 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="DynamicCacheClient\RedisCacheClient\ISignalNameStringBuilder.cs" />
+    <Compile Include="Model\Flag.cs" />
     <Compile Include="Model\ISignal.cs" />
+    <Compile Include="Model\NullObjects\NullFlag.cs" />
     <Compile Include="ResultsProcessing\CommandResultQueue.cs" />
     <Compile Include="ResultsProcessing\CommandResultReceiver.cs" />
+    <Compile Include="ResultsProcessing\Processors\ConnectionFailureResultProcessor.cs" />
+    <Compile Include="ResultsProcessing\Processors\RtuOnScanResultProcessor.cs" />
+    <Compile Include="ResultsProcessing\Processors\RtuOffScanResultProcessor.cs" />
     <Compile Include="ResultsProcessing\Processors\ICommandResultProcessor.cs" />
     <Compile Include="ResultsProcessing\ICommandResultQueue.cs" />
     <Compile Include="ResultsProcessing\ICommandResultReceiver.cs" />
     <Compile Include="ResultsProcessing\Processors\ConnectToRtuResultProcessor.cs" />
+    <Compile Include="ResultsProcessing\Processors\ReadSingleDiscreteSignalFailedResultProcessor.cs" />
     <Compile Include="ResultsProcessing\Processors\ReadSingleAnalogSignalFailedResultProcessor.cs" />
     <Compile Include="ResultsProcessing\Processors\ReadSingleAnalogSignalResultProcessor.cs" />
     <Compile Include="ResultsProcessing\Processors\ReadSingleDiscreteSignalResultProcessor.cs" />
     <Compile Include="DynamicCacheClient\RedisCacheClient\RedisDynamicCacheClient.cs" />
     <Compile Include="DynamicCacheClient\IDynamicCacheClient.cs" />
     <Compile Include="IDynamicCacheManagerService.cs" />
+    <Compile Include="ServiceCache\IServiceFlagCache.cs" />
     <Compile Include="ServiceCache\IStaticDataLoader.cs" />
     <Compile Include="Model\AnalogSignal.cs" />
     <Compile Include="Model\DiscreteSignal.cs" />
@@ -141,6 +148,7 @@
     <Compile Include="DynamicCacheManagerService.cs" />
     <Compile Include="DynamicCacheClient\RedisCacheClient\RedisStringBuilder.cs" />
     <Compile Include="ServiceCache\IServiceRtuCache.cs" />
+    <Compile Include="ServiceCache\ServiceFlagCache.cs" />
     <Compile Include="ServiceCache\ServiceRtuCache.cs" />
     <Compile Include="ServiceCache\StaticDataLoader.cs" />
   </ItemGroup>
@@ -148,9 +156,6 @@
     <None Include="App.config" />
     <None Include="Connected Services\ModelServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.Flag.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelAnalogSignal.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -162,6 +167,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelFlag.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ModelServiceReference\DynamicCacheManager.ModelServiceReference.ModelRTU.datasource">
@@ -218,6 +226,12 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">
+      <Project>{E7FDB680-6D8C-41BB-B54E-F250BF051C5E}</Project>
+      <Name>ModbusServiceLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ModelServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -231,12 +245,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ModbusServiceLibrary\ModbusServiceLibrary.csproj">
-      <Project>{E7FDB680-6D8C-41BB-B54E-F250BF051C5E}</Project>
-      <Name>ModbusServiceLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

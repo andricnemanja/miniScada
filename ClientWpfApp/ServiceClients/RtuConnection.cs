@@ -13,5 +13,10 @@
 		{
 			modbusServiceClient.RtuOnScan(rtuId);
 		}
+
+		public void RtuOffScan(int rtuId)
+		{
+			modbusServiceClient.RtuOffScan(rtuId);
+		}
 	}
 }

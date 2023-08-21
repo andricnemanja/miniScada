@@ -6,7 +6,10 @@ using System.ComponentModel.Composition.Hosting;
 using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
+using ClientWpfApp.FlagProcessor.AddFlagProcessor;
+using ClientWpfApp.FlagProcessor.RemoveFlagProcessor;
 using ClientWpfApp.Model;
+using ClientWpfApp.Model.Flags;
 using ClientWpfApp.Model.RTU;
 using Contracts;
 using Contracts.DTO;
@@ -19,16 +22,22 @@ namespace ClientWpfApp.Cache
 		[Import(typeof(IDynamicCacheClient))]
 		private IDynamicCacheClient dynamicCacheClient;
 		private readonly IRtuCache rtuCache;
+		private readonly IFlagCache flagCache;
+		private readonly AddFlagProcessor addFlagProcessor;
+		private readonly RemoveFlagProcessor removeFlagProcessor;
 		private readonly AsyncPolicy<bool> retryPolicy = Policy<bool>
 			.HandleResult(x => x.Equals(false))
 			.WaitAndRetryForeverAsync(retryAttemp => TimeSpan.FromSeconds(5));
 
-		public DynamicCache(IRtuCache rtuCache)
+		public DynamicCache(IRtuCache rtuCache, IFlagCache flagCache)
 		{
 			var catalog = new DirectoryCatalog(ConfigurationManager.AppSettings["DynamicCacheAdapterDirectory"]);
 			var container = new CompositionContainer(catalog);
 			container.ComposeParts(this);
 			this.rtuCache = rtuCache;
+			this.flagCache = flagCache;
+			addFlagProcessor = new AddFlagProcessor(rtuCache);
+			removeFlagProcessor = new RemoveFlagProcessor(rtuCache);
 		}
 
 		private bool isCacheAvailable = false;
@@ -115,11 +124,19 @@ namespace ClientWpfApp.Cache
 				{
 					if(rtuFlagDTO.Operation == RtuFlagOperation.Add)
 					{
-						rtuCache.AddFlagToRtu(rtuFlagDTO.RtuId, rtuFlagDTO.FlagName);
+						Flag flag = flagCache.FindFlag(rtuFlagDTO.FlagId);
+						if(flag != null)
+						{
+							addFlagProcessor.ProcessFlag(flag, rtuFlagDTO.RtuId);
+						}
 					}
 					else
 					{
-						rtuCache.RemoveFlagFromRtu(rtuFlagDTO.RtuId, rtuFlagDTO.FlagName);
+						Flag flag = flagCache.FindFlag(rtuFlagDTO.FlagId);
+						if(flag != null)
+						{
+							removeFlagProcessor.ProcessFlag(flag, rtuFlagDTO.RtuId);
+						}
 					}
 				}));
 			}

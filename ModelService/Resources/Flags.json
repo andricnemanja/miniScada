@@ -1,18 +1,29 @@
 [
   {
-    "Name": "OnScan",
-    "Description": " ",
-    "Type": 0,
-    "ReadAllowed": true,
-    "CommandAllowed": true,
-    "UserAssignable": true
-  },
-  {
-    "Name": "OffScan",
-    "Description": " ",
+    "ID": 1,
+    "Name": "Off Scan",
+    "Description": "Rtu is turned off",
     "Type": 0,
     "ReadAllowed": false,
     "CommandAllowed": false,
     "UserAssignable": true
+  },
+  {
+    "ID": 2,
+    "Name": "Connection Failure",
+    "Description": "There is a problem with a connection to RTU",
+    "Type": 2,
+    "ReadAllowed": false,
+    "CommandAllowed": false,
+    "UserAssignable": false
+  },
+  {
+    "ID": 3,
+    "Name": "Command Failed",
+    "Description": "Command could not be executed",
+    "Type": 1,
+    "ReadAllowed": true,
+    "CommandAllowed": true,
+    "UserAssignable": false
   }
 ]

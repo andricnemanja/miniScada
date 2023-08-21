@@ -18,9 +18,9 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 		private readonly CancellationTokenSource cancellationTokenSource;
 		private CancellationToken cancellationToken;
 		private bool connectingStarted = false;
-		private readonly AsyncRetryPolicy retryPolicy = Policy
+		private readonly RetryPolicy retryPolicy = Policy
 			.Handle<SocketException>()
-			.WaitAndRetryForeverAsync(retryAttemp => TimeSpan.FromSeconds(5));
+			.WaitAndRetryForever(retryAttemp => TimeSpan.FromSeconds(5));
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ConnectingRtuState"/> and starts connecting to the RTU.
@@ -43,21 +43,24 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 		/// <returns><see cref="RtuConnectionResponse"/></returns>
 		public RtuConnectionResponse Connect(string ipAddress, int port)
 		{
-			//TODO thread synchronization
 			if (!connectingStarted)
 			{
 				connectingStarted = true;
-				retryPolicy.ExecuteAsync((cancellationToken) =>
+				//TODO Try to use ExecuteAsync method instead
+				Task.Run(() =>
 				{
-					TcpClient client = new TcpClient(_rtuConnection.IpAddress, _rtuConnection.Port);
-					ModbusFactory modbusFactory = new ModbusFactory();
-					_rtuConnection.ModbusMaster = modbusFactory.CreateMaster(client);
+					retryPolicy.Execute((cancellationToken) =>
+					{
+						TcpClient client = new TcpClient(_rtuConnection.IpAddress, _rtuConnection.Port);
+						ModbusFactory modbusFactory = new ModbusFactory();
+						_rtuConnection.ModbusMaster = modbusFactory.CreateMaster(client);
 
-					_rtuConnection.DynamicCacheManagerServiceClient.ProcessCommandResult(new ConnectToRtuResult(_rtuConnection.RtuId));
-					_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnectionState(RtuConnectionState.Online, _rtuConnection);
+						_rtuConnection.DynamicCacheManagerServiceClient.ProcessCommandResult(new ConnectToRtuResult(_rtuConnection.RtuId));
+						_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnectionState(RtuConnectionState.Online, _rtuConnection);
 
-					return Task.CompletedTask;
-				}, cancellationToken);
+						return Task.CompletedTask;
+					}, cancellationToken);
+				});
 			}
 
 			return RtuConnectionResponse.Connecting;
@@ -71,6 +74,7 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 		{
 			cancellationTokenSource.Cancel();
 			cancellationTokenSource.Dispose();
+			_rtuConnection.ConnectionState = _rtuConnection.ConnectionStateFactory.CreateConnectionState(RtuConnectionState.Disconnected, _rtuConnection);
 			Console.WriteLine("Disconnected");
 			return RtuConnectionResponse.Disconnected;
 		}

@@ -30,20 +30,40 @@
             <DataGrid ItemsSource="{Binding RtuCache.RtuList}" SelectedItem="{Binding SelectedRtu}" Margin="20,10,20,20" AutoGenerateColumns="False" CanUserAddRows="False" Width="1140px" x:Name="DevicesDataGrid">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="{Binding SelectedRtu.OnScan, Converter={StaticResource RtuStatusConverter}}"
+                        <MenuItem Header="{Binding SelectedRtu.OffScan, Converter={StaticResource RtuStatusConverter}}"
                                   Command="{Binding Path=ConnectToRtuCommand}"
                                   CommandParameter="{Binding SelectedRtu}">
                         </MenuItem>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
+                
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding OffScan}" Value="True">
+                                <Setter Property="Background" Value="#e0e0e0"/>
+                                <Setter Property="Foreground" Value="SlateGray"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*"/>
+                    <DataGridTextColumn Header="RTU" Binding="{Binding RTUData.Name}" Width ="*" IsReadOnly="True"/>
                     
                     <DataGridTemplateColumn Header="Flags" Width ="Auto" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ListBox ItemsSource="{Binding Flags}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                                <TextBlock 
+                                                    Text="{Binding Name}"
+                                                    Padding="5, 2, 5, 2"
+                                                    Foreground="White"
+                                                    Background="{Binding Type, Converter={StaticResource SignalFlagToColorConverter}}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
                                 </ListBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -58,7 +78,16 @@
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="FontWeight" Value="SemiBold"/>
                                 <Setter Property="TextAlignment" Value="Center"/>
-                                <Setter Property="Background" Value="{Binding IsConnected, Converter={StaticResource ConnectionButtonColorConverter}}"></Setter>
+                                <Setter Property="Background" Value="Red"></Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                                        <Setter Property="Background" Value="Green"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding OffScan}" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"></Setter>
+                                        <Setter Property="Foreground" Value="DarkGray"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
@@ -101,7 +130,7 @@
                                           SelectedItem="{Binding Path=DataContext.SelectedDiscreteSignal, RelativeSource = {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" BorderThickness="0px">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Background="{Binding DiscreteSignal.SignalFlags, Converter={StaticResource SignalFlagToColorConverter}}">
+                                            <StackPanel Orientation="Horizontal">
                                                 <!--<CheckBox VerticalAlignment="Center" IsChecked="{Binding Value}" Content="{Binding DiscreteSignal.Name}" 
                                                           Command="{Binding Path=DataContext.DiscreteSignalCheckboxCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
                                                           CommandParameter="{Binding}" />-->
@@ -145,7 +174,7 @@
                                 <ListBox VerticalAlignment="Top" ItemsSource="{Binding AnalogSignalValues}" BorderThickness="0px" IsEnabled="{Binding IsConnected}">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Background="{Binding AnalogSignal.SignalFlags, Converter={StaticResource SignalFlagToColorConverter}}">
+                                            <StackPanel Orientation="Horizontal">
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding AnalogSignal.Name}" />
                                                 <TextBlock VerticalAlignment="Center" Text=": " />
                                                 <TextBox VerticalAlignment="Center" Text="{Binding Value}" FontWeight="Bold"/>

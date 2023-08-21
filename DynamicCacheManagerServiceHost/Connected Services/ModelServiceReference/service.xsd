@@ -132,7 +132,7 @@
   <xs:element name="GetAllFlagsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags" minOccurs="0" name="GetAllFlagsResult" nillable="true" type="q10:ArrayOfFlag" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags" minOccurs="0" name="GetAllFlagsResult" nillable="true" type="q10:ArrayOfModelFlag" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

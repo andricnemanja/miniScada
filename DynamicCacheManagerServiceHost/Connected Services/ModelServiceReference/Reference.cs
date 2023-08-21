@@ -808,9 +808,9 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Flag", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ModelFlag", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary.Model.Flags")]
     [System.SerializableAttribute()]
-    public partial class Flag : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ModelFlag : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -820,6 +820,9 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -865,6 +868,19 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
                 if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
                     this.DescriptionField = value;
                     this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -1008,10 +1024,10 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
         System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
-        DynamicCacheManagerHost.ModelServiceReference.Flag[] GetAllFlags();
+        DynamicCacheManagerHost.ModelServiceReference.ModelFlag[] GetAllFlags();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.Flag[]> GetAllFlagsAsync();
+        System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelFlag[]> GetAllFlagsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1113,11 +1129,11 @@ namespace DynamicCacheManagerHost.ModelServiceReference {
             return base.Channel.GetSignalScanPeriodMappingsAsync();
         }
         
-        public DynamicCacheManagerHost.ModelServiceReference.Flag[] GetAllFlags() {
+        public DynamicCacheManagerHost.ModelServiceReference.ModelFlag[] GetAllFlags() {
             return base.Channel.GetAllFlags();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.Flag[]> GetAllFlagsAsync() {
+        public System.Threading.Tasks.Task<DynamicCacheManagerHost.ModelServiceReference.ModelFlag[]> GetAllFlagsAsync() {
             return base.Channel.GetAllFlagsAsync();
         }
     }

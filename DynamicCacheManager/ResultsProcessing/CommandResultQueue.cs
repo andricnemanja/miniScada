@@ -22,6 +22,7 @@ namespace DynamicCacheManager.ResultsProcessing
 
 		private void ProcessResults()
 		{
+			//TODO Add cancellation token
 			while (true)
 			{
 				commandResultReceiver.ReceiveCommandResult(commandResults.Take());

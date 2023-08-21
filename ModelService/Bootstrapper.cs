@@ -32,7 +32,7 @@ namespace ModelServiceHost
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\DiscreteSignalMappings.json"));
 			builder.RegisterType<JsonListSerializer<SignalScanPeriodMapping>>().As<IListSerializer<SignalScanPeriodMapping>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\ScanPeriodMappings.json"));
-			builder.RegisterType<JsonListSerializer<Flag>>().As<IListSerializer<Flag>>()
+			builder.RegisterType<JsonListSerializer<ModelFlag>>().As<IListSerializer<ModelFlag>>()
 				.WithParameter(new TypedParameter(typeof(string), @"\Resources\Flags.json"));
 
 			builder.RegisterType<AnalogSignalMappingRepository>().As<IAnalogSignalMappingRepository>()

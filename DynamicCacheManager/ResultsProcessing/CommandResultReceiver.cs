@@ -10,14 +10,18 @@ namespace DynamicCacheManager.ResultsProcessing
 	{
 		private readonly Dictionary<Type, ICommandResultProcessor> commandResultProcessors;
 
-		public CommandResultReceiver(IServiceRtuCache rtuCache, IDynamicCacheClient dynamicCacheClient)
+		public CommandResultReceiver(IServiceRtuCache rtuCache, IServiceFlagCache serviceFlagCache, IDynamicCacheClient dynamicCacheClient)
 		{
 			commandResultProcessors = new Dictionary<Type, ICommandResultProcessor>()
 			{
 				{typeof(ReadSingleAnalogSignalResult), new ReadSingleAnalogSignalResultProcessor(rtuCache, dynamicCacheClient) },
-				{typeof(ReadSingleAnalogSignalFailedResult), new ReadSingleAnalogSignalFailedResultProcessor(rtuCache, dynamicCacheClient) },
+				{typeof(ReadSingleAnalogSignalFailedResult), new ReadSingleAnalogSignalFailedResultProcessor(rtuCache, serviceFlagCache, dynamicCacheClient) },
+				{typeof(ReadSingleDiscreteSignalFailedResult), new ReadSingleDiscreteSignalFailedResultProcessor(rtuCache, serviceFlagCache, dynamicCacheClient) },
 				{typeof(ReadSingleDiscreteSignalResult), new ReadSingleDiscreteSignalResultProcessor(rtuCache, dynamicCacheClient) },
-				{ typeof(ConnectToRtuResult), new ConnectToRtuResultProcessor(rtuCache, dynamicCacheClient) }
+				{ typeof(ConnectToRtuResult), new ConnectToRtuResultProcessor(rtuCache, serviceFlagCache, dynamicCacheClient) },
+				{ typeof(ConnectionFailureResult), new ConnectionFailureResultProcessor(serviceFlagCache, dynamicCacheClient) },
+				{ typeof(RtuOffScanResult), new RtuOffScanResultProcessor(serviceFlagCache, dynamicCacheClient) },
+				{ typeof(RtuOnScanResult), new RtuOnScanResultProcessor(serviceFlagCache, dynamicCacheClient) }
 			};
 		}
 

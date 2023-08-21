@@ -23,6 +23,7 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusConnection.States
 		[Fact]
 		public void Connect()
 		{
+			//TODO moze 3 testa
 			string ipAddress = "127.0.0.1";
 			int port = 502;
 			rtuConnectionMock.Setup(r => r.IpAddress).Returns(ipAddress);

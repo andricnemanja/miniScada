@@ -17,7 +17,7 @@ namespace DynamicCacheManager.ServiceCache
 			this.dynamicCacheClient.ConnectToDynamicCache();
 		}
 
-		public List<Rtu> InitializeData()
+		public List<Rtu> InitializeRtuData()
 		{
 			List<Rtu> rtus = new List<Rtu>();
 
@@ -27,7 +27,6 @@ namespace DynamicCacheManager.ServiceCache
 				foreach (var analogSignal in rtu.AnalogSignals)
 				{
 					AnalogSignal newAnalogSignal = new AnalogSignal(analogSignal.ID, rtu.RTUData.ID, analogSignal.Deadband);
-					//dynamicCacheClient.SaveSignalToCache(newAnalogSignal);
 					analogSignals.Add(newAnalogSignal);
 				}
 
@@ -35,16 +34,27 @@ namespace DynamicCacheManager.ServiceCache
 				foreach (var discreteSignal in rtu.DiscreteSignals)
 				{
 					DiscreteSignal newDiscreteSignal = new DiscreteSignal(discreteSignal.ID, rtu.RTUData.ID);
-					//dynamicCacheClient.SaveSignalToCache(newDiscreteSignal);
 					discreteSignals.Add(newDiscreteSignal);
 				}
 
-				var newRtu = new Rtu(rtu.RTUData.ID, analogSignals, discreteSignals, new List<string>());
+				var newRtu = new Rtu(rtu.RTUData.ID, analogSignals, discreteSignals, new List<int>());
 				dynamicCacheClient.SaveRtuToCache(newRtu);
 				rtus.Add(newRtu);
 			}
 
 			return rtus;
+		}
+
+		public Dictionary<string, Flag> InitializeFlagData()
+		{
+			Dictionary<string, Flag> flagNameToFlag = new Dictionary<string, Flag>();
+
+			foreach (var modelFlag in modelService.GetAllFlags())
+			{
+				flagNameToFlag.Add(modelFlag.Name, new Flag(modelFlag));
+			}
+
+			return flagNameToFlag;
 		}
 	}
 }

@@ -5,7 +5,7 @@ namespace ModelWcfServiceLibrary.Repository
 {
 	public interface IFlagRepository
 	{
-		List<Flag> FlagList { get; }
+		List<ModelFlag> FlagList { get; }
 
 		void Deserialize();
 		void Serialize();

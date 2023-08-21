@@ -34,7 +34,6 @@ namespace ModelWcfServiceLibrary
 			this.analogSignalMappingRepository = analogSignalMappingRepository;
 			this.discreteSignalMappingRepository = discreteSignalMappingRepository;
 			this.signalScanPeriodMappingRepository = signalScanPeriodMappingRepository;
-
 			this.flagRepository = flagRepository;
 		}
 
@@ -123,7 +122,7 @@ namespace ModelWcfServiceLibrary
 			return signalScanPeriodMappingRepository.SignalScanPeriodMappingList;
 		}
 		
-		public IEnumerable<Flag> GetAllFlags()
+		public IEnumerable<ModelFlag> GetAllFlags()
 		{
 			return flagRepository.FlagList;
 		}

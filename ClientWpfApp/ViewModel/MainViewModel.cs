@@ -28,6 +28,7 @@ namespace ClientWpfApp.ViewModel
 
 		#region Public Properties
 		public IRtuCache RtuCache { get; set; } = new RtuCache();
+		public IFlagCache FlagCache { get; set; } = new FlagCache();
 
 		private RTU _selectedRtu;
 
@@ -49,6 +50,7 @@ namespace ClientWpfApp.ViewModel
 		public MainViewModel()
 		{
 			ReadRTUStaticData();
+			ReadFlagStaticData();
 			ConnectToModbusServices();
 			InitializeCommands();
 			ConnectToDynamicCache();
@@ -58,6 +60,11 @@ namespace ClientWpfApp.ViewModel
 		private void ReadRTUStaticData()
 		{
 			RtuCache.ReadRtuStaticData();
+		}
+
+		private void ReadFlagStaticData()
+		{
+			FlagCache.ReadFlagStaticData();
 		}
 
 		private void ConnectToModbusServices()
@@ -77,7 +84,7 @@ namespace ClientWpfApp.ViewModel
 
 		private void ConnectToDynamicCache()
 		{
-			dynamicCache = new DynamicCache(RtuCache);
+			dynamicCache = new DynamicCache(RtuCache, FlagCache);
 			Task.Run(dynamicCache.Connect).Wait();
 			Task.Run(() => dynamicCache.CheckConnection(new System.Threading.CancellationToken())) ;
 			dynamicCache.InitalScan();

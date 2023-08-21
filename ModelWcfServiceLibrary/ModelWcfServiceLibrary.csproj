@@ -90,8 +90,8 @@
     <Compile Include="IModelService.cs" />
     <Compile Include="ModelServiceException.cs" />
     <Compile Include="Model\CronJobPeriodMapping\ModelCronJobPeriodMapping.cs" />
-    <Compile Include="Model\Flags\Flag.cs" />
-    <Compile Include="Model\Flags\FlagType.cs" />
+    <Compile Include="Model\Flags\ModelFlag.cs" />
+    <Compile Include="Model\Flags\ModelFlagType.cs" />
     <Compile Include="Model\RTU\ModelRTU.cs" />
     <Compile Include="Model\RTU\ModelRTUData.cs" />
     <Compile Include="Model\ScanPeriodMapping\SignalScanPeriodMapping.cs" />

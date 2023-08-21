@@ -24,7 +24,14 @@ namespace ClientWpfApp.Commands
 		public void Execute(object parameter)
 		{
 			RTU rtu = (RTU)parameter;
-			rtuConnection.RtuOnScan(rtu.RTUData.ID);
+			if (rtu.OffScan)
+			{
+				rtuConnection.RtuOnScan(rtu.RTUData.ID);
+			}
+			else
+			{
+				rtuConnection.RtuOffScan(rtu.RTUData.ID);
+			}
 		}
 	}
 }
