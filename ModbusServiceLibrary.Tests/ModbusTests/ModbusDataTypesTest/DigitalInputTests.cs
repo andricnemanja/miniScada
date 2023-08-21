@@ -19,25 +19,25 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusDataTypesTest
 		public void Read_Successful()
 		{
 			bool[] mockReadValues = { true, true };
-			modbusClientMock.Setup(x => x.TryReadInputs(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out mockReadValues)).Returns(true);
+			modbusClientMock.Setup(x => x.ReadInputs(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out mockReadValues)).Returns(true);
 
-			bool isSuccessful = digitalInput.TryRead(modbusClientMock.Object, out byte readValue);
+			bool isSuccessful = digitalInput.Read(modbusClientMock.Object, out byte readValue);
 
 			Assert.True(isSuccessful);
 			Assert.Equal(3, readValue);
-			modbusClientMock.Verify(x => x.TryReadInputs(digitalInput.RtuId, digitalInput.Address, digitalInput.Length, out It.Ref<bool[]>.IsAny));
+			modbusClientMock.Verify(x => x.ReadInputs(digitalInput.RtuId, digitalInput.Address, digitalInput.Length, out It.Ref<bool[]>.IsAny));
 		}
 
 		[Fact]
 		public void Read_Failed()
 		{
 			bool[] mockReadValues = { true, false };
-			modbusClientMock.Setup(x => x.TryReadInputs(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out mockReadValues)).Returns(false);
+			modbusClientMock.Setup(x => x.ReadInputs(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out mockReadValues)).Returns(false);
 
-			bool isSuccessful = digitalInput.TryRead(modbusClientMock.Object, out byte readValue);
+			bool isSuccessful = digitalInput.Read(modbusClientMock.Object, out byte readValue);
 
 			Assert.False(isSuccessful);
-			modbusClientMock.Verify(x => x.TryReadInputs(digitalInput.RtuId, digitalInput.Address, digitalInput.Length, out It.Ref<bool[]>.IsAny));
+			modbusClientMock.Verify(x => x.ReadInputs(digitalInput.RtuId, digitalInput.Address, digitalInput.Length, out It.Ref<bool[]>.IsAny));
 		}
 
 		[Fact]
@@ -45,7 +45,7 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusDataTypesTest
 		{
 			byte newValueByte = 2;
 
-			bool isSuccessful = digitalInput.TryWrite(modbusClientMock.Object, newValueByte);
+			bool isSuccessful = digitalInput.Write(modbusClientMock.Object, newValueByte);
 
 			Assert.False(isSuccessful);
 		}

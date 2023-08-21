@@ -1,4 +1,5 @@
 ﻿using ModbusServiceLibrary.Modbus.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.Modbus.ModbusDataTypes;
 using ModbusServiceLibrary.SignalConverter;
 
@@ -16,44 +17,48 @@ namespace ModbusServiceLibrary.Modbus
 			this.modbusClient = modbusClient;
 			this.modbusDataStaticCache = modbusDataStaticCache;
 		}
-		public bool TryReadDiscreteSignal(int signalId, out string state)
+		public RtuConnectionResponse ReadDiscreteSignal(int signalId, out string state)
 		{
 			IDigitalPoint digitalPoint = modbusDataStaticCache.FindDiscretePoint(signalId);
-			if(digitalPoint.TryRead(modbusClient, out byte rawValue))
+			var commandResponse = digitalPoint.Read(modbusClient, out byte rawValue);
+			if(commandResponse == RtuConnectionResponse.CommandExecuted)
 			{
 				state = signalMapper.ConvertDiscreteSignalValueToState(digitalPoint.MappingId, rawValue);
-				return true;
 			}
-			state = string.Empty;
-			return false;
+			else
+			{
+				state = string.Empty;
+			}
+			return commandResponse;
 		}
-		public bool TryReadAnalogSignal(int signalId, out double signalValue)
+		public RtuConnectionResponse ReadAnalogSignal(int signalId, out double signalValue)
 		{
 			IAnalogPoint analogPoint = modbusDataStaticCache.FindAnalogPoint(signalId);
-			if(analogPoint.TryRead(modbusClient, out ushort rawValue))
-			{
-				signalValue = signalMapper.ConvertAnalogSignalToRealValue(analogPoint.MappingId, rawValue);
-				return true;
-			}
-			signalValue = 0;
-			return false;
+
+			var commandResponse = analogPoint.Read(modbusClient, out ushort rawValue);
+			signalValue = signalMapper.ConvertAnalogSignalToRealValue(analogPoint.MappingId, rawValue);
+			return commandResponse;
 		}
-		public bool TryWriteAnalogSignal(int signalId, double newValue)
+		public RtuConnectionResponse WriteAnalogSignal(int signalId, double newValue)
 		{
 			IAnalogPoint analogPoint = modbusDataStaticCache.FindAnalogPoint(signalId);
 			int rawValue = signalMapper.ConvertRealValueToAnalogSignalValue(analogPoint.MappingId, newValue);
-			return analogPoint.TryWrite(modbusClient, rawValue);
+			return analogPoint.Write(modbusClient, rawValue);
 		}
-		public bool TryWriteDiscreteSignal(int signalId, string newState)
+		public RtuConnectionResponse WriteDiscreteSignal(int signalId, string newState)
 		{
 			IDigitalPoint digitalPoint = modbusDataStaticCache.FindDiscretePoint(signalId);
 			byte rawValue = signalMapper.ConvertStateToDiscreteSignalValue(digitalPoint.MappingId, newState);
-			return digitalPoint.TryWrite(modbusClient, rawValue);
+			return digitalPoint.Write(modbusClient, rawValue);
 		}
-		public bool TryConnectToRtu(int rtuId, string rtuAddress, int port)
+		public RtuConnectionResponse ConnectToRtu(int rtuId, string rtuAddress, int port)
 		{
-			modbusClient.TryConnect(rtuId, rtuAddress, port);
-			return true;
+			return modbusClient.Connect(rtuId, rtuAddress, port);
+		}
+
+		public RtuConnectionResponse DisconnectFromRtu(int rtuId)
+		{
+			return modbusClient.Disconnect(rtuId);
 		}
 	}
 }

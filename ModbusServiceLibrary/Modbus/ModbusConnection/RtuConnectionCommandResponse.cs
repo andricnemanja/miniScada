@@ -10,6 +10,7 @@
 		AlreadyDisconnected,
 		AlreadyConnected,
 		CommandExecuted,
-		CommandFailed
+		CommandFailed,
+		UnsupportedCommand
 	}
 }

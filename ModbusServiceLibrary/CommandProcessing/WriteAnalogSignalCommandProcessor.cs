@@ -1,8 +1,7 @@
 ﻿using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.Modbus;
-using ModbusServiceLibrary.Model.Signals;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.RtuCommands;
-using ModbusServiceLibrary.RtuConfiguration;
 
 namespace ModbusServiceLibrary.CommandProcessing
 {
@@ -18,8 +17,8 @@ namespace ModbusServiceLibrary.CommandProcessing
 		public CommandResultBase ProcessCommand(RtuCommandBase command)
 		{
 			WriteAnalogSignalCommand writeAnalogSignalCommand = (WriteAnalogSignalCommand)command;
-
-			if(protocolDriver.TryWriteAnalogSignal(writeAnalogSignalCommand.SignalId, writeAnalogSignalCommand.ValueToWrite))
+			var commandState = protocolDriver.WriteAnalogSignal(writeAnalogSignalCommand.SignalId, writeAnalogSignalCommand.ValueToWrite);
+			if (commandState == RtuConnectionResponse.CommandExecuted)
 			{
 				return new WriteAnalogSignalCommandResult(writeAnalogSignalCommand.RtuId);
 			}

@@ -26,7 +26,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 		{
 			//Arrange
 			var writeDiscreteSignalCommand = new WriteDiscreteSignalCommand(1, 1, "On");
-			protocolDriverMock.Setup(x => x.TryWriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State)).Returns(true);
+			protocolDriverMock.Setup(x => x.WriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State)).Returns(true);
 
 			var commandProcessor = new WriteDiscreteSignalCommandProcessor(protocolDriverMock.Object);
 
@@ -42,7 +42,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 		{
 			//Arrange
 			var writeDiscreteSignalCommand = new WriteDiscreteSignalCommand(1, 1, "On");
-			protocolDriverMock.Setup(x => x.TryWriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State)).Returns(false);
+			protocolDriverMock.Setup(x => x.WriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State)).Returns(false);
 
 			var commandProcessor = new WriteDiscreteSignalCommandProcessor(protocolDriverMock.Object);
 

@@ -1,4 +1,5 @@
 ﻿using ModbusServiceLibrary.Modbus.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 
 namespace ModbusServiceLibrary.Modbus.ModbusDataTypes
 {
@@ -22,20 +23,23 @@ namespace ModbusServiceLibrary.Modbus.ModbusDataTypes
 		public byte Length { get; }
 
 
-		public bool TryRead(IModbusClient modbusClient, out byte readValue)
+		public RtuConnectionResponse Read(IModbusClient modbusClient, out byte readValue)
 		{
-			if(modbusClient.TryReadInputs(RtuId, Address, Length, out bool[] values))
+			var commandState = modbusClient.ReadInputs(RtuId, Address, Length, out bool[] values);
+			if (commandState == RtuConnectionResponse.CommandExecuted)
 			{
 				readValue = BoolArrayToByte(values);
-				return true;
 			}
-			readValue = 0;
-			return false;
+			else
+			{
+				readValue = 0;
+			}
+			return commandState;
 		}
 
-		public bool TryWrite(IModbusClient modbusClient, byte newValue)
+		public RtuConnectionResponse Write(IModbusClient modbusClient, byte newValue)
 		{
-			return false;
+			return RtuConnectionResponse.UnsupportedCommand;
 		}
 
 		private byte BoolArrayToByte(bool[] readValues)

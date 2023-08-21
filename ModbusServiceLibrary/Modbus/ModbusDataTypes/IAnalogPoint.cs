@@ -1,10 +1,11 @@
 ﻿using ModbusServiceLibrary.Modbus.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 
 namespace ModbusServiceLibrary.Modbus.ModbusDataTypes
 {
 	public interface IAnalogPoint : IPoint
 	{
-		bool TryRead(IModbusClient modbusClient, out ushort readValue);
-		bool TryWrite(IModbusClient modbusClient, int newValue);
+		RtuConnectionResponse Read(IModbusClient modbusClient, out ushort readValue);
+		RtuConnectionResponse Write(IModbusClient modbusClient, int newValue);
 	}
 }

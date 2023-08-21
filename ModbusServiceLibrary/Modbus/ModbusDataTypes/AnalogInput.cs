@@ -1,4 +1,5 @@
 ﻿using ModbusServiceLibrary.Modbus.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 
 namespace ModbusServiceLibrary.Modbus.ModbusDataTypes
 {
@@ -19,20 +20,23 @@ namespace ModbusServiceLibrary.Modbus.ModbusDataTypes
 		public int Address { get; }
 		public int MappingId { get; }
 
-		public bool TryRead(IModbusClient modbusClient, out ushort readValue)
+		public RtuConnectionResponse Read(IModbusClient modbusClient, out ushort readValue)
 		{
-			if(modbusClient.TryReadInputRegisters(RtuId, Address, 1, out ushort[] values))
+			var commandState = modbusClient.ReadInputRegisters(RtuId, Address, 1, out ushort[] values);
+			if (commandState == RtuConnectionResponse.CommandExecuted)
 			{
 				readValue = values[0];
-				return true;
 			}
-			readValue = 0;
-			return false;
+			else
+			{
+				readValue = 0;
+			}
+			return commandState;
 		}
 
-		public bool TryWrite(IModbusClient modbusClient, int newValue)
+		public RtuConnectionResponse Write(IModbusClient modbusClient, int newValue)
 		{
-			return false;
+			return RtuConnectionResponse.UnsupportedCommand;
 		}
 	}
 }

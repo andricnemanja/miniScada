@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.Modbus;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.Model.Signals;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.RtuConfiguration;
@@ -39,7 +40,8 @@ namespace ModbusServiceLibrary.CommandProcessing
 
 		private CommandResultBase ReadDiscreteSignalValue(IModbusSignal signal, int rtuId)
 		{
-			if (protocolDriver.TryReadDiscreteSignal(signal.ID, out string signalState))
+			var commandState = protocolDriver.ReadDiscreteSignal(signal.ID, out string signalState);
+			if (commandState == RtuConnectionResponse.CommandExecuted)
 			{
 				return new ReadSingleDiscreteSignalResult(rtuId, signal.ID, signalState);
 			}
@@ -48,7 +50,8 @@ namespace ModbusServiceLibrary.CommandProcessing
 
 		private CommandResultBase ReadAnalogSignalValue(IModbusSignal signal, int rtuId)
 		{
-			if(protocolDriver.TryReadAnalogSignal(signal.ID, out double signalValue))
+			var commandState = protocolDriver.ReadAnalogSignal(signal.ID, out double signalValue);
+			if (commandState == RtuConnectionResponse.CommandExecuted)
 			{
 				return new ReadSingleAnalogSignalResult(rtuId, signal.ID, signalValue);
 			}

@@ -28,7 +28,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 			int signalId = 1;
 			int rtuId = 1;
 			double valueToWrite = 12.5;
-			protocolDriverMock.Setup(x => x.TryWriteAnalogSignal(signalId, valueToWrite)).Returns(true);
+			protocolDriverMock.Setup(x => x.WriteAnalogSignal(signalId, valueToWrite)).Returns(true);
 
 			var writeAnalogSignalCommand = new WriteAnalogSignalCommand(rtuId, signalId, valueToWrite);
 			var commandProcessor = new WriteAnalogSignalCommandProcessor(protocolDriverMock.Object);
@@ -46,7 +46,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 		{
 			//Arrange
 			var writeAnalogSignalCommand = new WriteAnalogSignalCommand(1, 1, 12.5);
-			protocolDriverMock.Setup(x => x.TryWriteAnalogSignal(writeAnalogSignalCommand.SignalId, writeAnalogSignalCommand.ValueToWrite)).Returns(false);
+			protocolDriverMock.Setup(x => x.WriteAnalogSignal(writeAnalogSignalCommand.SignalId, writeAnalogSignalCommand.ValueToWrite)).Returns(false);
 
 			var commandProcessor = new WriteAnalogSignalCommandProcessor(protocolDriverMock.Object);
 

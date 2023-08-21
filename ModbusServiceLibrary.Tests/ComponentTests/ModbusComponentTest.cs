@@ -30,9 +30,9 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		[Fact]
 		public void ConnectToRtu_Succesful()
 		{
-			modbusClientMock.Setup(x => x.TryConnect(1, "192.168.0.1", 502));
+			modbusClientMock.Setup(x => x.Connect(1, "192.168.0.1", 502));
 
-			bool isSuccesfull = modbusDriver.TryConnectToRtu(1, "192.168.0.1", 502);
+			bool isSuccesfull = modbusDriver.ConnectToRtu(1, "192.168.0.1", 502);
 
 			Assert.True(isSuccesfull);
 		}
@@ -46,9 +46,9 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 			ushort[] values = new ushort[1];
 			values[0] = rawValue;
 			int signalId = 1;
-			modbusClientMock.Setup(x => x.TryReadHoldingRegisters(It.IsAny<int>(), It.IsAny<int>(), 1, out values)).Returns(true);
+			modbusClientMock.Setup(x => x.ReadHoldingRegisters(It.IsAny<int>(), It.IsAny<int>(), 1, out values)).Returns(true);
 
-			bool isSuccesfull = modbusDriver.TryReadAnalogSignal(signalId, out double value);
+			bool isSuccesfull = modbusDriver.ReadAnalogSignal(signalId, out double value);
 
 			Assert.Equal(expectedValue, value);
 			Assert.True(isSuccesfull);
@@ -63,9 +63,9 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 			ushort[] readValues = new ushort[1];
 			readValues[0] = rawValue;
 			int signalId = 2;
-			modbusClientMock.Setup(x => x.TryReadInputRegisters(It.IsAny<int>(), It.IsAny<int>(), 1, out readValues)).Returns(true);
+			modbusClientMock.Setup(x => x.ReadInputRegisters(It.IsAny<int>(), It.IsAny<int>(), 1, out readValues)).Returns(true);
 
-			bool isSuccesfull = modbusDriver.TryReadAnalogSignal(signalId, out double value);
+			bool isSuccesfull = modbusDriver.ReadAnalogSignal(signalId, out double value);
 
 			Assert.Equal(expectedValue, value);
 			Assert.True(isSuccesfull);
@@ -76,9 +76,9 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		{
 			int signalId = 1;
 			ushort[] values = new ushort[1];
-			modbusClientMock.Setup(x => x.TryReadHoldingRegisters(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out values)).Returns(false);
+			modbusClientMock.Setup(x => x.ReadHoldingRegisters(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out values)).Returns(false);
 
-			bool isSuccesfull = modbusDriver.TryReadAnalogSignal(signalId, out double value);
+			bool isSuccesfull = modbusDriver.ReadAnalogSignal(signalId, out double value);
 
 			Assert.False(isSuccesfull);
 		}
@@ -91,9 +91,9 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		public void ReadDiscreteSignal_Coil_Succesful(bool[] readValues, string newState)
 		{
 			int signalId = 6;
-			modbusClientMock.Setup(x => x.TryReadCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out readValues)).Returns(true);
+			modbusClientMock.Setup(x => x.ReadCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out readValues)).Returns(true);
 
-			bool isSuccesfull = modbusDriver.TryReadDiscreteSignal(signalId, out string state);
+			bool isSuccesfull = modbusDriver.ReadDiscreteSignal(signalId, out string state);
 
 			Assert.Equal(newState, state);
 			Assert.True(isSuccesfull);
@@ -107,9 +107,9 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		public void ReadDiscreteSignal_DigitalPoint_Succesful(bool[] readValues, string newState)
 		{
 			int signalId = 7;
-			modbusClientMock.Setup(x => x.TryReadInputs(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out readValues)).Returns(true);
+			modbusClientMock.Setup(x => x.ReadInputs(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out readValues)).Returns(true);
 
-			bool isSuccesfull = modbusDriver.TryReadDiscreteSignal(signalId, out string state);
+			bool isSuccesfull = modbusDriver.ReadDiscreteSignal(signalId, out string state);
 
 			Assert.Equal(newState, state);
 			Assert.True(isSuccesfull);
@@ -120,9 +120,9 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		{
 			int signalId = 6;
 			bool[] readValues = new bool[2];
-			modbusClientMock.Setup(x => x.TryReadCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out readValues)).Returns(false);
+			modbusClientMock.Setup(x => x.ReadCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out readValues)).Returns(false);
 
-			bool isSuccesfull = modbusDriver.TryReadDiscreteSignal(signalId, out string state);
+			bool isSuccesfull = modbusDriver.ReadDiscreteSignal(signalId, out string state);
 
 			Assert.False(isSuccesfull);
 		}
@@ -132,9 +132,9 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		{
 			int signalId = 7;
 			bool[] readValues = new bool[2];
-			modbusClientMock.Setup(x => x.TryReadInputs(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out readValues)).Returns(false);
+			modbusClientMock.Setup(x => x.ReadInputs(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out readValues)).Returns(false);
 
-			bool isSuccesfull = modbusDriver.TryReadDiscreteSignal(signalId, out string state);
+			bool isSuccesfull = modbusDriver.ReadDiscreteSignal(signalId, out string state);
 
 			Assert.False(isSuccesfull);
 		}
@@ -149,11 +149,11 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 			ushort[] values = new ushort[1];
 			values[0] = rawValue;
 			int signalId = 1;
-			modbusClientMock.Setup(x => x.TryWriteSingleHoldingRegister(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+			modbusClientMock.Setup(x => x.WriteSingleHoldingRegister(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
 
-			bool isSuccesfull = modbusDriver.TryWriteAnalogSignal(signalId, newValue);
+			bool isSuccesfull = modbusDriver.WriteAnalogSignal(signalId, newValue);
 
-			modbusClientMock.Verify(x => x.TryWriteSingleHoldingRegister(It.IsAny<int>(), It.IsAny<int>(), rawValue));
+			modbusClientMock.Verify(x => x.WriteSingleHoldingRegister(It.IsAny<int>(), It.IsAny<int>(), rawValue));
 			Assert.True(isSuccesfull);
 		}
 
@@ -161,11 +161,11 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		public void WriteAnalogSignal_HoldingRegister_Failed()
 		{
 			int signalId = 1;
-			modbusClientMock.Setup(x => x.TryWriteSingleHoldingRegister(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false);
+			modbusClientMock.Setup(x => x.WriteSingleHoldingRegister(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false);
 
-			bool isSuccesfull = modbusDriver.TryWriteAnalogSignal(signalId, It.IsAny<int>());
+			bool isSuccesfull = modbusDriver.WriteAnalogSignal(signalId, It.IsAny<int>());
 
-			modbusClientMock.Verify(x => x.TryWriteSingleHoldingRegister(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()));
+			modbusClientMock.Verify(x => x.WriteSingleHoldingRegister(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()));
 			Assert.False(isSuccesfull);
 		}
 
@@ -174,7 +174,7 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		{
 			int signalId = 2;
 
-			bool isSuccesfull = modbusDriver.TryWriteAnalogSignal(signalId, It.IsAny<int>());
+			bool isSuccesfull = modbusDriver.WriteAnalogSignal(signalId, It.IsAny<int>());
 
 			Assert.False(isSuccesfull);
 		}
@@ -185,11 +185,11 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		public void WriteDiscreteSignal_Coil_Succesful(string newState, bool[] rawValues)
 		{
 			int signalId = 6;
-			modbusClientMock.Setup(x => x.TryWriteCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<bool[]>())).Returns(true);
+			modbusClientMock.Setup(x => x.WriteCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<bool[]>())).Returns(true);
 
-			bool isSuccesfull = modbusDriver.TryWriteDiscreteSignal(signalId, newState);
+			bool isSuccesfull = modbusDriver.WriteDiscreteSignal(signalId, newState);
 
-			modbusClientMock.Verify(x => x.TryWriteCoils(It.IsAny<int>(), It.IsAny<int>(), rawValues));
+			modbusClientMock.Verify(x => x.WriteCoils(It.IsAny<int>(), It.IsAny<int>(), rawValues));
 			Assert.True(isSuccesfull);
 		}
 
@@ -199,11 +199,11 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		public void WriteDiscreteSignal_Coil_Failed(string newState, bool[] rawValues)
 		{
 			int signalId = 6;
-			modbusClientMock.Setup(x => x.TryWriteCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<bool[]>())).Returns(false);
+			modbusClientMock.Setup(x => x.WriteCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<bool[]>())).Returns(false);
 
-			bool isSuccesfull = modbusDriver.TryWriteDiscreteSignal(signalId, newState);
+			bool isSuccesfull = modbusDriver.WriteDiscreteSignal(signalId, newState);
 
-			modbusClientMock.Verify(x => x.TryWriteCoils(It.IsAny<int>(), It.IsAny<int>(), rawValues));
+			modbusClientMock.Verify(x => x.WriteCoils(It.IsAny<int>(), It.IsAny<int>(), rawValues));
 			Assert.False(isSuccesfull);
 		}
 
@@ -212,7 +212,7 @@ namespace ModbusServiceLibrary.Tests.ComponentTests
 		{
 			int signalId = 7;
 
-			bool isSuccesfull = modbusDriver.TryWriteDiscreteSignal(signalId, It.IsAny<string>());
+			bool isSuccesfull = modbusDriver.WriteDiscreteSignal(signalId, It.IsAny<string>());
 
 			Assert.False(isSuccesfull);
 		}

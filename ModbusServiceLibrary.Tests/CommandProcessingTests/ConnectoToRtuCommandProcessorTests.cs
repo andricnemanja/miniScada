@@ -37,7 +37,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 				Port = 502
 			};
 			rtuConfigurationMock.Setup(x => x.GetRtuConnectionParameters(1)).Returns(connectionParameters);
-			protocolDriverMock.Setup(x => x.TryConnectToRtu(1, connectionParameters.IpAddress, connectionParameters.Port)).Returns(true);
+			protocolDriverMock.Setup(x => x.ConnectToRtu(1, connectionParameters.IpAddress, connectionParameters.Port)).Returns(true);
 
 			var connectToRtuCommand = new RtuOnScanCommand(1);
 			var commandProcessor = new RtuOnScanCommandProcessor(protocolDriverMock.Object, rtuConfigurationMock.Object);
@@ -48,7 +48,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 			// Assert
 			Assert.IsType<ConnectToRtuResult>(result);
 			Assert.Equal(connectToRtuCommand.RtuId, result.RtuId);
-			protocolDriverMock.Verify(x => x.TryConnectToRtu(1, "192.168.1.1", 502));
+			protocolDriverMock.Verify(x => x.ConnectToRtu(1, "192.168.1.1", 502));
 		}
 
 		[Fact]
@@ -63,7 +63,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 			var connectToRtuCommand = new RtuOnScanCommand(1);
 			
 			rtuConfigurationMock.Setup(x => x.GetRtuConnectionParameters(connectToRtuCommand.RtuId)).Returns(connectionParameters);
-			protocolDriverMock.Setup(x => x.TryConnectToRtu(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port)).Returns(false);
+			protocolDriverMock.Setup(x => x.ConnectToRtu(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port)).Returns(false);
 
 			var commandProcessor = new RtuOnScanCommandProcessor(protocolDriverMock.Object, rtuConfigurationMock.Object);
 
@@ -73,7 +73,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 			//Assert
 			Assert.IsType<ConnectToRtuFailedResult>(result);
 			Assert.Equal(connectToRtuCommand.RtuId, result.RtuId);
-			protocolDriverMock.Verify(x => x.TryConnectToRtu(1, "192.168.1.1", 502));
+			protocolDriverMock.Verify(x => x.ConnectToRtu(1, "192.168.1.1", 502));
 		}
 
 

@@ -1,11 +1,14 @@
-﻿namespace ModbusServiceLibrary.Modbus
+﻿using ModbusServiceLibrary.Modbus.ModbusConnection;
+
+namespace ModbusServiceLibrary.Modbus
 {
 	public interface IProtocolDriver
 	{
-		bool TryReadAnalogSignal(int signalId, out double signalValue);
-		bool TryReadDiscreteSignal(int signalId, out string state);
-		bool TryWriteAnalogSignal(int signalId, double newValue);
-		bool TryWriteDiscreteSignal(int signalId, string newState);
-		bool TryConnectToRtu(int rtuId, string rtuAddress, int port);
+		RtuConnectionResponse ReadAnalogSignal(int signalId, out double signalValue);
+		RtuConnectionResponse ReadDiscreteSignal(int signalId, out string state);
+		RtuConnectionResponse WriteAnalogSignal(int signalId, double newValue);
+		RtuConnectionResponse WriteDiscreteSignal(int signalId, string newState);
+		RtuConnectionResponse ConnectToRtu(int rtuId, string rtuAddress, int port);
+		RtuConnectionResponse DisconnectFromRtu(int rtuId);
 	}
 }

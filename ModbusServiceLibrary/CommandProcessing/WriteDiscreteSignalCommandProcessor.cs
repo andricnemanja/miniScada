@@ -1,5 +1,6 @@
 ﻿using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.Modbus;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.RtuCommands;
 
 namespace ModbusServiceLibrary.CommandProcessing
@@ -16,8 +17,8 @@ namespace ModbusServiceLibrary.CommandProcessing
 		public CommandResultBase ProcessCommand(RtuCommandBase command)
 		{
 			WriteDiscreteSignalCommand writeDiscreteSignalCommand = (WriteDiscreteSignalCommand)command;
-
-			if (protocolDriver.TryWriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State))
+			var commandState = protocolDriver.WriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State);
+			if (commandState == RtuConnectionResponse.CommandExecuted)
 			{
 				return new WriteDiscreteSignalCommandResult(writeDiscreteSignalCommand.RtuId);
 			}

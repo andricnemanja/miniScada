@@ -22,11 +22,8 @@ namespace ModbusServiceLibrary.CommandProcessing
 			RtuOnScanCommand connectToRtuCommand = (RtuOnScanCommand)command;
 			RTUConnectionParameters connectionParameters = rtuConfiguration.GetRtuConnectionParameters(connectToRtuCommand.RtuId);
 
-			if (protocolDriver.TryConnectToRtu(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port))
-			{
-				return new ConnectToRtuResult(connectToRtuCommand.RtuId);
-			}
-			return new ConnectToRtuFailedResult(connectToRtuCommand.RtuId);
+			protocolDriver.ConnectToRtu(connectToRtuCommand.RtuId, connectionParameters.IpAddress, connectionParameters.Port);
+			return new RtuOnScanResult(connectToRtuCommand.RtuId);
 		}
 	}
 }
