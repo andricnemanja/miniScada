@@ -60,10 +60,5 @@ namespace ModbusServiceLibrary.Modbus
 		{
 			return modbusClient.Disconnect(rtuId);
 		}
-
-		public void DisconnectFromRtu(int rtuId)
-		{
-			modbusClient.Disconnect(rtuId);
-		}
 	}
 }
