@@ -19,12 +19,11 @@ namespace DynamicCacheManager.ResultsProcessing
 		public void ProcessCommandResult(CommandResultBase commandResult)
 		{
 			ReadSingleDiscreteSignalResult commandData = (ReadSingleDiscreteSignalResult)commandResult;
-			ISignal signal = rtuCache.GetSignal(commandData.RtuId, commandData.SignalId);
 
-			if (commandData.State != dynamicCacheClient.GetSignalValue(signal))
+			if (commandData.State != dynamicCacheClient.GetSignalValue(commandData.RtuId, commandData.SignalId))
 			{
-				dynamicCacheClient.ChangeSignalValue(signal, commandData.State);
-				dynamicCacheClient.PublishSignalChange(signal, commandData.State);
+				dynamicCacheClient.ChangeSignalValue(commandData.RtuId, commandData.SignalId, commandData.State);
+				dynamicCacheClient.PublishSignalChange(commandData.RtuId, commandData.SignalId, typeof(DiscreteSignal).Name, commandData.State);
 			}
 		}
 	}

@@ -115,6 +115,7 @@
     <Compile Include="CommandProcessing\WriteDiscreteSignalCommandProcessor.cs" />
     <Compile Include="CommandResult\ConnectionFailureResult.cs" />
     <Compile Include="CommandResult\ConnectToRtuFailedResult.cs" />
+    <Compile Include="CommandResult\Factory\ICommandResultFactory.cs" />
     <Compile Include="CommandResult\RtuOnScanResult.cs" />
     <Compile Include="CommandResult\RtuOffScanResult.cs" />
     <Compile Include="CommandResult\ConnectToRtuResult.cs" />

@@ -28,7 +28,6 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 
 		public void ConnectToDynamicCache()
 		{
-
 			var muxer = retryPolicy.Execute(() =>
 			{
 				return ConnectionMultiplexer.Connect(System.Configuration.ConfigurationManager.AppSettings["DynamicCacheAddress"]);
@@ -45,9 +44,20 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 			//}
 		}
 
-		public void AddSignalFlag(ISignal signal, string flag)
+		public void AddSignalFlag(int rtuId, int signalId, Flag flag)
 		{
-			redisDatabase.ListRightPush(redisStringBuilder.GenerateSignaFlagListName(signal.Id), flag);
+			Rtu rtu = FindRtu(rtuId);
+			ISignal signal = FindSignal(rtuId, signalId);
+			signal.Flags.Add(flag.ID);
+			rtuRedisCollection.Update(rtu);
+		}
+
+		public void RemoveSignalFlag(int rtuId, int signalId, Flag flag)
+		{
+			Rtu rtu = FindRtu(rtuId);
+			ISignal signal = FindSignal(rtuId, signalId);
+			signal.Flags.Remove(flag.ID);
+			rtuRedisCollection.Update(rtu);
 		}
 
 		public void SaveRtuToCache(Rtu rtu)
@@ -57,33 +67,11 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 			//connectionProvider.Connection.Set(rtu);
 		}
 
-		public void SaveSignalToCache(ISignal signal)
+		public void ChangeSignalValue(int rtuId, int signalId, string newValue)
 		{
-			if (!redisDatabase.KeyExists(redisStringBuilder.GenerateSignalKeyName(signal.Id)))
-			{
-				redisDatabase.HashSet(redisStringBuilder.GenerateSignalKeyName(signal.Id), new HashEntry[]
-				{
-					new HashEntry("id", signal.Id),
-					new HashEntry("signalType", signal.GetType().Name),
-					new HashEntry("value", string.Empty),
-				});
-			}
-		}
-
-		public void ChangeSignalValue(ISignal signal, string newValue)
-		{
-			Rtu rtu = FindRtu(signal.RtuId);
-
-			if (signal.GetType() == typeof(AnalogSignal))
-			{
-				AnalogSignal analogSignal = rtu.AnalogSignals.SingleOrDefault(s => s.Id == signal.Id);
-				analogSignal.Value = newValue;
-				rtuRedisCollection.Update(rtu);
-				return;
-			}
-
-			DiscreteSignal discreteSignal = rtu.DiscreteSignals.SingleOrDefault(s => s.Id == signal.Id);
-			discreteSignal.Value = newValue;
+			Rtu rtu = FindRtu(rtuId);
+			var signal = FindSignal(rtuId, signalId);
+			signal.Value = newValue;
 			rtuRedisCollection.Update(rtu);
 		}
 
@@ -101,14 +89,19 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 			rtuRedisCollection.Update(rtu);
 		}
 
-		public void PublishSignalChange(ISignal signal, string newValue)
+		public void PublishSignalChange(int rtuId, int signalId, string signalType, string newValue)
 		{
-			publisher.Publish(redisStringBuilder.GenerateChannelName(signal.RtuId, signal.GetType().Name, signal.Id), newValue);
+			publisher.Publish(redisStringBuilder.GenerateChannelName(rtuId, signalType, signalId), newValue);
 		}
 
-		public void PublishNewSignalFlag(ISignal signal, string flag)
+		public void PublishNewSignalFlag(int rtuId, int signalId, string signalType, Flag flag)
 		{
-			publisher.Publish(redisStringBuilder.GenerateFlagChannelName(signal.RtuId, signal.GetType().Name, signal.Id), flag);
+			publisher.Publish(redisStringBuilder.GenerateFlagChannelName(rtuId, signalType, signalId), flag.ID);
+		}
+
+		public void PublishRemovedSignalFlag(int rtuId, int signalId, string signalType, Flag flag)
+		{
+			publisher.Publish(redisStringBuilder.GenerateRemovedFlagChannelName(rtuId, signalType, signalId), flag.ID);
 		}
 
 		public void PublishNewRtuFlag(int rtuId, Flag flag)
@@ -127,24 +120,39 @@ namespace DynamicCacheManager.DynamicCacheClient.RedisCacheClient
 			return rtu.Flags.Contains(flag.ID);
 		}
 
-		public string GetSignalValue(ISignal signal)
+		public bool DoesSignalHaveFlag(int rtudId, int signalId, Flag flag)
 		{
-			Rtu rtu = FindRtu(signal.RtuId);
-			ISignal selectedSignal;
-			if (signal.GetType() == typeof(AnalogSignal))
-			{
-				selectedSignal = rtu.AnalogSignals.SingleOrDefault(s => s.Id == signal.Id);
-			}
-			else
-			{
-				selectedSignal = rtu.DiscreteSignals.SingleOrDefault(s => s.Id == signal.Id);
-			}
-			return selectedSignal.Value;
+			ISignal signal = FindSignal(rtudId, signalId);
+			return signal.Flags.Contains(flag.ID);
+		}
+
+		public string GetSignalValue(int rtuId, int signalId)
+		{
+			return FindSignal(rtuId, signalId).Value;
+		}
+
+		public double GetAnalogSignalDeadband(int rtuId, int signalId)
+		{
+			AnalogSignal signal = FindSignal(rtuId, signalId) as AnalogSignal;
+			return signal.Deadband;
 		}
 
 		private Rtu FindRtu(int rtuId)
 		{
 			return rtuRedisCollection.SingleOrDefault(r => r.Id == rtuId);
 		}
+
+		private ISignal FindSignal(int rtuId, int signalId)
+		{
+			Rtu rtu = FindRtu(rtuId);
+			ISignal signal = rtu.AnalogSignals.SingleOrDefault(s => s.Id == signalId);
+			if (signal != null)
+			{
+				return signal;
+			}
+			signal = rtu.DiscreteSignals.SingleOrDefault(s => s.Id == signalId);
+			return signal;
+		}
+
 	}
 }

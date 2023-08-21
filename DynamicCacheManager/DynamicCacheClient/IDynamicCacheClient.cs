@@ -6,16 +6,18 @@ namespace DynamicCacheManager.DynamicCacheClient
 	{
 		void ConnectToDynamicCache();
 		void SaveRtuToCache(Rtu rtu);
-		void AddSignalFlag(ISignal signal, string flag);
-		void SaveSignalToCache(ISignal signal);
+		void AddSignalFlag(int rtuId, int signalId, Flag flag);
 		void AddRtuFlag(int rtuId, Flag flag);
 		void RemoveRtuFlag(int rtuId, Flag flag);
-		void ChangeSignalValue(ISignal signal, string newValue);
-		void PublishSignalChange(ISignal signal, string newValue);
-		void PublishNewSignalFlag(ISignal signal, string flag);
+		void ChangeSignalValue(int rtuId, int signalId, string newValue);
+		void PublishSignalChange(int rtuId, int signalId, string signalType, string newValue);
+		void PublishNewSignalFlag(int rtuId, int signalId, string signalType, Flag flag);
+		void PublishRemovedSignalFlag(int rtuId, int signalId, string signalType, Flag flag);
 		void PublishNewRtuFlag(int rtuId, Flag flag);
 		void PublishRemovedRtuFlag(int rtuId, Flag flag);
-		string GetSignalValue(ISignal signal);
+		string GetSignalValue(int rtuId, int signalId);
 		bool DoesRtuHaveFlag(int rtudId, Flag flag);
+		bool DoesSignalHaveFlag(int rtudId, int signalId, Flag flag);
+		double GetAnalogSignalDeadband(int rtuId, int signalId);
 	}
 }

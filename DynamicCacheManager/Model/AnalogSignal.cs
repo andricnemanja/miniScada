@@ -1,4 +1,6 @@
-﻿namespace DynamicCacheManager.Model
+﻿using System.Collections.Generic;
+
+namespace DynamicCacheManager.Model
 {
 	public class AnalogSignal : ISignal
 	{
@@ -13,5 +15,6 @@
 		public int RtuId { get; }
 		public double Deadband { get; }
 		public string Value { get; set; }
+		public List<int> Flags { get; set; }
 	}
 }

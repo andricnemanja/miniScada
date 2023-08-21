@@ -20,24 +20,29 @@ namespace DynamicCacheManager.ResultsProcessing
 		public void ProcessCommandResult(CommandResultBase commandResult)
 		{
 			ReadSingleAnalogSignalResult commandData = (ReadSingleAnalogSignalResult)commandResult;
-			AnalogSignal signal = (AnalogSignal)rtuCache.GetSignal(commandData.RtuId, commandData.SignalId);
 
-			string signalCacheValue = dynamicCacheClient.GetSignalValue(signal);
+			string signalCacheValue = dynamicCacheClient.GetSignalValue(commandData.RtuId, commandData.SignalId);
+			double deadband = dynamicCacheClient.GetAnalogSignalDeadband(commandData.RtuId, commandData.SignalId);
 
-			if(signalCacheValue == string.Empty)
+			if(!double.TryParse(signalCacheValue, out double currentSignalValue))
 			{
-				dynamicCacheClient.ChangeSignalValue(signal, commandData.SignalValue.ToString());
-				dynamicCacheClient.PublishSignalChange(signal, commandData.SignalValue.ToString());
-				return;
+				ChangeSignalValue(commandData);
 			}
-
-			double.TryParse(signalCacheValue, out double currentSignalValue);
-
-			if (Math.Abs(currentSignalValue - commandData.SignalValue) > signal.Deadband) 
-			{ 
-				dynamicCacheClient.ChangeSignalValue(signal, commandData.SignalValue.ToString());
-				dynamicCacheClient.PublishSignalChange(signal, commandData.SignalValue.ToString());
+			else if(IsValueChangeAboveDeadband(currentSignalValue, commandData.SignalValue, deadband))
+			{
+				ChangeSignalValue(commandData);
 			}
+		}
+
+		private void ChangeSignalValue(ReadSingleAnalogSignalResult commandData)
+		{
+			dynamicCacheClient.ChangeSignalValue(commandData.RtuId, commandData.SignalId, commandData.SignalValue.ToString());
+			dynamicCacheClient.PublishSignalChange(commandData.RtuId, commandData.SignalId, typeof(AnalogSignal).Name, commandData.SignalValue.ToString());
+		}
+
+		private bool IsValueChangeAboveDeadband(double currentSignalValue, double newValue, double deadband)
+		{
+			return Math.Abs(currentSignalValue - newValue) > deadband;
 		}
 	}
 }

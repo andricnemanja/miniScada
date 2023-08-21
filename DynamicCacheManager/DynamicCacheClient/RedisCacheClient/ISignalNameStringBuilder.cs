@@ -8,5 +8,6 @@
 		string GenerateRemovedFlagChannelName(int rtuId);
 		string GenerateSignaFlagListName(int signalId);
 		string GenerateSignalKeyName(int signalId);
+		string GenerateRemovedFlagChannelName(int rtuId, string signalType, int signalId);
 	}
 }

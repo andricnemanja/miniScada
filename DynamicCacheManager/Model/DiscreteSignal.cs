@@ -1,4 +1,6 @@
-﻿namespace DynamicCacheManager.Model
+﻿using System.Collections.Generic;
+
+namespace DynamicCacheManager.Model
 {
 	public class DiscreteSignal : ISignal
 	{
@@ -12,6 +14,6 @@
 		public int Id { get; }
 		public int RtuId { get; }
 		public string Value { get; set; }
-
+		public List<int> Flags { get; set; }
 	}
 }
