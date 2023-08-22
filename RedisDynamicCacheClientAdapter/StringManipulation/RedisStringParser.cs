@@ -16,7 +16,7 @@ namespace RedisDynamicCacheClientAdapter.StringManipulation
 		{
 			string[] channelNameArr = channelName.Split('.');
 			int rtuId = int.Parse(channelNameArr[0].Split(':')[1]);
-			int signalId = int.Parse(channelNameArr[2].Split(':')[1]);
+			int signalId = int.Parse(channelNameArr[1].Split(':')[1]);
 
 			return new ChangedSignalData(rtuId, signalId);
 		}
@@ -27,7 +27,22 @@ namespace RedisDynamicCacheClientAdapter.StringManipulation
 			int rtuId = int.Parse(channelNameArr[1].Split(':')[1]);
 
 			RtuFlagChannelData rtuFlagChannelData = new RtuFlagChannelData(rtuId);
-			if (channelNameArr[2] == "remove")
+			if (channelNameArr[3] == "remove")
+			{
+				rtuFlagChannelData.Operation = RtuFlagOperation.Remove;
+			}
+
+			return rtuFlagChannelData;
+		}
+
+		public SignalFlagChannelData ParseSignalFlagChannel(string channelName)
+		{
+			string[] channelNameArr = channelName.Split('.');
+			int rtuId = int.Parse(channelNameArr[1].Split(':')[1]);
+			int signalId = int.Parse(channelNameArr[2].Split(':')[1]);
+
+			SignalFlagChannelData rtuFlagChannelData = new SignalFlagChannelData(rtuId, signalId);
+			if (channelNameArr[3] == "remove")
 			{
 				rtuFlagChannelData.Operation = RtuFlagOperation.Remove;
 			}

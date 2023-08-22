@@ -34,7 +34,7 @@
 		/// <returns>Subscription channel name</returns>
 		public string GenerateChannelName(int rtuId, string signalType, int signalId)
 		{
-			return "rtu:" + rtuId + "." + signalType + ".signal:" + signalId;
+			return "rtu:" + rtuId + "." + signalType + ":" + signalId;
 		}
 
 		/// <summary>
@@ -47,6 +47,11 @@
 		public string GenerateFlagChannelName(int rtuId, string signalType, int signalId)
 		{
 			return "flags." + GenerateChannelName(rtuId, signalType, signalId);
+		}
+
+		public string GenerateSignalFlagChannelName(int rtuId, string signalType)
+		{
+			return "flags." + "rtu:" + rtuId + "." + signalType + ":*";
 		}
 
 		public string GenerateFlagChannelName(int rtuId)
