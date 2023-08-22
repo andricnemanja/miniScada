@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\SignalFlagDTO.cs" />
     <Compile Include="DTO\RtuFlagDTO.cs" />
     <Compile Include="DTO\RtuFlagOperation.cs" />
     <Compile Include="DTO\SignalChangeDTO.cs" />

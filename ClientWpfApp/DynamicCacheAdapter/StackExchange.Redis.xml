@@ -1090,6 +1090,9 @@
             </summary>
             <param name="flags">The flags to use when unsubscribing.</param>
         </member>
+        <member name="M:StackExchange.Redis.ChannelMessageQueue.GetAsyncEnumerator(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:System.Collections.Generic.IAsyncEnumerable`1.GetAsyncEnumerator(System.Threading.CancellationToken)"/>
+        </member>
         <member name="T:StackExchange.Redis.ClientInfo">
             <summary>
             Represents the state of an individual client connection to redis.
@@ -1250,6 +1253,23 @@
             <summary>
             The class of the connection.
             </summary>
+        </member>
+        <member name="P:StackExchange.Redis.ClientInfo.ProtocolVersion">
+            <summary>
+            Client RESP protocol version. Added in Redis 7.0
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.ClientInfo.LibraryName">
+            <summary>
+            Client library name. Added in Redis 7.2
+            </summary>
+            <remarks><seealso href="https://redis.io/commands/client-setinfo"/></remarks>
+        </member>
+        <member name="P:StackExchange.Redis.ClientInfo.LibraryVersion">
+            <summary>
+            Client library version. Added in Redis 7.2
+            </summary>
+            <remarks><seealso href="https://redis.io/commands/client-setinfo"/></remarks>
         </member>
         <member name="T:StackExchange.Redis.SlotRange">
             <summary>
@@ -1927,6 +1947,19 @@
             Indicates whether the connection should be encrypted
             </summary>
         </member>
+        <member name="P:StackExchange.Redis.ConfigurationOptions.SetClientLibrary">
+            <summary>
+            Gets or sets whether the library should identify itself by library-name/version when possible.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.ConfigurationOptions.LibraryName">
+            <summary>
+            Gets or sets the library name to use for CLIENT SETINFO lib-name calls to Redis during handshake.
+            Defaults to "SE.Redis".
+            </summary>
+            <remarks>If the value is null, empty or whitespace, then the value from the options-provideer is used;
+            to disable the library name feature, use <see cref="P:StackExchange.Redis.ConfigurationOptions.SetClientLibrary"/> instead.</remarks>
+        </member>
         <member name="P:StackExchange.Redis.ConfigurationOptions.ChannelPrefix">
             <summary>
             Automatically encodes and decodes channels.
@@ -2047,7 +2080,7 @@
         </member>
         <member name="P:StackExchange.Redis.ConfigurationOptions.User">
             <summary>
-            The user to use to authenticate with the server.
+            The username to use to authenticate with the server.
             </summary>
         </member>
         <member name="P:StackExchange.Redis.ConfigurationOptions.Password">
@@ -2260,9 +2293,14 @@
             Whether this options provider matches a given endpoint, for automatically selecting a provider based on what's being connected to.
             </summary>
         </member>
-        <member name="P:StackExchange.Redis.Configuration.DefaultOptionsProvider.GetForEndpoints">
+        <member name="M:StackExchange.Redis.Configuration.DefaultOptionsProvider.GetProvider(StackExchange.Redis.EndPointCollection)">
             <summary>
             Gets a provider for the given endpoints, falling back to <see cref="T:StackExchange.Redis.Configuration.DefaultOptionsProvider"/> if nothing more specific is found.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Configuration.DefaultOptionsProvider.GetProvider(System.Net.EndPoint)">
+            <summary>
+            Gets a provider for a given endpoints, falling back to <see cref="T:StackExchange.Redis.Configuration.DefaultOptionsProvider"/> if nothing more specific is found.
             </summary>
         </member>
         <member name="P:StackExchange.Redis.Configuration.DefaultOptionsProvider.AbortOnConnectFail">
@@ -2369,6 +2407,16 @@
             Check configuration every n interval.
             </summary>
         </member>
+        <member name="P:StackExchange.Redis.Configuration.DefaultOptionsProvider.User">
+            <summary>
+            The username to use to authenticate with the server.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Configuration.DefaultOptionsProvider.Password">
+            <summary>
+            The password to use to authenticate with the server.
+            </summary>
+        </member>
         <member name="P:StackExchange.Redis.Configuration.DefaultOptionsProvider.ClientName">
             <summary>
             The default client name for a connection, with the library version appended.
@@ -2379,6 +2427,12 @@
             Gets the default client name for a connection.
             </summary>
         </member>
+        <member name="P:StackExchange.Redis.Configuration.DefaultOptionsProvider.LibraryName">
+            <summary>
+            Gets the library name to use for CLIENT SETINFO lib-name calls to Redis during handshake.
+            Defaults to "SE.Redis".
+            </summary>
+        </member>
         <member name="P:StackExchange.Redis.Configuration.DefaultOptionsProvider.LibraryVersion">
             <summary>
             String version of the StackExchange.Redis library, for use in any options.
@@ -2387,6 +2441,11 @@
         <member name="P:StackExchange.Redis.Configuration.DefaultOptionsProvider.ComputerName">
             <summary>
             Name of the machine we're running on, for use in any options.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Configuration.DefaultOptionsProvider.SetClientLibrary">
+            <summary>
+            Whether to identify the client by library name/version when possible
             </summary>
         </member>
         <member name="M:StackExchange.Redis.Configuration.DefaultOptionsProvider.TryGetAzureRoleInstanceIdNoThrow">
@@ -2949,15 +3008,6 @@
             based on ambient context, or returning null to not profile
             </summary>
             <param name="profilingSessionProvider">The session provider to register.</param>
-        </member>
-        <member name="M:StackExchange.Redis.ConnectionMultiplexer.GetDefaultSocketManager">
-            <summary>
-            .NET 6.0+ has changes to sync-over-async stalls in the .NET primary thread pool
-            If we're in that environment, by default remove the overhead of our own threadpool
-            This will eliminate some context-switching overhead and better-size threads on both large
-            and small environments, from 16 core machines to single core VMs where the default 10 threads
-            isn't an ideal situation.
-            </summary>
         </member>
         <member name="M:StackExchange.Redis.ConnectionMultiplexer.InitializeSentinel(StackExchange.Redis.LogProxy)">
             <summary>
@@ -3554,12 +3604,17 @@
         </member>
         <member name="F:StackExchange.Redis.CommandStatus.WaitingToBeSent">
             <summary>
-            ConnectionMultiplexer has not yet started writing this command to redis.
+            ConnectionMultiplexer has not yet started writing this command to Redis.
             </summary>
         </member>
         <member name="F:StackExchange.Redis.CommandStatus.Sent">
             <summary>
             Command has been sent to Redis.
+            </summary>
+        </member>
+        <member name="F:StackExchange.Redis.CommandStatus.WaitingInBacklog">
+            <summary>
+            Command is in the backlog, waiting to be processed and written to Redis.
             </summary>
         </member>
         <member name="T:StackExchange.Redis.ConnectionFailureType">
@@ -12281,6 +12336,37 @@
             Indicates whether the channel-name is either null or a zero-length value.
             </summary>
         </member>
+        <member name="P:StackExchange.Redis.RedisChannel.IsPattern">
+            <summary>
+            Indicates whether this channel represents a wildcard pattern (see <c>PSUBSCRIBE</c>)
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.RedisChannel.UseImplicitAutoPattern">
+            <summary>
+            Indicates whether channels should use <see cref="F:StackExchange.Redis.RedisChannel.PatternMode.Auto"/> when no <see cref="T:StackExchange.Redis.RedisChannel.PatternMode"/>
+            is specified; this is enabled by default, but can be disabled to avoid unexpected wildcard scenarios.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.RedisChannel.Literal(System.String)">
+            <summary>
+            Creates a new <see cref="T:StackExchange.Redis.RedisChannel"/> that does not act as a wildcard subscription
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.RedisChannel.Literal(System.Byte[])">
+            <summary>
+            Creates a new <see cref="T:StackExchange.Redis.RedisChannel"/> that does not act as a wildcard subscription
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.RedisChannel.Pattern(System.String)">
+            <summary>
+            Creates a new <see cref="T:StackExchange.Redis.RedisChannel"/> that acts as a wildcard subscription
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.RedisChannel.Pattern(System.Byte[])">
+            <summary>
+            Creates a new <see cref="T:StackExchange.Redis.RedisChannel"/> that acts as a wildcard subscription
+            </summary>
+        </member>
         <member name="M:StackExchange.Redis.RedisChannel.#ctor(System.Byte[],StackExchange.Redis.RedisChannel.PatternMode)">
             <summary>
             Create a new redis channel from a buffer, explicitly controlling the pattern mode.
@@ -13138,7 +13224,9 @@
         </member>
         <member name="P:StackExchange.Redis.RedisValue.IsInteger">
             <summary>
-            Indicates whether the value is a primitive integer (signed or unsigned).
+            Indicates whether the **underlying** value is a primitive integer (signed or unsigned); this is **not**
+            the same as whether the value can be *treated* as an integer - see <seealso cref="M:StackExchange.Redis.RedisValue.TryParse(System.Int32@)"/>
+            and <seealso cref="M:StackExchange.Redis.RedisValue.TryParse(System.Int64@)"/>, which is usually the more appropriate test.
             </summary>
         </member>
         <member name="P:StackExchange.Redis.RedisValue.IsNull">

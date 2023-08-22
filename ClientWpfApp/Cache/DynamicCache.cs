@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 using ClientWpfApp.FlagProcessor.AddFlagProcessor;
+using ClientWpfApp.FlagProcessor.AddSignalFlagProcessor;
 using ClientWpfApp.FlagProcessor.RemoveFlagProcessor;
 using ClientWpfApp.Model;
 using ClientWpfApp.Model.Flags;
@@ -25,6 +26,7 @@ namespace ClientWpfApp.Cache
 		private readonly IFlagCache flagCache;
 		private readonly AddFlagProcessor addFlagProcessor;
 		private readonly RemoveFlagProcessor removeFlagProcessor;
+		private readonly AddSignalFlagProcessor addSignalFlagProcessor;
 		private readonly AsyncPolicy<bool> retryPolicy = Policy<bool>
 			.HandleResult(x => x.Equals(false))
 			.WaitAndRetryForeverAsync(retryAttemp => TimeSpan.FromSeconds(5));
@@ -37,6 +39,7 @@ namespace ClientWpfApp.Cache
 			this.rtuCache = rtuCache;
 			this.flagCache = flagCache;
 			addFlagProcessor = new AddFlagProcessor(rtuCache);
+			addSignalFlagProcessor = new AddSignalFlagProcessor(rtuCache);
 			removeFlagProcessor = new RemoveFlagProcessor(rtuCache);
 		}
 
@@ -45,7 +48,7 @@ namespace ClientWpfApp.Cache
 		public bool IsCacheAvailable
 		{
 			get { return isCacheAvailable; }
-			set 
+			set
 			{
 				if (value != isCacheAvailable)
 				{
@@ -55,14 +58,13 @@ namespace ClientWpfApp.Cache
 			}
 		}
 
-
 		/// <summary>
 		/// Connect to dynamic cache. Needs to be called before trying to use any other method.
 		/// </summary>
 		/// <returns>True if a connection is made, False if not</returns>
 		public Task Connect()
 		{
-			Task.Run(() => retryPolicy.ExecuteAsync(async () => 
+			Task.Run(() => retryPolicy.ExecuteAsync(async () =>
 			{
 				return dynamicCacheClient.Connect();
 			})).Wait();
@@ -72,7 +74,7 @@ namespace ClientWpfApp.Cache
 
 		public Task CheckConnection(CancellationToken cancellationToken)
 		{
-			while(!cancellationToken.IsCancellationRequested)
+			while (!cancellationToken.IsCancellationRequested)
 			{
 				if (!dynamicCacheClient.IsAvailable())
 				{
@@ -116,16 +118,19 @@ namespace ClientWpfApp.Cache
 			foreach (RTU rtu in rtuCache.RtuList)
 			{
 
-				listOfSubscriptions.Add(dynamicCacheClient.SubscribeToRtuChangesAsync(rtu.RTUData.ID, (SignalChangeDTO signalChangeDTO) =>
+				listOfSubscriptions.Add(dynamicCacheClient.SubscribeToRtuChangesAsync(rtu.RTUData.ID,
+				(SignalChangeDTO signalChangeDTO) =>
 				{
 					rtuCache.UpdateSignalValue(signalChangeDTO.RtuId, signalChangeDTO.SignalId, signalChangeDTO.NewValue);
-				},
+				}));
+
+				listOfSubscriptions.Add(dynamicCacheClient.SubscribeToRtuFlagsAsync(rtu.RTUData.ID,
 				(RtuFlagDTO rtuFlagDTO) =>
 				{
-					if(rtuFlagDTO.Operation == RtuFlagOperation.Add)
+					if (rtuFlagDTO.Operation == RtuFlagOperation.Add)
 					{
 						Flag flag = flagCache.FindFlag(rtuFlagDTO.FlagId);
-						if(flag != null)
+						if (flag != null)
 						{
 							addFlagProcessor.ProcessFlag(flag, rtuFlagDTO.RtuId);
 						}
@@ -133,9 +138,30 @@ namespace ClientWpfApp.Cache
 					else
 					{
 						Flag flag = flagCache.FindFlag(rtuFlagDTO.FlagId);
-						if(flag != null)
+						if (flag != null)
 						{
 							removeFlagProcessor.ProcessFlag(flag, rtuFlagDTO.RtuId);
+						}
+					}
+				}));
+
+				listOfSubscriptions.Add(dynamicCacheClient.SubscribeToSignalFlagsAsync(rtu.RTUData.ID,
+				(SignalFlagDTO signalFlagDTO) =>
+				{
+					if (signalFlagDTO.Operation == RtuFlagOperation.Add)
+					{
+						Flag flag = flagCache.FindFlag(signalFlagDTO.FlagId);
+						if (flag != null)
+						{
+							addSignalFlagProcessor.ProcessFlag(flag, signalFlagDTO.RtuId);
+						}
+					}
+					else
+					{
+						Flag flag = flagCache.FindFlag(signalFlagDTO.FlagId);
+						if (flag != null)
+						{
+							//removeFlagProcessor.ProcessFlag(flag, signalFlagDTO.RtuId);
 						}
 					}
 				}));

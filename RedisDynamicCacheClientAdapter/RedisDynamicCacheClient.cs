@@ -73,21 +73,33 @@ namespace RedisDynamicCacheClientAdapter
 		/// </summary>
 		/// <param name="rtuId">ID of rtu from which you want to receive changes</param>
 		/// <param name="handleSignalChange">Handler to perform when signal change is received</param>
-		public Task SubscribeToRtuChangesAsync(int rtuId, Action<SignalChangeDTO> handleSignalChange, Action<RtuFlagDTO> handleNewFlag)
+		public Task SubscribeToRtuChangesAsync(int rtuId, Action<SignalChangeDTO> handleSignalChange)
 		{
 			SubscribeToChannel(stringBuilder.GenerateRtuSubscriptionChannel(rtuId), handleSignalChange);
+			return Task.CompletedTask;
+		}
+
+		/// <summary>
+		/// Subscribe to rtu flag changes
+		/// </summary>
+		/// <param name="rtuId">ID of rtu from which you want to receive changes</param>
+		/// <param name="handleNewFlag">Handler to perform when new flag is received</param>
+		public Task SubscribeToRtuFlagsAsync(int rtuId, Action<RtuFlagDTO> handleNewFlag)
+		{
 			SubscribeToChannel(stringBuilder.GenerateFlagChannelName(rtuId), handleNewFlag);
 			return Task.CompletedTask;
 		}
 
 		/// <summary>
-		/// Subscribe to rtu changes
+		/// Subscribe to rtu flag changes
 		/// </summary>
 		/// <param name="rtuId">ID of rtu from which you want to receive changes</param>
-		/// <param name="handleSignalChange">Handler to perform when signal change is received</param>
-		public Task SubscribeToRtuFlagsAsync(int rtuId, Action<RtuFlagDTO> handleNewFlag)
+		/// <param name="handleNewFlag">Handler to perform when new flag is received</param>
+		public Task SubscribeToSignalFlagsAsync(int rtuId, Action<SignalFlagDTO> handleNewFlag)
 		{
-			return SubscribeToChannel(stringBuilder.GenerateRtuSubscriptionChannel(rtuId), handleNewFlag);
+			SubscribeToChannel(stringBuilder.GenerateSignalFlagChannelName(rtuId, "AnalogSignal"), handleNewFlag);
+			SubscribeToChannel(stringBuilder.GenerateSignalFlagChannelName(rtuId, "DiscreteSignal"), handleNewFlag);
+			return Task.CompletedTask;
 		}
 
 		/// <summary>
@@ -139,6 +151,20 @@ namespace RedisDynamicCacheClientAdapter
 				if(int.TryParse(flagId, out int flagIdParsedValue))
 				{
 					RtuFlagDTO rtuFlagDTO = new RtuFlagDTO(flagChannelData.RtuId, flagIdParsedValue, flagChannelData.Operation);
+					handleSignalChange(rtuFlagDTO);
+				}
+			});
+			return Task.CompletedTask;
+		}
+
+		private Task SubscribeToChannel(string subscriptionChannel, Action<SignalFlagDTO> handleSignalChange)
+		{
+			subscriber.SubscribeAsync(subscriptionChannel, (channel, flagId) =>
+			{
+				SignalFlagChannelData flagChannelData = stringParser.ParseSignalFlagChannel(channel);
+				if (int.TryParse(flagId, out int flagIdParsedValue))
+				{
+					SignalFlagDTO rtuFlagDTO = new SignalFlagDTO(flagChannelData.RtuId, flagChannelData.SignalId, flagIdParsedValue, flagChannelData.Operation);
 					handleSignalChange(rtuFlagDTO);
 				}
 			});

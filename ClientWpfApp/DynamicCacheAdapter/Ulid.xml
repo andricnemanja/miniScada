@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ulid</name>
+    </assembly>
+    <members>
+        <member name="T:System.Ulid">
+            <summary>
+            Represents a Universally Unique Lexicographically Sortable Identifier (ULID).
+            Spec: https://github.com/ulid/spec
+            </summary>
+        </member>
+        <member name="M:System.Ulid.ToGuid">
+            <summary>
+            Convert this <c>Ulid</c> value to a <c>Guid</c> value with the same comparability.
+            </summary>
+            <remarks>
+            The byte arrangement between Ulid and Guid is not preserved.
+            </remarks>
+            <returns>The converted <c>Guid</c> value</returns>
+        </member>
+    </members>
+</doc>

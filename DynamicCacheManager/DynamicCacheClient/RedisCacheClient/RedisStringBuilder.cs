@@ -24,12 +24,12 @@
 
 		public string GenerateFlagChannelName(int rtuId)
 		{
-			return "flags." + "rtu:" + rtuId + "rtuFlag.add";
+			return "flags." + "rtu:" + rtuId + ".rtuFlag.add";
 		}
 
 		public string GenerateRemovedFlagChannelName(int rtuId)
 		{
-			return "flags." + "rtu:" + rtuId + ".remove";
+			return "flags." + "rtu:" + rtuId + ".rtuFlag.remove";
 		}
 
 		public string GenerateRemovedFlagChannelName(int rtuId, string signalType, int signalId)
