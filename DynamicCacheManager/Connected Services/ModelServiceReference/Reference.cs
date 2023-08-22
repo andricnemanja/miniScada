@@ -23,10 +23,10 @@ namespace DynamicCacheManager.ModelServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DynamicCacheManager.ModelServiceReference.ModelAnalogSignal[] AnalogSignalsField;
+        private System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignal> AnalogSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal[] DiscreteSignalsField;
+        private System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal> DiscreteSignalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private DynamicCacheManager.ModelServiceReference.ModelRTUData RTUDataField;
@@ -42,7 +42,7 @@ namespace DynamicCacheManager.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DynamicCacheManager.ModelServiceReference.ModelAnalogSignal[] AnalogSignals {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignal> AnalogSignals {
             get {
                 return this.AnalogSignalsField;
             }
@@ -55,7 +55,7 @@ namespace DynamicCacheManager.ModelServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal[] DiscreteSignals {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal> DiscreteSignals {
             get {
                 return this.DiscreteSignalsField;
             }
@@ -969,10 +969,10 @@ namespace DynamicCacheManager.ModelServiceReference {
     public interface IModelService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        DynamicCacheManager.ModelServiceReference.ModelRTU[] GetAllRTUs();
+        System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelRTU> GetAllRTUs();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllRTUs", ReplyAction="http://tempuri.org/IModelService/GetAllRTUsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelRTU[]> GetAllRTUsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelRTU>> GetAllRTUsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTU", ReplyAction="http://tempuri.org/IModelService/GetRTUResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(DynamicCacheManager.ModelServiceReference.ModelServiceException), Action="http://tempuri.org/IModelService/GetRTUModelServiceExceptionFault", Name="ModelServiceException", Namespace="http://schemas.datacontract.org/2004/07/ModelWcfServiceLibrary")]
@@ -982,52 +982,52 @@ namespace DynamicCacheManager.ModelServiceReference {
         System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelRTU> GetRTUAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id);
+        System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal> GetDiscreteSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal>> GetDiscreteSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        DynamicCacheManager.ModelServiceReference.ModelAnalogSignal[] GetAnalogSignalsForRtu(int id);
+        System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignal> GetAnalogSignalsForRtu(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalsForRtu", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalsForRtuResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignal>> GetAnalogSignalsForRtuAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        DynamicCacheManager.ModelServiceReference.ModelRTUData[] GetRTUsEssentialData();
+        System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelRTUData> GetRTUsEssentialData();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetRTUsEssentialData", ReplyAction="http://tempuri.org/IModelService/GetRTUsEssentialDataResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelRTUData[]> GetRTUsEssentialDataAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelRTUData>> GetRTUsEssentialDataAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping[] GetAnalogSignalMappings();
+        System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping> GetAnalogSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAnalogSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetAnalogSignalMappingsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping>> GetAnalogSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping[] GetDiscreteSignalMappings();
+        System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping> GetDiscreteSignalMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalMappings", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalMappingsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping>> GetDiscreteSignalMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
-        string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
+        System.Collections.Generic.List<string> GetDiscreteSignalPossibleStates(int rtuId, int signalAddress);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStates", ReplyAction="http://tempuri.org/IModelService/GetDiscreteSignalPossibleStatesResponse")]
-        System.Threading.Tasks.Task<string[]> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
-        DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings();
+        System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping> GetSignalScanPeriodMappings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetSignalScanPeriodMappings", ReplyAction="http://tempuri.org/IModelService/GetSignalScanPeriodMappingsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping>> GetSignalScanPeriodMappingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
-        DynamicCacheManager.ModelServiceReference.ModelFlag[] GetAllFlags();
+        System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelFlag> GetAllFlags();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IModelService/GetAllFlags", ReplyAction="http://tempuri.org/IModelService/GetAllFlagsResponse")]
-        System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelFlag[]> GetAllFlagsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelFlag>> GetAllFlagsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1057,11 +1057,11 @@ namespace DynamicCacheManager.ModelServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public DynamicCacheManager.ModelServiceReference.ModelRTU[] GetAllRTUs() {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelRTU> GetAllRTUs() {
             return base.Channel.GetAllRTUs();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelRTU[]> GetAllRTUsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelRTU>> GetAllRTUsAsync() {
             return base.Channel.GetAllRTUsAsync();
         }
         
@@ -1073,67 +1073,67 @@ namespace DynamicCacheManager.ModelServiceReference {
             return base.Channel.GetRTUAsync(id);
         }
         
-        public DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal[] GetDiscreteSignalsForRtu(int id) {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal> GetDiscreteSignalsForRtu(int id) {
             return base.Channel.GetDiscreteSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal[]> GetDiscreteSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignal>> GetDiscreteSignalsForRtuAsync(int id) {
             return base.Channel.GetDiscreteSignalsForRtuAsync(id);
         }
         
-        public DynamicCacheManager.ModelServiceReference.ModelAnalogSignal[] GetAnalogSignalsForRtu(int id) {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignal> GetAnalogSignalsForRtu(int id) {
             return base.Channel.GetAnalogSignalsForRtu(id);
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelAnalogSignal[]> GetAnalogSignalsForRtuAsync(int id) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignal>> GetAnalogSignalsForRtuAsync(int id) {
             return base.Channel.GetAnalogSignalsForRtuAsync(id);
         }
         
-        public DynamicCacheManager.ModelServiceReference.ModelRTUData[] GetRTUsEssentialData() {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelRTUData> GetRTUsEssentialData() {
             return base.Channel.GetRTUsEssentialData();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelRTUData[]> GetRTUsEssentialDataAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelRTUData>> GetRTUsEssentialDataAsync() {
             return base.Channel.GetRTUsEssentialDataAsync();
         }
         
-        public DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping[] GetAnalogSignalMappings() {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping> GetAnalogSignalMappings() {
             return base.Channel.GetAnalogSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping[]> GetAnalogSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelAnalogSignalMapping>> GetAnalogSignalMappingsAsync() {
             return base.Channel.GetAnalogSignalMappingsAsync();
         }
         
-        public DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping[] GetDiscreteSignalMappings() {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping> GetDiscreteSignalMappings() {
             return base.Channel.GetDiscreteSignalMappings();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping[]> GetDiscreteSignalMappingsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelDiscreteSignalMapping>> GetDiscreteSignalMappingsAsync() {
             return base.Channel.GetDiscreteSignalMappingsAsync();
         }
         
-        public string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress) {
+        public System.Collections.Generic.List<string> GetDiscreteSignalPossibleStates(int rtuId, int signalAddress) {
             return base.Channel.GetDiscreteSignalPossibleStates(rtuId, signalAddress);
         }
         
-        public System.Threading.Tasks.Task<string[]> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetDiscreteSignalPossibleStatesAsync(int rtuId, int signalAddress) {
             return base.Channel.GetDiscreteSignalPossibleStatesAsync(rtuId, signalAddress);
         }
         
-        public DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping[] GetSignalScanPeriodMappings() {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping> GetSignalScanPeriodMappings() {
             return base.Channel.GetSignalScanPeriodMappings();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping[]> GetSignalScanPeriodMappingsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.SignalScanPeriodMapping>> GetSignalScanPeriodMappingsAsync() {
             return base.Channel.GetSignalScanPeriodMappingsAsync();
         }
         
-        public DynamicCacheManager.ModelServiceReference.ModelFlag[] GetAllFlags() {
+        public System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelFlag> GetAllFlags() {
             return base.Channel.GetAllFlags();
         }
         
-        public System.Threading.Tasks.Task<DynamicCacheManager.ModelServiceReference.ModelFlag[]> GetAllFlagsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DynamicCacheManager.ModelServiceReference.ModelFlag>> GetAllFlagsAsync() {
             return base.Channel.GetAllFlagsAsync();
         }
     }

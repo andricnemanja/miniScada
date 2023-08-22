@@ -1,4 +1,5 @@
 ﻿using ModbusServiceLibrary.Modbus.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.Modbus.ModbusDataTypes;
 using Moq;
 using Xunit;
@@ -19,11 +20,11 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusDataTypesTest
 		public void Read_Successful()
 		{
 			bool[] mockReadValues = { true, true };
-			modbusClientMock.Setup(x => x.ReadCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out mockReadValues)).Returns(true);
+			modbusClientMock.Setup(x => x.ReadCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out mockReadValues)).Returns(RtuConnectionResponse.CommandExecuted);
 
-			bool isSuccessful = coil.Read(modbusClientMock.Object, out byte readValue);
+			var commandState = coil.Read(modbusClientMock.Object, out byte readValue);
 
-			Assert.True(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandExecuted, commandState);
 			Assert.Equal(3, readValue);
 			modbusClientMock.Verify(x => x.ReadCoils(coil.RtuId, coil.Address, coil.Length, out It.Ref<bool[]>.IsAny));
 		}
@@ -32,11 +33,11 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusDataTypesTest
 		public void Read_Failed()
 		{
 			bool[] mockReadValues = { true, false };
-			modbusClientMock.Setup(x => x.ReadCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out mockReadValues)).Returns(false);
+			modbusClientMock.Setup(x => x.ReadCoils(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), out mockReadValues)).Returns(RtuConnectionResponse.CommandFailed);
 
-			bool isSuccessful = coil.Read(modbusClientMock.Object, out byte readValue);
+			var commandState = coil.Read(modbusClientMock.Object, out byte readValue);
 
-			Assert.False(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandFailed, commandState);
 			modbusClientMock.Verify(x => x.ReadCoils(coil.RtuId, coil.Address, coil.Length, out It.Ref<bool[]>.IsAny));
 		}
 
@@ -45,11 +46,11 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusDataTypesTest
 		{
 			bool[] newValueBool = { true, false };
 			byte newValueByte = 2;
-			modbusClientMock.Setup(x => x.WriteCoils(coil.RtuId, coil.Address, newValueBool)).Returns(true);
+			modbusClientMock.Setup(x => x.WriteCoils(coil.RtuId, coil.Address, newValueBool)).Returns(RtuConnectionResponse.CommandExecuted);
 
-			bool isSuccessful = coil.Write(modbusClientMock.Object, newValueByte);
+			var commandState = coil.Write(modbusClientMock.Object, newValueByte);
 
-			Assert.True(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandExecuted, commandState);
 			modbusClientMock.Verify(x => x.WriteCoils(coil.RtuId, coil.Address, newValueBool));
 		}
 
@@ -58,11 +59,11 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusDataTypesTest
 		{
 			bool[] newValueBool = { true, false };
 			byte newValueByte = 2;
-			modbusClientMock.Setup(x => x.WriteCoils(coil.RtuId, coil.Address, newValueBool)).Returns(false);
+			modbusClientMock.Setup(x => x.WriteCoils(coil.RtuId, coil.Address, newValueBool)).Returns(RtuConnectionResponse.CommandFailed);
 
-			bool isSuccessful = coil.Write(modbusClientMock.Object, newValueByte);
+			var commandState = coil.Write(modbusClientMock.Object, newValueByte);
 
-			Assert.False(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandFailed, commandState);
 			modbusClientMock.Verify(x => x.WriteCoils(coil.RtuId, coil.Address, newValueBool));
 		}
 	}

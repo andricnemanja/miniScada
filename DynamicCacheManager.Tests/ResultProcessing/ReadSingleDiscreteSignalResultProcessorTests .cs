@@ -1,5 +1,4 @@
 ﻿using DynamicCacheManager.DynamicCacheClient;
-using DynamicCacheManager.Model;
 using DynamicCacheManager.ResultsProcessing;
 using DynamicCacheManager.ServiceCache;
 using ModbusServiceLibrary.CommandResult;
@@ -24,38 +23,38 @@ namespace DynamicCacheManager.Tests.ResultProcessing
 		public void ProcessCommandResult_NewValueDifferent()
 		{
 			//Arrange
-			DiscreteSignal discreteSignal = new DiscreteSignal(1, 1);
+			int rtuId = 1;
+			int signalId = 1;
 			string newSignalValue = "Off";
 			string currentSignalValue = "On";
-			serviceRtuCacheMock.Setup(s => s.GetSignal(It.IsAny<int>(), It.IsAny<int>())).Returns(discreteSignal);
-			dynamicCacheClientMock.Setup(d => d.GetSignalValue(discreteSignal)).Returns(currentSignalValue);
-			ReadSingleDiscreteSignalResult command = new ReadSingleDiscreteSignalResult(1, 1, newSignalValue);
+			dynamicCacheClientMock.Setup(d => d.GetSignalValue(rtuId, signalId)).Returns(currentSignalValue);
+			ReadSingleDiscreteSignalResult command = new ReadSingleDiscreteSignalResult(rtuId, signalId, newSignalValue);
 
 			//Act
 			readSingleDiscreteSignalResultProcessor.ProcessCommandResult(command);
 
 			//Assert
-			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(discreteSignal, newSignalValue));
-			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(discreteSignal, newSignalValue));
+			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(command.RtuId, command.SignalId, newSignalValue));
+			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(command.RtuId, command.SignalId, "DiscreteSignal", newSignalValue));
 		}
 
 		[Fact]
 		public void ProcessCommandResult_NewValueSameAsOld()
 		{
 			//Arrange
-			DiscreteSignal discreteSignal = new DiscreteSignal(1, 1);
+			int rtuId = 1;
+			int signalId = 1;
 			string newSignalValue = "Off";
 			string currentSignalValue = "Off";
-			serviceRtuCacheMock.Setup(s => s.GetSignal(It.IsAny<int>(), It.IsAny<int>())).Returns(discreteSignal);
-			dynamicCacheClientMock.Setup(d => d.GetSignalValue(discreteSignal)).Returns(currentSignalValue);
+			dynamicCacheClientMock.Setup(d => d.GetSignalValue(rtuId, signalId)).Returns(currentSignalValue);
 			ReadSingleDiscreteSignalResult command = new ReadSingleDiscreteSignalResult(1, 1, newSignalValue);
 
 			//Act
 			readSingleDiscreteSignalResultProcessor.ProcessCommandResult(command);
 
 			//Assert
-			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(discreteSignal, newSignalValue), Times.Never);
-			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(discreteSignal, newSignalValue), Times.Never);
+			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(command.RtuId, command.SignalId, newSignalValue), Times.Never);
+			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(command.RtuId, command.SignalId, "DiscreteSignal", newSignalValue), Times.Never);
 		}
 
 	}

@@ -1,5 +1,4 @@
 ﻿using DynamicCacheManager.DynamicCacheClient;
-using DynamicCacheManager.Model;
 using DynamicCacheManager.ResultsProcessing;
 using DynamicCacheManager.ServiceCache;
 using ModbusServiceLibrary.CommandResult;
@@ -27,17 +26,18 @@ namespace DynamicCacheManager.Tests.ResultProcessing
 		public void ProcessCommandResult_ChangeGreaterThanDeadband(string currentSignalValue, double newSignalValue, double deadband)
 		{
 			//Arrange
-			AnalogSignal analogSignal = new AnalogSignal(1, 1, deadband);
-			serviceRtuCacheMock.Setup(s => s.GetSignal(It.IsAny<int>(), It.IsAny<int>())).Returns(analogSignal);
-			dynamicCacheClientMock.Setup(d => d.GetSignalValue(analogSignal)).Returns(currentSignalValue);
-			ReadSingleAnalogSignalResult command = new ReadSingleAnalogSignalResult(1, 1, newSignalValue);
+			int rtuId = 1;
+			int signalId = 1;
+			dynamicCacheClientMock.Setup(d => d.GetSignalValue(rtuId, signalId)).Returns(currentSignalValue);
+			dynamicCacheClientMock.Setup(d => d.GetAnalogSignalDeadband(rtuId, signalId)).Returns(deadband);
+			ReadSingleAnalogSignalResult command = new ReadSingleAnalogSignalResult(rtuId, signalId, newSignalValue);
 
 			//Act
 			readSingleAnalogSignalResultProcessor.ProcessCommandResult(command);
 
 			//Assert
-			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(analogSignal, newSignalValue.ToString()));
-			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(analogSignal, newSignalValue.ToString()));
+			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(command.RtuId, command.SignalId, newSignalValue.ToString()));
+			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(command.RtuId, command.SignalId, "AnalogSignal", newSignalValue.ToString()));
 		}
 
 		[Theory]
@@ -48,35 +48,36 @@ namespace DynamicCacheManager.Tests.ResultProcessing
 		public void ProcessCommandResult_ChangeLowerThanDeadband(string currentSignalValue, double newSignalValue, double deadband)
 		{
 			//Arrange
-			AnalogSignal analogSignal = new AnalogSignal(1, 1, deadband);
-			serviceRtuCacheMock.Setup(s => s.GetSignal(It.IsAny<int>(), It.IsAny<int>())).Returns(analogSignal);
-			dynamicCacheClientMock.Setup(d => d.GetSignalValue(analogSignal)).Returns(currentSignalValue);
-			ReadSingleAnalogSignalResult command = new ReadSingleAnalogSignalResult(1, 1, newSignalValue);
+			int rtuId = 1;
+			int signalId = 1;
+			dynamicCacheClientMock.Setup(d => d.GetSignalValue(rtuId, signalId)).Returns(currentSignalValue);
+			dynamicCacheClientMock.Setup(d => d.GetAnalogSignalDeadband(rtuId, signalId)).Returns(deadband);
+			ReadSingleAnalogSignalResult command = new ReadSingleAnalogSignalResult(rtuId, signalId, newSignalValue);
 
 			//Act
 			readSingleAnalogSignalResultProcessor.ProcessCommandResult(command);
 
 			//Assert
-			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(analogSignal, newSignalValue.ToString()), Times.Never);
-			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(analogSignal, newSignalValue.ToString()), Times.Never);
+			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(command.RtuId, command.SignalId, newSignalValue.ToString()), Times.Never);
+			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(command.RtuId, command.SignalId, "AnalogSignal", newSignalValue.ToString()), Times.Never);
 		}
 
 		[Fact]
 		public void ProcessCommandResult_CacheValueDoesNotExist()
 		{
 			//Arrange
-			AnalogSignal analogSignal = new AnalogSignal(1, 1, 1);
+			int rtuId = 1;
+			int signalId = 1;
 			double newSignalValue = 0;
-			serviceRtuCacheMock.Setup(s => s.GetSignal(It.IsAny<int>(), It.IsAny<int>())).Returns(analogSignal);
-			dynamicCacheClientMock.Setup(d => d.GetSignalValue(analogSignal)).Returns(string.Empty);
-			ReadSingleAnalogSignalResult command = new ReadSingleAnalogSignalResult(1, 1, newSignalValue);
+			dynamicCacheClientMock.Setup(d => d.GetSignalValue(rtuId, signalId)).Returns(string.Empty);
+			ReadSingleAnalogSignalResult command = new ReadSingleAnalogSignalResult(rtuId, signalId, newSignalValue);
 
 			//Act
 			readSingleAnalogSignalResultProcessor.ProcessCommandResult(command);
 
 			//Assert
-			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(analogSignal, newSignalValue.ToString()));
-			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(analogSignal, newSignalValue.ToString()));
+			dynamicCacheClientMock.Verify(d => d.ChangeSignalValue(rtuId, signalId, newSignalValue.ToString()));
+			dynamicCacheClientMock.Verify(d => d.PublishSignalChange(rtuId, signalId, "AnalogSignal", newSignalValue.ToString()));
 		}
 
 	}

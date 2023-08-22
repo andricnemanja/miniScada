@@ -12,7 +12,7 @@ namespace DynamicCacheManager.Tests.ServiceCache
 		public DynamicCacheServiceTests()
 		{
 			staticDataLoaderMock = new Mock<IStaticDataLoader>();
-			staticDataLoaderMock.Setup(x => x.InitializeData()).Returns(DynamicCacheRtuTestData.GetRtuTestList());
+			staticDataLoaderMock.Setup(x => x.InitializeRtuData()).Returns(DynamicCacheRtuTestData.GetRtuTestList());
 			serviceRtuCache = new ServiceRtuCache(staticDataLoaderMock.Object);
 			serviceRtuCache.InitializeData();
 		}
@@ -25,7 +25,7 @@ namespace DynamicCacheManager.Tests.ServiceCache
 
 			//Assert
 			Assert.Equivalent(DynamicCacheRtuTestData.GetRtuTestList(), serviceRtuCache.RtuList);
-			staticDataLoaderMock.Verify(s => s.InitializeData());
+			staticDataLoaderMock.Verify(s => s.InitializeRtuData());
 		}
 
 		[Theory]

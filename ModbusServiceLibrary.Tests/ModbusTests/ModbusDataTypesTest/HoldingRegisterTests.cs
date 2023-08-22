@@ -1,4 +1,5 @@
 ﻿using ModbusServiceLibrary.Modbus.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.Modbus.ModbusDataTypes;
 using Moq;
 using Xunit;
@@ -19,11 +20,11 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusDataTypesTest
 		public void Read_Successful()
 		{
 			ushort[] mockReadValues = { 10 };
-			modbusClientMock.Setup(x => x.ReadHoldingRegisters(holdingRegister.Id, holdingRegister.Address, 1, out mockReadValues)).Returns(true);
+			modbusClientMock.Setup(x => x.ReadHoldingRegisters(holdingRegister.Id, holdingRegister.Address, 1, out mockReadValues)).Returns(RtuConnectionResponse.CommandExecuted);
 
-			bool isSuccessful = holdingRegister.Read(modbusClientMock.Object, out ushort readValue);
+			var commandState = holdingRegister.Read(modbusClientMock.Object, out ushort readValue);
 
-			Assert.True(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandExecuted, commandState);
 			Assert.Equal(mockReadValues[0], readValue);
 			modbusClientMock.Verify(x => x.ReadHoldingRegisters(holdingRegister.Id, holdingRegister.Address, 1, out mockReadValues));
 		}
@@ -31,11 +32,11 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusDataTypesTest
 		public void Read_Failed()
 		{
 			ushort[] mockReadValues = { 10 };
-			modbusClientMock.Setup(x => x.ReadHoldingRegisters(holdingRegister.Id, holdingRegister.Address, 1, out mockReadValues)).Returns(false);
+			modbusClientMock.Setup(x => x.ReadHoldingRegisters(holdingRegister.Id, holdingRegister.Address, 1, out mockReadValues)).Returns(RtuConnectionResponse.CommandFailed);
 
-			bool isSuccessful = holdingRegister.Read(modbusClientMock.Object, out ushort readValue);
+			var commandState = holdingRegister.Read(modbusClientMock.Object, out ushort readValue);
 
-			Assert.False(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandFailed, commandState);
 			modbusClientMock.Verify(x => x.ReadHoldingRegisters(holdingRegister.Id, holdingRegister.Address, 1, out mockReadValues));
 		}
 
@@ -43,22 +44,22 @@ namespace ModbusServiceLibrary.Tests.ModbusTests.ModbusDataTypesTest
 		public void Write_Successful()
 		{
 			int newValue = 20;
-			modbusClientMock.Setup(x => x.WriteSingleHoldingRegister(holdingRegister.Id, holdingRegister.Address, newValue)).Returns(true);
+			modbusClientMock.Setup(x => x.WriteSingleHoldingRegister(holdingRegister.Id, holdingRegister.Address, newValue)).Returns(RtuConnectionResponse.CommandExecuted);
 
-			bool isSuccessful = holdingRegister.Write(modbusClientMock.Object, newValue);
+			var commandState = holdingRegister.Write(modbusClientMock.Object, newValue);
 
-			Assert.True(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandExecuted, commandState);
 		}
 
 		[Fact]
 		public void Write_Failed()
 		{
 			int newValue = 20;
-			modbusClientMock.Setup(x => x.WriteSingleHoldingRegister(holdingRegister.Id, holdingRegister.Address, newValue)).Returns(false);
+			modbusClientMock.Setup(x => x.WriteSingleHoldingRegister(holdingRegister.Id, holdingRegister.Address, newValue)).Returns(RtuConnectionResponse.CommandFailed);
 
-			bool isSuccessful = holdingRegister.Write(modbusClientMock.Object, newValue);
+			var commandState = holdingRegister.Write(modbusClientMock.Object, newValue);
 	
-			Assert.False(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandFailed, commandState);
 		}
 	}
 }

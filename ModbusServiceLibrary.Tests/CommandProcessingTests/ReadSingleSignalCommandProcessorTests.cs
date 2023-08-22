@@ -1,6 +1,7 @@
 ﻿using ModbusServiceLibrary.CommandProcessing;
 using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.Modbus;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.RtuCommands;
 using ModbusServiceLibrary.RtuConfiguration;
 using Moq;
@@ -32,7 +33,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 			var analogSignal = new AnalogSignal(signalId, "AnalogSignal1");
 
 			rtuConfigurationMock.Setup(x => x.GetSignal(rtuId, signalId)).Returns(analogSignal);
-			protocolDriverMock.Setup(x => x.ReadAnalogSignal(signalId, out signalValue)).Returns(true);
+			protocolDriverMock.Setup(x => x.ReadAnalogSignal(signalId, out signalValue)).Returns(RtuConnectionResponse.CommandExecuted);
 
 			var readSingleSignalCommand = new ReadSingleSignalCommand(rtuId, signalId);
 			var processor = new ReadSingleSignalCommandProcessor(protocolDriverMock.Object, rtuConfigurationMock.Object);
@@ -41,7 +42,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 			CommandResultBase result = processor.ProcessCommand(readSingleSignalCommand);
 
 			//Assert
-			Assert.IsType<ReadSingleAnalogSignalResult>(result);		
+			Assert.IsType<ReadSingleAnalogSignalResult>(result);
 		}
 
 		[Fact]
@@ -55,7 +56,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 			var discreteSignal = new DiscreteSignal(signalId, "DiscreteSignal1");
 
 			rtuConfigurationMock.Setup(x => x.GetSignal(rtuId, signalId)).Returns(discreteSignal);
-			protocolDriverMock.Setup(x => x.ReadDiscreteSignal(signalId, out signalState)).Returns(true);
+			protocolDriverMock.Setup(x => x.ReadDiscreteSignal(signalId, out signalState)).Returns(RtuConnectionResponse.CommandExecuted);
 
 			var readSingleSignalCommand = new ReadSingleSignalCommand(rtuId, signalId);
 			var processor = new ReadSingleSignalCommandProcessor(protocolDriverMock.Object, rtuConfigurationMock.Object);

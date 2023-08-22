@@ -20,7 +20,8 @@ namespace DynamicCacheManager.Tests
 					{
 						new DiscreteSignal(4, 1),
 						new DiscreteSignal(5, 1)
-					}
+					},
+					new List<int>()
 				),
 				new Rtu(2,
 					new List<AnalogSignal>()
@@ -32,7 +33,8 @@ namespace DynamicCacheManager.Tests
 					{
 						new DiscreteSignal(8, 2),
 						new DiscreteSignal(9, 2)
-					}
+					},
+					new List<int>()
 				)
 			};
 

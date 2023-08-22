@@ -1,13 +1,9 @@
 ﻿using ModbusServiceLibrary.CommandProcessing;
 using ModbusServiceLibrary.CommandResult;
 using ModbusServiceLibrary.Modbus;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.RtuCommands;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace ModbusServiceLibrary.Tests.CommandProcessingTests
@@ -26,7 +22,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 		{
 			//Arrange
 			var writeDiscreteSignalCommand = new WriteDiscreteSignalCommand(1, 1, "On");
-			protocolDriverMock.Setup(x => x.WriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State)).Returns(true);
+			protocolDriverMock.Setup(x => x.WriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State)).Returns(RtuConnectionResponse.CommandExecuted);
 
 			var commandProcessor = new WriteDiscreteSignalCommandProcessor(protocolDriverMock.Object);
 
@@ -42,7 +38,7 @@ namespace ModbusServiceLibrary.Tests.CommandProcessingTests
 		{
 			//Arrange
 			var writeDiscreteSignalCommand = new WriteDiscreteSignalCommand(1, 1, "On");
-			protocolDriverMock.Setup(x => x.WriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State)).Returns(false);
+			protocolDriverMock.Setup(x => x.WriteDiscreteSignal(writeDiscreteSignalCommand.SignalId, writeDiscreteSignalCommand.State)).Returns(RtuConnectionResponse.CommandFailed);
 
 			var commandProcessor = new WriteDiscreteSignalCommandProcessor(protocolDriverMock.Object);
 

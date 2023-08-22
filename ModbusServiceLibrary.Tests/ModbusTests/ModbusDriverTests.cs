@@ -1,5 +1,6 @@
 ﻿using ModbusServiceLibrary.Modbus;
 using ModbusServiceLibrary.Modbus.ModbusClient;
+using ModbusServiceLibrary.Modbus.ModbusConnection;
 using ModbusServiceLibrary.Modbus.ModbusDataTypes;
 using ModbusServiceLibrary.SignalConverter;
 using Moq;
@@ -27,13 +28,13 @@ namespace ModbusServiceLibrary.Tests.ModbusTests
 			double readValueMock = 10;
 			int signalId = 5;
 			Mock<IAnalogPoint> analogPointMock = new Mock<IAnalogPoint>();
-			analogPointMock.Setup(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<ushort>.IsAny)).Returns(true);
+			analogPointMock.Setup(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<ushort>.IsAny)).Returns(RtuConnectionResponse.CommandExecuted);
 			dataStaticCacheMock.Setup(x => x.FindAnalogPoint(signalId)).Returns(analogPointMock.Object);
 			signalMapperMock.Setup(x => x.ConvertAnalogSignalToRealValue(It.IsAny<int>(), It.IsAny<double>())).Returns(readValueMock);
 
-			bool isSuccessful = modbusDriver.ReadAnalogSignal(signalId, out double readValue);
+			var commandState = modbusDriver.ReadAnalogSignal(signalId, out double readValue);
 
-			Assert.True(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandExecuted, commandState);
 			Assert.Equal(readValue, readValueMock);
 			dataStaticCacheMock.Verify(x => x.FindAnalogPoint(signalId));
 			analogPointMock.Verify(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<ushort>.IsAny));
@@ -46,13 +47,13 @@ namespace ModbusServiceLibrary.Tests.ModbusTests
 			double readValueMock = 0;
 			int signalId = 5;
 			Mock<IAnalogPoint> analogPointMock = new Mock<IAnalogPoint>();
-			analogPointMock.Setup(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<ushort>.IsAny)).Returns(false);
+			analogPointMock.Setup(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<ushort>.IsAny)).Returns(RtuConnectionResponse.CommandFailed);
 			dataStaticCacheMock.Setup(x => x.FindAnalogPoint(signalId)).Returns(analogPointMock.Object);
 			signalMapperMock.Setup(x => x.ConvertAnalogSignalToRealValue(It.IsAny<int>(), It.IsAny<double>())).Returns(readValueMock);
 
-			bool isSuccessful = modbusDriver.ReadAnalogSignal(signalId, out double readValue);
+			var commandState = modbusDriver.ReadAnalogSignal(signalId, out double readValue);
 
-			Assert.False(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandFailed, commandState);
 			dataStaticCacheMock.Verify(x => x.FindAnalogPoint(signalId));
 			analogPointMock.Verify(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<ushort>.IsAny));
 			signalMapperMock.Verify(x => x.ConvertAnalogSignalToRealValue(It.IsAny<int>(), It.IsAny<double>()), Times.Never);
@@ -64,13 +65,13 @@ namespace ModbusServiceLibrary.Tests.ModbusTests
 			int signalId = 5;
 			string signalStateMock = "Off";
 			Mock<IDigitalPoint> digitalPointMock = new Mock<IDigitalPoint>();
-			digitalPointMock.Setup(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<byte>.IsAny)).Returns(true);
+			digitalPointMock.Setup(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<byte>.IsAny)).Returns(RtuConnectionResponse.CommandExecuted);
 			dataStaticCacheMock.Setup(x => x.FindDiscretePoint(signalId)).Returns(digitalPointMock.Object);
 			signalMapperMock.Setup(x => x.ConvertDiscreteSignalValueToState(It.IsAny<int>(), It.IsAny<byte>())).Returns(signalStateMock);
 
-			bool isSuccessful = modbusDriver.ReadDiscreteSignal(signalId, out string readState);
+			var commandState = modbusDriver.ReadDiscreteSignal(signalId, out string readState);
 
-			Assert.True(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandExecuted, commandState);
 			Assert.Equal(signalStateMock, readState);
 			dataStaticCacheMock.Verify(x => x.FindDiscretePoint(signalId));
 			digitalPointMock.Verify(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<byte>.IsAny));
@@ -82,13 +83,13 @@ namespace ModbusServiceLibrary.Tests.ModbusTests
 		{
 			int signalId = 5;
 			Mock<IDigitalPoint> digitalPointMock = new Mock<IDigitalPoint>();
-			digitalPointMock.Setup(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<byte>.IsAny)).Returns(false);
+			digitalPointMock.Setup(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<byte>.IsAny)).Returns(RtuConnectionResponse.CommandFailed);
 			dataStaticCacheMock.Setup(x => x.FindDiscretePoint(signalId)).Returns(digitalPointMock.Object);
 			signalMapperMock.Setup(x => x.ConvertDiscreteSignalValueToState(It.IsAny<int>(), It.IsAny<byte>())).Returns(It.IsAny<string>());
 
-			bool isSuccessful = modbusDriver.ReadDiscreteSignal(signalId, out string readState);
+			var commandState = modbusDriver.ReadDiscreteSignal(signalId, out string readState);
 
-			Assert.False(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandFailed, commandState);
 			dataStaticCacheMock.Verify(x => x.FindDiscretePoint(signalId));
 			digitalPointMock.Verify(x => x.Read(It.IsAny<IModbusClient>(), out It.Ref<byte>.IsAny));
 			signalMapperMock.Verify(x => x.ConvertDiscreteSignalValueToState(It.IsAny<int>(), It.IsAny<byte>()), Times.Never);
@@ -99,13 +100,13 @@ namespace ModbusServiceLibrary.Tests.ModbusTests
 		{
 			int signalId = 5;
 			Mock<IAnalogPoint> analogPointMock = new Mock<IAnalogPoint>();
-			analogPointMock.Setup(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<int>())).Returns(true);
+			analogPointMock.Setup(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<int>())).Returns(RtuConnectionResponse.CommandExecuted);
 			dataStaticCacheMock.Setup(x => x.FindAnalogPoint(signalId)).Returns(analogPointMock.Object);
 			signalMapperMock.Setup(x => x.ConvertRealValueToAnalogSignalValue(It.IsAny<int>(), It.IsAny<double>())).Returns(It.IsAny<int>());
 
-			bool isSuccessful = modbusDriver.WriteAnalogSignal(signalId, It.IsAny<double>());
+			var commandState = modbusDriver.WriteAnalogSignal(signalId, It.IsAny<double>());
 
-			Assert.True(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandExecuted, commandState);
 			dataStaticCacheMock.Verify(x => x.FindAnalogPoint(signalId));
 			analogPointMock.Verify(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<int>()));
 			signalMapperMock.Verify(x => x.ConvertRealValueToAnalogSignalValue(It.IsAny<int>(), It.IsAny<double>()));
@@ -116,13 +117,13 @@ namespace ModbusServiceLibrary.Tests.ModbusTests
 		{
 			int signalId = 5;
 			Mock<IAnalogPoint> analogPointMock = new Mock<IAnalogPoint>();
-			analogPointMock.Setup(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<int>())).Returns(false);
+			analogPointMock.Setup(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<int>())).Returns(RtuConnectionResponse.CommandFailed);
 			dataStaticCacheMock.Setup(x => x.FindAnalogPoint(signalId)).Returns(analogPointMock.Object);
 			signalMapperMock.Setup(x => x.ConvertRealValueToAnalogSignalValue(It.IsAny<int>(), It.IsAny<double>())).Returns(It.IsAny<int>());
 
-			bool isSuccessful = modbusDriver.WriteAnalogSignal(signalId, It.IsAny<double>());
+			var commandState = modbusDriver.WriteAnalogSignal(signalId, It.IsAny<double>());
 
-			Assert.False(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandFailed, commandState);
 			dataStaticCacheMock.Verify(x => x.FindAnalogPoint(signalId));
 			analogPointMock.Verify(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<int>()));
 			signalMapperMock.Verify(x => x.ConvertRealValueToAnalogSignalValue(It.IsAny<int>(), It.IsAny<double>()));
@@ -133,13 +134,13 @@ namespace ModbusServiceLibrary.Tests.ModbusTests
 		{
 			int signalId = 5;
 			Mock<IDigitalPoint> digitalPointMock = new Mock<IDigitalPoint>();
-			digitalPointMock.Setup(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<byte>())).Returns(true);
+			digitalPointMock.Setup(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<byte>())).Returns(RtuConnectionResponse.CommandExecuted);
 			dataStaticCacheMock.Setup(x => x.FindDiscretePoint(signalId)).Returns(digitalPointMock.Object);
 			signalMapperMock.Setup(x => x.ConvertStateToDiscreteSignalValue(It.IsAny<int>(), It.IsAny<string>())).Returns(It.IsAny<byte>());
 
-			bool isSuccessful = modbusDriver.WriteDiscreteSignal(signalId, It.IsAny<string>());
+			var commandState = modbusDriver.WriteDiscreteSignal(signalId, It.IsAny<string>());
 
-			Assert.True(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandExecuted, commandState);
 			dataStaticCacheMock.Verify(x => x.FindDiscretePoint(signalId));
 			digitalPointMock.Verify(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<byte>()));
 			signalMapperMock.Verify(x => x.ConvertStateToDiscreteSignalValue(It.IsAny<int>(), It.IsAny<string>()));
@@ -150,13 +151,13 @@ namespace ModbusServiceLibrary.Tests.ModbusTests
 		{
 			int signalId = 5;
 			Mock<IDigitalPoint> digitalPointMock = new Mock<IDigitalPoint>();
-			digitalPointMock.Setup(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<byte>())).Returns(false);
+			digitalPointMock.Setup(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<byte>())).Returns(RtuConnectionResponse.CommandFailed);
 			dataStaticCacheMock.Setup(x => x.FindDiscretePoint(signalId)).Returns(digitalPointMock.Object);
 			signalMapperMock.Setup(x => x.ConvertStateToDiscreteSignalValue(It.IsAny<int>(), It.IsAny<string>())).Returns(It.IsAny<byte>());
 
-			bool isSuccessful = modbusDriver.WriteDiscreteSignal(signalId, It.IsAny<string>());
+			var commandState = modbusDriver.WriteDiscreteSignal(signalId, It.IsAny<string>());
 
-			Assert.False(isSuccessful);
+			Assert.Equal(RtuConnectionResponse.CommandFailed, commandState);
 			dataStaticCacheMock.Verify(x => x.FindDiscretePoint(signalId));
 			digitalPointMock.Verify(x => x.Write(It.IsAny<IModbusClient>(), It.IsAny<byte>()));
 			signalMapperMock.Verify(x => x.ConvertStateToDiscreteSignalValue(It.IsAny<int>(), It.IsAny<string>()));
