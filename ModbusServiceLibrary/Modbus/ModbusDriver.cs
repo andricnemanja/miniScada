@@ -36,7 +36,14 @@ namespace ModbusServiceLibrary.Modbus
 			IAnalogPoint analogPoint = modbusDataStaticCache.FindAnalogPoint(signalId);
 
 			var commandResponse = analogPoint.Read(modbusClient, out ushort rawValue);
-			signalValue = signalMapper.ConvertAnalogSignalToRealValue(analogPoint.MappingId, rawValue);
+			if(commandResponse == RtuConnectionResponse.CommandExecuted)
+			{
+				signalValue = signalMapper.ConvertAnalogSignalToRealValue(analogPoint.MappingId, rawValue);
+			}
+			else
+			{
+				signalValue = 0;
+			}
 			return commandResponse;
 		}
 		public RtuConnectionResponse WriteAnalogSignal(int signalId, double newValue)

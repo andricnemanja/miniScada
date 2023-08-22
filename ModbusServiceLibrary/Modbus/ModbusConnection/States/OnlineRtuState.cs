@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net.Sockets;
-using ModbusServiceLibrary.CommandResult;
 
 namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 {
@@ -60,7 +59,6 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			}
 			catch (IOException ex) when (ex.InnerException is SocketException)
 			{
-				NotifyDynamicCacheAboutConnectionFailure();
 				GoToConnectingState();
 				return RtuConnectionResponse.ConnectionFailure;
 			}
@@ -87,7 +85,6 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 			}
 			catch(IOException ex) when (ex.InnerException is SocketException)
 			{
-				NotifyDynamicCacheAboutConnectionFailure();
 				GoToConnectingState();
 				readValue = default;
 				return RtuConnectionResponse.ConnectionFailure;
@@ -97,16 +94,6 @@ namespace ModbusServiceLibrary.Modbus.ModbusConnection.States
 				readValue = default;
 				return RtuConnectionResponse.CommandFailed;
 			}
-		}
-
-		private void NotifyDynamicCacheAboutConnectionFailure()
-		{
-			_rtuConnection.DynamicCacheManagerServiceClient.ProcessCommandResult(new ConnectionFailureResult(_rtuConnection.RtuId));
-		}
-
-		private void NotifyDynamicCacheAboutNewConnection()
-		{
-			_rtuConnection.DynamicCacheManagerServiceClient.ProcessCommandResult(new ConnectToRtuResult(_rtuConnection.RtuId));
 		}
 
 		private void GoToConnectingState()
