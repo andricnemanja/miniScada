@@ -104,13 +104,43 @@
     <Compile Include="DatabaseRepository\IDatabaseDiscreteSignalMappingRepository.cs" />
     <Compile Include="DatabaseRepository\IDatabaseRtuRepository.cs" />
     <Compile Include="DatabaseRepository\IDatabaseScanPeriodRepository.cs" />
-    <Compile Include="EntityDataModel\DbCronExpression.cs" />
-    <Compile Include="EntityDataModel\DbDiscreteValueToState.cs" />
-    <Compile Include="EntityDataModel\DbMapping.cs" />
-    <Compile Include="EntityDataModel\DbRtu.cs" />
-    <Compile Include="EntityDataModel\DbScanPeriod.cs" />
-    <Compile Include="EntityDataModel\DbSignal.cs" />
-    <Compile Include="EntityDataModel\MiniScadaDB.cs" />
+    <Compile Include="DatabaseToModelConversion\DbCronExpression.cs" />
+    <Compile Include="DatabaseToModelConversion\DbMapping.cs" />
+    <Compile Include="DatabaseToModelConversion\DbRtu.cs" />
+    <Compile Include="DatabaseToModelConversion\DbScanPeriod.cs" />
+    <Compile Include="EntityDataModel\DbCronExpression.cs">
+      <DependentUpon>MiniScadaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\DbDiscreteValueToState.cs">
+      <DependentUpon>MiniScadaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\DbMapping.cs">
+      <DependentUpon>MiniScadaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\DbRtu.cs">
+      <DependentUpon>MiniScadaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\DbScanPeriod.cs">
+      <DependentUpon>MiniScadaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\DbSignal.cs">
+      <DependentUpon>MiniScadaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\MiniScadaDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MiniScadaDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\MiniScadaDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MiniScadaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\MiniScadaDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MiniScadaDB.edmx</DependentUpon>
+    </Compile>
     <Compile Include="FileAccessing\FileAccess.cs" />
     <Compile Include="IModelService.cs" />
     <Compile Include="ModelServiceException.cs" />
@@ -147,10 +177,32 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="EntityDataModel\MiniScadaDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MiniScadaDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityDataModel\MiniScadaDB.edmx.diagram">
+      <DependentUpon>MiniScadaDB.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EntityDataModel\MiniScadaDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MiniScadaDB.edmx</DependentUpon>
+      <LastGenOutput>MiniScadaDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityDataModel\MiniScadaDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MiniScadaDB.edmx</DependentUpon>
+      <LastGenOutput>MiniScadaDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -7,13 +7,13 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 {
 	public class DatabaseAnalogSignalMappingRepository : IDatabaseAnalogSignalMappingRepository
 	{
-		MiniScadaDB miniScadaDB;
+		MiniScadaDBEntities miniScadaDB;
 
 		public List<ModelAnalogSignalMapping> AnalogMappingsList { get; private set; }
 
 		public DatabaseAnalogSignalMappingRepository()
 		{
-			miniScadaDB = new MiniScadaDB();
+			miniScadaDB = new MiniScadaDBEntities();
 
 			AnalogMappingsList = new List<ModelAnalogSignalMapping>();
 		}
@@ -24,15 +24,9 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 			foreach (var analogmapping in signalMappingsDB)
 			{
-				if (analogmapping.mapping_type == 0)
+				if (analogmapping.K != null)
 				{
-					ModelAnalogSignalMapping newAnalogMapping = new ModelAnalogSignalMapping()
-					{
-						Id = analogmapping.mapping_id,
-						Name = analogmapping.mapping_name,
-						K = (double)analogmapping.K,
-						N = (double)analogmapping.N
-					};
+					ModelAnalogSignalMapping newAnalogMapping = analogmapping.ToModelAnalogMapping();
 
 					AnalogMappingsList.Add(newAnalogMapping);
 				}

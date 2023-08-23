@@ -10,13 +10,13 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 {
 	public class DatabaseCronExpressionRepository : IDatabaseCronExpressionRepository
 	{
-		MiniScadaDB miniScadaDB;
+		MiniScadaDBEntities miniScadaDB;
 
 		public List<ModelCronExpressionMapping> CronExpressionList { get; private set; }
 
 		public DatabaseCronExpressionRepository()
 		{
-			miniScadaDB = new MiniScadaDB();
+			miniScadaDB = new MiniScadaDBEntities();
 			CronExpressionList = new List<ModelCronExpressionMapping>();
 		}
 

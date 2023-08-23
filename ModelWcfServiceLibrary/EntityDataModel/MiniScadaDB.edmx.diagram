@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b44a30f874e433cb930f02fe2a6d7ae" Name="Diagram1">
+        <EntityTypeShape EntityType="MiniScadaDBModel.DbCronExpression" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiniScadaDBModel.DbDiscreteValueToState" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiniScadaDBModel.DbMapping" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiniScadaDBModel.DbRtu" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiniScadaDBModel.DbScanPeriod" Width="1.5" PointX="2.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiniScadaDBModel.DbSignal" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="MiniScadaDBModel.FK__DbDiscret__mappi__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="MiniScadaDBModel.FK__DbSignals__mappi__0E6E26BF" ManuallyRouted="false" />
+        <AssociationConnector Association="MiniScadaDBModel.FK__DbSignals__rtu_i__0D7A0286" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

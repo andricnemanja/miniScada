@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MiniScadaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DbCronExpressions">
+          <Key>
+            <PropertyRef Name="cron_id" />
+          </Key>
+          <Property Name="cron_id" Type="int" Nullable="false" />
+          <Property Name="cron_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="cron_start" Type="datetime" Nullable="false" />
+          <Property Name="cron_end" Type="datetime" Nullable="false" />
+          <Property Name="recurrence_period" Type="int" Nullable="false" />
+          <Property Name="recurrence_type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DbDiscreteValueToState">
+          <Key>
+            <PropertyRef Name="value_to_state_id" />
+            <PropertyRef Name="discrete_value" />
+          </Key>
+          <Property Name="value_to_state_id" Type="int" Nullable="false" />
+          <Property Name="discrete_value" Type="tinyint" Nullable="false" />
+          <Property Name="discrete_state" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="mapping_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DbMappings">
+          <Key>
+            <PropertyRef Name="mapping_id" />
+          </Key>
+          <Property Name="mapping_id" Type="int" Nullable="false" />
+          <Property Name="mapping_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="K" Type="real" />
+          <Property Name="N" Type="real" />
+        </EntityType>
+        <EntityType Name="DbRtus">
+          <Key>
+            <PropertyRef Name="rtu_id" />
+          </Key>
+          <Property Name="rtu_id" Type="int" Nullable="false" />
+          <Property Name="rtu_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ip_address" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="rtu_port" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DbScanPeriods">
+          <Key>
+            <PropertyRef Name="scan_id" />
+          </Key>
+          <Property Name="scan_id" Type="int" Nullable="false" />
+          <Property Name="scan_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="scan_period" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DbSignals">
+          <Key>
+            <PropertyRef Name="signal_id" />
+          </Key>
+          <Property Name="signal_id" Type="int" Nullable="false" />
+          <Property Name="signal_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="signal_address" Type="int" Nullable="false" />
+          <Property Name="deadband" Type="real" Nullable="false" />
+          <Property Name="stale_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="access_type" Type="int" Nullable="false" />
+          <Property Name="discrete_signal_type" Type="int" />
+          <Property Name="mapping_id" Type="int" Nullable="false" />
+          <Property Name="rtu_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DbDiscret__mappi__160F4887">
+          <End Role="DbMappings" Type="Self.DbMappings" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DbDiscreteValueToState" Type="Self.DbDiscreteValueToState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DbMappings">
+              <PropertyRef Name="mapping_id" />
+            </Principal>
+            <Dependent Role="DbDiscreteValueToState">
+              <PropertyRef Name="mapping_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DbSignals__mappi__0E6E26BF">
+          <End Role="DbMappings" Type="Self.DbMappings" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DbSignals" Type="Self.DbSignals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DbMappings">
+              <PropertyRef Name="mapping_id" />
+            </Principal>
+            <Dependent Role="DbSignals">
+              <PropertyRef Name="mapping_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DbSignals__rtu_i__0D7A0286">
+          <End Role="DbRtus" Type="Self.DbRtus" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DbSignals" Type="Self.DbSignals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DbRtus">
+              <PropertyRef Name="rtu_id" />
+            </Principal>
+            <Dependent Role="DbSignals">
+              <PropertyRef Name="rtu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MiniScadaDBModelStoreContainer">
+          <EntitySet Name="DbCronExpressions" EntityType="Self.DbCronExpressions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DbDiscreteValueToState" EntityType="Self.DbDiscreteValueToState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DbMappings" EntityType="Self.DbMappings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DbRtus" EntityType="Self.DbRtus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DbScanPeriods" EntityType="Self.DbScanPeriods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DbSignals" EntityType="Self.DbSignals" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DbDiscret__mappi__160F4887" Association="Self.FK__DbDiscret__mappi__160F4887">
+            <End Role="DbMappings" EntitySet="DbMappings" />
+            <End Role="DbDiscreteValueToState" EntitySet="DbDiscreteValueToState" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DbSignals__mappi__0E6E26BF" Association="Self.FK__DbSignals__mappi__0E6E26BF">
+            <End Role="DbMappings" EntitySet="DbMappings" />
+            <End Role="DbSignals" EntitySet="DbSignals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DbSignals__rtu_i__0D7A0286" Association="Self.FK__DbSignals__rtu_i__0D7A0286">
+            <End Role="DbRtus" EntitySet="DbRtus" />
+            <End Role="DbSignals" EntitySet="DbSignals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MiniScadaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DbCronExpression">
+          <Key>
+            <PropertyRef Name="cron_id" />
+          </Key>
+          <Property Name="cron_id" Type="Int32" Nullable="false" />
+          <Property Name="cron_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cron_start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cron_end" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="recurrence_period" Type="Int32" Nullable="false" />
+          <Property Name="recurrence_type" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DbDiscreteValueToState">
+          <Key>
+            <PropertyRef Name="value_to_state_id" />
+            <PropertyRef Name="discrete_value" />
+          </Key>
+          <Property Name="value_to_state_id" Type="Int32" Nullable="false" />
+          <Property Name="discrete_value" Type="Byte" Nullable="false" />
+          <Property Name="discrete_state" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mapping_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DbMapping" Relationship="Self.FK__DbDiscret__mappi__160F4887" FromRole="DbDiscreteValueToState" ToRole="DbMappings" />
+        </EntityType>
+        <EntityType Name="DbMapping">
+          <Key>
+            <PropertyRef Name="mapping_id" />
+          </Key>
+          <Property Name="mapping_id" Type="Int32" Nullable="false" />
+          <Property Name="mapping_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="K" Type="Single" />
+          <Property Name="N" Type="Single" />
+          <NavigationProperty Name="DbDiscreteValueToStates" Relationship="Self.FK__DbDiscret__mappi__160F4887" FromRole="DbMappings" ToRole="DbDiscreteValueToState" />
+          <NavigationProperty Name="DbSignals" Relationship="Self.FK__DbSignals__mappi__0E6E26BF" FromRole="DbMappings" ToRole="DbSignals" />
+        </EntityType>
+        <EntityType Name="DbRtu">
+          <Key>
+            <PropertyRef Name="rtu_id" />
+          </Key>
+          <Property Name="rtu_id" Type="Int32" Nullable="false" />
+          <Property Name="rtu_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ip_address" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rtu_port" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DbSignals" Relationship="Self.FK__DbSignals__rtu_i__0D7A0286" FromRole="DbRtus" ToRole="DbSignals" />
+        </EntityType>
+        <EntityType Name="DbScanPeriod">
+          <Key>
+            <PropertyRef Name="scan_id" />
+          </Key>
+          <Property Name="scan_id" Type="Int32" Nullable="false" />
+          <Property Name="scan_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="scan_period" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="DbSignal">
+          <Key>
+            <PropertyRef Name="signal_id" />
+          </Key>
+          <Property Name="signal_id" Type="Int32" Nullable="false" />
+          <Property Name="signal_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="signal_address" Type="Int32" Nullable="false" />
+          <Property Name="deadband" Type="Single" Nullable="false" />
+          <Property Name="stale_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="access_type" Type="Int32" Nullable="false" />
+          <Property Name="discrete_signal_type" Type="Int32" />
+          <Property Name="mapping_id" Type="Int32" Nullable="false" />
+          <Property Name="rtu_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DbMapping" Relationship="Self.FK__DbSignals__mappi__0E6E26BF" FromRole="DbSignals" ToRole="DbMappings" />
+          <NavigationProperty Name="DbRtu" Relationship="Self.FK__DbSignals__rtu_i__0D7A0286" FromRole="DbSignals" ToRole="DbRtus" />
+        </EntityType>
+        <Association Name="FK__DbDiscret__mappi__160F4887">
+          <End Role="DbMappings" Type="Self.DbMapping" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DbDiscreteValueToState" Type="Self.DbDiscreteValueToState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DbMappings">
+              <PropertyRef Name="mapping_id" />
+            </Principal>
+            <Dependent Role="DbDiscreteValueToState">
+              <PropertyRef Name="mapping_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DbSignals__mappi__0E6E26BF">
+          <End Role="DbMappings" Type="Self.DbMapping" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DbSignals" Type="Self.DbSignal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DbMappings">
+              <PropertyRef Name="mapping_id" />
+            </Principal>
+            <Dependent Role="DbSignals">
+              <PropertyRef Name="mapping_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DbSignals__rtu_i__0D7A0286">
+          <End Role="DbRtus" Type="Self.DbRtu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DbSignals" Type="Self.DbSignal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DbRtus">
+              <PropertyRef Name="rtu_id" />
+            </Principal>
+            <Dependent Role="DbSignals">
+              <PropertyRef Name="rtu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MiniScadaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DbCronExpressions" EntityType="Self.DbCronExpression" />
+          <EntitySet Name="DbDiscreteValueToStates" EntityType="Self.DbDiscreteValueToState" />
+          <EntitySet Name="DbMappings" EntityType="Self.DbMapping" />
+          <EntitySet Name="DbRtus" EntityType="Self.DbRtu" />
+          <EntitySet Name="DbScanPeriods" EntityType="Self.DbScanPeriod" />
+          <EntitySet Name="DbSignals" EntityType="Self.DbSignal" />
+          <AssociationSet Name="FK__DbDiscret__mappi__160F4887" Association="Self.FK__DbDiscret__mappi__160F4887">
+            <End Role="DbMappings" EntitySet="DbMappings" />
+            <End Role="DbDiscreteValueToState" EntitySet="DbDiscreteValueToStates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DbSignals__mappi__0E6E26BF" Association="Self.FK__DbSignals__mappi__0E6E26BF">
+            <End Role="DbMappings" EntitySet="DbMappings" />
+            <End Role="DbSignals" EntitySet="DbSignals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DbSignals__rtu_i__0D7A0286" Association="Self.FK__DbSignals__rtu_i__0D7A0286">
+            <End Role="DbRtus" EntitySet="DbRtus" />
+            <End Role="DbSignals" EntitySet="DbSignals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MiniScadaDBModelStoreContainer" CdmEntityContainer="MiniScadaDBEntities">
+          <EntitySetMapping Name="DbCronExpressions">
+            <EntityTypeMapping TypeName="MiniScadaDBModel.DbCronExpression">
+              <MappingFragment StoreEntitySet="DbCronExpressions">
+                <ScalarProperty Name="cron_id" ColumnName="cron_id" />
+                <ScalarProperty Name="cron_name" ColumnName="cron_name" />
+                <ScalarProperty Name="cron_start" ColumnName="cron_start" />
+                <ScalarProperty Name="cron_end" ColumnName="cron_end" />
+                <ScalarProperty Name="recurrence_period" ColumnName="recurrence_period" />
+                <ScalarProperty Name="recurrence_type" ColumnName="recurrence_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DbDiscreteValueToStates">
+            <EntityTypeMapping TypeName="MiniScadaDBModel.DbDiscreteValueToState">
+              <MappingFragment StoreEntitySet="DbDiscreteValueToState">
+                <ScalarProperty Name="value_to_state_id" ColumnName="value_to_state_id" />
+                <ScalarProperty Name="discrete_value" ColumnName="discrete_value" />
+                <ScalarProperty Name="discrete_state" ColumnName="discrete_state" />
+                <ScalarProperty Name="mapping_id" ColumnName="mapping_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DbMappings">
+            <EntityTypeMapping TypeName="MiniScadaDBModel.DbMapping">
+              <MappingFragment StoreEntitySet="DbMappings">
+                <ScalarProperty Name="mapping_id" ColumnName="mapping_id" />
+                <ScalarProperty Name="mapping_name" ColumnName="mapping_name" />
+                <ScalarProperty Name="K" ColumnName="K" />
+                <ScalarProperty Name="N" ColumnName="N" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DbRtus">
+            <EntityTypeMapping TypeName="MiniScadaDBModel.DbRtu">
+              <MappingFragment StoreEntitySet="DbRtus">
+                <ScalarProperty Name="rtu_id" ColumnName="rtu_id" />
+                <ScalarProperty Name="rtu_name" ColumnName="rtu_name" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="rtu_port" ColumnName="rtu_port" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DbScanPeriods">
+            <EntityTypeMapping TypeName="MiniScadaDBModel.DbScanPeriod">
+              <MappingFragment StoreEntitySet="DbScanPeriods">
+                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
+                <ScalarProperty Name="scan_name" ColumnName="scan_name" />
+                <ScalarProperty Name="scan_period" ColumnName="scan_period" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DbSignals">
+            <EntityTypeMapping TypeName="MiniScadaDBModel.DbSignal">
+              <MappingFragment StoreEntitySet="DbSignals">
+                <ScalarProperty Name="signal_id" ColumnName="signal_id" />
+                <ScalarProperty Name="signal_name" ColumnName="signal_name" />
+                <ScalarProperty Name="signal_address" ColumnName="signal_address" />
+                <ScalarProperty Name="deadband" ColumnName="deadband" />
+                <ScalarProperty Name="stale_time" ColumnName="stale_time" />
+                <ScalarProperty Name="access_type" ColumnName="access_type" />
+                <ScalarProperty Name="discrete_signal_type" ColumnName="discrete_signal_type" />
+                <ScalarProperty Name="mapping_id" ColumnName="mapping_id" />
+                <ScalarProperty Name="rtu_id" ColumnName="rtu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

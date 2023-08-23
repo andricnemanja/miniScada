@@ -7,13 +7,13 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 {
 	public class DatabaseDiscreteSignalMappingRepository : IDatabaseDiscreteSignalMappingRepository
 	{
-		MiniScadaDB miniScadaDB;
+		MiniScadaDBEntities miniScadaDB;
 
 		public List<ModelDiscreteSignalMapping> DiscreteMappingsList { get; private set; }
 
 		public DatabaseDiscreteSignalMappingRepository()
 		{
-			miniScadaDB = new MiniScadaDB();
+			miniScadaDB = new MiniScadaDBEntities();
 
 			DiscreteMappingsList = new List<ModelDiscreteSignalMapping>();
 		}
@@ -24,7 +24,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 			foreach (var discretemapping in signalMappingsDB)
 			{
-				if (discretemapping.mapping_type == 1)
+				if (discretemapping.K == null)
 				{
 					Dictionary<byte, string> newDiscreteValueToStateDict = new Dictionary<byte, string>();
 
@@ -37,12 +37,14 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 						newDiscreteValueToStateDict.Add(valueToState.discrete_value, valueToState.discrete_state);
 					}
 
-					ModelDiscreteSignalMapping newDiscreteMapping = new ModelDiscreteSignalMapping()
-					{
-						Id = discretemapping.mapping_id,
-						Name = discretemapping.mapping_name,
-						DiscreteValueToState = newDiscreteValueToStateDict
-					};
+					//ModelDiscreteSignalMapping newDiscreteMapping = new ModelDiscreteSignalMapping()
+					//{
+					//	Id = discretemapping.mapping_id,
+					//	Name = discretemapping.mapping_name,
+					//	DiscreteValueToState = newDiscreteValueToStateDict
+					//};
+
+					ModelDiscreteSignalMapping newDiscreteMapping = discretemapping.ToModelDiscreteMapping();
 
 					DiscreteMappingsList.Add(newDiscreteMapping);
 

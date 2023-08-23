@@ -8,13 +8,13 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 {
 	public class DatabaseRtuRepository : IDatabaseRtuRepository
 	{
-		private readonly MiniScadaDB miniScadaDB;
+		private readonly MiniScadaDBEntities miniScadaDB;
 
 		public List<ModelRTU> RtuList { get; private set; }
 
 		public DatabaseRtuRepository()
 		{
-			miniScadaDB = new MiniScadaDB();
+			miniScadaDB = new MiniScadaDBEntities();
 			RtuList = new List<ModelRTU>();
 		}
 
@@ -24,46 +24,8 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 			foreach (var rtuDB in rtusListDB)
 			{
-				ModelRTUData newRtuData = new ModelRTUData()
-				{
-					ID = rtuDB.rtu_id,
-					Name = rtuDB.rtu_name,
-					IpAddress = rtuDB.ip_address,
-					Port = rtuDB.rtu_port
-				};
-
-				ModelRTU newRtu = new ModelRTU()
-				{
-					RTUData = newRtuData,
-					AnalogSignals = rtuDB.DbSignals
-						.Where(signal => signal.signal_type == 0)
-						.Select(signal => new ModelAnalogSignal
-						{
-							ID = signal.signal_id,
-							Name = signal.signal_name,
-							Address = signal.signal_address,
-							AccessType = (ModelSignalAccessType)signal.access_type,
-							Deadband = signal.deadband,
-							StaleTime = signal.stale_time,
-							MappingId = signal.mapping_id
-						})
-						.ToList(),
-					DiscreteSignals = rtuDB.DbSignals
-						.Where(signal => signal.signal_type == 1)
-						.Select(signal => new ModelDiscreteSignal
-						{
-							ID = signal.signal_id,
-							Name = signal.signal_name,
-							Address = signal.signal_address,
-							AccessType = (ModelSignalAccessType)signal.access_type,
-							Deadband = signal.deadband,
-							StaleTime = signal.stale_time,
-							SignalType = (ModelDiscreteSignalType)signal.discrete_signal_type,
-							MappingId = signal.mapping_id
-						})
-						.ToList()
-				};
-
+				ModelRTU newRtu = rtuDB.ToModel();
+			
 				RtuList.Add(newRtu);
 			}
 		}
