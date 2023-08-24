@@ -19,7 +19,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 		public void MapFromDatabase()
 		{
-			List<DbScanPeriod> scanPeriodsDB = miniScadaDB.DbScanPeriods.ToList();
+			List<DbScanPeriod> scanPeriodsDB = miniScadaDB.DbScanPeriods.AsNoTracking().ToList();
 
 			foreach (var period in scanPeriodsDB)
 			{

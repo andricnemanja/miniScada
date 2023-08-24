@@ -20,22 +20,22 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 		public void MapFromDatabase()
 		{
-			List<DbMapping> signalMappingsDB = miniScadaDB.DbMappings.ToList();
+			List<DbMapping> signalMappingsDB = miniScadaDB.DbMappings.Include("DbDiscreteValueToStates").AsNoTracking().ToList();
 
 			foreach (var discretemapping in signalMappingsDB)
 			{
 				if (discretemapping.K == null)
 				{
-					Dictionary<byte, string> newDiscreteValueToStateDict = new Dictionary<byte, string>();
+					//Dictionary<byte, string> newDiscreteValueToStateDict = new Dictionary<byte, string>();
 
-					List<DbDiscreteValueToState> valueToStateQuery = miniScadaDB.DbDiscreteValueToStates
-						.Where(valueToState => valueToState.mapping_id == discretemapping.mapping_id)
-						.ToList();
+					//List<DbDiscreteValueToState> valueToStateQuery = miniScadaDB.DbDiscreteValueToStates
+					//	.Where(valueToState => valueToState.mapping_id == discretemapping.mapping_id)
+					//	.ToList();
 
-					foreach (var valueToState in valueToStateQuery)
-					{
-						newDiscreteValueToStateDict.Add(valueToState.discrete_value, valueToState.discrete_state);
-					}
+					//foreach (var valueToState in valueToStateQuery)
+					//{
+					//	newDiscreteValueToStateDict.Add(valueToState.discrete_value, valueToState.discrete_state);
+					//}
 
 					//ModelDiscreteSignalMapping newDiscreteMapping = new ModelDiscreteSignalMapping()
 					//{

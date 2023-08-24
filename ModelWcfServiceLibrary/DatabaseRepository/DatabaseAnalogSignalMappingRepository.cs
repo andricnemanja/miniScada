@@ -20,7 +20,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 		public void MapFromDatabase()
 		{
-			List<DbMapping> signalMappingsDB = miniScadaDB.DbMappings.ToList();
+			List<DbMapping> signalMappingsDB = miniScadaDB.DbMappings.AsNoTracking().ToList();
 
 			foreach (var analogmapping in signalMappingsDB)
 			{

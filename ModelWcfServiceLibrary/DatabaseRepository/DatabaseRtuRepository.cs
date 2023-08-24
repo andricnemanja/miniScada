@@ -20,7 +20,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 		public void MapFromDatabase()
 		{
-			List<DbRtu> rtusListDB = miniScadaDB.DbRtus.ToList();
+			List<DbRtu> rtusListDB = miniScadaDB.DbRtus.AsNoTracking().ToList();
 
 			foreach (var rtuDB in rtusListDB)
 			{
