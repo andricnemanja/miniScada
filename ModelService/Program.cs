@@ -2,8 +2,6 @@
 using Autofac.Core;
 using Autofac.Integration.Wcf;
 using ModelWcfServiceLibrary;
-using ModelWcfServiceLibrary.DatabaseRepository;
-using ModelWcfServiceLibrary.Repository;
 using System;
 using System.ServiceModel;
 
@@ -16,15 +14,19 @@ namespace ModelServiceHost
             IContainer container = Bootstrapper.RegisterContainerBuilder().Build();
 
             ServiceHost selfHost = new ServiceHost(typeof(ModelService));
-            selfHost.AddDependencyInjectionBehavior<IModelService>(container);
+            // selfHost.AddDependencyInjectionBehavior<IModelService>(container);
 
-            IComponentRegistration registration;
-            if (!container.ComponentRegistry.TryGetRegistration(new TypedService(typeof(IModelService)), out registration))
-            {
-                Console.WriteLine("The service contract has not been registered in the container.");
-                Console.ReadLine();
-                Environment.Exit(-1);
-            }
+            selfHost.AddDependencyInjectionBehavior<IModelModbus>(container);
+			selfHost.AddDependencyInjectionBehavior<IModelScheduler>(container);
+			selfHost.AddDependencyInjectionBehavior<IModelDynamicCacheManager>(container);
+
+			//IComponentRegistration registration;
+            //if (!container.ComponentRegistry.TryGetRegistration(new TypedService(typeof(IModelService)), out registration))
+            //{
+            //    Console.WriteLine("The service contract has not been registered in the container.");
+            //    Console.ReadLine();
+            //    Environment.Exit(-1);
+            //}
 
             selfHost.Open();
 

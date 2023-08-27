@@ -142,6 +142,9 @@
       <DependentUpon>MiniScadaDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="FileAccessing\FileAccess.cs" />
+    <Compile Include="IModelDynamicCacheManager.cs" />
+    <Compile Include="IModelModbus.cs" />
+    <Compile Include="IModelScheduler.cs" />
     <Compile Include="IModelService.cs" />
     <Compile Include="ModelServiceException.cs" />
     <Compile Include="Model\CronExpressionMapping\ModelCronExpressionMapping.cs" />

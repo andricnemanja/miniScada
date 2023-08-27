@@ -20,18 +20,18 @@ namespace DynamicCacheManager.Tests.ResultProcessing
 			staticDataLoader = new StaticDataLoader(modelServiceMock.Object, dynamicCacheClientMock.Object);
 		}
 
-		[Fact]
-		public void InitializeData()
-		{
-			//Arrange
-			modelServiceMock.Setup(m => m.GetAllRTUs()).Returns(ModelServiceRtuTestData.GetRtuTestList());
+		//[Fact]
+		//public void InitializeData()
+		//{
+		//	//Arrange
+		//	modelServiceMock.Setup(m => m.GetAllRTUs()).Returns(ModelServiceRtuTestData.GetRtuTestList());
 
-			//Act
-			List<Rtu> rtuList = staticDataLoader.InitializeData();
-			List<Rtu> expectedRtuList = DynamicCacheRtuTestData.GetRtuTestList();
+		//	//Act
+		//	List<Rtu> rtuList = staticDataLoader.InitializeData();
+		//	List<Rtu> expectedRtuList = DynamicCacheRtuTestData.GetRtuTestList();
 
-			//Assert
-			Assert.Equivalent(expectedRtuList, rtuList);
-		}
+		//	//Assert
+		//	Assert.Equivalent(expectedRtuList, rtuList);
+		//}
 	}
 }

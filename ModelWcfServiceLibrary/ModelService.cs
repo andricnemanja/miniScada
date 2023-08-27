@@ -15,14 +15,9 @@ namespace ModelWcfServiceLibrary
 	/// <summary>
 	/// Provides endpoints for Model Service
 	/// </summary>
-	public sealed class ModelService : IModelService
+	public sealed class ModelService : IModelModbus, IModelDynamicCacheManager, IModelScheduler
 	{
-		private readonly IRtuRepository rtuRepository;
-		private readonly IDiscreteSignalMappingRepository discreteSignalMappingRepository;
-		private readonly IAnalogSignalMappingRepository analogSignalMappingRepository;
-		private readonly ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository;
 		private readonly IFlagRepository flagRepository;
-		private readonly ICronExpressionMappingRepository cronExpressionMappingRepository;
 		private readonly IDatabaseRtuRepository databaseRtuRepository;
 		private readonly IDatabaseAnalogSignalMappingRepository databaseAnalogSignalMappingRepository;
 		private readonly IDatabaseDiscreteSignalMappingRepository databaseDiscreteSignalMappingRepository;
@@ -36,18 +31,12 @@ namespace ModelWcfServiceLibrary
 		/// <param name="analogSignalMappingRepository"></param>
 		/// <param name="discreteSignalMappingRepository"></param>
 		/// <param name="cronExpressionMappingRepository"></param>
-		public ModelService(IRtuRepository rtuRepository, IAnalogSignalMappingRepository analogSignalMappingRepository, 
-			IDiscreteSignalMappingRepository discreteSignalMappingRepository, ISignalScanPeriodMappingRepository signalScanPeriodMappingRepository, 
-			IFlagRepository flagRepository, ICronExpressionMappingRepository cronExpressionMappingRepository, 
+		public ModelService(IFlagRepository flagRepository,
 			IDatabaseRtuRepository databaseRtuRepository, IDatabaseAnalogSignalMappingRepository databaseAnalogSignalMappingRepository, 
 			IDatabaseDiscreteSignalMappingRepository databaseDiscreteSignalMappingRepository, IDatabaseScanPeriodRepository databaseScanPeriodRepository, IDatabaseCronExpressionRepository databaseCronExpressionRepository)
 		{
-			this.rtuRepository = rtuRepository;
-			this.analogSignalMappingRepository = analogSignalMappingRepository;
-			this.discreteSignalMappingRepository = discreteSignalMappingRepository;
-			this.signalScanPeriodMappingRepository = signalScanPeriodMappingRepository;
+
 			this.flagRepository = flagRepository;
-			this.cronExpressionMappingRepository = cronExpressionMappingRepository;
 			this.databaseRtuRepository = databaseRtuRepository;
 			this.databaseAnalogSignalMappingRepository = databaseAnalogSignalMappingRepository;
 			this.databaseDiscreteSignalMappingRepository = databaseDiscreteSignalMappingRepository;
@@ -72,7 +61,7 @@ namespace ModelWcfServiceLibrary
 		public ModelRTU GetRTU(int id)
 		{
 	
-			ModelRTU rtu = rtuRepository.GetRTUByID(id);
+			ModelRTU rtu = databaseRtuRepository.GetRTUByID(id);
 			if (rtu == null)
 			{
 				ModelServiceException ex = new ModelServiceException(FaultCodes.IdDoesNotExist);
@@ -88,7 +77,7 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of discrete signals</returns>
 		public IEnumerable<ModelDiscreteSignal> GetDiscreteSignalsForRtu(int id)
 		{
-			return rtuRepository.GetDiscreteSignalsForRtu(id).ToList();
+			return databaseRtuRepository.GetDiscreteSignalsForRtu(id).ToList();
 		}
 		/// <summary>
 		/// Get list of analog signals for RTU with given ID
@@ -97,7 +86,7 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of analog signals</returns>
 		public IEnumerable<ModelAnalogSignal> GetAnalogSignalsForRtu(int id)
 		{
-			return rtuRepository.GetAnalogSignalsForRtu(id);
+			return databaseRtuRepository.GetAnalogSignalsForRtu(id);
 		}
 		/// <summary>
 		/// Get RTUs essential data
@@ -105,7 +94,7 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of essential data for all RTUs</returns>
 		public IEnumerable<ModelRTUData> GetRTUsEssentialData()
 		{
-			return rtuRepository.GetRTUsEssentialData();
+			return databaseRtuRepository.GetRTUsEssentialData();
 		}
 
 		/// <summary>
@@ -134,9 +123,9 @@ namespace ModelWcfServiceLibrary
 		/// <returns>List of discrete signal mappings</returns>
 		public string[] GetDiscreteSignalPossibleStates(int rtuId, int signalAddress)
 		{
-			ModelRTU rtu = rtuRepository.GetRTUByID(rtuId);
+			ModelRTU rtu = databaseRtuRepository.GetRTUByID(rtuId);
 			ModelDiscreteSignal signal = rtu.DiscreteSignals.FirstOrDefault(s => s.Address == signalAddress);
-			return discreteSignalMappingRepository.GetDiscreteSignalPossibleStates(signal.MappingId);
+			return databaseDiscreteSignalMappingRepository.GetDiscreteSignalPossibleStates(signal.MappingId);
 		}
 
 		/// <summary>

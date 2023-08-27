@@ -31,7 +31,6 @@ namespace SchedulerService.CronExpressionMapper
 					return $"0 0 12 1 */{recurrencePeriod} ? *";
 				default:
 					return null;
-					break;
 			}
 		}
 	}

@@ -62,8 +62,11 @@ namespace ModelServiceHost
 			builder.RegisterType<DatabaseDiscreteSignalMappingRepository>().As<IDatabaseDiscreteSignalMappingRepository>()
 				.OnActivated(c => c.Instance.MapFromDatabase());
 
+			//builder.RegisterType<ModelService>().As<IModelService>();
 
-			builder.RegisterType<ModelService>().As<IModelService>();
+			builder.RegisterType<ModelService>().As<IModelModbus>();
+			builder.RegisterType<ModelService>().As<IModelScheduler>();
+			builder.RegisterType<ModelService>().As<IModelDynamicCacheManager>();
 
 			return builder;
 		}

@@ -14,7 +14,6 @@ namespace ModbusServiceLibrary.RtuConfiguration
 		/// </summary>
 		private List<ModbusRTU> RtuList;
 
-
 		/// <summary>
 		/// Initializes the new instance of the <see cref="ModbusRtuConfiguration"/> class.
 		/// </summary>

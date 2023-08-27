@@ -9,5 +9,6 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 		ModelDiscreteSignalMapping GetDiscreteMappingByID(int id);
 		void MapFromDatabase();
+		string[] GetDiscreteSignalPossibleStates(int mappingId);
 	}
 }
