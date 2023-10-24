@@ -93,7 +93,6 @@ namespace ModbusServiceLibrary
 		{
 			try
 			{
-				Console.WriteLine("RTU ID: " + ((ReadSingleSignalCommand)command).RtuId + " Signal ID: " + ((ReadSingleSignalCommand)command).SignalId); 
 				rtuCommandInvoker.ReadSingleSignalScheduler(command);
 				var result = rtuCommandInvoker.ReadSingleSignalScheduler(command);
 				//dynamicCacheService.ProcessCommandResult(result);

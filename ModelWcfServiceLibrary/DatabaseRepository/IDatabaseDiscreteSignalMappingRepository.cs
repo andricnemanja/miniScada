@@ -8,6 +8,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 		List<ModelDiscreteSignalMapping> DiscreteMappingsList { get; }
 
 		ModelDiscreteSignalMapping GetDiscreteMappingByID(int id);
+		string[] GetDiscreteSignalPossibleStates(int mappingId);
 		void MapFromDatabase();
 	}
 }

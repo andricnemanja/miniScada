@@ -30,19 +30,19 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 			}
 		}
 
-		public ModelRTU GetRTUbyID(int id)
+		public ModelRTU GetRtuByID(int id)
 		{
 			return RtuList.SingleOrDefault(r => r.RTUData.ID == id);
 		}
 
 		public IEnumerable<ModelAnalogSignal> GetAnalogSignalsForRtu(int id)
 		{
-			return GetRTUbyID(id).AnalogSignals;
+			return GetRtuByID(id).AnalogSignals;
 		}
 
 		public IEnumerable<ModelDiscreteSignal> GetDiscreteSignalsForRtu(int id)
 		{
-			return GetRTUbyID(id).DiscreteSignals;
+			return GetRtuByID(id).DiscreteSignals;
 		}
 
 		/// <summary>

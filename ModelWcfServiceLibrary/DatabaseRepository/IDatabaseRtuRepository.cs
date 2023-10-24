@@ -10,7 +10,7 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 
 		IEnumerable<ModelAnalogSignal> GetAnalogSignalsForRtu(int id);
 		IEnumerable<ModelDiscreteSignal> GetDiscreteSignalsForRtu(int id);
-		ModelRTU GetRTUbyID(int id);
+		ModelRTU GetRtuByID(int id);
 		IEnumerable<ModelRTUData> GetRTUsEssentialData();
 		void MapFromDatabase();
 	}

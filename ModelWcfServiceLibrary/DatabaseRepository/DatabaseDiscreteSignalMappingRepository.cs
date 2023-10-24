@@ -57,5 +57,19 @@ namespace ModelWcfServiceLibrary.DatabaseRepository
 			return DiscreteMappingsList.SingleOrDefault(m => m.Id == id);
 		}
 
+		public string[] GetDiscreteSignalPossibleStates(int mappingId)
+		{
+			ModelDiscreteSignalMapping mapping = DiscreteMappingsList.SingleOrDefault(m => m.Id == mappingId);
+			if (mapping.DiscreteValueToState.Keys.Count == 2)
+			{
+				return mapping.DiscreteValueToState.Values.ToArray();
+			}
+
+			string[] possibleStates = new string[2];
+			possibleStates[0] = mapping.DiscreteValueToState[1];
+			possibleStates[1] = mapping.DiscreteValueToState[2];
+			return possibleStates;
+
+		}
 	}
 }
